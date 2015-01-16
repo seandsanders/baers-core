@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+  <h1 class="page-header">Dashboard</h1>
+<div class="row dashboardHeader">
+  <img src="//image.eveonline.com/Character/{{ mainCharID }}_128.jpg" class="character">
+  <h3 class="charName">{{ mainCharName }}</h3>
+  <span class="text-muted">Theatre Commander, Huggy Bear</span>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Notifications</h2>
+      </div>
+      <div class="panel-body">
+        <div class="alert alert-info" role="alert">17:22 - Gihon Maersk just commented on <a href="#" class="alert-link">Big Sigma's application</a></div>
+        <div class="alert alert-danger" role="alert">16:49 - <a href="#" class="alert-link">Nimos Endashi</a> invalidated his API Keys</a></div>
+        <div class="alert alert-warning" role="alert">16:35 - New Application from <a href="#" class="alert-link">Big Sigma</a></div>
+        <div class="alert alert-success" role="alert">16:15 - Jim Suleto accepted <a href="#" class="alert-link">Vamoran Umphari's application</a></div>
+        <div class="alert alert-info" role="alert">16:10 - New <a href="#" class="alert-link">SRP Request</a> from <a href="#" class="alert-link">ImSuperlative</a></div>
+        <div class="alert alert-success" role="alert">15:01 - Your <a href="#" class="alert-link">SRP request from 10/10/2010</a> has been accepted</div>   
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Tasks</h2>
+      </div>
+      <div class="panel-body">
+        <div class="alert alert-warning" role="alert">Your POS J105934 IV-3 is only at 40% fuel</div>
+        <div class="alert alert-danger" role="alert">The character Jane Belius does not have any valid API keys registered</div>
+        <div class="alert alert-warning" role="alert">There are currently 49 pending applications</div>
+        <div class="alert alert-warning" rolw="alert">There are currently 9928 pending srp requests</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
