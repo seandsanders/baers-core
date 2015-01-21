@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/favicon.ico">
+
+    <title>Register - Dropbears Anonymous</title>
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+
+	<style>
+    	body {
+        	background-image: url("/static/bg.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+		}
+		html, body { height: 100%;}
+        #main-container {
+        	margin-top: 20%;
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 20px;
+            border: 1px solid black;
+            padding-bottom: 10px;
+        }
+        .thumbnail {
+            width: 128px;
+            display: inline-block;
+
+        }
+        .thumbnail:hover {
+            cursor: pointer;
+            background-color: #9f9;            
+        }
+        .mainChar {
+            background-color: #0c0!important;
+        }
+        .characters {
+            padding-left: 10px;
+        }
+    </style>
+  </head>
+
+  <body>
+  	<div class="container" id="main-container">
+    	<h2>Register</h2>
+        {% if error %}
+            <div class="alert alert-danger" role="alert"><strong>Error:</strong> {{error}}</div>
+        {% endif %}
+        {% if characters %}
+            <div class="row characters">
+                {% for char in characters %}
+                   <div numChar="{{forloop.counter}}" class="thumbnail">
+                        <img src="//image.eveonline.com/Character/{{char.charID}}_128.jpg" alt="{{char.charName}}">
+                        <strong>{{char.charName}}</strong>
+                   </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <p>Please Provide API Keys for all of your accounts and mark your main Character before continuing</p>
+        <form action="" method="post">
+          <div class="form-group">
+            <label for="keyID">API Key ID</label>
+            <input type="text" class="form-control" name="keyID" id="keyID" placeholder="Enter Key ID">
+          </div>
+          <div class="form-group">
+            <label for="vCode">Verification Code</label>
+            <input type="text" class="form-control" name="vCode" id="vCode" placeholder="Enter vCode">
+          </div>
+          <input type="hidden" name="mainChar", id="mainChar" value="0">
+          <button type="submit" name="action" value="addkey" class="btn btn-default">Add Key</button>
+          <button type="submit" name="action" value="done" class="btn btn-default pull-right">Done</button>
+           {% csrf_token %}
+        </form>    
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script>
+    $('.thumbnail').click(function () {
+        $('.thumbnail').removeClass('mainChar');
+        $(this).addClass('mainChar');
+        $('input#mainChar').val($(this).attr('numChar'));
+    })
+  </script>
+</html>

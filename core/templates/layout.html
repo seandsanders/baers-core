@@ -24,16 +24,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">BAERS Core</a>
+          <a class="navbar-brand" href="{% url "core:dashboard" %}">BAERS Core</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">My Profile</a></li>
+            <li><a href="{%url "core:myProfile" %}">My Profile</a></li>
+            <li><a href="{% url "core:logout" %}">Logout</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
+          <form class="navbar-form navbar-right" method="post" action="{% url "core:searchProfile" %}">
+            {% csrf_token %}
+            <input type="text" class="form-control" name="searchterm" placeholder="Search...">
+            <input type="submit" style="display: none;">
           </form>
         </div>
       </div>
@@ -43,17 +44,18 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">API Keys</a></li>
-            <li><a href="#">Characters</a></li>
-            <li><a href="">SRP Requests</a></li>
-            <li><a href="">Applications</a></li>
-            <li><a href="">POS Overview</a></li>
-            <li><a href="">Corp Wallet Overview</a></li>
+            <li {% if request.resolver_match.url_name == "dashboard" %}class="active"{%endif%}><a href="{% url "core:dashboard" %}">Overview <span class="sr-only">(current)</span></a></li>
+            <li {% if request.resolver_match.url_name == "keys" %}class="active"{%endif%}><a href="{% url "core:keys" %}">Characters / API Keys</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="">Hipchat Access</a></li>
-            <li><a href="">Subreddit Access</a></li>
+            <li {% if request.resolver_match.url_name == "apps" %}class="active"{%endif%}><a href="">Applications</a></li>
+            <li {% if request.resolver_match.url_name == "pos" %}class="active"{%endif%}><a href="">POS Overview</a></li>
+            <li {% if request.resolver_match.url_name == "wallet" %}class="active"{%endif%}><a href="">Corp Wallet Overview</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li {% if request.resolver_match.url_name == "srp" %}class="active"{%endif%}><a href="">SRP</a></li>
+            <li {% if request.resolver_match.url_name == "hipchat" %}class="active"{%endif%}><a href="">Hipchat Access</a></li>
+            <li {% if request.resolver_match.url_name == "reddit" %}class="active"{%endif%}><a href="">Subreddit Access</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -62,13 +64,9 @@
       </div>
     </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/docs.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script>var csrftoken = "{{ csrf_token }}"</script>
+    {% block scripts %}{% endblock %}
   </body>
 </html>

@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block content %}
+ <h1 class="page-header">Your Api Keys</h1>
+
+ 	<table class="table table-hover" style="display: block;">
+ 		<tr>
+ 			<th>CharName</th>
+ 			<th>Corporation</th>
+ 			<th>Actions</th>
+ 		{% for key in apis %}
+		 	<tr>
+		 		<td colspan="2" class="{% if not key.valid %}danger{% endif %}">Key {{forloop.counter}}: {{key.keyID}} : {{key.vCode}}</td>
+		 		<td><a href="#" class="delkey" keyid="{{key.keyID}}"><img style="width: 16px; height: 16px" src="/static/img/delete.png"></a></td>
+		 	</tr>
+		 		{% for char in key.character_set.all %}
+			 		<tr class="{%if key.profile.mainChar == char%}success{% endif %}">
+			 			<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{char.charName}}</td>
+			 			<td><img src="//image.eveonline.com/Corporation/{{char.corpID}}_32.png" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.corpName}}">{{char.corpName}}</td>
+			 			<td><a href="#" class="makeMain" characterID="{{char.charID}}"><img class="main_icon {%if key.profile.mainChar == char%}active{% endif %}" src="/static/img/star.png"></a></td>
+			 		</tr>
+ 		 		{% endfor %}
+ 		{% endfor %}
+ 	</table>
+ 	<hr>
+ 	<h2>Add New API</h2>
+ 	{% if error %}
+ 		<div class="alert alert-danger" role="alert"><strong>Error:</strong> {{error}}</div>
+ 	{% endif %}
+ 	<form class="form-inline" method="post" action="">
+	  <div class="form-group">
+	    <label class="sr-only" for="keyID">Key ID</label>
+	    <input type="text" class="form-control" name="keyID" id="keyID" placeholder="Key ID">
+	  </div>
+	  <div class="form-group">
+	    <label class="sr-only" for="vCode">vCode</label>
+	    <input type="text" class="form-control" name="vCode" id="vCode" placeholder="Verification Code">
+	  </div>
+	  <button type="submit" name="action" value="addkey" class="btn btn-default">Add</button>
+	  {% csrf_token %}
+	</form>
+ {% endblock content %}
+
+ {% block scripts %}
+ 	<script>
+ 		$('a.makeMain').click(function () {
+ 			$.post('', {action: "makemain", csrfmiddlewaretoken: csrftoken, characterID:$(this).attr('characterID')}, function () {location.reload()})
+ 		});
+  		$('a.delkey').click(function () {
+ 			$.post('', {action: "delkey", csrfmiddlewaretoken: csrftoken, keyID:$(this).attr('keyid')}, function () {location.reload()})
+ 		});
+ 	</script>
+ 	</script>
+ {% endblock scripts %}

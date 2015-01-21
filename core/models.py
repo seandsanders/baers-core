@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 
 
 # Create your models here.
@@ -9,8 +9,8 @@ from django.contrib.auth.models import Group
 # User Management
 class UserProfile(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL)
-	mainChar = models.OneToOneField('Character')
-	squad = models.IntegerField()
+	mainChar = models.OneToOneField('Character', null=True)
+	squad = models.IntegerField(null=True)
 
 	def __str__(self):
 		return self.mainChar.__str__()
@@ -19,12 +19,14 @@ class UserProfile(models.Model):
 ##
 # Notifications
 class Notification(models.Model):
-	content = models.CharField(max_length=200)
-	targetUsers = models.ManyToManyField(UserProfile)
+	content = models.CharField(max_length=2048)
+	time = models.DateTimeField(auto_now_add=True)
+	targetUsers = models.ManyToManyField(User)
 	targetGroup = models.ManyToManyField(Group)
+	cssClass = models.CharField(max_length=20)
 
 	def __str__(self):
-		return content
+		return self.content
 
 
 ##
@@ -50,15 +52,20 @@ class ApiKey(models.Model):
 	profile = models.ForeignKey(UserProfile)
 	keyID = models.IntegerField()
 	vCode = models.CharField(max_length=100)
+	accountWide = models.BooleanField(default=True)
 
-	accessMask = models.CharField(max_length=20)
-	expiration = models.DateTimeField()
+	valid = models.BooleanField(default=True)
+	deleted = models.BooleanField(default=False) 
+	
+
+	accessMask = models.CharField(max_length=20,null=True)
+	expiration = models.DateTimeField(null=True)
 
 	#/account/AccountStatus.xml.aspx
-	accountPaidUntil = models.DateTimeField()
-	accountCreateDate = models.DateTimeField()
-	accountLogonCount = models.IntegerField()
-	accountLogonMinutes = models.IntegerField()
+	accountPaidUntil = models.DateTimeField(null=True)
+	accountCreateDate = models.DateTimeField(null=True)
+	accountLogonCount = models.IntegerField(null=True)
+	accountLogonMinutes = models.IntegerField(null=True)
 
 	def __str__(self):
 		return unicode(self.keyID)+":"+self.vCode
@@ -73,25 +80,26 @@ class Character(models.Model):
 
 	corpID = models.IntegerField()
 	corpName = models.CharField(max_length=200)
-	corpTicker = models.CharField(max_length=6)
 
 	allianceID = models.IntegerField()
 	allianceName = models.CharField(max_length=200)
-	allianceTicker = models.CharField(max_length=6)
 
 	#/char/CharacterSheet.xml.aspx
-	dateOfBirth = models.DateTimeField()
-	race = models.CharField(max_length=10)
-	gender = models.CharField(max_length=6) # I wonder if max_length of 6 covers all preferred pronouns *triggerwarning*
-	walletBalance = models.IntegerField()
+	dateOfBirth = models.DateTimeField(null=True)
+	race = models.CharField(max_length=10,null=True)
+	gender = models.CharField(max_length=6,null=True) # I wonder if max_length of 6 covers all preferred pronouns *triggerwarning*
+	walletBalance = models.IntegerField(null=True)
 
-	jumpFatigue = models.DateTimeField()
-	jumpActivation = models.DateTimeField()
+	jumpFatigue = models.DateTimeField(null=True)
+	jumpActivation = models.DateTimeField(null=True)
 
 	#/char/SkillInTraining.xml.aspx
-	skillInTrainingID = models.IntegerField()
-	skillInTrainingFinishes = models.DateTimeField()
+	skillInTrainingID = models.IntegerField(null=True)
+	skillInTrainingFinishes = models.DateTimeField(null=True)
 
+	#/eve/CharacterInfo.xml.aspx
+	activeShip = models.IntegerField(null=True)
+	location = models.CharField(max_length=20, null=True)
 
 	def __str__(self):
 		return self.charName
@@ -105,14 +113,9 @@ class CharacterAsset(models.Model):
 	quantity = models.IntegerField()
 	flag = models.IntegerField()
 	singleton = models.IntegerField()
-	rawQuantity = models.IntegerField()
-
-#/char/CalendarEventAttendees.xml.aspx
-class CalendarEventAttendee(models.Model):
-	owner = models.ForeignKey(Character)
-	characterID = models.IntegerField()
-	characterName = models.CharField(max_length=100)
-	response = models.CharField(max_length=10)
+	rawQuantity = models.IntegerField(null=True)
+	def __str__(self):
+		return unicode(self.quantity)+"x"+unicode(self.typeID)
 
 # /char/CharacterSheet.xml.aspx
 class CharacterImplant(models.Model):
@@ -120,6 +123,8 @@ class CharacterImplant(models.Model):
 
 	typeID = models.IntegerField()
 	# not storing typeName, we'll need a staticdata export anyway, can be joined if needed
+	def __str__(self):
+		return self.typeID
 
 # /char/CharacterSheet.xml.aspx
 class CharacterTitle(models.Model):
@@ -127,6 +132,8 @@ class CharacterTitle(models.Model):
 
 	titleID = models.IntegerField()
 	titleName = models.CharField(max_length=100)
+	def __str__(self):
+		return self.titleName
 
 # /char/CharacterSheet.xml.aspx
 class CharacterSkill(models.Model):
@@ -135,6 +142,8 @@ class CharacterSkill(models.Model):
 	typeID = models.IntegerField()
 	skillpoints = models.IntegerField()
 	level = models.IntegerField()
+	def __str__(self):
+		return unicode(self.typeID)+" lv"+unicode(self.level)
 
 # /char/ContactList.xml.aspx
 class CharacterContact(models.Model):
@@ -144,7 +153,8 @@ class CharacterContact(models.Model):
 	contactName = models.CharField(max_length=100)
 	inWatchlist = models.BooleanField()
 	standing = models.IntegerField()
-	contactType = models.IntegerField() # 0 personal contact, 1 corp contact, 2 alliance contact
+	def __str__(self):
+		return self.contactName+" ("+unicode(self.standing)+")"
 
 # /char/Contracts.xml.aspx
 class CharacterContract(models.Model):
@@ -164,24 +174,25 @@ class CharacterContract(models.Model):
 	availability = models.CharField(max_length=10)
 	dateIssued = models.DateTimeField()
 	dateExpired = models.DateTimeField()
-	dateAccepted = models.DateTimeField()
+	dateAccepted = models.DateTimeField(null=True)
 	numDays = models.IntegerField()
-	dateCompleted = models.DateTimeField()
+	dateCompleted = models.DateTimeField(null=True)
 	price = models.FloatField()
 	reward = models.FloatField()
 	collateral = models.FloatField()
 	buyout = models.FloatField()
 	volume = models.FloatField()
 
+	def __str__(self):
+		return self.availability+" "+self.type
 
 # /char/ContractItems.xml.aspx
-class ContractItems(models.Model):
+class ContractItem(models.Model):
 	contract = models.ForeignKey(CharacterContract)
 
 	recordID = models.IntegerField()
 	typeID = models.IntegerField()
 	quantity = models.IntegerField()
-	rawQuantity = models.IntegerField()
 	singleton = models.BooleanField()
 	included = models.BooleanField()
 
@@ -233,7 +244,6 @@ class KillmailItems(models.Model):
 
 
 # /char/MailMessages.xml.aspx
-# /char/MailBodies.xml.aspx
 class CharacterMail(models.Model):
 	owner = models.ForeignKey(Character)
 
@@ -245,7 +255,11 @@ class CharacterMail(models.Model):
 	toCharacterIDs = models.CharField(max_length=200)
 	toListID = models.CharField(max_length=200)
 
-	body = models.CharField(max_length=1024)
+
+# /char/MailBodies.xml.aspx
+class MailBody(models.Model):
+	messageID = models.IntegerField()
+	body = models.CharField(max_length=8192) # ingame character limit is 8000, but I like powers of two
 
 
 
@@ -280,7 +294,9 @@ class CharacterNotification(models.Model):
 	sentDate = models.DateTimeField()
 	read = models.BooleanField()
 
-	body = models.CharField(max_length=1024)
+class NotificationText(models.Model):
+	notificationID = models.IntegerField()
+	body = models.CharField(max_length=4096)
 
 # /char/WalletJournal.xml.aspx
 class WalletJournal(models.Model):
@@ -364,3 +380,12 @@ class CorpMember(models.Model):
 	location = models.CharField(max_length=200)
 	shipTypeID = models.IntegerField()
 	roles = models.IntegerField()
+
+
+##
+# Store cache times in a table
+class CacheTimer(models.Model):
+	targetCharacter = models.ForeignKey(Character, null=True)
+	targetKey = models.ForeignKey(ApiKey, null=True)
+	callName = models.CharField(max_length=100)
+	cachedUntil = models.DateTimeField()

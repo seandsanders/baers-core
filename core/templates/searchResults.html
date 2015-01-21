@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+ <h1 class="page-header">Characters containing "{{searchTerm}}"</h1>
+	{% if error %}
+		<div class="alert alert-danger" role="alert"><strong>Error:</strong> {{error}}</div>
+ 	{% else %}
+ 		<table class="table table-hover" style="display: block;">
+	 		<tr>
+	 			<th>Character</th>
+	 			<th>Corporation</th>
+	 		</tr>
+	 		{% for char in results %}
+				<tr class="">
+					<td><a href="{% url "core:playerProfile" profileName=char|slugify %}"><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{char.charName}}</a></td>
+					<td><img src="//image.eveonline.com/Corporation/{{char.corpID}}_32.png" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.corpName}}">{{char.corpName}}</td>
+					</tr>
+		 		</tr>
+	 		{% endfor %}
+ 		</table>
+ 	{% endif %}
+ 	<hr>
+ 
+ {% endblock content %}
+
+ {% block title %}Search - Dropbears Auth{%endblock title%}
+
+ {% block scripts %}
+ {% endblock scripts %}

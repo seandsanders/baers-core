@@ -116,3 +116,13 @@ img.character {
 .dashboardHeader {
   margin-bottom: 15px;
 }
+.main_icon {
+  height: 16px; 
+  opacity: 0.4;
+}
+.main_icon:hover {
+  opacity: 0.8;
+}
+.active {
+  opacity: 1.0!important;
+}
