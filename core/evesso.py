@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from urllib2 import urlopen, Request as urlrequest
 from urllib import urlencode
 import json
@@ -35,8 +35,7 @@ def ssologin(request):
             result = json.loads(result.read())
         except urllib2.HTTPError, e:
             r = e.read()
-            # TODO Error Handling, invalid token
-            return redirect("core:landing")
+            return render(request, 'landing.html', {"error": "Your Login Token is invalid or expired. Please try again."})
 
         headers = {"Authorization": "Bearer " + result["access_token"], "Host": "login.eveonline.com"}
 
@@ -47,8 +46,7 @@ def ssologin(request):
         result = json.loads(result)
 
         if not result["CharacterID"]:
-            # TODO Error Handling, error with ccps stuff
-            return redirect("core:landing")
+            return render(request, 'landing.html', {"error": "Cannot get a valid answer from CCP. Please try again."})
 
         try:
             char = Character.objects.get(charID=result["CharacterID"])
@@ -56,6 +54,5 @@ def ssologin(request):
             login(request, char.profile.user)
             return redirect("core:dashboard")
         except:
-            # TODO Error Handling, selected char not in database
-            return redirect("core:landing")
+            return render(request, 'landing.html', {"error": "The selected Character is not in our Database. Please register using the link below."})
         
