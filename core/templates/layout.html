@@ -48,7 +48,7 @@
             <li {% if request.resolver_match.url_name == "keys" %}class="active"{%endif%}><a href="{% url "core:keys" %}">Characters / API Keys</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li {% if request.resolver_match.url_name == "apps" %}class="active"{%endif%}><a href="">Applications</a></li>
+            <li {% if request.resolver_match.url_name == "applications" %}class="active"{%endif%}><a href="{% url "applications:applications" %}">Applications</a></li>
             <li {% if request.resolver_match.url_name == "pos" %}class="active"{%endif%}><a href="">POS Overview</a></li>
             <li {% if request.resolver_match.url_name == "wallet" %}class="active"{%endif%}><a href="">Corp Wallet Overview</a></li>
           </ul>

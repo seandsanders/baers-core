@@ -1,0 +1,482 @@
+from django.shortcuts import render, redirect
+import applications as appmodule
+from django.db import transaction
+from applications.models import Application, Answer
+from datetime import datetime
+from django.http import HttpResponseNotFound, HttpResponse
+from core.models import CharacterSkill, Character
+from django.db.models import Count
+# Create your views here.
+
+ships = [
+		{
+			"group": "Grizzly Fleet",
+			"ships": [
+				{
+					"name": "Augoror",
+					"shipID": 625,
+					"skills": [(3335, 1), (16069, 1), (3423, 1)]
+				},
+				{
+					"name": "Exequror",
+					"shipID": 634,
+					"skills": [(3332, 1), (16069, 1)]
+				},
+				{
+					"name": "Prophecy",
+					"shipID": 16233,
+					"skills": [(33095, 1), (3423, 1)]
+				},
+				{
+					"name": "Vigilant",
+					"shipID": 17722,
+					"skills": [(3333, 1),(3332, 1), (3435, 1)]
+				},
+				{
+					"name": "Brutix",
+					"shipID": 16229,
+					"skills": [(33097, 1), (3304, 1)]
+				},
+				{
+					"name": "Armageddon",
+					"shipID": 643,
+					"skills": [(3339, 1), (3423, 1)]
+				},
+				{
+					"name": "Bhaalgorn",
+					"shipID": 17920,
+					"skills": [(3339, 1), (3337, 1), (3423, 1)]
+				},
+				{
+					"name": "ANI",
+					"shipID": 29337,
+					"skills": [(3335, 1), (3306, 1)]
+				},
+				{
+					"name": "SFI",
+					"shipID": 17713,
+					"skills": [(3333, 1), (3305, 1)]
+				},
+				{
+					"name": "Legion",
+					"shipID": 29986,
+					"skills": [(3335, 5), (3423, 1), (30650, 1)]
+				},
+				{
+					"name": "Tengu",
+					"shipID": 29984,
+					"skills": [(3334, 5), (30651, 1), (3427, 1)]
+				},
+				{
+					"name": "Loki",
+					"shipID": 29990,
+					"skills": [(3333, 5), (3305, 1), (30653, 1)]
+				},
+				{
+					"name": "Proteus",
+					"shipID": 29988,
+					"skills": [(3332, 5), (3304, 1), (30652, 1)]
+				},
+				{
+					"name": "Guardian",
+					"shipID": 11987,
+					"skills": [(3335, 5), (16069, 1), (3423, 1), (12096, 4)]
+				}
+			]
+		},
+		{
+			"group": "Gaytars",
+			"ships": [
+				{
+					"name": "Scythe",
+					"shipID": 631,
+					"skills": [(3333, 1), (3342, 1)]
+				},
+				{
+					"name": "VNI",
+					"shipID": 17843,
+					"skills": [(3332, 1), (23594, 1)]
+				},
+				{
+					"name": "SFI",
+					"shipID": 17713,
+					"skills": [(3333, 1), (3305, 1)]
+				},
+				{	
+					"name": "Caracal",
+					"shipID": 621,
+					"skills": [(3334, 1), (3319, 1)]
+				},
+				{	
+					"name": "Bellicose",
+					"shipID": 630,
+					"skills": [(3333, 1), (3319, 1), (19921, 1)]
+				},
+				{	
+					"name": "Ishtar",
+					"shipID": 12005,
+					"skills": [(3332, 5), (23594, 1), (16591, 1)]
+				},
+				{	
+					"name": "Scimitar",
+					"shipID": 11978,
+					"skills": [(3333, 5), (3342, 1), (12096, 4)]
+				},
+				{	
+					"name": "Cerberus",
+					"shipID": 11993,
+					"skills": [(3334, 5), (16591, 1), (3319, 1)]
+				},
+				{	
+					"name": "Vagabond",
+					"shipID": 11999,
+					"skills": [(3333, 5), (16591, 1), (3305, 1)]
+				}
+			]
+		},
+		{
+			"group": "Utility",
+			"ships": [
+				{
+					"name": "Falcon",
+					"shipID": 11957,
+					"skills": [(3334, 5), (22761, 1),  (3427, 1)]
+				},
+				{
+					"name": "Rook",
+					"shipID": 11959,
+					"skills": [(3334, 5), (22761, 1),  (3427, 1)]
+				},
+				{
+					"name": "Curse",
+					"shipID": 20125,
+					"skills": [(3335, 5), (22761, 1), (3423, 1)]
+				},
+				{
+					"name": "Pilgrim",
+					"shipID": 11965,
+					"skills": [(3335, 5), (22761, 1), (3423, 1)]
+				},
+				{
+					"name": "Lachesis",
+					"shipID": 11971,
+					"skills": [(3332, 5), (22761, 1), (3435, 1)]
+				},
+				{
+					"name": "Arazu",
+					"shipID": 11969,
+					"skills": [(3332, 5), (22761, 1), (3435, 1)]
+				},
+				{
+					"name": "Hugin",
+					"shipID": 11961,
+					"skills": [(3333, 5), (22761, 1), (3435, 1)]
+				},
+				{
+					"name": "Rapier",
+					"shipID": 11963,
+					"skills": [(3333, 5), (22761, 1), (3435, 1)]
+				},
+				{
+					"name": "Crow",
+					"shipID": 11176,
+					"skills": [(3330, 5),(12092, 1)]
+				},
+				{
+					"name": "Raptor",
+					"shipID": 11178,
+					"skills": [(3330, 5),(12092, 1)]
+				},
+				{
+					"name": "Stiletto",
+					"shipID": 11198,
+					"skills": [(3329, 5),(12092, 1)]
+				},
+				{
+					"name": "Claw",
+					"shipID": 11196,
+					"skills": [(3329, 5),(12092, 1)]
+				},
+				{
+					"name": "Ares",
+					"shipID": 11202,
+					"skills": [(3328, 5),(12092, 1)]
+				},
+				{
+					"name": "Taranis",
+					"shipID": 11200,
+					"skills": [(3328, 5),(12092, 1)]
+				},
+				{
+					"name": "Crusader",
+					"shipID": 11184,
+					"skills": [(3331, 5),(12092, 1)]
+				},
+				{
+					"name": "Malediction",
+					"shipID": 11186,
+					"skills": [(3331, 5),(12092, 1)]
+				},
+				{
+					"name": "Flycatcher",
+					"shipID": 22464,
+					"skills": [(33092, 5), (12098, 1)]
+				},
+				{
+					"name": "Sabre",
+					"shipID": 22456,
+					"skills": [(33094, 5), (12098, 1)]
+				},
+				{
+					"name": "Heretic",
+					"shipID": 22452,
+					"skills": [(33091, 5), (12098, 1)]
+				},
+				{
+					"name": "Eris",
+					"shipID": 22460,
+					"skills": [(33093, 5), (12098, 1)]
+				},
+				{
+					"name": "Phobos",
+					"shipID": 12021,
+					"skills": [(3332, 5), (28609, 1)]
+				},
+				{
+					"name": "Devoter",
+					"shipID": 12017,
+					"skills": [(3335, 5), (28609, 1)]
+				},
+				{
+					"name": "Broadsword",
+					"shipID": 12013,
+					"skills": [(3333, 5), (28609, 1)]
+				},
+				{
+					"name": "Onyx",
+					"shipID": 11995,
+					"skills": [(3334, 5), (28609, 1)]
+				},
+				{
+					"name": "Providence",
+					"shipID": 20183,
+					"skills": [(20524, 1), (20342, 1)]
+				},
+				{
+					"name": "Ark",
+					"shipID": 28850,
+					"skills": [(20524, 4), (29029, 1), (21611, 1)]
+				},
+				{
+					"name": "Nomad",
+					"shipID": 28846,
+					"skills": [(20528, 4), (29029, 1), (21611, 1)]
+				},
+				{
+					"name": "Fenrir",
+					"shipID": 20189,
+					"skills": [(20528, 1), (20342, 1)]
+				},
+				{
+					"name": "Obelisk",
+					"shipID": 20187,
+					"skills": [(20527, 1), (20342, 1)]
+				},
+				{
+					"name": "Anshar",
+					"shipID": 28848,
+					"skills": [(20527, 4), (29029, 1), (21611, 1)]
+				},
+				{
+					"name": "Charon",
+					"shipID": 20185,
+					"skills": [(20526, 1), (20342, 1)]
+				},
+				{
+					"name": "Rhea",
+					"shipID": 28844,
+					"skills": [(20526, 4), (29029, 1), (21611, 1)]
+				}
+			]
+		},
+		{
+			"group": "Capitals",
+			"ships": [
+				{
+					"name": "Archon",
+					"shipID": 23757,
+					"skills": [(24311, 1),(21803, 1), (24568, 1), (24572, 1), (27906, 1)]
+				},
+				{
+					"name": "Revelation",
+					"shipID": 19720,
+					"skills": [(20525, 1),(21803, 1), (22043, 1), (20327, 1)]
+				},
+				{
+					"name": "Aeon",
+					"shipID": 23919,
+					"skills": [(24311, 1),(21803, 1), (24568, 1), (32339, 1)]
+				},
+				{
+					"name": "Avatar",
+					"shipID": 11567,
+					"skills": [(3347, 1), (21803, 1), (20327, 1), (24563, 1)]
+				},
+				{
+					"name": "Thanatos",
+					"shipID": 23911,
+					"skills": [(24313, 1),(23069, 1), (21803, 1), (24568, 1)]
+				},
+				{
+					"name": "Armor Moros",
+					"shipID": 19724,
+					"skills": [(20531, 1),(21803, 1), (22043, 1), (21666, 1)]
+				},
+				{
+					"name": "Shield Moros",
+					"shipID": 19724,
+					"skills": [(20531, 1),(21802, 1),(22043, 1), (21666, 1)]
+				},
+				{
+					"name": "Nyx",
+					"shipID": 23913,
+					"skills": [(24313, 1),(21803, 1), (24568, 1), (24572, 1), (32339, 1)]
+				},
+				{
+					"name": "Erebus",
+					"shipID": 671,
+					"skills": [(3344, 1),(21666, 1), (24563, 1)]
+				},
+				{
+					"name": "Nidhoggur",
+					"shipID": 24483,
+					"skills": [(24314, 1),(27906, 1)]
+				},
+				{
+					"name": "Armor Naglfar",
+					"shipID": 19722,
+					"skills": [(20532, 1),(21803, 1), (22043, 1), (21667, 1)]
+				},
+				{
+					"name": "Shield Naglfar",
+					"shipID": 19722,
+					"skills": [(20532, 1),(21802, 1),(22043, 1), (21667, 1)]
+				},
+				{
+					"name": "Hel",
+					"shipID": 22852,
+					"skills": [(24314, 1),(21803, 1), (24568, 1), (24572, 1), (32339, 1)]
+				},
+				{
+					"name": "Ragnarok",
+					"shipID": 23773,
+					"skills": [(3345, 1),(21667, 1), (24563, 1)]
+				},
+				{
+					"name": "Chimera",
+					"shipID": 23915,
+					"skills": [(24312,1),(21802, 1), (27906, 1)]
+				},
+				{
+					"name": "Phoenix",
+					"shipID": 19726,
+					"skills": [(20530, 1),(21802, 1), (22043, 1)]
+				},
+				{
+					"name": "Wyvern",
+					"shipID": 23917,
+					"skills": [(24312,1),(21802, 1), (32339, 1)]
+				},
+				{
+					"name": "Leviathan",
+					"shipID": 3764,
+					"skills": [(3346, 1),(21802, 1), (24563, 1)]
+				}
+			]
+		}
+	]
+
+@transaction.atomic
+def apply(request, token):
+	app = Application.objects.filter(token=token).first()
+
+	if not app:
+		return HttpResponseNotFound("Invalid Token")
+
+	if (app.status > 0):
+		return redirect("applications:mystatus")
+
+	if request.method == "POST":
+		count = 1
+		answers = []
+		for q in appmodule.questions:
+			answer = Answer(app=app, question=q["text"], text=request.POST.get("q"+unicode(count)))
+			answers.append(answer)
+			count+=1
+		app.status = 1
+		app.timezone=request.POST.get('tz')
+		app.applicantProfile = request.user.userprofile		
+		app.applicationDate = datetime.now()
+		app.save()
+		Answer.objects.bulk_create(answers)
+
+		return redirect("applications:mystatus")
+
+
+	else:
+		return render(request, "apply.html", {"questions": appmodule.questions})
+
+
+def mystatus(request):
+	c = {"app": request.user.userprofile.application}
+	return render(request, 'appstatus.html', c)
+
+def application(request, app):
+	app = Application.objects.filter(token=app).first()
+	profile = app.applicantProfile
+	keys = profile.apikey_set.all()
+	characters = profile.character_set.all()
+	answers = app.answer_set.all()
+	flyable = []
+
+	skills = CharacterSkill.objects.all()
+
+	r = []
+	for group in ships:
+		g = {
+			"group": group["group"],
+			"ships": []
+		}
+		for ship in group["ships"]:
+			sk1 = skills.filter(owner=-1)
+			s = {
+				"name": ship["name"],
+				"shipID": ship["shipID"],
+				"pilots": []
+			}
+			for skill in ship["skills"]:
+				sk1 = sk1 | skills.filter(owner__in=profile.character_set.all(), typeID=skill[0], level__gte=skill[1])
+			for c in sk1.values('owner').annotate(Count('owner')):
+				if c["owner__count"] == len(ship["skills"]):
+					s["pilots"].append(Character.objects.filter(id=c["owner"]).first().charName)
+			g["ships"].append(s)
+		r.append(g)
+
+
+
+	c = {
+		"app": app,
+		"profile": profile,
+		"keys": keys,
+		"answers": answers,
+		"ships": r
+	}
+	return render(request, "application.html", c)
+
+def applications(request):
+	apps = Application.objects.all()
+
+	c = {
+		"applications": apps
+	}
+	return render(request, "applications.html", c)

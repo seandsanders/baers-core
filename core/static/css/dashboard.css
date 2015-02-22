@@ -126,3 +126,9 @@ img.character {
 .active {
   opacity: 1.0!important;
 }
+
+.newcomment {
+  width: 100%;
+  border-radius: 5px;
+  resize: none;
+}

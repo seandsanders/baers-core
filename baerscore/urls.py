@@ -8,6 +8,7 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^applications/', include('applications.urls', namespace='applications')),
     url(r'^', include('core.urls', namespace='core')),
     
 ]

@@ -2,7 +2,7 @@ from eveapi import eveapi
 from core.models import *
 import datetime
 from core import postNotification
-
+from django.db import transaction
 
 ##
 # Full API refresh. Calls all EVE API functions that are not within their cache time.
@@ -68,13 +68,15 @@ def refreshKeyInfo(key, full=True):
 
 	key.save()
 
+@transaction.atomic
 def refreshCharacterInfo(char, full=True):
 	print "Refreshing Character Information for", char
 	key = char.api
 	itGrp, created = Group.objects.get_or_create(name='IT')
 
 	api = eveapi.EVEAPIConnection()
-	cAuth = api.auth(keyID=key.keyID, vCode=key.vCode).character(char.charID)
+	auth = api.auth(keyID=key.keyID, vCode=key.vCode)
+	cAuth = auth.character(char.charID)
 
 	print "Requesting CharacterSheet for", char
 	try:
@@ -140,6 +142,20 @@ def refreshCharacterInfo(char, full=True):
 	except:
 		postNotification(target=itGrp, text="Request for SkillInTraining failed while refreshing API for "+unicode(char), cssClass="warning")
 
+
+	print "Requesting CharacterInfo for", char
+	try:
+		result = auth.eve.CharacterInfo(characterID=char.charID)
+		try:
+			char.activeShipTypeName = result.shipTypeName
+			char.activeShipName = result.shipName
+			char.location = result.lastKnownLocation
+			char.save()
+		except:
+			pass
+
+	except:
+		postNotification(target=itGrp, text="Request for CharacterInfo failed while refreshing API for "+unicode(char), cssClass="warning")
 
 	print "Requesting AssetList for", char
 	try:
@@ -450,6 +466,8 @@ def refreshCharacterInfo(char, full=True):
 		WalletTransactions.objects.bulk_create(newTransactions)
 	except:
 		postNotification(target=itGrp, text="Request for WalletTransactions failed while refreshing API for "+unicode(char), cssClass="warning")
+
+
 
 def validateKey(keyID, vCode):
 	try:

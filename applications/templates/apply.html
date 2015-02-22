@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Your Application</h1>
+<div class="col-sm-6">
+<form method="post">
+	<div class="form-group">
+		<label for="tz">Which timezone fits you best?</label>
+		<select class="form-control" id="tz" name="tz">
+			<option value="0">US (00:00-08:00 GMT)</option>
+			<option value="1">AU (08:00-16:00 GMT)</option>
+			<option value="2">EU (16:00-24:00 GMT)</option>
+		</select>
+	</div>
+	{% for q in questions %}
+		<div class="form-group">
+			<label for="q{{forloop.counter}}">{{q.text}}</label>
+			{% if q.type == "short" %}<input type="text"{% else %}<textarea{%endif%} rows="8" class="form-control" name="q{{forloop.counter}}" id="q{{forloop.counter}}">{% if q.type == "long" %}</textarea>{%endif%}
+		</div>
+	{% endfor %}
+	{% csrf_token %}
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</div>
+{% endblock content %}
+
+{% block title %}Apply - Dropbears Auth{%endblock title%}
+
+{% block scripts %}
+{% endblock scripts %}

@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h3>Viewing application of</h3>
+
+	<div class="col-sm-6">
+
+		<div class="row dashboardHeader">
+			<img src="//image.eveonline.com/Character/{{ profile.mainChar.charID }}_128.jpg" class="character">
+			<h1 class="charName">{{ profile.mainChar.charName }}</h1>
+		</div>
+
+		<h2>Characters</h2>
+		<table class="table table-hover" style="display: block;">
+			<tr>
+				<th>CharName</th>
+				<th>Corporation</th>
+				<th>SP</th>
+				<th>ISK</th>
+				<th>Killboard</th>
+				<th>Jackknife</th>
+			</tr>
+			{% for key in keys %}
+		 	<tr>
+		 		<td colspan="5" class="{% if not key.valid %}danger{% endif %}">Key {{forloop.counter}}: {{key.keyID}} : {{key.vCode}}</td>
+		 		<td><a target="_blank" href="http://ridetheclown.com/eveapi/audit.php?usid={{key.keyID}}&apik={{key.vCode}}">API</a></td>
+		 	</tr>
+		 		{% for char in key.character_set.all %}
+			 		<tr>
+			 			<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{char.charName}}</td>
+			 			<td><img src="//image.eveonline.com/Corporation/{{char.corpID}}_32.png" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.corpName}}">{{char.corpName}}</td>
+			 			<td>{{char.sp}}</td>
+			 			<td>{{char.walletBalance}}</td>
+			 			<td><a target="_blank" href="https://zkillboard.com/character/{{char.charID}}/">zKill</a></td>
+			 			<td><a target="_blank" href="http://ridetheclown.com/eveapi/audit.php?chid={{char.charID}}&usid={{key.keyID}}&apik={{key.vCode}}">API</a></td>
+			 		</tr>
+			 		{% endfor %}
+			{% endfor %}
+		</table>
+	</div>
+	<div class="col-sm-6 pull-right">
+	<h4>Status</h4>
+	<form>
+		<table>
+			<tr>
+				<td>
+					<label for="status">Status (visible to applicant):</label>
+				</td>
+				<td>
+					<select name="status" id="status">
+						{% for choice in app.STATUS_CHOICES %}
+							<option value="{{choice.0}}">{{choice.1}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="tag">Tag (visible to recruiters):</label>
+				</td>
+				<td>
+					<select name="tag" id="tag">
+						{% for choice in app.TAG_CHOICES %}
+							<option value="{{choice.0}}">{{choice.1}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+		</table>
+		<button type="submit">Save Changes</button>
+	</form>
+	<hr>
+	<h4>Comments</h4>
+		<textarea rows="3" class="newcomment" placeholder="Type your comment here"></textarea>
+		{% if not app.comment_set %}
+			<div class="alert alert-info">There are no comments yet</div>
+		{% endif %}
+	<hr>
+	<h4>Flyable Ships:</h4>
+		{% for group in ships %}
+		<div class="col-sm-3">
+			<h5>{{group.group}}</h5>
+			{% for ship in group.ships %}
+				{% if ship.pilots %}
+					<strong><img src="https://image.eveonline.com/Type/{{ship.shipID}}_32.png"> {{ship.name}}</strong><br>{{ship.pilots|join:"<br>"}}<hr>
+				{% endif %}
+			{% endfor %}
+	</div>
+		{% endfor %}
+	</div>
+	 <div class="col-sm-6">
+ 		<h2>Questions and Answers</h2>
+ 	{%for a in answers %}
+ 		<strong>{{a.question}}</strong>
+ 		<pre>{{a.text}}</pre>
+ 	{%endfor%}
+</div>
+{% endblock content %}
+
+{% block title %}{{profile}} - Applications - Dropbears Auth{%endblock title%}
+
+{% block scripts %}
+{% endblock scripts %}

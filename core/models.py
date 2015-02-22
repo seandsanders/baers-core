@@ -89,6 +89,7 @@ class Character(models.Model):
 	race = models.CharField(max_length=10,null=True)
 	gender = models.CharField(max_length=6,null=True) # I wonder if max_length of 6 covers all preferred pronouns *triggerwarning*
 	walletBalance = models.IntegerField(null=True)
+	sp = models.IntegerField(null=True)
 
 	jumpFatigue = models.DateTimeField(null=True)
 	jumpActivation = models.DateTimeField(null=True)
@@ -98,8 +99,9 @@ class Character(models.Model):
 	skillInTrainingFinishes = models.DateTimeField(null=True)
 
 	#/eve/CharacterInfo.xml.aspx
-	activeShip = models.IntegerField(null=True)
-	location = models.CharField(max_length=20, null=True)
+	activeShipTypeName = models.CharField(max_length=100, null=True)
+	activeShipName = models.CharField(max_length=200, null=True)
+	location = models.CharField(max_length=200, null=True)
 
 	def __str__(self):
 		return self.charName

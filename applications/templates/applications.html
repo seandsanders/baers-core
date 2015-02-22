@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Application List</h1>
+<div class="col-sm-8">
+	<table class="table table-hover">
+ 		<tr>
+ 			<th>Status</th>
+ 			<th>Tag</th>
+ 			<th>Main Character</th>
+ 			<th>SP on Main</th>
+ 			<th>Timezone</th>
+ 			<th>Application Date</th>
+ 			<th>Last comment</th>
+ 		</tr>
+ 		{% for app in applications %}
+	 		<tr class="{{app.cssClass}}">
+	 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_status_display}}</a></td>
+	 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_tag_display}}</a></td>
+	 			<td><img src="//image.eveonline.com/Character/{{app.applicantProfile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{app.applicantProfile.mainChar.charID}}"><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile}}</a></td>
+	 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile.mainChar.skillpoints}}</a></td>
+	 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_timezone_display}}</a></td>
+	 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicationDate}}</a></td>
+	 			<td><a href="{% url "applications:viewapp" app.token %}">
+	 				{% if app.comment_set %}
+	 					{{app.comment_set.last.date}} by {{app.comment_set.last.author}}
+	 				{% else %}
+	 					None
+	 				{% endif %}
+	 			</a></td>
+	 		</tr>
+ 		{% endfor %}
+ 	</table>
+</div>
+{% endblock content %}
+
+{% block title %}{{profile}} - Applications - Dropbears Auth{%endblock title%}
+
+{% block scripts %}
+{% endblock scripts %}

@@ -5,30 +5,31 @@
 <div class="row dashboardHeader">
   <img src="//image.eveonline.com/Corporation/{{ profile.mainChar.corpID }}_128.png" class="character">
   <img src="//image.eveonline.com/Character/{{ profile.mainChar.charID }}_128.jpg" class="character">
-  <h3 class="charName">{{ profile.mainChar.charName }} [{{ profile.mainChar.corpName }}]</h3>
+  <h3 class="charName">{{ profile.mainChar.charName }}</h3>
   <span class="text-muted">{{ titles }}</span><br>
-  {% if isRecruiter %}
- 	<a target="_blank" href="http://ridetheclown.com/eveapi/audit.php?chid={{profile.mainChar.charID}}&usid={{profile.mainChar.api.keyID}}&apik={{profile.mainChar.api.vCode}}">API Jackknife Link</a>
-  {% endif %}
 </div>
 <div class="row">
-	<div class="col-sm-5">
+	<div class="col-sm-7">
 	 	<table class="table table-hover" style="display: block;">
 	 		<tr>
 	 			<th>Alt Name</th>
 	 			<th>Corporation</th>
 	 			{% if isRecruiter %}
+	 				<th>Active Ship</th>
+	 				<th>Location</th>
 	 				<th>Jackknife</th>
 	 			{% endif %}
 	  		</tr>
 	 			{% for char in profile.character_set.all %}
-	 				{%if profile.mainChar != char%}
-						<tr class="{%if mark == char%}info{%endif%}">
-					 		<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{char.charName}}</td>
-					 		<td><img src="//image.eveonline.com/Corporation/{{char.corpID}}_32.png" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.corpName}}">{{char.corpName}}</td>
-					 		{% if isRecruiter %}<td><a target="_blank" href="http://ridetheclown.com/eveapi/audit.php?chid={{char.charID}}&usid={{char.api.keyID}}&apik={{char.api.vCode}}">API</a></td>{% endif %}
-					 	</tr>
-				 	{% endif %}
+					<tr class="{%if mark == char%}info{%endif%}">
+				 		<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{char.charName}}</td>
+				 		<td><img src="//image.eveonline.com/Corporation/{{char.corpID}}_32.png" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.corpName}}">{{char.corpName}}</td>
+				 		{% if isRecruiter %}
+				 			<td>{{char.activeShipTypeName}} ({{char.activeShipName}})</td>
+				 			<td>{{char.location}}</td>
+				 			<td><a target="_blank" href="http://ridetheclown.com/eveapi/audit.php?chid={{char.charID}}&usid={{char.api.keyID}}&apik={{char.api.vCode}}">API</a></td>
+				 		{% endif %}
+				 	</tr>
 	 		 	{% endfor %}
 	 	</table>
  	</div>

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Your Application</h1>
+<div class="col-sm-6">
+	{% if app %}
+		<h4>Application Recieved: {{app.applicationDate}}</h4>
+		<h4>Application Status: {{app.get_status_display}}</h4>
+	{% else %}
+		<h4>You don't have an application</h4>
+	{% endif %}
+</div>
+{% endblock content %}
+
+{% block title %}Apply - Dropbears Auth{%endblock title%}
+
+{% block scripts %}
+{% endblock scripts %}
