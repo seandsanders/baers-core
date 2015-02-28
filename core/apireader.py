@@ -1,4 +1,4 @@
-from eveapi import eveapi
+import eveapi
 from core.models import *
 import datetime
 from core import postNotification
