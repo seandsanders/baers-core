@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from core.models import Notification, UserProfile, Character, ApiKey
+from core.models import Notification, UserProfile, Character, ApiKey, CorpMember
 from django.contrib.auth.models import User, Group
 from core.apireader import validateKey, refreshKeyInfo
 from django.utils.text import slugify
@@ -216,3 +216,20 @@ def profile(request, profile, mark=None):
 	ctx = {"profile": profile, "titles": titles, "mark": mark, "isRecruiter": isRecruiter(request.user), "isDirector": director, "grouplist": grouplist}
 	return render(request, "profile.html", ctx)
 
+
+def memberList(request):
+	ctx = {}
+	corpchars = CorpMember.objects.all()
+	chars = Character.objects.all()
+	ctx["validCharacters"] = []
+	ctx["invalidCharacters"] = []
+	for char in corpchars:
+		c = chars.filter(charID=char.characterID).first()
+		if not (c and c.api.valid):
+			ctx["invalidCharacters"].append({"valid": False, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "mainChar": ""})
+		else:
+			ctx["validCharacters"].append({"valid": True, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "slug": slugify(char.characterName), "mainChar": c.profile.mainChar})
+		
+
+
+	return render(request, "memberlist.html", ctx)

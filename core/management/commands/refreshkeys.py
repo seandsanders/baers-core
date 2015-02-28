@@ -6,13 +6,17 @@ from core.models import ApiKey
 
 class Command(BaseCommand):
     args = ''
-    help = 'Adds all groups to the first UserProfile in the database.'
+    help = 'Refreshes the key with the most outdated information.'
 
     def handle(self, *args, **options):
     	start = datetime.now()
-    	keys = ApiKey.objects.all()
-    	for key in keys:
+    	key = ApiKey.objects.all().order_by('lastRefresh').first()
+    	age = start - key.lastRefresh
+
+    	if (age.seconds < 3600):
+    		print "Nothing To do."
+    	else: 
     		refreshKeyInfo(key)
 
-    	time = datetime.now() - start
-    	print "Key refresh completed in", time.seconds, "seconds"
+    		time = datetime.now() - start
+    		print "Key refresh completed in", time.seconds, "seconds"

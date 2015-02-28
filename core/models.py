@@ -56,6 +56,7 @@ class ApiKey(models.Model):
 
 	valid = models.BooleanField(default=True)
 	deleted = models.BooleanField(default=False) 
+	lastRefresh = models.DateTimeField(null=True)
 	
 
 	accessMask = models.CharField(max_length=20,null=True)

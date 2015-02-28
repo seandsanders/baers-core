@@ -13,7 +13,17 @@ def postNotification(target, text, cssClass="info"):
 		n.targetGroup.add(target)
 	n.save()
 
-Task("TEST INFO TASK")
-Task("TEST WARNING TASK", cssClass="warning")
-Task("TEST DANGER TASK", cssClass="danger")
-Task("TEST SUCCESS TASK", cssClass="success")
+Task("TASKS WILL APPEAR HERE")
+#Task("TEST WARNING TASK", cssClass="warning")
+#Task("TEST DANGER TASK", cssClass="danger")
+#Task("TEST SUCCESS TASK", cssClass="success")
+
+from django import template
+from django.contrib.auth.models import Group 
+
+register = template.Library() 
+
+@register.filter(name='has_group') 
+def has_group(user, group_name): 
+	group = Group.objects.get(name=group_name) 
+	return True if group in user.groups.all() else False

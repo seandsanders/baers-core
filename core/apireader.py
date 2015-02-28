@@ -3,6 +3,88 @@ from core.models import *
 import datetime
 from core import postNotification
 from django.db import transaction
+from django.conf import settings
+
+
+def refreshCorpApi():
+	keyid = settings.CORP_API_KEYID
+	vcode = settings.CORP_API_VCODE
+
+	api = eveapi.EVEAPIConnection()
+	auth = api.auth(keyID=keyid, vCode=vcode)
+
+	print "Requesting StarbaseList"
+	try:
+		result = auth.corp.StarbaseList()
+		CorpStarbase.objects.all().delete()
+		CorpStarbaseFuel.objects.all().delete()
+		newFuelInfos = []
+		for starbase in result.starbases:
+			r2 = auth.corp.StarbaseDetail(itemID=starbase.itemID)
+			lastStarbase = CorpStarbase(	itemID=starbase.itemID, 
+											typeID=starbase.typeID, 
+											locationID=starbase.locationID, 
+											moonID=starbase.moonID, 
+											state=starbase.state, 
+											stateTimestamp=datetime.datetime.fromtimestamp(starbase.stateTimestamp), 
+											onlineTimestamp=datetime.datetime.fromtimestamp(starbase.onlineTimestamp),
+											standingOwnerID=starbase.standingOwnerID,
+											allowCorpMembers=r2.generalSettings.allowCorporationMembers,
+											allowAllianceMembers=r2.generalSettings.allowAllianceMembers
+										)
+
+			lastStarbase.save()
+
+			for fuel in r2.fuel:
+				newFuelInfos.append( CorpStarbaseFuel(	pos=lastStarbase,
+														typeID=fuel.typeID,
+														quantity=fuel.quantity
+					))
+			
+		CorpStarbaseFuel.objects.bulk_create(newFuelInfos)
+
+	except Exception as e:
+		print "ERROR", e
+
+	print "Requesting ContactList"
+	try:
+		result = auth.corp.ContactList()
+		CorpContact.objects.all().delete()
+		newContacts = []
+
+		for contact in result.corporateContactList:
+			newContacts.append(CorpContact(contactID=contact.contactID, contactName=contact.contactName, contactStanding=contact.standing))
+
+		CorpContact.objects.bulk_create(newContacts)
+	except Exception as e:
+		print "ERROR", e
+	
+	print "Requesting CorpMembers"
+	try:
+		result = auth.corp.MemberTracking(extended=1)
+		CorpMember.objects.all().delete()
+		newMembers = []
+
+		for member in result.members:
+			newMembers.append(
+				CorpMember(
+					characterID = member.characterID,
+					characterName = member.name,
+					joinDate = datetime.datetime.fromtimestamp(member.startDateTime),
+					title = member.title,
+					logonDate = datetime.datetime.fromtimestamp(member.logonDateTime),
+					logoffDate = datetime.datetime.fromtimestamp(member.logoffDateTime),
+					locationID = member.locationID,
+					location = member.location,
+					shipTypeID = member.shipTypeID,
+					roles = member.grantableRoles
+				)
+			)
+		CorpMember.objects.bulk_create(newMembers)
+	except Exception as e:
+		print "ERROR", e
+
+
 
 ##
 # Full API refresh. Calls all EVE API functions that are not within their cache time.
@@ -65,6 +147,7 @@ def refreshKeyInfo(key, full=True):
 	key.accountCreateDate = datetime.datetime.fromtimestamp(result.createDate)
 	key.accountLogonCount = result.logonCount
 	key.accountLogonMinutes = result.logonMinutes
+	key.lastRefresh = datetime.datetime.now()
 
 	key.save()
 

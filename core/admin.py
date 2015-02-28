@@ -23,3 +23,8 @@ admin.site.register(CharacterNotification)
 admin.site.register(NotificationText)
 admin.site.register(WalletTransactions)
 admin.site.register(WalletJournal)
+
+admin.site.register(CorpMember)
+admin.site.register(CorpStarbase)
+admin.site.register(CorpStarbaseFuel)
+admin.site.register(CorpContact)

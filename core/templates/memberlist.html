@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+ 	<h1 class="page-header">Valid API Keys</h1>
+
+ 	<table class="table table-hover" style="display: block;">
+ 		<tr>
+ 			<th>CharName</th>
+ 			<td>Main Character</th>
+ 			<th>Location</th>
+ 			<th>Joined</th>
+ 			<td>Last Active</td>
+ 		</tr>
+ 		{% for char in validCharacters %}
+			 <tr>
+			 	<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}"><a href="{% url "core:playerProfile" profileName=char.charName|slugify %}">{{char.charName}}</a></td>
+			 	<td>{{char.mainChar}}</td>
+			 	<td>{{char.location}}</td>
+			 	<td>{{char.joinDate}}</td>
+			 	<td>{{char.logoffDate}}</td>
+			 </tr>
+ 		{% endfor %}
+ 	</table>
+
+ 	<h1 class="page-header">Invalid API Keys</h1>
+ 	 <table class="table table-hover" style="display: block;">
+ 		<tr>
+ 			<th>CharName</th>
+ 			<th>Location</th>
+ 			<th>Joined</th>
+ 			<td>Last Active</td>
+ 		</tr>
+ 		{% for char in invalidCharacters %}
+			 <tr>
+			 	<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{char.charName}}</td>
+			 	<td>{{char.location}}</td>
+			 	<td>{{char.joinDate}}</td>
+			 	<td>{{char.logoffDate}}</td>
+			 </tr>
+ 		{% endfor %}
+ 	</table>
+ 	<hr>
+ {% endblock content %}
+
+ {% block scripts %}
+
+ {% endblock scripts %}

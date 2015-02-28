@@ -11,4 +11,5 @@ urlpatterns = [
 	url(r'^profile/(?P<profileName>.*)$', views.playerProfile, name="playerProfile"),
 	url(r'^profile', views.myProfile, name="myProfile"),
 	url(r'^search$', views.searchProfile, name="searchProfile"),
+	url(r'^memberlist$', views.memberList, name="memberlist"),
 ]
