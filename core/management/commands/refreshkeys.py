@@ -11,12 +11,15 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
     	start = datetime.now()
     	key = ApiKey.objects.all().order_by('lastRefresh').first()
-    	age = start - key.lastRefresh
 
-    	if (age.seconds < 3600):
-    		print "Nothing To do."
-    	else: 
-    		refreshKeyInfo(key)
+    	if key.lastRefresh != None:
+			age = start - key.lastRefresh
 
-    		time = datetime.now() - start
-    		print "Key refresh completed in", time.seconds, "seconds"
+    		if (age.seconds < 3600):
+    			print "Nothing To do."
+    			return
+    			
+    	refreshKeyInfo(key)
+
+    	time = datetime.now() - start
+    	print "Key refresh completed in", time.seconds, "seconds"
