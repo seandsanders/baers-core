@@ -9,17 +9,16 @@ class Command(BaseCommand):
     help = 'Refreshes the key with the most outdated information.'
 
     def handle(self, *args, **options):
-    	start = datetime.now()
-    	key = ApiKey.objects.all().order_by('lastRefresh').first()
+        start = datetime.now()
+        key = ApiKey.objects.all().order_by('lastRefresh').first()
+        
+        if key.lastRefresh != None:
+            age = start.replace(tzinfo=None) - key.lastRefresh.replace(tzinfo=None) 
+            if age.seconds < 3600:
+                print "Nothing To do."
+                return
 
-    	if key.lastRefresh != None:
-			age = start - key.lastRefresh
-			
-    		if (age.seconds < 3600):
-				print "Nothing To do."
-				return
+        refreshKeyInfo(key)
 
-    	refreshKeyInfo(key)
-
-    	time = datetime.now() - start
-    	print "Key refresh completed in", time.seconds, "seconds"
+        time = datetime.now() - start
+        print "Key refresh completed in", time.seconds, "seconds"
