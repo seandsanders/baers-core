@@ -151,7 +151,7 @@ def refreshKeyInfo(key, full=True):
 
 	key.save()
 
-@transaction.atomic
+
 def refreshCharacterInfo(char, full=True):
 	print "Refreshing Character Information for", char
 	key = char.api
