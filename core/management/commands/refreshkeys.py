@@ -14,11 +14,11 @@ class Command(BaseCommand):
 
     	if key.lastRefresh != None:
 			age = start - key.lastRefresh
-
+			
     		if (age.seconds < 3600):
-    			print "Nothing To do."
-    			return
-    			
+				print "Nothing To do."
+				return
+
     	refreshKeyInfo(key)
 
     	time = datetime.now() - start

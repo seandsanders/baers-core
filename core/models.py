@@ -382,7 +382,7 @@ class CorpMember(models.Model):
 	locationID = models.IntegerField()
 	location = models.CharField(max_length=200)
 	shipTypeID = models.IntegerField()
-	roles = models.IntegerField()
+	roles = models.BigIntegerField()
 
 
 ##
