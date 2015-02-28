@@ -110,7 +110,7 @@ class Character(models.Model):
 #/char/AssetList.xml.aspx
 class CharacterAsset(models.Model):
 	owner = models.ForeignKey(Character)
-	itemID = models.IntegerField()
+	itemID = models.BigIntegerField()
 	locationID = models.IntegerField()
 	typeID = models.IntegerField()
 	quantity = models.IntegerField()
@@ -345,7 +345,7 @@ class WalletTransactions(models.Model):
 # /corp/StarbaseDetail.xml.aspx
 class CorpStarbase(models.Model):
 
-	itemID = models.IntegerField()
+	itemID = models.BigIntegerField()
 	typeID = models.IntegerField()
 	locationID = models.IntegerField()
 	moonID = models.IntegerField()
