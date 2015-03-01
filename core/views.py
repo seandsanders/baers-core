@@ -191,7 +191,7 @@ def searchProfile(request):
 		if len(results) == 0:
 			error="No characters named '"+searchTerm+"' found."
 		if len(results) == 1:
-			return redirect("core:playerProfile", profileName=slugify(results[0]))
+			return redirect("core:playerProfile", profileName=slugify(unicode(results[0])))
 
 	return render(request, "searchResults.html", {"results": results, 'searchTerm': searchTerm, 'error': error})
 
