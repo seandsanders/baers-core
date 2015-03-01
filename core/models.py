@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import Group, User
+from datetime import datetime
 
 
 # Create your models here.
@@ -56,7 +57,7 @@ class ApiKey(models.Model):
 
 	valid = models.BooleanField(default=True)
 	deleted = models.BooleanField(default=False) 
-	lastRefresh = models.DateTimeField(null=True)
+	lastRefresh = models.DateTimeField(default=datetime(1900,1,1))
 	
 
 	accessMask = models.CharField(max_length=20,null=True)
