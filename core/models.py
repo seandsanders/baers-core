@@ -164,7 +164,7 @@ class CharacterContact(models.Model):
 class CharacterContract(models.Model):
 	owner = models.ForeignKey(Character)
 
-	contractID = models.IntegerField()
+	contractID = models.BigIntegerField()
 	issuerID = models.IntegerField()
 	issuerCorpID = models.IntegerField()
 	assigneeID = models.IntegerField()
@@ -194,7 +194,7 @@ class CharacterContract(models.Model):
 class ContractItem(models.Model):
 	contract = models.ForeignKey(CharacterContract)
 
-	recordID = models.IntegerField()
+	recordID = models.BigIntegerField()
 	typeID = models.IntegerField()
 	quantity = models.IntegerField()
 	singleton = models.BooleanField()
@@ -271,7 +271,7 @@ class MailBody(models.Model):
 class CharacterMarketOrder(models.Model):
 	owner = models.ForeignKey(Character)
 
-	orderID = models.IntegerField()
+	orderID = models.BigIntegerField()
 	charID = models.IntegerField()
 	stationID = models.IntegerField()
 	volEntered = models.IntegerField()
@@ -292,14 +292,14 @@ class CharacterMarketOrder(models.Model):
 class CharacterNotification(models.Model):
 	owner = models.ForeignKey(Character)
 
-	notificationID = models.IntegerField()
+	notificationID = models.BigIntegerField()
 	typeID = models.IntegerField()
 	senderID = models.IntegerField()
 	sentDate = models.DateTimeField()
 	read = models.BooleanField()
 
 class NotificationText(models.Model):
-	notificationID = models.IntegerField()
+	notificationID = models.BigIntegerField()
 	body = models.CharField(max_length=4096)
 
 # /char/WalletJournal.xml.aspx
