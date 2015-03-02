@@ -307,7 +307,7 @@ class WalletJournal(models.Model):
 	owner = models.ForeignKey(Character)
 
 	date = models.DateTimeField()
-	refID = models.IntegerField()
+	refID = models.BigIntegerField()
 	refTypeID =  models.IntegerField()
 	ownerName1 = models.CharField(max_length=100)
 	ownerID1 = models.IntegerField()
@@ -324,7 +324,7 @@ class WalletTransactions(models.Model):
 	owner = models.ForeignKey(Character)
 
 	transactionDateTime = models.DateTimeField()
-	transactionID = models.IntegerField()
+	transactionID = models.BigIntegerField()
 	quantity = models.IntegerField()
 	typeName = models.CharField(max_length=100)
 	typeID = models.IntegerField()
@@ -335,7 +335,7 @@ class WalletTransactions(models.Model):
 	stationName = models.CharField(max_length=200)
 	transactionType = models.CharField(max_length=5)
 	transactionFor = models.CharField(max_length=15)
-	journalTransactionID = models.IntegerField()
+	journalTransactionID = models.BigIntegerField()
 
 ##
 # Corp API information
