@@ -233,6 +233,7 @@ def refreshCharacterInfo(char, full=True):
 			char.activeShipTypeName = result.shipTypeName
 			char.activeShipName = result.shipName
 			char.location = result.lastKnownLocation
+			char.sp = result.skillPoints
 			char.save()
 		except:
 			pass

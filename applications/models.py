@@ -67,6 +67,7 @@ class Answer(models.Model):
 		return "None" 
 
 class Comment(models.Model):
+	app = models.ForeignKey(Application)
 	author = models.ForeignKey(UserProfile)
 	date = models.DateTimeField()
 	text = models.CharField(max_length=1000)

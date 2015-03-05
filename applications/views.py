@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect
 import applications as appmodule
 from django.db import transaction
-from applications.models import Application, Answer
+from applications.models import Application, Answer, Comment
 from datetime import datetime
 from django.http import HttpResponseNotFound, HttpResponse
-from core.models import CharacterSkill, Character
+from core.models import CharacterSkill, Character, Notification
+from core.views import isRecruiter
 from django.db.models import Count
+import random, string
+from django.views.decorators.csrf import csrf_exempt
+from django.core.urlresolvers import reverse
+from django.contrib.auth.models import Group
 # Create your views here.
 
 ships = [
@@ -396,8 +401,11 @@ ships = [
 		}
 	]
 
-@transaction.atomic
 def apply(request, token):
+	if not request.user.is_authenticated():
+		request.session['appToken'] = token
+		return redirect("core:register")
+
 	app = Application.objects.filter(token=token).first()
 
 	if not app:
@@ -418,6 +426,12 @@ def apply(request, token):
 		app.applicantProfile = request.user.userprofile		
 		app.applicationDate = datetime.now()
 		app.save()
+		recruiter = Group.objects.filter(name="Recruiter").first()
+		note = Notification(cssClass="success")
+		note.content="New Application from <a href='"+reverse('applications:viewapp', kwargs={"app": app.token})+"'>"+unicode(request.user.userprofile)+"</a>."
+		note.save()
+		note.targetGroup.add(recruiter)
+
 		Answer.objects.bulk_create(answers)
 
 		return redirect("applications:mystatus")
@@ -432,7 +446,36 @@ def mystatus(request):
 	return render(request, 'appstatus.html', c)
 
 def application(request, app):
+	if not isRecruiter(request.user):
+		return HttpResponseNotFound()
 	app = Application.objects.filter(token=app).first()
+	if request.method == "POST":
+		if request.POST.get('newComment'):
+			c = Comment()
+			c.text = request.POST.get('commentbody')
+			c.author = request.user.userprofile
+			c.date = datetime.now()
+			c.auto_generated = False
+			c.app = app
+			c.save()
+		if request.POST.get('updatestatus'):
+			newStatus = int(request.POST.get('status'))
+			newTag = int(request.POST.get('tag'))
+			if app.status != newStatus and app.STATUS_CHOICES[newStatus]:
+				c = Comment(auto_generated=True, date=datetime.now(), app=app, author=request.user.userprofile)
+				oldstatus = app.get_status_display()
+				app.status = newStatus 
+				c.text = "changed Status from '"+oldstatus+"' to '"+app.get_status_display()+"'"
+				c.save()
+			if app.tag != newTag and app.TAG_CHOICES[newTag]:
+				c = Comment(auto_generated=True, date=datetime.now(), app=app, author=request.user.userprofile)
+				oldtag = app.get_tag_display()
+				app.tag = newTag
+				c.text = "changed Tag from '"+oldtag+"' to '"+app.get_tag_display()+"'"
+				c.save()
+			app.save()
+
+
 	profile = app.applicantProfile
 	keys = profile.apikey_set.all()
 	characters = profile.character_set.all()
@@ -474,9 +517,31 @@ def application(request, app):
 	return render(request, "application.html", c)
 
 def applications(request):
+	if not isRecruiter(request.user):
+		return HttpResponseNotFound()
 	apps = Application.objects.all()
+	unp = apps.filter(status=Application.UNPROCESSED).order_by('applicationDate')
+	hld = apps.filter(status=Application.HOLD).order_by('-applicationDate')
+	dnd = apps.filter(status=Application.DENIED).order_by('-applicationDate')
+	yes = apps.filter(status=Application.ACCEPTED).order_by('-applicationDate')
 
 	c = {
-		"applications": apps
+		"unprocessed": unp,
+		"hold": hld,
+		"denied": dnd,
+		"accepted": yes
 	}
 	return render(request, "applications.html", c)
+
+@csrf_exempt
+def newApplication(request):
+	if not isRecruiter(request.user):
+		return HttpResponseNotFound()
+	sample = string.lowercase+string.digits
+	token = ''.join(random.sample(sample, 5))
+
+	app = Application(token=token)
+	app.save()
+	c = Comment(app=app, author=request.user.userprofile, date=datetime.now(), text="Generated the Token", auto_generated=True)
+	c.save()
+	return HttpResponse(request.build_absolute_uri(reverse('applications:apply', kwargs={'token':token})))

@@ -196,7 +196,7 @@ def searchProfile(request):
 	return render(request, "searchResults.html", {"results": results, 'searchTerm': searchTerm, 'error': error})
 
 
-def profile(request, profile, mark=None):
+def profile(request, profile, mark=None):	
 	director = isDirector(request.user)
 	if request.POST.get("updategroups") and director:
 		for grp in Group.objects.all():
@@ -218,6 +218,8 @@ def profile(request, profile, mark=None):
 
 
 def memberList(request):
+	if not isRecruiter(request.user):
+		return HttpResponseForbidden("<h1>You do not have the permission to view this page.</h1>")	
 	ctx = {}
 	corpchars = CorpMember.objects.all()
 	chars = Character.objects.all()
