@@ -141,7 +141,7 @@ img.character {
 .comment {
   border: 1px solid #CCC;
 }
-.comment > pre {
+pre {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   margin-left: 5px;
   padding-left: 5px;
