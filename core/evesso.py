@@ -48,8 +48,7 @@ def ssologin(request):
         if not result["CharacterID"]:
             return render(request, 'landing.html', {"error": "Cannot get a valid answer from CCP. Please try again."})
 
-        #try:
-        if True:
+        try:
             char = Character.objects.get(charID=result["CharacterID"])
             char.profile.user.backend = 'django.contrib.auth.backends.ModelBackend'
             login(request, char.profile.user)
@@ -57,6 +56,6 @@ def ssologin(request):
             if token:
                 return redirect("applications:apply", token=token)
             return redirect("core:dashboard")
-        #except:
-        #    return render(request, 'landing.html', {"error": "The selected Character is not in our Database. Please register using the link below."})
+        except:
+            return render(request, 'landing.html', {"error": "The selected Character is not in our Database. Please register using the link below."})
         
