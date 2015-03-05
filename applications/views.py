@@ -11,6 +11,7 @@ import random, string
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import Group
+from django.utils.text import slugify
 # Create your views here.
 
 ships = [
@@ -458,6 +459,11 @@ def application(request, app):
 			c.auto_generated = False
 			c.app = app
 			c.save()
+			recruiter = Group.objects.filter(name="Recruiter").first()
+			note = Notification(cssClass="info")
+			note.content="<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(request.user.userprofile)})+"'>"+unicode(c.author)+"</a> commented on <a href='"+reverse('applications:viewapp', kwargs={"app": app.token})+"'>"+unicode(request.user.userprofile)+"'s Application</a>."
+			note.save()
+			note.targetGroup.add(recruiter)
 		if request.POST.get('updatestatus'):
 			newStatus = int(request.POST.get('status'))
 			newTag = int(request.POST.get('tag'))
