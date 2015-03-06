@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseForbidden
 from django.contrib.auth.decorators import user_passes_test
 from core.tasks import Task 
+from django.core.urlresolvers import reverse
 
 # Create your views here.
 

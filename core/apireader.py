@@ -4,6 +4,8 @@ import datetime
 from core import postNotification
 from django.db import transaction
 from django.conf import settings
+from django.core.urlresolvers import reverse
+from django.utils.text import slugify
 
 
 def refreshCorpApi():
@@ -97,13 +99,29 @@ def refreshKeyInfo(key, full=True):
 	itGrp, created = Group.objects.get_or_create(name='IT')
 	inCorpGrp, created = Group.objects.get_or_create(name='Dropbears')
 	recruiterGrp, created = Group.objects.get_or_create(name='Recruiter')
-	print "Requesting APIKeyInfo for", api
+	print "Requesting APIKeyInfo for", key.profile
+
+	incrp = False
+	for char in key.profile.character_set.all():
+		if char.corpID == 98224068 and char.api.valid:
+			incrp = True
+
+	if not incrp:
+		key.profile.user.groups.all().delete()
+
 	try:
 		result = auth.account.APIKeyInfo()
 	except:
+		if not key.valid:
+			return
 		key.valid=False
+		key.lastRefresh = datetime.datetime.now()
 		key.save()
-		postNotification(target=recruiterGrp, text=unicode(key.profile)+" has invalidated one of their API keys.", cssClass="danger")
+		n = Notification(cssClass="danger")
+		n.content = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> has invalidated one of their API keys."
+		n.save()
+		n.targetGroup.add(recruiterGrp)
+		print unicode(key.profile)+" has invalidated one of their API keys."
 		return
 	key.accessMask = result.key.accessMask
 
@@ -118,9 +136,19 @@ def refreshKeyInfo(key, full=True):
 		key.expiration = datetime.datetime.fromtimestamp(expires)
 
 	if key.accessMask != 268435455:
+		if not key.valid:
+			return
 		key.valid = False
-		key.save()
+		key.lastRefresh = datetime.datetime.now()
+		n = Notification(cssClass="danger")
+		n.content = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> has invalidated one of their API keys."
+		n.save()
+		n.targetGroup.add(recruiterGrp)
+		print unicode(key.profile)+" has invalidated one of their API keys."
 		return
+
+	key.valid = True
+	key.save()
 
 	for character in result.key.characters:
 		try:
@@ -139,6 +167,14 @@ def refreshKeyInfo(key, full=True):
 
 		char.save()
 		refreshCharacterInfo(char, full=full)
+
+	incrp = False
+	for char in key.profile.characters:
+		if char.corpID == 98224068 and char.api.valid:
+			incrp = True
+
+	if not incrp:
+		key.profile.user.groups.all().delete()
 
 	print "Requesting AccountStatus for", key
 	result = auth.account.AccountStatus()

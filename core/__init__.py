@@ -5,13 +5,12 @@ from core.tasks import Task
 
 def postNotification(target, text, cssClass="info"):
 	n = Notification(content = text, cssClass=cssClass)
-
 	n.save()
+
 	if type(target) is User:
 		n.targetUsers.add(target)
 	elif type(target) is Group:
 		n.targetGroup.add(target)
-	n.save()
 
 Task("TASKS WILL APPEAR HERE")
 #Task("TEST WARNING TASK", cssClass="warning")
