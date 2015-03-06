@@ -140,6 +140,7 @@ def refreshKeyInfo(key, full=True):
 			return
 		key.valid = False
 		key.lastRefresh = datetime.datetime.now()
+		key.save()
 		n = Notification(cssClass="danger")
 		n.content = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> has invalidated one of their API keys."
 		n.save()
