@@ -92,7 +92,7 @@ def register(request):
 					newProfile.mainChar = Character.objects.get(charID=mainChar["charID"])
 					newProfile.save()
 					postNotification(target=newUser, text="You have created your account", cssClass="success")
-					postNotification(target=recruiterGrp, text=unicode(newProfile)+" created an account.", cssClass="info")
+					postNotification(target=recruiterGrp, text="<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(newProfile)})+"'>"+unicode(newProfile)+" created an account.", cssClass="info")
 					return redirect("core:evesso")
 				else:
 					error = "Please Select your main Character (click it)"
