@@ -461,7 +461,7 @@ def application(request, app):
 			c.save()
 			recruiter = Group.objects.filter(name="Recruiter").first()
 			note = Notification(cssClass="info")
-			note.content="<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(request.user.userprofile)})+"'>"+unicode(c.author)+"</a> commented on <a href='"+reverse('applications:viewapp', kwargs={"app": app.token})+"'>"+unicode(request.user.userprofile)+"'s Application</a>."
+			note.content="<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(request.user.userprofile)})+"'>"+unicode(c.author)+"</a> commented on <a href='"+reverse('applications:viewapp', kwargs={"app": app.token})+"'>"+unicode(app.applicantProfile)+"'s Application</a>."
 			note.save()
 			note.targetGroup.add(recruiter)
 		if request.POST.get('updatestatus'):
