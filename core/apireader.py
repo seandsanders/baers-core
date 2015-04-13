@@ -172,7 +172,7 @@ def refreshKeyInfo(key, full=True):
 		refreshCharacterInfo(char, full=full)
 
 	incrp = False
-	for char in key.profile.characters:
+	for char in key.profile.character_set.all():
 		if char.corpID == 98224068 and char.api.valid:
 			incrp = True
 

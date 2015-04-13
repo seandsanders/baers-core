@@ -11,6 +11,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         start = datetime.now()
         key = ApiKey.objects.all().order_by('lastRefresh').first()
+
+        if not key:
+            print "No Key found!"
         
         if key.lastRefresh != None:
             age = start.replace(tzinfo=None) - key.lastRefresh.replace(tzinfo=None) 
