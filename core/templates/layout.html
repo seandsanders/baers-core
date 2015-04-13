@@ -33,7 +33,7 @@
           </ul>
           <form class="navbar-form navbar-right" method="post" action="{% url "core:searchProfile" %}">
             {% csrf_token %}
-            <input type="text" class="form-control" name="searchterm" placeholder="Search...">
+            <input type="text" class="form-control" name="searchterm" placeholder="Search character...">
             <input type="submit" style="display: none;">
           </form>
         </div>

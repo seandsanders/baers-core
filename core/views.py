@@ -77,9 +77,12 @@ def register(request):
 				if mainChar and mainChar != "0":
 					mainChar = charlist[int(mainChar)-1]
 					newUser = User(username=slugify(mainChar["charName"]))
-					newUser.save()
-					newProfile = UserProfile(user=newUser)
-					newProfile.save()
+					newProfile = UserProfile.objects.get_or_create(user=newUser)
+					try:
+						newUser.save()
+						newProfile.save()
+					except:
+						pass
 					for api in request.session["apis"]:
 						try:
 							newKey = ApiKey.objects.get(keyID=api["id"], deleted=True)
@@ -91,7 +94,10 @@ def register(request):
 						newKey.save()
 						refreshKeyInfo(newKey, full=False)
 					newProfile.mainChar = Character.objects.get(charID=mainChar["charID"])
-					newProfile.save()
+					try:
+						newProfile.save()
+					except:
+						pass
 					postNotification(target=newUser, text="You have created your account", cssClass="success")
 					postNotification(target=recruiterGrp, text="<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(newProfile)})+"'>"+unicode(newProfile)+" created an account.", cssClass="info")
 					return redirect("core:evesso")

@@ -101,6 +101,9 @@ def refreshKeyInfo(key, full=True):
 	recruiterGrp, created = Group.objects.get_or_create(name='Recruiter')
 	print "Requesting APIKeyInfo for", key.profile
 
+	key.lastRefresh = datetime.datetime.now()
+	key.save()
+
 	incrp = False
 	for char in key.profile.character_set.all():
 		if char.corpID == 98224068 and char.api.valid:
@@ -115,7 +118,6 @@ def refreshKeyInfo(key, full=True):
 		if not key.valid:
 			return
 		key.valid=False
-		key.lastRefresh = datetime.datetime.now()
 		key.save()
 		n = Notification(cssClass="danger")
 		n.content = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> has invalidated one of their API keys."

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% load humanize %}
+
+<div class="row">
+	<h2><img src="https://image.eveonline.com/Type/{{kill.shipID}}_64.png" /> Kill details for #{{kill.killID}}</h2>
+	<br>
+	<strong>zKillboard Link:</strong> <a target="_blank" href="http://zkillboard.com/kill/{{kill.killID}}">http://zkillboard.com/kill/{{kill.killID}}</a>
+	<br>
+	<strong>Pilot:</strong> {{kill.pilot}} {% if apiwarning %} - <strong style="color: red">Warning: This character does not have a valid API in the database</strong>{%endif%}<br>
+	<strong>Corporation:</strong> {{kill.corp}} <br>
+	<strong>Ship:</strong> {{kill.ship}} <br>
+	<strong>Value:</strong> {{kill.value|intcomma}}<br>
+	<strong>Status:</strong> {{kill.get_status_display}} <br>
+	<hr>
+	<strong>Why did you die:</strong>
+	<pre>{{kill.aar}}</pre>
+	<br>
+	<strong>Did you learn anything from this death?</strong>
+	<pre>{{kill.learned}}</pre>
+	<strong>What would you have done differently as the fc?</strong>
+	<pre>{{kill.suggestions}}</pre>
+	<br>
+	<br>
+	<h4>Change status:</h4>
+	<form method="POST" action="" class="form-inline">
+		<input type="submit" value="Approve" class="form-control btn-success" name="approve">
+		<input type="submit" value="Deny" class="form-control btn-danger" name="deny">
+		<input type="submit" value="Pending" class="form-control btn-warning" name="pending">
+		{%csrf_token%}
+	</form>
+
+</div>
+{%endblock content%}
