@@ -10,6 +10,7 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseForbidde
 from django.contrib.auth.decorators import user_passes_test
 from core.tasks import Task 
 from django.core.urlresolvers import reverse
+from datetime import datetime
 
 # Create your views here.
 
@@ -234,10 +235,11 @@ def memberList(request):
 	ctx["invalidCharacters"] = []
 	for char in corpchars:
 		c = chars.filter(charID=char.characterID).first()
+		
 		if not (c and c.api.valid):
-			ctx["invalidCharacters"].append({"valid": False, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "mainChar": ""})
+			ctx["invalidCharacters"].append({"valid": False, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "mainChar": "", "inactiveTime": (datetime.now() - char.joinDate).days})
 		else:
-			ctx["validCharacters"].append({"valid": True, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "slug": slugify(char.characterName), "mainChar": c.profile.mainChar})
+			ctx["validCharacters"].append({"valid": True, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "slug": slugify(char.characterName), "mainChar": c.profile.mainChar, "inactiveTime": (datetime.now() - char.joinDate).days})
 		
 
 
