@@ -235,11 +235,11 @@ def memberList(request):
 	ctx["invalidCharacters"] = []
 	for char in corpchars:
 		c = chars.filter(charID=char.characterID).first()
-		
+		inactiveDays = (datetime.now().replace(tzinfo=None) - char.logoffDate.replace(tzinfo=None)).days
 		if not (c and c.api.valid):
-			ctx["invalidCharacters"].append({"valid": False, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "mainChar": "", "inactiveTime": (datetime.now() - char.joinDate).days})
+			ctx["invalidCharacters"].append({"valid": False, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "mainChar": "", "inactiveTime": inactiveDays})
 		else:
-			ctx["validCharacters"].append({"valid": True, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "slug": slugify(char.characterName), "mainChar": c.profile.mainChar, "inactiveTime": (datetime.now() - char.joinDate).days})
+			ctx["validCharacters"].append({"valid": True, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "slug": slugify(char.characterName), "mainChar": c.profile.mainChar, "inactiveTime": inactiveDays})
 		
 
 
