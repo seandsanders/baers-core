@@ -71,13 +71,18 @@
           </div>
           <input type="hidden" name="mainChar", id="mainChar" value="0">
           <button type="submit" name="action" value="addkey" class="btn btn-default">Add Key</button>
-          <button type="submit" name="action" value="done" class="btn btn-default pull-right">Done</button>
+          <button type="submit" id="done" name="action" value="done" class="btn btn-default pull-right">Done</button>
+          <button disabled="true" style="display: none" id="fakedone" class="btn btn-default pull-right">Validating, please wait...</button>
            {% csrf_token %}
         </form>    
     </div>
   </body>
   <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script>
+    $('button#done').click(function () {
+      $(this).hide();
+      $('button#fakedone').show();
+    });
     $('.thumbnail').click(function () {
         $('.thumbnail').removeClass('mainChar');
         $(this).addClass('mainChar');
