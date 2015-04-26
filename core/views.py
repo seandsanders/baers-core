@@ -78,9 +78,14 @@ def register(request):
 				if mainChar and mainChar != "0":
 					mainChar = charlist[int(mainChar)-1]
 					newUser = User(username=slugify(mainChar["charName"]))
-					newProfile = UserProfile.objects.get_or_create(user=newUser)
+					from django.db import IntegrityError
 					try:
 						newUser.save()
+					except IntegrityError as e:
+						newUser = User.objects.get(username=slugify(mainChar["charName"]))
+
+					newProfile = UserProfile.objects.get_or_create(user=newUser)[0]
+					try:
 						newProfile.save()
 					except:
 						pass
