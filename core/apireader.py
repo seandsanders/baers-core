@@ -386,59 +386,60 @@ def refreshCharacterInfo(char, full=True):
 		postNotification(target=itGrp, text="Request for ContactList failed while refreshing API for "+unicode(char), cssClass="warning")
 
 
-	print "Requesting Killlog for", char
-	try:
-		result = cAuth.Killlog()
-		cachedKills = CharacterKill.objects.filter(owner=char)
-		newAttackers = []	
-		newItems = []
-		for kill in result.kills:
-			try:
-				cachedKills.get(killID=kill.killID)
-			except:
-				newestKill = CharacterKill(	owner=char,						
-											killID=kill.killID,
-											solarSystemID=kill.solarSystemID,
-											killTime=datetime.datetime.fromtimestamp(kill.killTime),
-											victimAllianceID=kill.victim.allianceID,
-											victimAllianceName=kill.victim.allianceName,
-											victimCharacterID=kill.victim.characterID,
-											victimCharacterName=kill.victim.characterName,
-											victimCorporationID=kill.victim.corporationID,
-											victimCorporationName=kill.victim.corporationName,
-											victimDamageTaken=kill.victim.damageTaken,
-											victimShipTypeID=kill.victim.shipTypeID )
-				newestKill.save()
-
-				cachedAttackers = KillmailAttackers.objects.filter(killmail=newestKill)
-				if not cachedAttackers:
-					for attacker in kill.attackers:
-						newAttackers.append( KillmailAttackers(	killmail = newestKill,
-																allianceID=attacker.allianceID,
-																allianceName=attacker.allianceName,
-																corporationID=attacker.corporationID,
-																corporationName=attacker.corporationName,
-																characterID=attacker.characterID,
-																characterName=attacker.characterName,
-																damageDone=attacker.damageDone,
-																finalBlow=attacker.finalBlow,
-																shipTypeID=attacker.shipTypeID,
-																weaponTypeID=attacker.weaponTypeID) )
-				cachedItems = KillmailItems.objects.filter(killmail=newestKill)
-				if not cachedAttackers:
-					for item in kill.items:
-						newItems.append( KillmailItems(	killmail = newestKill,
-															flag=item.flag,
-															qtyDropped=item.qtyDropped,
-															qtyDestroyed=item.qtyDestroyed,
-															typeID=item.typeID,
-															singleton=item.singleton ) )		
-
-		KillmailAttackers.objects.bulk_create(newAttackers)
-		KillmailItems.objects.bulk_create(newItems)
-		killmail = models.ForeignKey(CharacterKill)
-	except:
-		postNotification(target=itGrp, text="Request for Killlog failed while refreshing API for "+unicode(char), cssClass="warning")
+	#print "Requesting Killlog for", char
+	print "Skipping KillLog because CCP is really paranoid about it and I'm too lazy to actually look at the cache time"
+	#try:
+	#	result = cAuth.Killlog()
+	#	cachedKills = CharacterKill.objects.filter(owner=char)
+	##	newAttackers = []	
+	##	newItems = []
+	##	for kill in result.kills:
+	##		try:
+	##			cachedKills.get(killID=kill.killID)
+	##		except:
+	##			newestKill = CharacterKill(	owner=char,						
+	##										killID=kill.killID,
+	##										solarSystemID=kill.solarSystemID,
+	##										killTime=datetime.datetime.fromtimestamp(kill.killTime),
+	##										victimAllianceID=kill.victim.allianceID,
+	##										victimAllianceName=kill.victim.allianceName,
+	##										victimCharacterID=kill.victim.characterID,
+	##										victimCharacterName=kill.victim.characterName,
+	##										victimCorporationID=kill.victim.corporationID,
+	##										victimCorporationName=kill.victim.corporationName,
+	##										victimDamageTaken=kill.victim.damageTaken,
+	##										victimShipTypeID=kill.victim.shipTypeID )
+	##			newestKill.save()
+##
+##				cachedAttackers = KillmailAttackers.objects.filter(killmail=newestKill)
+##				if not cachedAttackers:
+##					for attacker in kill.attackers:
+##						newAttackers.append( KillmailAttackers(	killmail = newestKill,
+##																allianceID=attacker.allianceID,
+##																allianceName=attacker.allianceName,
+##																corporationID=attacker.corporationID,
+##																corporationName=attacker.corporationName,
+##																characterID=attacker.characterID,
+##																characterName=attacker.characterName,
+##																damageDone=attacker.damageDone,
+##																finalBlow=attacker.finalBlow,
+##																shipTypeID=attacker.shipTypeID,
+##																weaponTypeID=attacker.weaponTypeID) )
+##				cachedItems = KillmailItems.objects.filter(killmail=newestKill)
+##				if not cachedAttackers:
+##					for item in kill.items:
+##						newItems.append( KillmailItems(	killmail = newestKill,
+##															flag=item.flag,
+##															qtyDropped=item.qtyDropped,
+##															qtyDestroyed=item.qtyDestroyed,
+##															typeID=item.typeID,
+##															singleton=item.singleton ) )		
+##
+##		KillmailAttackers.objects.bulk_create(newAttackers)
+##		KillmailItems.objects.bulk_create(newItems)
+##		killmail = models.ForeignKey(CharacterKill)
+##	except:
+#		postNotification(target=itGrp, text="Request for Killlog failed while refreshing API for "+unicode(char), cssClass="warning")
 
 	print "Requesting MailMessages for", char
 	try:
