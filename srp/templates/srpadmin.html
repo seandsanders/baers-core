@@ -11,7 +11,7 @@
 	 			<th>FC</th>
 	 			<th>Ship</th>
 	 			<th>Value</th>
-	 			<th></th>
+	 			<th>-</th>
 	 		</tr>
 	 		{% for srp in pending %}
 		 		<tr>
@@ -19,7 +19,7 @@
 		 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.fc}}</a></td>
 		 			<td><a href="{% url "srp:viewsrp" srp.killID %}"><img src="https://image.eveonline.com/Type/{{srp.shipID}}_32.png" /> {{srp.ship}}</a></td>
 		 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.value|intcomma}}</a></td>
-		 			<td></td>
+		 			<td>-</td>
 		 		</tr>
 	 		{% endfor %}
 	 	</table>
@@ -73,7 +73,7 @@
 </div>
 {% endblock content %}
 
-{% block title %}Applications - Dropbears Auth{%endblock title%}
+{% block title %}SRP - Dropbears Auth{%endblock title%}
 
 {% block scripts %}
 

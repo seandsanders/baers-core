@@ -12,6 +12,8 @@ from django.core.urlresolvers import reverse
 
 def isFinance(user):
 	return user.groups.filter(name='Finance').exists()
+def isDropbears(user):
+	return user.groups.filter(name='Dropbears').exists()
 
 def srpadmin(request):
 	if not isFinance(request.user):
@@ -39,7 +41,28 @@ def srpadmin(request):
 	return render(request, 'srpadmin.html', c)
 
 def srplist(request):
-	return HttpResponse()
+	if not isDropbears(request.user):
+		return HttpResponseForbidden("Please log in first.")
+	srps = SRPRequest.objects.filter(owner=request.user.userprofile)
+	
+	pending = srps.filter(status=0)
+	approved = srps.filter(status=1)
+	denied = srps.filter(status=2)
+
+	pendingsum = pending.aggregate(Sum('value'))
+	approvedsum = approved.aggregate(Sum('value'))
+	deniedsum = denied.aggregate(Sum('value'))
+
+
+	c = {
+		"pending": pending,
+		"approved": approved,
+		"denied": denied,
+		"deniedsum": deniedsum,
+		"pendingsum": pendingsum,
+		"approvedsum": approvedsum
+	}
+	return render(request, 'srplist.html', c)
 
 def viewsrp(request, killID):
 	if not isFinance(request.user):
@@ -78,6 +101,8 @@ def viewsrp(request, killID):
 	return render(request, "srpdetails.html", c)
 
 def submit(request):
+	if not isDropbears(request.user):
+		return HttpResponseForbidden("Please log in first.")
 	c = {}
 	if request.method == "POST":
 		error = False

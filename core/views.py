@@ -115,6 +115,8 @@ def register(request):
 	return render(request, 'register.html', ctx)
 
 def apiKeys(request):
+	if not (request.user.is_authenticated()):
+		return redirect("core:landing")
 	error = None
 	recruiterGrp, created = Group.objects.get_or_create(name='Recruiter')
 	if request.method == "POST":
