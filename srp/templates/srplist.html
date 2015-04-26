@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% load humanize %}
+<div class="row">
+	<a href="{% url "srp:submit" %}" class="btn btn-success">+ New SRP request</a>
+	<h1>Pending Requests <small>{{pendingsum.value__sum|intcomma}} isk</small></h1>
+	<div class="col-sm-8">
+		<table class="table table-hover">
+	 		<tr>
+	 			<th>Ship</th>
+	 			<th>FC</th>
+	 			<th>Value</th>
+	 			<th></th>
+	 		</tr>
+	 		{% for srp in pending %}
+		 		<tr>
+		 			<td><a target="_blank" href="http://zkillboard.com/kill/{{srp.killID}}"><img src="https://image.eveonline.com/Type/{{srp.shipID}}_32.png" /> {{srp.ship}}</a></td>
+		 			<td><a target="_blank" href="http://zkillboard.com/kill/{{srp.killID}}">{{srp.fc}}</a></td>
+		 			<td><a target="_blank" href="http://zkillboard.com/kill/{{srp.killID}}">{{srp.value|intcomma}}</a></td>
+		 			<td></td>
+		 		</tr>
+	 		{% endfor %}
+	 	</table>
+	</div>
+</div>
+<div class="row">
+	<h1>Approved Requests <small>{{approvedsum.value__sum|intcomma}} isk</small></h1> 
+	<div class="col-sm-8">
+		<table class="table table-hover">
+	 		<tr>
+	 			<th>Ship</th>
+	 			<th>FC</th>
+	 			<th>Value</th>
+	 			<th>Approved by</th>
+	 		</tr>
+	 		{% for srp in approved %}
+		 		<tr>
+		 			<td><a target="_blank" href="http://zkillboard.com/kill/{{srp.killID}}"><img src="https://image.eveonline.com/Type/{{srp.shipID}}_32.png" /> {{srp.ship}}</a></td>
+		 			<td><a target="_blank" href="http://zkillboard.com/kill/{{srp.killID}}">{{srp.fc}}</a></td>
+		 			<td><a target="_blank" href="http://zkillboard.com/kill/{{srp.killID}}">{{srp.value|intcomma}}</a></td>
+		 			<td><a target="_blank" href="http://zkillboard.com/kill/{{srp.killID}}">{{srp.approver}}</a></td>
+		 		</tr>
+	 		{% endfor %}
+	 	</table>
+	</div>
+</div>
+<div class="row">
+	<h1>Denied Requests <small>{{deniedsum.value__sum|intcomma}} isk</small></h1>
+	<div class="col-sm-8">
+		<table class="table table-hover">
+	 		<tr>
+	 			<th>Ship</th>
+	 			<th>FC</th>
+	 			<th>Value</th>
+	 			<th>Denied by</th>
+	 		</tr>
+	 		{% for srp in denied %}
+		 		<tr>
+		 			<td><a target="_blank" href="http://zkillboard.com/kill/{{srp.killID}}"><img src="https://image.eveonline.com/Type/{{srp.shipID}}_32.png" /> {{srp.ship}}</a></td>
+		 			<td><a target="_blank" href="http://zkillboard.com/kill/{{srp.killID}}">{{srp.fc}}</a></td>
+		 			<td><a target="_blank" href="http://zkillboard.com/kill/{{srp.killID}}">{{srp.value|intcomma}}</a></td>
+		 			<td><a target="_blank" href="http://zkillboard.com/kill/{{srp.killID}}">{{srp.approver}}</a></td>
+		 		</tr>
+	 		{% endfor %}
+	 	</table>
+	</div>
+</div>
+{% endblock content %}
+
+{% block title %}SRP Admin - Dropbears Auth{%endblock title%}
+
+{% block scripts %}
+
+<script>
+	$('#newAppButton').click(function () {
+		$.post('/applications/new', function (link) {
+			$('#tokenlink').val(link).fadeIn().select();
+		});
+	});
+</script>
+{% endblock scripts %}
