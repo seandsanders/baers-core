@@ -13,11 +13,13 @@ class SRPRequest(models.Model):
 	learned = models.CharField(max_length=1000)
 	suggestions = models.CharField(max_length=1000)
 
-	value = models.IntegerField(null=True)
+	value = models.BigIntegerField(null=True)
 	ship = models.CharField(max_length=100, null=True)
 	shipID = models.IntegerField(null=True)
 	pilot = models.CharField(null=True, max_length=100)
 	corp = models.CharField(null=True, max_length=100)
+
+	time = models.DateTimeField(auto_now_add=True)
 
 	PENDING = 0
 	APPROVED = 1
