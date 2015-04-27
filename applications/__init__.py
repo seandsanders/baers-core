@@ -5,6 +5,8 @@ questions = [
 	{"text": "How long have you been in BRAVE and why is BRAVE the best alliance?", "type": "long"},
 	{"text": "What's your favourite activity in EVE?", "type": "long"},
 	{"text": "What's your favourite ship and why, also what is your most powerful ship and why?", "type": "long"},
+	{"text": "Provide a good fit (EFT format) for the ship you chose as your favorite", "type": "long"},
+	{"text": "Provide a good fit (EFT format) for the ship you chose as your most powerful", "type": "long"},
 	{"text": "How long have you been playing EVE and what have you done so far?", "type": "long"},
 	{"text": "Why do you want to join BAERS?", "type": "long"},
 	{"text": "Please write a haiku about patriots sexual prowess", "type": "long"},
