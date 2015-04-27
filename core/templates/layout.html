@@ -56,8 +56,10 @@
           <ul class="nav nav-sidebar">
             <li {% if request.resolver_match.url_name == "srplist" %}class="active"{%endif%}><a href="{% url "srp:srplist" %}">SRP</a></li>
             {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "srpadmin" %}class="active"{%endif%}><a href="{% url "srp:srpadmin" %}">SRP - Admin</a></li>{% endif %}
+          </ul>
+          <ul  class="nav nav-sidebar">
             <!--li {% if request.resolver_match.url_name == "hipchat" %}class="active"{%endif%}><a href="">Hipchat Access</a></li -->
-            <!-- li {% if request.resolver_match.url_name == "reddit" %}class="active"{%endif%}><a href="">Subreddit Access</a></li -->
+            {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "reddit" %}class="active"{%endif%}><a href="{% url "subreddit:reddit" %}">Subreddit Access</a></li>{% endif %}
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

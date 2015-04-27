@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+ 	<h3 class="page-header">Your Reddit account</h3>
+
+	<form method="POST" id="reddit">
+	  <div class="form-group {% if status == 1 %}has-success{% endif %} {% if status == 0 %}has-error{% endif %}" >
+	    <label for="accountname">Reddit Account Name</label>
+	    <input type="text" class="form-control" id="accountname" name="accountname" placeholder="Enter Reddit account" value="{{name}}">
+	  </div>
+
+	  <button type="submit" id="done" class="btn btn-default">Submit</button>
+	  <button disabled style="display: none" id="fakedone" class="btn btn-default">Adding account, please wait...</button>
+	  {% csrf_token %}
+	</form>
+	{% if status == 1 %}<br><span>Account added.</span>{% endif %}
+	{% if status == 0 %}<br><span>Error adding account. Check spelling?</span>{% endif %}
+ {% endblock content %}
+
+ {% block scripts %}
+   <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+   <script>
+    $('form#reddit').submit(function () {
+      $('button#done').hide();
+      $('button#fakedone').show();
+    });
+   </script>
+ {% endblock scripts %}
