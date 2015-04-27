@@ -79,7 +79,8 @@ def refreshCorpApi():
 					locationID = member.locationID,
 					location = member.location,
 					shipTypeID = member.shipTypeID,
-					roles = member.grantableRoles
+					roles = member.grantableRoles,
+					shipType = member.shipType
 				)
 			)
 		CorpMember.objects.bulk_create(newMembers)
