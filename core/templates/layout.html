@@ -51,8 +51,7 @@
           <ul class="nav nav-sidebar">
             {% if request.user|has_group:"Recruiter" %}<li {% if request.resolver_match.url_name == "memberlist" %}class="active"{%endif%}><a href="{% url "core:memberlist" %}">Member List</a></li>{% endif %}
             {% if request.user|has_group:"Recruiter" %}<li {% if request.resolver_match.url_name == "applications" %}class="active"{%endif%}><a href="{% url "applications:applications" %}">Applications <span class="badge">{% get_apps %}</span></a></li>{% endif %}
-            {% if request.user|has_group:"POS" %}<li {% if request.resolver_match.url_name == "pos" %}class="active"{%endif%}><a href="">POS Overview</a></li>{% endif %}
-            {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "wallet" %}class="active"{%endif%}><a href="">Corp Wallet Overview</a></li>{% endif %}
+            {% if request.user|has_group:"POS" %}<li {% if request.resolver_match.url_name == "poslist" %}class="active"{%endif%}><a href="{% url "core:poslist" %}">POS Overview</a></li>{% endif %}
           </ul>
           <ul class="nav nav-sidebar">
             {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "srplist" %}class="active"{%endif%}><a href="{% url "srp:srplist" %}">SRP</a></li>{% endif %}
