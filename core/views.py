@@ -103,37 +103,46 @@ def register(request):
 				mainChar = request.POST.get("mainChar")
 
 				if mainChar and mainChar != "0":
-					mainChar = charlist[int(mainChar)-1]
-					newUser = User(username=slugify(mainChar["charName"]))
-					from django.db import IntegrityError
-					try:
-						newUser.save()
-					except IntegrityError as e:
-						return redirect("core:evesso")
-
-					newProfile = UserProfile.objects.get_or_create(user=newUser)[0]
-					try:
-						newProfile.save()
-					except:
-						pass
+					
+					freshKeys = True					
 					for api in request.session["apis"]:
+						if api["id"] < 4325693:
+							freshKeys = False
+					if freshKeys:
+						mainChar = charlist[int(mainChar)-1]
+						newUser = User(username=slugify(mainChar["charName"]))
+						from django.db import IntegrityError
 						try:
-							newKey = ApiKey.objects.get(keyID=api["id"], deleted=True)
-							newKey.deleted = False
-							newKey.vCode = api["vCode"]
-							newKey.profile = newProfile
+							newUser.save()
+						except IntegrityError as e:
+							return redirect("core:evesso")
+
+						newProfile = UserProfile.objects.get_or_create(user=newUser)[0]
+						try:
+							newProfile.save()
 						except:
-							newKey = ApiKey(keyID = api["id"], vCode=api["vCode"], profile=newProfile)
-						newKey.save()
-						refreshKeyInfo(newKey, full=False)
-					newProfile.mainChar = Character.objects.get(charID=mainChar["charID"])
-					try:
-						newProfile.save()
-					except:
-						pass
-					postNotification(target=newUser, text="You have created your account", cssClass="success")
-					postNotification(target=recruiterGrp, text="<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(newProfile)})+"'>"+unicode(newProfile)+"</a> created an account.", cssClass="info")
-					return redirect("core:evesso")
+							pass
+
+						for api in request.session["apis"]:
+							try:
+								newKey = ApiKey.objects.get(keyID=api["id"], deleted=True)
+								newKey.deleted = False
+								newKey.vCode = api["vCode"]
+								newKey.profile = newProfile
+							except:
+								newKey = ApiKey(keyID = api["id"], vCode=api["vCode"], profile=newProfile)
+							newKey.save()
+							refreshKeyInfo(newKey, full=False)
+						newProfile.mainChar = Character.objects.get(charID=mainChar["charID"])
+						try:
+							newProfile.save()
+						except:
+							pass
+						postNotification(target=newUser, text="You have created your account", cssClass="success")
+						postNotification(target=recruiterGrp, text="<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(newProfile)})+"'>"+unicode(newProfile)+"</a> created an account.", cssClass="info")
+						return redirect("core:evesso")
+					else:
+						error = "Please do not re-use old API keys"
 				else:
 					error = "Please Select your main Character (click it)"
 			else:
