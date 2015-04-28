@@ -10,4 +10,4 @@ def get_apps():
 
 @register.simple_tag(name='get_srps') 
 def get_srps(): 
-	return len(SRPRequest.objects.filter(status=Application.PENDING))
+	return len(SRPRequest.objects.filter(status=SRPRequest.PENDING))
