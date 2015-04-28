@@ -7,16 +7,18 @@
  		<tr>
  			<th>CharName</th>
  			<th>Corporation</th>
+ 			<th>Location</th>
  			<th>Actions</th>
  		{% for key in apis %}
 		 	<tr>
-		 		<td colspan="2" class="{% if not key.valid %}danger{% endif %}">Key {{forloop.counter}}: {{key.keyID}} : {{key.vCode}}</td>
+		 		<td colspan="3" class="{% if not key.valid %}danger{% endif %}">Key {{forloop.counter}}: {{key.keyID}} : {{key.vCode}}</td>
 		 		<td><a href="#" class="delkey" keyid="{{key.keyID}}"><img style="width: 16px; height: 16px" src="/static/img/delete.png"></a></td>
 		 	</tr>
 		 		{% for char in key.character_set.all %}
 			 		<tr class="{%if key.profile.mainChar == char%}success{% endif %}">
 			 			<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{char.charName}}</td>
 			 			<td><img src="//image.eveonline.com/Corporation/{{char.corpID}}_32.png" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.corpName}}">{{char.corpName}}</td>
+			 			<td>{{char.location}}</td>
 			 			<td><a href="#" class="makeMain" characterID="{{char.charID}}"><img class="main_icon {%if key.profile.mainChar == char%}active{% endif %}" src="/static/img/star.png"></a></td>
 			 		</tr>
  		 		{% endfor %}
