@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from core.models import Notification, UserProfile, Character, ApiKey, CorpMember
+from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote
 from django.contrib.auth.models import User, Group
 from core.apireader import validateKey, refreshKeyInfo
 from django.utils.text import slugify
@@ -10,9 +10,11 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseForbidde
 from django.contrib.auth.decorators import user_passes_test
 from core.tasks import Task 
 from django.core.urlresolvers import reverse
-from datetime import datetime
+from datetime import datetime, timedelta
 from applications.models import Application 
 from srp.models import SRPRequest
+from core.evedata import STARBASE_TYPES
+from django.db import connection
 
 # Create your views here.
 
@@ -27,6 +29,9 @@ def isDropbear(user):
 
 def isFinance(user):
 	return user.groups.filter(name='Finance').exists()
+
+def isPOS(user):
+	return user.groups.filter(name="POS").exists()
 
 
 def dashboard(request):
@@ -277,7 +282,7 @@ def memberList(request):
 	ctx["invalidCharacters"] = []
 	for char in corpchars:
 		c = chars.filter(charID=char.characterID).first()
-		inactiveDays = (datetime.now().replace(tzinfo=None) - char.logoffDate.replace(tzinfo=None)).days
+		inactiveDays = (datetime.utcnow().replace(tzinfo=None) - char.logoffDate.replace(tzinfo=None)).days
 		if not (c and c.api.valid):
 			ctx["invalidCharacters"].append({"valid": False, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "mainChar": "", "shipType": char.shipType, "inactiveDays": inactiveDays})
 		else:
@@ -286,3 +291,81 @@ def memberList(request):
 
 
 	return render(request, "memberlist.html", ctx)
+
+
+def starbases(request):
+	if not isPOS(request.user):
+		return HttpResponseForbidden("<h1>You do not have the permission to view this page.</h1>")
+
+	poses = CorpStarbase.objects.all()
+
+	ctx = {}
+	ctx["rf"] = []
+	ctx["online"] = []
+	ctx["onlining"] = []
+	ctx["offline"] = []
+
+	for pos in poses:
+		try:
+			pos.stront = pos.corpstarbasefuel_set.get(typeID=16275).quantity
+		except CorpStarbaseFuel.DoesNotExist:
+			pos.stront = 0
+		try:
+			fuels = pos.corpstarbasefuel_set.exclude(typeID=16275)
+			if len(fuels) > 1:
+				print "WARNING: FOUND MULTIPLE FUEL BLOCK TYPES!"
+
+			if len(fuels) == 0:
+				pos.fuel = 0
+			else:
+				pos.fuel = fuels.first().quantity
+		except CorpStarbaseFuel.DoesNotExist:
+			pos.fuel = 0
+
+		pos.info = STARBASE_TYPES[pos.typeID]
+
+		pos.remaining = datetime.utcnow() + timedelta(hours=pos.fuel / int(pos.info["consumption"]))
+		pos.fuelpercent = int(100*float(pos.fuel)/float(pos.info["maxFuel"]))
+
+		cur = connection.cursor()
+
+		cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = "' + unicode(pos.moonID)+ '";')
+
+		pos.location = cur.fetchone()[0]
+
+		try:
+			pos.note = StarbaseNote.objects.get(starbaseID=pos.itemID)
+			pos.note = pos.note.note
+		except:
+			pos.note = "-"
+
+		if pos.state == 1:
+			ctx["offline"].append(pos)
+		elif pos.state == 2:
+			ctx["onlining"].append(pos)
+		elif pos.state == 3:
+			ctx["rf"].append(pos)
+		elif pos.state == 4:
+			ctx["online"].append(pos)
+
+		ctx["online"] = sorted(ctx["online"], key=lambda pos: pos.remaining)
+
+
+	return render(request, "poslist.html", ctx)
+
+@csrf_exempt
+def updateNote(request):
+	if not isPOS(request.user):
+		return HttpResponseForbidden("<h1>You do not have the permission to view this page.</h1>")
+
+	id = request.POST.get('id', False)
+	text = request.POST.get('note', False)
+	if id and text:		
+		try:
+			note = StarbaseNote.objects.get(starbaseID = id)
+		except:
+			note = StarbaseNote(starbaseID=id)
+
+		note.note = text
+		note.save()
+	return HttpResponse('')

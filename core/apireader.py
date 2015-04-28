@@ -103,7 +103,7 @@ def refreshKeyInfo(key, full=True):
 	print "Requesting APIKeyInfo for", key.profile
 
 	if full:
-		key.lastRefresh = datetime.datetime.now()
+		key.lastRefresh = datetime.datetime.utcnow()
 		key.save()
 
 	incrp = False
@@ -143,7 +143,7 @@ def refreshKeyInfo(key, full=True):
 		if not key.valid:
 			return
 		key.valid = False
-		key.lastRefresh = datetime.datetime.now()
+		key.lastRefresh = datetime.datetime.utcnow()
 		key.save()
 		n = Notification(cssClass="danger")
 		n.content = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> has invalidated one of their API keys."
@@ -188,7 +188,7 @@ def refreshKeyInfo(key, full=True):
 	key.accountCreateDate = datetime.datetime.fromtimestamp(result.createDate)
 	key.accountLogonCount = result.logonCount
 	key.accountLogonMinutes = result.logonMinutes
-	key.lastRefresh = datetime.datetime.now()
+	key.lastRefresh = datetime.datetime.utcnow()
 
 	key.save()
 

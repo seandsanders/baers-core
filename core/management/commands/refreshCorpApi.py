@@ -9,8 +9,8 @@ class Command(BaseCommand):
     help = 'Refreshes the stored corp Api.'
 
     def handle(self, *args, **options):
-    	start = datetime.now()
+    	start = datetime.utcnow()
     	refreshCorpApi()
 
-    	time = datetime.now() - start
+    	time = datetime.utcnow() - start
     	print "Key refresh completed in", time.seconds, "seconds"

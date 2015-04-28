@@ -425,7 +425,7 @@ def apply(request, token):
 		app.status = 1
 		app.timezone=request.POST.get('tz')
 		app.applicantProfile = request.user.userprofile		
-		app.applicationDate = datetime.now()
+		app.applicationDate = datetime.utcnow()
 		app.save()
 		recruiter = Group.objects.filter(name="Recruiter").first()
 		note = Notification(cssClass="success")
@@ -455,7 +455,7 @@ def application(request, app):
 			c = Comment()
 			c.text = request.POST.get('commentbody')
 			c.author = request.user.userprofile
-			c.date = datetime.now()
+			c.date = datetime.utcnow()
 			c.auto_generated = False
 			c.app = app
 			c.save()
@@ -468,13 +468,13 @@ def application(request, app):
 			newStatus = int(request.POST.get('status'))
 			newTag = int(request.POST.get('tag'))
 			if app.status != newStatus and app.STATUS_CHOICES[newStatus]:
-				c = Comment(auto_generated=True, date=datetime.now(), app=app, author=request.user.userprofile)
+				c = Comment(auto_generated=True, date=datetime.utcnow(), app=app, author=request.user.userprofile)
 				oldstatus = app.get_status_display()
 				app.status = newStatus 
 				c.text = "changed Status from '"+oldstatus+"' to '"+app.get_status_display()+"'"
 				c.save()
 			if app.tag != newTag and app.TAG_CHOICES[newTag]:
-				c = Comment(auto_generated=True, date=datetime.now(), app=app, author=request.user.userprofile)
+				c = Comment(auto_generated=True, date=datetime.utcnow(), app=app, author=request.user.userprofile)
 				oldtag = app.get_tag_display()
 				app.tag = newTag
 				c.text = "changed Tag from '"+oldtag+"' to '"+app.get_tag_display()+"'"
@@ -548,6 +548,6 @@ def newApplication(request):
 
 	app = Application(token=token)
 	app.save()
-	c = Comment(app=app, author=request.user.userprofile, date=datetime.now(), text="Generated the Token", auto_generated=True)
+	c = Comment(app=app, author=request.user.userprofile, date=datetime.utcnow(), text="Generated the Token", auto_generated=True)
 	c.save()
 	return HttpResponse(request.build_absolute_uri(reverse('applications:apply', kwargs={'token':token})))

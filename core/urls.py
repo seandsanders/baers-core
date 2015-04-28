@@ -12,4 +12,6 @@ urlpatterns = [
 	url(r'^profile', views.myProfile, name="myProfile"),
 	url(r'^search$', views.searchProfile, name="searchProfile"),
 	url(r'^memberlist$', views.memberList, name="memberlist"),
+	url(r'^pos$', views.starbases, name="poslist"),
+	url(r'^pos/update$', views.updateNote, name="updatepos"),
 ]

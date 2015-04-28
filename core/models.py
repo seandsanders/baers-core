@@ -387,6 +387,10 @@ class CorpMember(models.Model):
 	roles = models.BigIntegerField()
 
 
+class StarbaseNote(models.Model):
+	starbaseID = models.BigIntegerField() 
+	note = models.CharField(max_length=1000)
+
 ##
 # Store cache times in a table
 class CacheTimer(models.Model):
