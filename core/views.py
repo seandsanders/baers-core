@@ -11,6 +11,8 @@ from django.contrib.auth.decorators import user_passes_test
 from core.tasks import Task 
 from django.core.urlresolvers import reverse
 from datetime import datetime
+from applications.models import Application 
+from srp.models import SRPRequest
 
 # Create your views here.
 
@@ -23,6 +25,9 @@ def isDirector(user):
 def isDropbear(user):
 	return user.groups.filter(name='Dropbears').exists()
 
+def isFinance(user):
+	return user.groups.filter(name='Finance').exists()
+
 
 def dashboard(request):
 	titles = ", ".join(request.user.userprofile.mainChar.charactertitle_set.all().values_list('titleName', flat=True))
@@ -32,8 +37,30 @@ def dashboard(request):
 		"charTitle": unicode(titles)
 	}
 
+	tasklist = []
+
+	if isDropbear(request.user):
+		try:
+			a = request.user.userprofile.redditaccount
+		except:
+			tasklist.append(Task("You do not have a <a href='"+reverse("subreddit:reddit")+"'>Reddit account</a> connected.", cssClass="danger"))
+
+	if isRecruiter(request.user):
+		c = len(Application.objects.filter(status=Application.UNPROCESSED))
+		if c != 0:
+			tasklist.append(Task("There are <a href='"+reverse("applications:applications")+"'>"+unicode(c)+" unprocessed applications.</a>", cssClass="warning"))
+
+	if isFinance(request.user):
+		c = len(SRPRequest.objects.filter(status=SRPRequest.PENDING))
+		if c != 0:
+			tasklist.append(Task("There are <a href='"+reverse("srp:srpadmin")+"'>"+unicode(c)+" pending SRP requests.</a>", cssClass="warning"))
+
+	if len(tasklist) == 0:
+		tasklist.append(Task("No active tasks."))
+
+
+	context["tasks"] = tasklist
 	context["notifications"] = Notification.objects.filter(Q(targetUsers=request.user) | Q(targetGroup__in=request.user.groups.all())).order_by('-time')[:20]
-	context["tasks"] = Task.getList()
 
 	return render(request, 'dashboard.html', context)
 

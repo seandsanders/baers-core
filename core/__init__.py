@@ -12,7 +12,6 @@ def postNotification(target, text, cssClass="info"):
 	elif type(target) is Group:
 		n.targetGroup.add(target)
 
-Task("TASKS WILL APPEAR HERE")
 #Task("TEST WARNING TASK", cssClass="warning")
 #Task("TEST DANGER TASK", cssClass="danger")
 #Task("TEST SUCCESS TASK", cssClass="success")

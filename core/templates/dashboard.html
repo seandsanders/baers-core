@@ -31,7 +31,7 @@
       </div>
       <div class="panel-body">
         {% for task in tasks %}
-          <div class="alert alert-{{task.cssClass}}" role="alert">{{task.text}}</div>
+          <div class="alert alert-{{task.cssClass}}" role="alert">{% autoescape off %}{{task.text}}{% endautoescape %}</div>
         {% endfor %}
       </div>
     </div>
