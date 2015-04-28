@@ -259,6 +259,11 @@ def profile(request, profile, mark=None):
 		elif director:
 			grouplist.append({"name": grp.name, "checked": False})
 	ctx = {"profile": profile, "titles": titles, "mark": mark, "isRecruiter": isRecruiter(request.user), "isDirector": director, "grouplist": grouplist}
+
+	if isRecruiter(request.user):
+		from applications.views import getFlyable
+		ctx["ships"] = getFlyable(profile)
+
 	return render(request, "profile.html", ctx)
 
 

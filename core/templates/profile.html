@@ -59,7 +59,20 @@
 	    </form>
  	</div>
  </div>
- 	<hr>
+<hr>
+{% if isRecruiter %}
+<h4>Flyable Ships:</h4>
+	{% for group in ships %}
+	<div class="col-sm-3">
+		<h5>{{group.group}}</h5>
+		{% for ship in group.ships %}
+			{% if ship.pilots %}
+				<strong><img src="https://image.eveonline.com/Type/{{ship.shipID}}_32.png"> {{ship.name}}</strong><br>{{ship.pilots|join:"<br>"}}<hr>
+			{% endif %}
+		{% endfor %}
+	</div>
+	{% endfor %}
+{% endif %}
  {% endblock content %}
 
 {% block title %}{{profile}} - Dropbears Auth{%endblock title%}

@@ -486,10 +486,19 @@ def application(request, app):
 	keys = profile.apikey_set.all()
 	characters = profile.character_set.all()
 	answers = app.answer_set.all()
-	flyable = []
 
+	r = getFlyable(profile)
+	c = {
+		"app": app,
+		"profile": profile,
+		"keys": keys,
+		"answers": answers,
+		"ships": r
+	}
+	return render(request, "application.html", c)
+
+def getFlyable(profile):
 	skills = CharacterSkill.objects.all()
-
 	r = []
 	for group in ships:
 		g = {
@@ -510,17 +519,8 @@ def application(request, app):
 					s["pilots"].append(Character.objects.filter(id=c["owner"]).first().charName)
 			g["ships"].append(s)
 		r.append(g)
-
-
-
-	c = {
-		"app": app,
-		"profile": profile,
-		"keys": keys,
-		"answers": answers,
-		"ships": r
-	}
-	return render(request, "application.html", c)
+	
+	return r	
 
 def applications(request):
 	if not isRecruiter(request.user):
