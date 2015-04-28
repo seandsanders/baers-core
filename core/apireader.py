@@ -102,8 +102,9 @@ def refreshKeyInfo(key, full=True):
 	recruiterGrp, created = Group.objects.get_or_create(name='Recruiter')
 	print "Requesting APIKeyInfo for", key.profile
 
-	key.lastRefresh = datetime.datetime.now()
-	key.save()
+	if full:
+		key.lastRefresh = datetime.datetime.now()
+		key.save()
 
 	incrp = False
 	for char in key.profile.character_set.all():
