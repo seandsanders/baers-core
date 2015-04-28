@@ -85,64 +85,58 @@ def register(request):
 	if request.method == "POST":
 		if request.POST.get("action") == "addkey":
 			if request.POST.get("keyID") and request.POST.get("vCode"):
-				charlist, error = validateKey(request.POST.get("keyID"), request.POST.get("vCode"))
-				if not error:
-					if request.session.get("characters"):
-						request.session["characters"].extend(charlist)
-						request.session.modified = True
-					else:
-						request.session["characters"] = charlist
-					if request.session.get("apis"):
-						request.session["apis"].append({"id": request.POST.get("keyID"), "vCode": request.POST.get("vCode")})
-						request.session.modified = True
-					else:
-						request.session["apis"] = [{"id": request.POST.get("keyID"), "vCode": request.POST.get("vCode")}]
+				if int(request.POST.get("keyID")) > 4325693:
+					charlist, error = validateKey(request.POST.get("keyID"), request.POST.get("vCode"))
+					if not error:
+						if request.session.get("characters"):
+							request.session["characters"].extend(charlist)
+							request.session.modified = True
+						else:
+							request.session["characters"] = charlist
+						if request.session.get("apis"):
+							request.session["apis"].append({"id": request.POST.get("keyID"), "vCode": request.POST.get("vCode")})
+							request.session.modified = True
+						else:
+							request.session["apis"] = [{"id": request.POST.get("keyID"), "vCode": request.POST.get("vCode")}]
+				else:
+					error = "Please do not re-use old API keys"
 		elif request.POST.get("action") == "done":
 			if request.session.get("characters"):
 				charlist = request.session.get("characters")
 				mainChar = request.POST.get("mainChar")
 
 				if mainChar and mainChar != "0":
-					
-					freshKeys = True					
-					for api in request.session["apis"]:
-						if api["id"] < 4325693:
-							freshKeys = False
-					if freshKeys:
-						mainChar = charlist[int(mainChar)-1]
-						newUser = User(username=slugify(mainChar["charName"]))
-						from django.db import IntegrityError
-						try:
-							newUser.save()
-						except IntegrityError as e:
-							return redirect("core:evesso")
-
-						newProfile = UserProfile.objects.get_or_create(user=newUser)[0]
-						try:
-							newProfile.save()
-						except:
-							pass
-
-						for api in request.session["apis"]:
-							try:
-								newKey = ApiKey.objects.get(keyID=api["id"], deleted=True)
-								newKey.deleted = False
-								newKey.vCode = api["vCode"]
-								newKey.profile = newProfile
-							except:
-								newKey = ApiKey(keyID = api["id"], vCode=api["vCode"], profile=newProfile)
-							newKey.save()
-							refreshKeyInfo(newKey, full=False)
-						newProfile.mainChar = Character.objects.get(charID=mainChar["charID"])
-						try:
-							newProfile.save()
-						except:
-							pass
-						postNotification(target=newUser, text="You have created your account", cssClass="success")
-						postNotification(target=recruiterGrp, text="<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(newProfile)})+"'>"+unicode(newProfile)+"</a> created an account.", cssClass="info")
+					mainChar = charlist[int(mainChar)-1]
+					newUser = User(username=slugify(mainChar["charName"]))
+					from django.db import IntegrityError
+					try:
+						newUser.save()
+					except IntegrityError as e:
 						return redirect("core:evesso")
-					else:
-						error = "Please do not re-use old API keys"
+
+					newProfile = UserProfile.objects.get_or_create(user=newUser)[0]
+					try:
+						newProfile.save()
+					except:
+						pass
+					for api in request.session["apis"]:
+						try:
+							newKey = ApiKey.objects.get(keyID=api["id"], deleted=True)
+							newKey.deleted = False
+							newKey.vCode = api["vCode"]
+							newKey.profile = newProfile
+						except:
+							newKey = ApiKey(keyID = api["id"], vCode=api["vCode"], profile=newProfile)
+						newKey.save()
+						refreshKeyInfo(newKey, full=False)
+					newProfile.mainChar = Character.objects.get(charID=mainChar["charID"])
+					try:
+						newProfile.save()
+					except:
+						pass
+					postNotification(target=newUser, text="You have created your account", cssClass="success")
+					postNotification(target=recruiterGrp, text="<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(newProfile)})+"'>"+unicode(newProfile)+"</a> created an account.", cssClass="info")
+					return redirect("core:evesso")
 				else:
 					error = "Please Select your main Character (click it)"
 			else:
