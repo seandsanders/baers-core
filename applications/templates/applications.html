@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% load humanize %}
 
 {% block content %}
 <div class="newapp pull-right"> <a href="#" id="newAppButton" class="btn btn-success ">+ Create new application link</a> <input type="text" id="tokenlink" style="display:none" class="form-control" value=""></input></div>
@@ -21,7 +22,7 @@
 		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_status_display}}</a></td>
 		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_tag_display}}</a></td>
 		 			<td><img src="//image.eveonline.com/Character/{{app.applicantProfile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{app.applicantProfile.mainChar.charID}}"><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile.mainChar.sp}}</a></td>
+		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile.mainChar.sp|intword}}</a></td>
 		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_timezone_display}}</a></td>
 		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicationDate}}</a></td>
 		 			<td><a href="{% url "applications:viewapp" app.token %}">
