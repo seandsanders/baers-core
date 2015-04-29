@@ -44,6 +44,10 @@ def dashboard(request):
 
 	tasklist = []
 
+	c = CorpStarbase.objects.filter(state=3)
+	if len(c) > 0:
+		tasklist.append(Task("<b>IMPORTANT: We have "+unicode(len(c))+" reinforced POSes!</b>", cssClass="danger"))
+
 	if isDropbear(request.user):
 		try:
 			a = request.user.userprofile.redditaccount
@@ -60,9 +64,6 @@ def dashboard(request):
 		if c != 0:
 			tasklist.append(Task("There are <a href='"+reverse("srp:srpadmin")+"'>"+unicode(c)+" pending SRP requests.</a>", cssClass="warning"))
 
-	c = CorpStarbase.objects.filter(state=3)
-	if len(c) > 0:
-		tasklist.append(Task("<b>IMPORTANT: We have "+len(c)+" reinforced POSes!</b>", cssClass="danger"))
 
 	if len(tasklist) == 0:
 		tasklist.append(Task("No active tasks."))
