@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseForbidden
 from subreddit.reddit import updateRedditAccount
+from subreddit.models import RedditAccount
+from core.views import isRecruiter
 
 # Create your views here.
 def isDropbear(user):
@@ -21,3 +23,11 @@ def reddit(request):
 		pass
 
 	return render(request, "main.html", {"name": name, "status": status})
+
+def redditlist(request):
+	if not isRecruiter(request.user):
+		return HttpResponseForbidden("<h1>Insufficient Permissions</h1>")
+
+	accs = RedditAccount.objects.all()
+
+	return render(request, "list.html", {"reddits": accs})

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+ 	<h1 class="page-header">Active Reddit Account</h1>
+
+ 	<table class="table table-hover" style="display: block;">
+ 		<tr>
+ 			<th>Main Character</th>
+ 			<th>Reddit Account Name</th>
+ 		</tr>
+ 		{% for acc in reddits %}
+			 <tr>
+			 	<td><img src="//image.eveonline.com/Character/{{acc.owner.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{acc.owner.mainChar.charName}}"><a href="{% url "core:playerProfile" profileName=acc.owner.mainChar.charName|slugify %}">{acc.owner.mainChar.charName}}</a></td>
+			 	<td><a href="http://reddit.com/u/{{acc.name}}">{{acc.name}}</a></td>
+			 </tr>
+ 		{% endfor %}
+ 	</table>
+ 	<hr>
+ {% endblock content %}
+
+ {% block scripts %}
+
+ {% endblock scripts %}
+  {% block title %}Reddit List - BAERS Core{% endblock title %}
