@@ -27,9 +27,9 @@ def refreshCorpApi():
 											typeID=starbase.typeID, 
 											locationID=starbase.locationID, 
 											moonID=starbase.moonID, 
-											state=starbase.state, 
-											stateTimestamp=datetime.datetime.fromtimestamp(starbase.stateTimestamp), 
-											onlineTimestamp=datetime.datetime.fromtimestamp(starbase.onlineTimestamp),
+											state=r2.state, 
+											stateTimestamp=datetime.datetime.fromtimestamp(r2.stateTimestamp), 
+											onlineTimestamp=datetime.datetime.fromtimestamp(r2.onlineTimestamp),
 											standingOwnerID=starbase.standingOwnerID,
 											allowCorpMembers=r2.generalSettings.allowCorporationMembers,
 											allowAllianceMembers=r2.generalSettings.allowAllianceMembers
