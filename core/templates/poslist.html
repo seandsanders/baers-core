@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% load humanize %}
 
 {% block content %}
  	{% if rf %}
@@ -58,7 +59,7 @@
 	 	</table>
 	{% endif %}
  	{% if online %}
- 		<h1 class="page-header">Online</h1>
+ 		<h1 class="page-header">Online <small>Estimated monthly consumption: {{monthly|intcomma}} Fuel Blocks ({{monthlyisk|intword}} isk @15k per block)</small></h1>
 	 	<table class="table table-hover" style="display: block;">
 	 		<tr>
 	 			<th>Note</th>

@@ -310,6 +310,8 @@ def starbases(request):
 	ctx["onlining"] = []
 	ctx["offline"] = []
 
+	hourly = 0
+
 	for pos in poses:
 		try:
 			pos.stront = pos.corpstarbasefuel_set.get(typeID=16275).quantity
@@ -332,6 +334,8 @@ def starbases(request):
 		pos.remaining = datetime.utcnow() + timedelta(hours=pos.fuel / int(pos.info["consumption"]))
 		pos.fuelpercent = int(100*float(pos.fuel)/float(pos.info["maxFuel"]))
 
+
+
 		cur = connection.cursor()
 
 		cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = "' + unicode(pos.moonID)+ '";')
@@ -350,10 +354,14 @@ def starbases(request):
 			ctx["onlining"].append(pos)
 		elif pos.state == 3:
 			ctx["rf"].append(pos)
+			hourly += int(pos.info["consumption"])
 		elif pos.state == 4:
 			ctx["online"].append(pos)
+			hourly += int(pos.info["consumption"])
 
 		ctx["online"] = sorted(ctx["online"], key=lambda pos: pos.remaining)
+		ctx["monthly"] = hourly*24*30
+		ctx["monthlyisk"] = hourly*24*30*15000
 
 
 	return render(request, "poslist.html", ctx)
