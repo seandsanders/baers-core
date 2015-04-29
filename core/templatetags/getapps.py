@@ -8,12 +8,15 @@ register = template.Library()
 
 @register.simple_tag(name='get_apps') 
 def get_apps(): 
-	return len(Application.objects.filter(status=Application.UNPROCESSED))
+	l = len(Application.objects.filter(status=Application.UNPROCESSED))
+	return "" if l==0 else l
 
 @register.simple_tag(name='get_srps') 
 def get_srps(): 
-	return len(SRPRequest.objects.filter(status=SRPRequest.PENDING))
+	l = len(SRPRequest.objects.filter(status=SRPRequest.PENDING))
+	return "" if l==0 else l
 
 @register.simple_tag(name='get_timers')
 def get_timers():
-	return len(Timer.objects.filter(time__gte=datetime.utcnow()))
+	l = len(Timer.objects.filter(time__gte=datetime.utcnow()))
+	return "" if l==0 else l
