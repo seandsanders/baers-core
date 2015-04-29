@@ -3,7 +3,11 @@ from django.http import HttpResponse
 from timerboard.models import Timer
 from datetime import datetime
 from core.views import isDropbear
+from core import postNotification
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import Group
+from django.core.urlresolvers import reverse
+from django.utils.text import slugify
 
 # Create your views here.
 def timerboard(request):
@@ -27,6 +31,8 @@ def timerboard(request):
 				t.creator = request.user.userprofile
 				t.save()
 				status = "Timer Added."
+				notificationText = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(request.user.userprofile)})+"'>"+unicode(request.user.userprofile)+"</a> added a new timer to the <a href='"+reverse('timerboard:timerboard')+"'>Timerboard.</a>"
+				postNotification(Group.objects.get(name="Dropbears"), notificationText)
 			except:
 				status = "Invalid Date and/or Time"
 		else:
@@ -37,7 +43,7 @@ def timerboard(request):
 	active = timers.filter(time__gte=datetime.utcnow())
 	done = timers.filter(time__lte=datetime.utcnow())
 
-	return render(request, "timers.html", {'active': active, 'done': done})
+	return render(request, "timers.html", {'active': active, 'done': done, 'status': status})
 
 @csrf_exempt
 def updateNote(request):
