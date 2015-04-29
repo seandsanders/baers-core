@@ -1,6 +1,8 @@
 from django import template
 from applications.models import Application
 from srp.models import SRPRequest
+from timerboard.models import Timer
+from datetime import datetime
 
 register = template.Library() 
 
@@ -11,3 +13,7 @@ def get_apps():
 @register.simple_tag(name='get_srps') 
 def get_srps(): 
 	return len(SRPRequest.objects.filter(status=SRPRequest.PENDING))
+
+@register.simple_tag(name='get_timers')
+def get_timers():
+	return len(Timer.objects.filter(time__gte=datetime.utcnow()))

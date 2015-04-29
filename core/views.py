@@ -46,7 +46,7 @@ def dashboard(request):
 
 	c = CorpStarbase.objects.filter(state=3)
 	if len(c) > 0:
-		tasklist.append(Task("<b>IMPORTANT: We have "+unicode(len(c))+" reinforced POSes!</b>", cssClass="danger"))
+		tasklist.append(Task("<b>IMPORTANT: We have <a href='"+reverse("core:poslist")+"'>"+unicode(len(c))+" reinforced POSes!</a></b>", cssClass="danger"))
 
 	if isDropbear(request.user):
 		try:

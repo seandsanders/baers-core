@@ -56,6 +56,7 @@
           <ul class="nav nav-sidebar">
             {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "srplist" %}class="active"{%endif%}><a href="{% url "srp:srplist" %}">SRP</a></li>{% endif %}
             {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "srpadmin" %}class="active"{%endif%}><a href="{% url "srp:srpadmin" %}">SRP - Admin <span class="badge">{% get_srps %}</span></a></li>{% endif %}
+            {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "timerboard" %}class="active"{%endif%}><a href="{% url "timerboard:timerboard" %}">Timerboard <span class="badge">{% get_timers %}</span></a></li>{% endif %}
           </ul>
           <ul  class="nav nav-sidebar">
             <!--li {% if request.resolver_match.url_name == "hipchat" %}class="active"{%endif%}><a href="">Hipchat Access</a></li -->

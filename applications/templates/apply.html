@@ -14,7 +14,7 @@
 	</div>
 	{% for q in questions %}
 		<div class="form-group">
-			<label for="q{{forloop.counter}}">{{q.text}}</label>
+			<label for="q{{forloop.counter}}">{% autoescape off %}{{q.text}}{% endautoescape %}</label>
 			{% if q.type == "short" %}<input type="text"{% else %}<textarea{%endif%} rows="8" class="form-control" name="q{{forloop.counter}}" id="q{{forloop.counter}}">{% if q.type == "long" %}</textarea>{%endif%}
 		</div>
 	{% endfor %}
