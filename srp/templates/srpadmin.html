@@ -3,73 +3,79 @@
 {% block content %}
 {% load humanize %}
 <div class="row">
-	<h1>Pending Requests <small>{{pendingsum.value__sum|intcomma}} isk</small></h1>
-	<div class="col-sm-8">
-		<table class="table table-hover">
-	 		<tr>
-	 			<th>Main Character</th>
-	 			<th>FC</th>
-	 			<th>Ship</th>
-	 			<th>Value</th>
-	 			<th>-</th>
-	 		</tr>
-	 		{% for srp in pending %}
+	{% if pending %}
+		<h1>Pending Requests <small>{{pendingsum.value__sum|intcomma}} isk</small></h1>
+		<div class="col-sm-8">
+			<table class="table table-hover">
 		 		<tr>
-		 			<td><a href="{% url "srp:viewsrp" srp.killID %}"><img style="border-radius: 5px" src="//image.eveonline.com/Character/{{ srp.owner.mainChar.charID }}_32.jpg"> {{srp.owner}}</a></td>
-		 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.fc}}</a></td>
-		 			<td><a href="{% url "srp:viewsrp" srp.killID %}"><img src="https://image.eveonline.com/Type/{{srp.shipID}}_32.png" /> {{srp.ship}}</a></td>
-		 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.value|intcomma}}</a></td>
-		 			<td>-</td>
+		 			<th>Main Character</th>
+		 			<th>FC</th>
+		 			<th>Ship</th>
+		 			<th>Value</th>
+		 			<th>-</th>
 		 		</tr>
-	 		{% endfor %}
-	 	</table>
-	</div>
+		 		{% for srp in pending %}
+			 		<tr>
+			 			<td><a href="{% url "srp:viewsrp" srp.killID %}"><img style="border-radius: 5px" src="//image.eveonline.com/Character/{{ srp.owner.mainChar.charID }}_32.jpg"> {{srp.owner}}</a></td>
+			 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.fc}}</a></td>
+			 			<td><a href="{% url "srp:viewsrp" srp.killID %}"><img src="https://image.eveonline.com/Type/{{srp.shipID}}_32.png" /> {{srp.ship}}</a></td>
+			 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.value|intcomma}}</a></td>
+			 			<td>-</td>
+			 		</tr>
+		 		{% endfor %}
+		 	</table>
+		</div>
+	{% endif %}
 </div>
 <div class="row">
-	<h1>Approved Requests <small>{{approvedsum.value__sum|intcomma}} isk</small></h1> 
-	<div class="col-sm-8">
-		<table class="table table-hover">
-	 		<tr>
-	 			<th>Main Character</th>
-	 			<th>FC</th>
-	 			<th>Ship</th>
-	 			<th>Value</th>
-	 			<th>Approved by</th>
-	 		</tr>
-	 		{% for srp in approved %}
+	{% if approved %}
+		<h1>Approved Requests <small>{{approvedsum.value__sum|intcomma}} isk</small></h1> 
+		<div class="col-sm-8">
+			<table class="table table-hover">
 		 		<tr>
-		 			<td><a href="{% url "srp:viewsrp" srp.killID %}"><img style="border-radius: 5px" src="//image.eveonline.com/Character/{{ srp.owner.mainChar.charID }}_32.jpg"> {{srp.owner}}</a></td>
-		 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.fc}}</a></td>
-		 			<td><a href="{% url "srp:viewsrp" srp.killID %}"><img src="https://image.eveonline.com/Type/{{srp.shipID}}_32.png" /> {{srp.ship}}</a></td>
-		 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.value|intcomma}}</a></td>
-		 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.approver}}</a></td>
+		 			<th>Main Character</th>
+		 			<th>FC</th>
+		 			<th>Ship</th>
+		 			<th>Value</th>
+		 			<th>Approved by</th>
 		 		</tr>
-	 		{% endfor %}
-	 	</table>
-	</div>
+		 		{% for srp in approved %}
+			 		<tr>
+			 			<td><a href="{% url "srp:viewsrp" srp.killID %}"><img style="border-radius: 5px" src="//image.eveonline.com/Character/{{ srp.owner.mainChar.charID }}_32.jpg"> {{srp.owner}}</a></td>
+			 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.fc}}</a></td>
+			 			<td><a href="{% url "srp:viewsrp" srp.killID %}"><img src="https://image.eveonline.com/Type/{{srp.shipID}}_32.png" /> {{srp.ship}}</a></td>
+			 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.value|intcomma}}</a></td>
+			 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.approver}}</a></td>
+			 		</tr>
+		 		{% endfor %}
+		 	</table>
+		</div>
+	{% endif %}
 </div>
 <div class="row">
-	<h1>Denied Requests <small>{{deniedsum.value__sum|intcomma}} isk</small></h1>
-	<div class="col-sm-8">
-		<table class="table table-hover">
-	 		<tr>
-	 			<th>Main Character</th>
-	 			<th>FC</th>
-	 			<th>Ship</th>
-	 			<th>Value</th>
-	 			<th>Denied by</th>
-	 		</tr>
-	 		{% for srp in denied %}
+	{% if denied %}
+		<h1>Denied Requests <small>{{deniedsum.value__sum|intcomma}} isk</small></h1>
+		<div class="col-sm-8">
+			<table class="table table-hover">
 		 		<tr>
-		 			<td><a href="{% url "srp:viewsrp" srp.killID %}"><img style="border-radius: 5px" src="//image.eveonline.com/Character/{{ srp.owner.mainChar.charID }}_32.jpg"> {{srp.owner}}</a></td>
-		 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.fc}}</a></td>
-		 			<td><a href="{% url "srp:viewsrp" srp.killID %}"><img src="https://image.eveonline.com/Type/{{srp.shipID}}_32.png" /> {{srp.ship}}</a></td>
-		 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.value|intcomma}}</a></td>
-		 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.approver}}</a></td>
+		 			<th>Main Character</th>
+		 			<th>FC</th>
+		 			<th>Ship</th>
+		 			<th>Value</th>
+		 			<th>Denied by</th>
 		 		</tr>
-	 		{% endfor %}
-	 	</table>
-	</div>
+		 		{% for srp in denied %}
+			 		<tr>
+			 			<td><a href="{% url "srp:viewsrp" srp.killID %}"><img style="border-radius: 5px" src="//image.eveonline.com/Character/{{ srp.owner.mainChar.charID }}_32.jpg"> {{srp.owner}}</a></td>
+			 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.fc}}</a></td>
+			 			<td><a href="{% url "srp:viewsrp" srp.killID %}"><img src="https://image.eveonline.com/Type/{{srp.shipID}}_32.png" /> {{srp.ship}}</a></td>
+			 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.value|intcomma}}</a></td>
+			 			<td><a href="{% url "srp:viewsrp" srp.killID %}">{{srp.approver}}</a></td>
+			 		</tr>
+		 		{% endfor %}
+		 	</table>
+		</div>
+	{% endif %}
 </div>
 {% endblock content %}
 
