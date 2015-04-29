@@ -5,139 +5,147 @@
 <div class="newapp pull-right"> <a href="#" id="newAppButton" class="btn btn-success ">+ Create new application link</a> <input type="text" id="tokenlink" style="display:none" class="form-control" value=""></input></div>
 
 <div class="row">
-	<h1>Unprocessed Applications</h1>
-	<div class="col-sm-8">
-		<table class="table table-hover">
-	 		<tr>
-	 			<th>Status</th>
-	 			<th>Tag</th>
-	 			<th>Main Character</th>
-	 			<th>SP on Main</th>
-	 			<th>Timezone</th>
-	 			<th>Application Date</th>
-	 			<th>Last update</th>
-	 		</tr>
-	 		{% for app in unprocessed %}
-		 		<tr class="{{app.cssClass}}">
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_status_display}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_tag_display}}</a></td>
-		 			<td><img src="//image.eveonline.com/Character/{{app.applicantProfile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{app.applicantProfile.mainChar.charID}}"><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile.mainChar.sp|intword}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_timezone_display}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicationDate}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">
-		 				{% if app.comment_set %}
-		 					{{app.comment_set.last.date}} by {{app.comment_set.last.author}}
-		 				{% else %}
-		 					None
-		 				{% endif %}
-		 			</a></td>
+	{% if unprocessed %}
+		<h1>Unprocessed Applications</h1>
+		<div class="col-sm-8">
+			<table class="table table-hover">
+		 		<tr>
+		 			<th>Status</th>
+		 			<th>Tag</th>
+		 			<th>Main Character</th>
+		 			<th>SP on Main</th>
+		 			<th>Timezone</th>
+		 			<th>Application Date</th>
+		 			<th>Last update</th>
 		 		</tr>
-	 		{% endfor %}
-	 	</table>
-	</div>
+		 		{% for app in unprocessed %}
+			 		<tr class="{{app.cssClass}}">
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_status_display}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_tag_display}}</a></td>
+			 			<td><img src="//image.eveonline.com/Character/{{app.applicantProfile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{app.applicantProfile.mainChar.charID}}"><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile.mainChar.sp|intword}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_timezone_display}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicationDate}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">
+			 				{% if app.comment_set %}
+			 					{{app.comment_set.last.date}} by {{app.comment_set.last.author}}
+			 				{% else %}
+			 					None
+			 				{% endif %}
+			 			</a></td>
+			 		</tr>
+		 		{% endfor %}
+		 	</table>
+		</div>
+	{% endif %}
 </div>
 
 <div class="row">
-	<h1>Applications on Hold</h1>
-	<div class="col-sm-8">
-		<table class="table table-hover">
-	 		<tr>
-	 			<th>Status</th>
-	 			<th>Tag</th>
-	 			<th>Main Character</th>
-	 			<th>SP on Main</th>
-	 			<th>Timezone</th>
-	 			<th>Application Date</th>
-	 			<th>Last update</th>
-	 		</tr>
-	 		{% for app in hold %}
-		 		<tr class="{{app.cssClass}}">
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_status_display}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_tag_display}}</a></td>
-		 			<td><img src="//image.eveonline.com/Character/{{app.applicantProfile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{app.applicantProfile.mainChar.charID}}"><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile.mainChar.sp|intword}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_timezone_display}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicationDate}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">
-		 				{% if app.comment_set.first %}
-		 					{{app.comment_set.last.date}} by {{app.comment_set.last.author}}
-		 				{% else %}
-		 					None
-		 				{% endif %}
-		 			</a></td>
+	{% if hold %}
+		<h1>Applications on Hold</h1>
+		<div class="col-sm-8">
+			<table class="table table-hover">
+		 		<tr>
+		 			<th>Status</th>
+		 			<th>Tag</th>
+		 			<th>Main Character</th>
+		 			<th>SP on Main</th>
+		 			<th>Timezone</th>
+		 			<th>Application Date</th>
+		 			<th>Last update</th>
 		 		</tr>
-	 		{% endfor %}
-	 	</table>
-	</div>
+		 		{% for app in hold %}
+			 		<tr class="{{app.cssClass}}">
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_status_display}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_tag_display}}</a></td>
+			 			<td><img src="//image.eveonline.com/Character/{{app.applicantProfile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{app.applicantProfile.mainChar.charID}}"><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile.mainChar.sp|intword}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_timezone_display}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicationDate}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">
+			 				{% if app.comment_set.first %}
+			 					{{app.comment_set.last.date}} by {{app.comment_set.last.author}}
+			 				{% else %}
+			 					None
+			 				{% endif %}
+			 			</a></td>
+			 		</tr>
+		 		{% endfor %}
+		 	</table>
+		</div>
+	{% endif %}
 </div>
 
 <div class="row">
-	<h1>Rejected Applications</h1>
-	<div class="col-sm-8">
-		<table class="table table-hover">
-	 		<tr>
-	 			<th>Status</th>
-	 			<th>Tag</th>
-	 			<th>Main Character</th>
-	 			<th>SP on Main</th>
-	 			<th>Timezone</th>
-	 			<th>Application Date</th>
-	 			<th>Last update</th>
-	 		</tr>
-	 		{% for app in denied %}
-		 		<tr class="{{app.cssClass}}">
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_status_display}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_tag_display}}</a></td>
-		 			<td><img src="//image.eveonline.com/Character/{{app.applicantProfile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{app.applicantProfile.mainChar.charID}}"><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile.mainChar.sp|intword}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_timezone_display}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicationDate}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">
-		 				{% if app.comment_set %}
-		 					{{app.comment_set.last.date}} by {{app.comment_set.last.author}}
-		 				{% else %}
-		 					None
-		 				{% endif %}
-		 			</a></td>
+	{% if denied %}
+		<h1>Rejected Applications</h1>
+		<div class="col-sm-8">
+			<table class="table table-hover">
+		 		<tr>
+		 			<th>Status</th>
+		 			<th>Tag</th>
+		 			<th>Main Character</th>
+		 			<th>SP on Main</th>
+		 			<th>Timezone</th>
+		 			<th>Application Date</th>
+		 			<th>Last update</th>
 		 		</tr>
-	 		{% endfor %}
-	 	</table>
-	</div>
+		 		{% for app in denied %}
+			 		<tr class="{{app.cssClass}}">
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_status_display}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_tag_display}}</a></td>
+			 			<td><img src="//image.eveonline.com/Character/{{app.applicantProfile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{app.applicantProfile.mainChar.charID}}"><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile.mainChar.sp|intword}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_timezone_display}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicationDate}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">
+			 				{% if app.comment_set %}
+			 					{{app.comment_set.last.date}} by {{app.comment_set.last.author}}
+			 				{% else %}
+			 					None
+			 				{% endif %}
+			 			</a></td>
+			 		</tr>
+		 		{% endfor %}
+		 	</table>
+		</div>
+	{% endif %}
 </div>
 
 <div class="row">
-	<h1>Accepted Applications</h1>
-	<div class="col-sm-8">
-		<table class="table table-hover">
-	 		<tr>
-	 			<th>Status</th>
-	 			<th>Tag</th>
-	 			<th>Main Character</th>
-	 			<th>SP on Main</th>
-	 			<th>Timezone</th>
-	 			<th>Application Date</th>
-	 			<th>Last update</th>
-	 		</tr>
-	 		{% for app in accepted %}
-		 		<tr class="{{app.cssClass}}">
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_status_display}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_tag_display}}</a></td>
-		 			<td><img src="//image.eveonline.com/Character/{{app.applicantProfile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{app.applicantProfile.mainChar.charID}}"><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile.mainChar.sp|intword}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_timezone_display}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicationDate}}</a></td>
-		 			<td><a href="{% url "applications:viewapp" app.token %}">
-		 				{% if app.comment_set %}
-		 					{{app.comment_set.last.date}} by {{app.comment_set.last.author}}
-		 				{% else %}
-		 					None
-		 				{% endif %}
-		 			</a></td>
+	{%if accepted %}
+		<h1>Accepted Applications</h1>
+		<div class="col-sm-8">
+			<table class="table table-hover">
+		 		<tr>
+		 			<th>Status</th>
+		 			<th>Tag</th>
+		 			<th>Main Character</th>
+		 			<th>SP on Main</th>
+		 			<th>Timezone</th>
+		 			<th>Application Date</th>
+		 			<th>Last update</th>
 		 		</tr>
-	 		{% endfor %}
-	 	</table>
-	</div>
+		 		{% for app in accepted %}
+			 		<tr class="{{app.cssClass}}">
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_status_display}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_tag_display}}</a></td>
+			 			<td><img src="//image.eveonline.com/Character/{{app.applicantProfile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{app.applicantProfile.mainChar.charID}}"><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile.mainChar.sp|intword}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_timezone_display}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicationDate}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">
+			 				{% if app.comment_set %}
+			 					{{app.comment_set.last.date}} by {{app.comment_set.last.author}}
+			 				{% else %}
+			 					None
+			 				{% endif %}
+			 			</a></td>
+			 		</tr>
+		 		{% endfor %}
+		 	</table>
+		</div>
+	{% endif %}
 </div>
 {% endblock content %}
 
