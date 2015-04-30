@@ -585,6 +585,4 @@ def compareSkillplans(character):
 
 		result.append({"name": plan.attrib['name'], "completed": completed, "nSkills": nSkills, "missing": missing, "prct": int(100*completed/nSkills)})
 
-	for p in result:
-		print p['name']
 	return result
