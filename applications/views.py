@@ -558,7 +558,7 @@ def newApplication(request):
 def compareSkillplans(character):
 	result = []
 
-	for filename in os.listdir('applications/skillplans/'): 
+	for filename in sorted(os.listdir('applications/skillplans/')): 
 
 		t = ElementTree.parse('applications/skillplans/'+filename)
 
