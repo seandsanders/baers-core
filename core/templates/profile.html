@@ -94,4 +94,10 @@
 {% block title %}{{profile}} - Dropbears Auth{%endblock title%}
 
  {% block scripts %}
+ 	<script>
+		$('.skillplantoggle').click(function () {
+
+			$(this).parent().nextAll('div.missingskills').first().toggle();
+		});
+	</script>
  {% endblock scripts %}
