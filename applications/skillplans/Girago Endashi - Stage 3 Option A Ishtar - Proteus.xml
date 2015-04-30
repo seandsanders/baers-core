@@ -1,0 +1,412 @@
+﻿<?xml version="1.0"?>
+<plan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Stage 3 Option A Ishtar - Proteus" owner="8229afc6-4d6c-49b2-8f48-7a36dff8ee76" revision="4609">
+  <sorting criteria="None" order="None" groupByPriority="false" />
+  <entry skillID="3328" skill="Gallente Frigate" level="1" priority="3" type="Prerequisite">
+    <notes />
+  </entry>
+  <entry skillID="3328" skill="Gallente Frigate" level="2" priority="3" type="Prerequisite">
+    <notes />
+  </entry>
+  <entry skillID="3328" skill="Gallente Frigate" level="3" priority="3" type="Prerequisite">
+    <notes>Gallente Cruiser, Gallente Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="33093" skill="Gallente Destroyer" level="1" priority="3" type="Prerequisite">
+    <notes>Gallente Cruiser, Gallente Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="33093" skill="Gallente Destroyer" level="2" priority="3" type="Prerequisite">
+    <notes>Gallente Cruiser, Gallente Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="33093" skill="Gallente Destroyer" level="3" priority="3" type="Prerequisite">
+    <notes>Gallente Cruiser, Gallente Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3332" skill="Gallente Cruiser" level="1" priority="3" type="Planned">
+    <notes>Gallente Cruiser, Gallente Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3332" skill="Gallente Cruiser" level="2" priority="3" type="Planned">
+    <notes>Gallente Cruiser, Gallente Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3332" skill="Gallente Cruiser" level="3" priority="3" type="Planned">
+    <notes>Gallente Cruiser, Gallente Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3332" skill="Gallente Cruiser" level="4" priority="3" type="Planned">
+    <notes>Gallente Cruiser, Gallente Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3332" skill="Gallente Cruiser" level="5" priority="3" type="Planned">
+    <notes>Gallente Cruiser, Gallente Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3424" skill="Energy Grid Upgrades" level="1" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3424" skill="Energy Grid Upgrades" level="2" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3424" skill="Energy Grid Upgrades" level="3" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3424" skill="Energy Grid Upgrades" level="4" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3424" skill="Energy Grid Upgrades" level="5" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="1" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers, Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="2" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers, Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="3" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers, Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="4" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers, Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="5" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers, Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="3327" skill="Spaceship Command" level="4" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3327" skill="Spaceship Command" level="5" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="1" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="2" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="3" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="4" priority="3" type="Prerequisite">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="16591" skill="Heavy Assault Cruisers" level="1" priority="3" type="Planned">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="16591" skill="Heavy Assault Cruisers" level="2" priority="3" type="Planned">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="16591" skill="Heavy Assault Cruisers" level="3" priority="3" type="Planned">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="16591" skill="Heavy Assault Cruisers" level="4" priority="3" type="Planned">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="11207" skill="Advanced Weapon Upgrades" level="1" priority="3" type="Planned">
+    <notes>Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="11207" skill="Advanced Weapon Upgrades" level="2" priority="3" type="Planned">
+    <notes>Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="11207" skill="Advanced Weapon Upgrades" level="3" priority="3" type="Planned">
+    <notes>Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="11207" skill="Advanced Weapon Upgrades" level="4" priority="3" type="Planned">
+    <notes>Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="3436" skill="Drones" level="1" priority="3" type="Prerequisite">
+    <notes>Sentry Drone Interfacing, Gallente Offensive Systems</notes>
+  </entry>
+  <entry skillID="3436" skill="Drones" level="2" priority="3" type="Prerequisite">
+    <notes>Sentry Drone Interfacing, Gallente Offensive Systems</notes>
+  </entry>
+  <entry skillID="3436" skill="Drones" level="3" priority="3" type="Prerequisite">
+    <notes>Sentry Drone Interfacing, Gallente Offensive Systems</notes>
+  </entry>
+  <entry skillID="3436" skill="Drones" level="4" priority="3" type="Prerequisite">
+    <notes>Sentry Drone Interfacing</notes>
+  </entry>
+  <entry skillID="3436" skill="Drones" level="5" priority="3" type="Prerequisite">
+    <notes>Sentry Drone Interfacing</notes>
+  </entry>
+  <entry skillID="3442" skill="Drone Interfacing" level="1" priority="3" type="Prerequisite">
+    <notes>Sentry Drone Interfacing</notes>
+  </entry>
+  <entry skillID="3442" skill="Drone Interfacing" level="2" priority="3" type="Prerequisite">
+    <notes>Sentry Drone Interfacing</notes>
+  </entry>
+  <entry skillID="3442" skill="Drone Interfacing" level="3" priority="3" type="Prerequisite">
+    <notes>Sentry Drone Interfacing</notes>
+  </entry>
+  <entry skillID="3442" skill="Drone Interfacing" level="4" priority="3" type="Prerequisite">
+    <notes>Sentry Drone Interfacing</notes>
+  </entry>
+  <entry skillID="23606" skill="Drone Sharpshooting" level="1" priority="3" type="Prerequisite">
+    <notes>Sentry Drone Interfacing</notes>
+  </entry>
+  <entry skillID="23606" skill="Drone Sharpshooting" level="2" priority="3" type="Prerequisite">
+    <notes>Sentry Drone Interfacing</notes>
+  </entry>
+  <entry skillID="23606" skill="Drone Sharpshooting" level="3" priority="3" type="Prerequisite">
+    <notes>Sentry Drone Interfacing</notes>
+  </entry>
+  <entry skillID="23606" skill="Drone Sharpshooting" level="4" priority="3" type="Prerequisite">
+    <notes>Sentry Drone Interfacing</notes>
+  </entry>
+  <entry skillID="23594" skill="Sentry Drone Interfacing" level="1" priority="3" type="Planned">
+    <notes>Sentry Drone Interfacing</notes>
+  </entry>
+  <entry skillID="23594" skill="Sentry Drone Interfacing" level="2" priority="3" type="Planned">
+    <notes>Sentry Drone Interfacing</notes>
+  </entry>
+  <entry skillID="23594" skill="Sentry Drone Interfacing" level="3" priority="3" type="Planned">
+    <notes>Sentry Drone Interfacing</notes>
+  </entry>
+  <entry skillID="23594" skill="Sentry Drone Interfacing" level="4" priority="3" type="Planned">
+    <notes>Sentry Drone Interfacing</notes>
+  </entry>
+  <entry skillID="3312" skill="Motion Prediction" level="1" priority="3" type="Prerequisite">
+    <notes>Medium Blaster Specialization</notes>
+  </entry>
+  <entry skillID="3312" skill="Motion Prediction" level="2" priority="3" type="Prerequisite">
+    <notes>Medium Blaster Specialization</notes>
+  </entry>
+  <entry skillID="3312" skill="Motion Prediction" level="3" priority="3" type="Prerequisite">
+    <notes>Medium Blaster Specialization</notes>
+  </entry>
+  <entry skillID="3312" skill="Motion Prediction" level="4" priority="3" type="Prerequisite">
+    <notes>Medium Blaster Specialization</notes>
+  </entry>
+  <entry skillID="3300" skill="Gunnery" level="3" priority="3" type="Prerequisite">
+    <notes>Medium Blaster Specialization, Gallente Offensive Systems, Medium Artillery Specialization, Surgical Strike, Trajectory Analysis</notes>
+  </entry>
+  <entry skillID="3304" skill="Medium Hybrid Turret" level="1" priority="3" type="Prerequisite">
+    <notes>Medium Blaster Specialization</notes>
+  </entry>
+  <entry skillID="3304" skill="Medium Hybrid Turret" level="2" priority="3" type="Prerequisite">
+    <notes>Medium Blaster Specialization</notes>
+  </entry>
+  <entry skillID="3304" skill="Medium Hybrid Turret" level="3" priority="3" type="Prerequisite">
+    <notes>Medium Blaster Specialization</notes>
+  </entry>
+  <entry skillID="3304" skill="Medium Hybrid Turret" level="4" priority="3" type="Prerequisite">
+    <notes>Medium Blaster Specialization</notes>
+  </entry>
+  <entry skillID="3304" skill="Medium Hybrid Turret" level="5" priority="3" type="Prerequisite">
+    <notes>Medium Blaster Specialization</notes>
+  </entry>
+  <entry skillID="12211" skill="Medium Blaster Specialization" level="1" priority="3" type="Planned">
+    <notes>Medium Blaster Specialization</notes>
+  </entry>
+  <entry skillID="12211" skill="Medium Blaster Specialization" level="2" priority="3" type="Planned">
+    <notes>Medium Blaster Specialization</notes>
+  </entry>
+  <entry skillID="12211" skill="Medium Blaster Specialization" level="3" priority="3" type="Planned">
+    <notes>Medium Blaster Specialization</notes>
+  </entry>
+  <entry skillID="12211" skill="Medium Blaster Specialization" level="4" priority="3" type="Planned">
+    <notes>Medium Blaster Specialization</notes>
+  </entry>
+  <entry skillID="3316" skill="Controlled Bursts" level="1" priority="3" type="Planned">
+    <notes>Controlled Bursts</notes>
+  </entry>
+  <entry skillID="3316" skill="Controlled Bursts" level="2" priority="3" type="Planned">
+    <notes>Controlled Bursts</notes>
+  </entry>
+  <entry skillID="3316" skill="Controlled Bursts" level="3" priority="3" type="Planned">
+    <notes>Controlled Bursts</notes>
+  </entry>
+  <entry skillID="3316" skill="Controlled Bursts" level="4" priority="3" type="Planned">
+    <notes>Controlled Bursts</notes>
+  </entry>
+  <entry skillID="3311" skill="Sharpshooter" level="1" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3311" skill="Sharpshooter" level="2" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3311" skill="Sharpshooter" level="3" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3311" skill="Sharpshooter" level="4" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3302" skill="Small Projectile Turret" level="1" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3302" skill="Small Projectile Turret" level="2" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3302" skill="Small Projectile Turret" level="3" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3305" skill="Medium Projectile Turret" level="1" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3305" skill="Medium Projectile Turret" level="2" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3305" skill="Medium Projectile Turret" level="3" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3305" skill="Medium Projectile Turret" level="4" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3305" skill="Medium Projectile Turret" level="5" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="12202" skill="Medium Artillery Specialization" level="1" priority="3" type="Planned">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="12202" skill="Medium Artillery Specialization" level="2" priority="3" type="Planned">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="12202" skill="Medium Artillery Specialization" level="3" priority="3" type="Planned">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3310" skill="Rapid Firing" level="1" priority="3" type="Planned">
+    <notes>Rapid Firing</notes>
+  </entry>
+  <entry skillID="3310" skill="Rapid Firing" level="2" priority="3" type="Planned">
+    <notes>Rapid Firing</notes>
+  </entry>
+  <entry skillID="3310" skill="Rapid Firing" level="3" priority="3" type="Planned">
+    <notes>Rapid Firing</notes>
+  </entry>
+  <entry skillID="3310" skill="Rapid Firing" level="4" priority="3" type="Planned">
+    <notes>Rapid Firing</notes>
+  </entry>
+  <entry skillID="3300" skill="Gunnery" level="4" priority="3" type="Prerequisite">
+    <notes>Gallente Offensive Systems, Surgical Strike, Trajectory Analysis</notes>
+  </entry>
+  <entry skillID="3315" skill="Surgical Strike" level="1" priority="3" type="Planned">
+    <notes>Surgical Strike</notes>
+  </entry>
+  <entry skillID="3315" skill="Surgical Strike" level="2" priority="3" type="Planned">
+    <notes>Surgical Strike</notes>
+  </entry>
+  <entry skillID="3315" skill="Surgical Strike" level="3" priority="3" type="Planned">
+    <notes>Surgical Strike</notes>
+  </entry>
+  <entry skillID="3317" skill="Trajectory Analysis" level="1" priority="3" type="Planned">
+    <notes>Trajectory Analysis</notes>
+  </entry>
+  <entry skillID="3317" skill="Trajectory Analysis" level="2" priority="3" type="Planned">
+    <notes>Trajectory Analysis</notes>
+  </entry>
+  <entry skillID="3317" skill="Trajectory Analysis" level="3" priority="3" type="Planned">
+    <notes>Trajectory Analysis</notes>
+  </entry>
+  <entry skillID="3392" skill="Mechanics" level="3" priority="3" type="Prerequisite">
+    <notes>Gallente Defensive Systems</notes>
+  </entry>
+  <entry skillID="3392" skill="Mechanics" level="4" priority="3" type="Prerequisite">
+    <notes>Gallente Defensive Systems</notes>
+  </entry>
+  <entry skillID="3392" skill="Mechanics" level="5" priority="3" type="Prerequisite">
+    <notes>Gallente Defensive Systems</notes>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="1" priority="3" type="Prerequisite">
+    <notes>Gallente Defensive Systems</notes>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="2" priority="3" type="Prerequisite">
+    <notes>Gallente Defensive Systems</notes>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="3" priority="3" type="Prerequisite">
+    <notes>Gallente Defensive Systems</notes>
+  </entry>
+  <entry skillID="30540" skill="Gallente Defensive Systems" level="1" priority="3" type="Planned">
+    <notes>Gallente Defensive Systems</notes>
+  </entry>
+  <entry skillID="30540" skill="Gallente Defensive Systems" level="2" priority="3" type="Planned">
+    <notes>Gallente Defensive Systems</notes>
+  </entry>
+  <entry skillID="30540" skill="Gallente Defensive Systems" level="3" priority="3" type="Planned">
+    <notes>Gallente Defensive Systems</notes>
+  </entry>
+  <entry skillID="30540" skill="Gallente Defensive Systems" level="4" priority="3" type="Planned">
+    <notes>Gallente Defensive Systems</notes>
+  </entry>
+  <entry skillID="30540" skill="Gallente Defensive Systems" level="5" priority="3" type="Planned">
+    <notes>Gallente Defensive Systems</notes>
+  </entry>
+  <entry skillID="30541" skill="Gallente Electronic Systems" level="1" priority="3" type="Planned">
+    <notes>Gallente Electronic Systems</notes>
+  </entry>
+  <entry skillID="30541" skill="Gallente Electronic Systems" level="2" priority="3" type="Planned">
+    <notes>Gallente Electronic Systems</notes>
+  </entry>
+  <entry skillID="30541" skill="Gallente Electronic Systems" level="3" priority="3" type="Planned">
+    <notes>Gallente Electronic Systems</notes>
+  </entry>
+  <entry skillID="30541" skill="Gallente Electronic Systems" level="4" priority="3" type="Planned">
+    <notes>Gallente Electronic Systems</notes>
+  </entry>
+  <entry skillID="3413" skill="Power Grid Management" level="4" priority="3" type="Prerequisite">
+    <notes>Gallente Engineering Systems</notes>
+  </entry>
+  <entry skillID="3413" skill="Power Grid Management" level="5" priority="3" type="Prerequisite">
+    <notes>Gallente Engineering Systems</notes>
+  </entry>
+  <entry skillID="30546" skill="Gallente Engineering Systems" level="1" priority="3" type="Planned">
+    <notes>Gallente Engineering Systems</notes>
+  </entry>
+  <entry skillID="30546" skill="Gallente Engineering Systems" level="2" priority="3" type="Planned">
+    <notes>Gallente Engineering Systems</notes>
+  </entry>
+  <entry skillID="30546" skill="Gallente Engineering Systems" level="3" priority="3" type="Planned">
+    <notes>Gallente Engineering Systems</notes>
+  </entry>
+  <entry skillID="30546" skill="Gallente Engineering Systems" level="4" priority="3" type="Planned">
+    <notes>Gallente Engineering Systems</notes>
+  </entry>
+  <entry skillID="3300" skill="Gunnery" level="5" priority="3" type="Prerequisite">
+    <notes>Gallente Offensive Systems</notes>
+  </entry>
+  <entry skillID="30550" skill="Gallente Offensive Systems" level="1" priority="3" type="Planned">
+    <notes>Gallente Offensive Systems</notes>
+  </entry>
+  <entry skillID="30550" skill="Gallente Offensive Systems" level="2" priority="3" type="Planned">
+    <notes>Gallente Offensive Systems</notes>
+  </entry>
+  <entry skillID="30550" skill="Gallente Offensive Systems" level="3" priority="3" type="Planned">
+    <notes>Gallente Offensive Systems</notes>
+  </entry>
+  <entry skillID="30550" skill="Gallente Offensive Systems" level="4" priority="3" type="Planned">
+    <notes>Gallente Offensive Systems</notes>
+  </entry>
+  <entry skillID="30550" skill="Gallente Offensive Systems" level="5" priority="3" type="Planned">
+    <notes>Gallente Offensive Systems</notes>
+  </entry>
+  <entry skillID="3449" skill="Navigation" level="4" priority="3" type="Prerequisite">
+    <notes>Gallente Propulsion Systems</notes>
+  </entry>
+  <entry skillID="3449" skill="Navigation" level="5" priority="3" type="Prerequisite">
+    <notes>Gallente Propulsion Systems</notes>
+  </entry>
+  <entry skillID="30553" skill="Gallente Propulsion Systems" level="1" priority="3" type="Planned">
+    <notes>Gallente Propulsion Systems</notes>
+  </entry>
+  <entry skillID="30553" skill="Gallente Propulsion Systems" level="2" priority="3" type="Planned">
+    <notes>Gallente Propulsion Systems</notes>
+  </entry>
+  <entry skillID="30553" skill="Gallente Propulsion Systems" level="3" priority="3" type="Planned">
+    <notes>Gallente Propulsion Systems</notes>
+  </entry>
+  <entry skillID="30553" skill="Gallente Propulsion Systems" level="4" priority="3" type="Planned">
+    <notes>Gallente Propulsion Systems</notes>
+  </entry>
+  <entry skillID="30652" skill="Gallente Strategic Cruiser" level="1" priority="3" type="Planned">
+    <notes>Gallente Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="30652" skill="Gallente Strategic Cruiser" level="2" priority="3" type="Planned">
+    <notes>Gallente Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="30652" skill="Gallente Strategic Cruiser" level="3" priority="3" type="Planned">
+    <notes>Gallente Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="30652" skill="Gallente Strategic Cruiser" level="4" priority="3" type="Planned">
+    <notes>Gallente Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3317" skill="Trajectory Analysis" level="4" priority="3" type="Planned">
+    <notes>Trajectory Analysis</notes>
+  </entry>
+  <entry skillID="3315" skill="Surgical Strike" level="4" priority="3" type="Planned">
+    <notes>Surgical Strike</notes>
+  </entry>
+  <entry skillID="3310" skill="Rapid Firing" level="5" priority="3" type="Planned">
+    <notes>Rapid Firing</notes>
+  </entry>
+</plan>

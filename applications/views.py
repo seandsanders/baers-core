@@ -12,6 +12,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import Group
 from django.utils.text import slugify
+from xml.etree import ElementTree
+import os
 # Create your views here.
 
 ships = [
@@ -493,7 +495,8 @@ def application(request, app):
 		"profile": profile,
 		"keys": keys,
 		"answers": answers,
-		"ships": r
+		"ships": r,
+		"skills": compareSkillplans(profile.mainChar)
 	}
 	return render(request, "application.html", c)
 
@@ -551,3 +554,37 @@ def newApplication(request):
 	c = Comment(app=app, author=request.user.userprofile, date=datetime.utcnow(), text="Generated the Token", auto_generated=True)
 	c.save()
 	return HttpResponse(request.build_absolute_uri(reverse('applications:apply', kwargs={'token':token})))
+
+def compareSkillplans(character):
+	result = []
+
+	for filename in os.listdir('applications/skillplans/'): 
+
+		t = ElementTree.parse('applications/skillplans/'+filename)
+
+		plan = t.getroot()
+
+		skills = character.characterskill_set.filter(owner=character)
+		nSkills=0
+		completed=0
+		missing = []
+
+		for skill in plan:
+			if skill.tag != 'entry':
+				continue
+			nSkills+=1
+			skillID = skill.attrib['skillID']
+			cskill = skills.filter(typeID=skillID)
+			if cskill.exists():
+				if cskill.first().level <= skill.attrib['level']:
+					completed+=1
+				else:
+					missing.append(skill.attrib)
+			else:
+				missing.append(skill.attrib)
+
+		result.append({"name": plan.attrib['name'], "completed": completed, "nSkills": nSkills, "missing": missing, "prct": int(100*completed/nSkills)})
+
+	for p in result:
+		print p['name']
+	return result

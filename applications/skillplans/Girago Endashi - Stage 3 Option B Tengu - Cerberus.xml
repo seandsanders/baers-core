@@ -1,0 +1,352 @@
+﻿<?xml version="1.0"?>
+<plan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Stage 3 Option B Tengu - Cerberus" owner="8229afc6-4d6c-49b2-8f48-7a36dff8ee76" revision="4609">
+  <sorting criteria="None" order="None" groupByPriority="false" />
+  <entry skillID="3330" skill="Caldari Frigate" level="3" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="33092" skill="Caldari Destroyer" level="1" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="33092" skill="Caldari Destroyer" level="2" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="33092" skill="Caldari Destroyer" level="3" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="3334" skill="Caldari Cruiser" level="1" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="3334" skill="Caldari Cruiser" level="2" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="3334" skill="Caldari Cruiser" level="3" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="3334" skill="Caldari Cruiser" level="4" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="3334" skill="Caldari Cruiser" level="5" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="3427" skill="Electronic Warfare" level="1" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu, Frequency Modulation, Long Distance Jamming, Signal Dispersion</notes>
+  </entry>
+  <entry skillID="3427" skill="Electronic Warfare" level="2" priority="3" type="Prerequisite">
+    <notes>Frequency Modulation, Long Distance Jamming, Signal Dispersion</notes>
+  </entry>
+  <entry skillID="19760" skill="Frequency Modulation" level="1" priority="3" type="Planned">
+    <notes>Frequency Modulation</notes>
+  </entry>
+  <entry skillID="19760" skill="Frequency Modulation" level="2" priority="3" type="Planned">
+    <notes>Frequency Modulation</notes>
+  </entry>
+  <entry skillID="19760" skill="Frequency Modulation" level="3" priority="3" type="Planned">
+    <notes>Frequency Modulation</notes>
+  </entry>
+  <entry skillID="3427" skill="Electronic Warfare" level="3" priority="3" type="Prerequisite">
+    <notes>Long Distance Jamming, Signal Dispersion</notes>
+  </entry>
+  <entry skillID="19759" skill="Long Distance Jamming" level="1" priority="3" type="Planned">
+    <notes>Long Distance Jamming</notes>
+  </entry>
+  <entry skillID="19759" skill="Long Distance Jamming" level="2" priority="3" type="Planned">
+    <notes>Long Distance Jamming</notes>
+  </entry>
+  <entry skillID="19759" skill="Long Distance Jamming" level="3" priority="3" type="Planned">
+    <notes>Long Distance Jamming</notes>
+  </entry>
+  <entry skillID="3427" skill="Electronic Warfare" level="4" priority="3" type="Prerequisite">
+    <notes>Signal Dispersion</notes>
+  </entry>
+  <entry skillID="19761" skill="Signal Dispersion" level="1" priority="3" type="Planned">
+    <notes>Signal Dispersion</notes>
+  </entry>
+  <entry skillID="19761" skill="Signal Dispersion" level="2" priority="3" type="Planned">
+    <notes>Signal Dispersion</notes>
+  </entry>
+  <entry skillID="19761" skill="Signal Dispersion" level="3" priority="3" type="Planned">
+    <notes>Signal Dispersion</notes>
+  </entry>
+  <entry skillID="30651" skill="Caldari Strategic Cruiser" level="1" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="1" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu, Caldari Defensive Systems</notes>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="2" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu, Caldari Defensive Systems</notes>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="3" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu, Caldari Defensive Systems</notes>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="4" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu, Caldari Defensive Systems</notes>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="5" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu, Caldari Defensive Systems</notes>
+  </entry>
+  <entry skillID="3392" skill="Mechanics" level="3" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu, Caldari Defensive Systems, Gaytar | DPS</notes>
+  </entry>
+  <entry skillID="30544" skill="Caldari Defensive Systems" level="1" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="30542" skill="Caldari Electronic Systems" level="1" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="3413" skill="Power Grid Management" level="4" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu, Caldari Engineering Systems</notes>
+  </entry>
+  <entry skillID="3413" skill="Power Grid Management" level="5" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu, Caldari Engineering Systems</notes>
+  </entry>
+  <entry skillID="30548" skill="Caldari Engineering Systems" level="1" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="3319" skill="Missile Launcher Operation" level="1" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu, Caldari Offensive Systems, Gaytar | DPS</notes>
+  </entry>
+  <entry skillID="3319" skill="Missile Launcher Operation" level="2" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu, Caldari Offensive Systems, Gaytar | DPS</notes>
+  </entry>
+  <entry skillID="3319" skill="Missile Launcher Operation" level="3" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu, Caldari Offensive Systems, Gaytar | DPS</notes>
+  </entry>
+  <entry skillID="3319" skill="Missile Launcher Operation" level="4" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu, Caldari Offensive Systems</notes>
+  </entry>
+  <entry skillID="3319" skill="Missile Launcher Operation" level="5" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu, Caldari Offensive Systems</notes>
+  </entry>
+  <entry skillID="3300" skill="Gunnery" level="3" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu, Caldari Offensive Systems</notes>
+  </entry>
+  <entry skillID="30549" skill="Caldari Offensive Systems" level="1" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="3449" skill="Navigation" level="4" priority="1" type="Prerequisite">
+    <notes>Techfleet | Jamgu, Caldari Propulsion Systems</notes>
+  </entry>
+  <entry skillID="3449" skill="Navigation" level="5" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu, Caldari Propulsion Systems</notes>
+  </entry>
+  <entry skillID="30552" skill="Caldari Propulsion Systems" level="1" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="3450" skill="Afterburner" level="1" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu, Gaytar | DPS</notes>
+  </entry>
+  <entry skillID="3423" skill="Capacitor Emission Systems" level="1" priority="1" type="Prerequisite">
+    <notes />
+  </entry>
+  <entry skillID="3423" skill="Capacitor Emission Systems" level="2" priority="1" type="Prerequisite">
+    <notes />
+  </entry>
+  <entry skillID="3423" skill="Capacitor Emission Systems" level="3" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="3421" skill="Energy Pulse Weapons" level="1" priority="1" type="Prerequisite">
+    <notes />
+  </entry>
+  <entry skillID="3421" skill="Energy Pulse Weapons" level="2" priority="1" type="Prerequisite">
+    <notes />
+  </entry>
+  <entry skillID="3421" skill="Energy Pulse Weapons" level="3" priority="1" type="Planned">
+    <notes>Techfleet | Jamgu</notes>
+  </entry>
+  <entry skillID="19760" skill="Frequency Modulation" level="4" priority="3" type="Planned">
+    <notes>Frequency Modulation</notes>
+  </entry>
+  <entry skillID="19759" skill="Long Distance Jamming" level="4" priority="3" type="Planned">
+    <notes>Long Distance Jamming</notes>
+  </entry>
+  <entry skillID="19761" skill="Signal Dispersion" level="4" priority="3" type="Planned">
+    <notes>Signal Dispersion</notes>
+  </entry>
+  <entry skillID="30544" skill="Caldari Defensive Systems" level="2" priority="3" type="Planned">
+    <notes>Caldari Defensive Systems</notes>
+  </entry>
+  <entry skillID="30544" skill="Caldari Defensive Systems" level="3" priority="3" type="Planned">
+    <notes>Caldari Defensive Systems</notes>
+  </entry>
+  <entry skillID="30544" skill="Caldari Defensive Systems" level="4" priority="3" type="Planned">
+    <notes>Caldari Defensive Systems</notes>
+  </entry>
+  <entry skillID="30542" skill="Caldari Electronic Systems" level="2" priority="3" type="Planned">
+    <notes>Caldari Electronic Systems</notes>
+  </entry>
+  <entry skillID="30542" skill="Caldari Electronic Systems" level="3" priority="3" type="Planned">
+    <notes>Caldari Electronic Systems</notes>
+  </entry>
+  <entry skillID="30542" skill="Caldari Electronic Systems" level="4" priority="3" type="Planned">
+    <notes>Caldari Electronic Systems</notes>
+  </entry>
+  <entry skillID="30548" skill="Caldari Engineering Systems" level="2" priority="3" type="Planned">
+    <notes>Caldari Engineering Systems</notes>
+  </entry>
+  <entry skillID="30548" skill="Caldari Engineering Systems" level="3" priority="3" type="Planned">
+    <notes>Caldari Engineering Systems</notes>
+  </entry>
+  <entry skillID="30548" skill="Caldari Engineering Systems" level="4" priority="3" type="Planned">
+    <notes>Caldari Engineering Systems</notes>
+  </entry>
+  <entry skillID="30549" skill="Caldari Offensive Systems" level="2" priority="3" type="Planned">
+    <notes>Caldari Offensive Systems</notes>
+  </entry>
+  <entry skillID="30549" skill="Caldari Offensive Systems" level="3" priority="3" type="Planned">
+    <notes>Caldari Offensive Systems</notes>
+  </entry>
+  <entry skillID="30549" skill="Caldari Offensive Systems" level="4" priority="3" type="Planned">
+    <notes>Caldari Offensive Systems</notes>
+  </entry>
+  <entry skillID="30549" skill="Caldari Offensive Systems" level="5" priority="3" type="Planned">
+    <notes>Caldari Offensive Systems</notes>
+  </entry>
+  <entry skillID="30552" skill="Caldari Propulsion Systems" level="2" priority="3" type="Planned">
+    <notes>Caldari Propulsion Systems</notes>
+  </entry>
+  <entry skillID="30552" skill="Caldari Propulsion Systems" level="3" priority="3" type="Planned">
+    <notes>Caldari Propulsion Systems</notes>
+  </entry>
+  <entry skillID="30552" skill="Caldari Propulsion Systems" level="4" priority="3" type="Planned">
+    <notes>Caldari Propulsion Systems</notes>
+  </entry>
+  <entry skillID="3429" skill="Target Management" level="1" priority="3" type="Planned">
+    <notes>Target Management</notes>
+  </entry>
+  <entry skillID="3429" skill="Target Management" level="2" priority="3" type="Planned">
+    <notes>Target Management</notes>
+  </entry>
+  <entry skillID="3429" skill="Target Management" level="3" priority="3" type="Planned">
+    <notes>Target Management</notes>
+  </entry>
+  <entry skillID="3429" skill="Target Management" level="4" priority="3" type="Planned">
+    <notes>Target Management</notes>
+  </entry>
+  <entry skillID="3424" skill="Energy Grid Upgrades" level="1" priority="1" type="Prerequisite">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3424" skill="Energy Grid Upgrades" level="2" priority="1" type="Prerequisite">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3424" skill="Energy Grid Upgrades" level="3" priority="1" type="Prerequisite">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3424" skill="Energy Grid Upgrades" level="4" priority="1" type="Prerequisite">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3424" skill="Energy Grid Upgrades" level="5" priority="1" type="Planned">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="1" priority="1" type="Prerequisite">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers, Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="2" priority="1" type="Prerequisite">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers, Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="3" priority="1" type="Prerequisite">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers, Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="4" priority="1" type="Prerequisite">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers, Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="5" priority="1" type="Planned">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers, Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="3327" skill="Spaceship Command" level="4" priority="1" type="Prerequisite">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers, Recon Ships</notes>
+  </entry>
+  <entry skillID="3327" skill="Spaceship Command" level="5" priority="1" type="Planned">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers, Recon Ships</notes>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="1" priority="1" type="Prerequisite">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="2" priority="1" type="Prerequisite">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="3" priority="1" type="Prerequisite">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="4" priority="1" type="Planned">
+    <notes>Gaytar | DPS, Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="11207" skill="Advanced Weapon Upgrades" level="1" priority="3" type="Planned">
+    <notes>Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="11207" skill="Advanced Weapon Upgrades" level="2" priority="3" type="Planned">
+    <notes>Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="11207" skill="Advanced Weapon Upgrades" level="3" priority="3" type="Planned">
+    <notes>Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="16591" skill="Heavy Assault Cruisers" level="1" priority="1" type="Planned">
+    <notes>Gaytar | DPS</notes>
+  </entry>
+  <entry skillID="16591" skill="Heavy Assault Cruisers" level="2" priority="3" type="Planned">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="16591" skill="Heavy Assault Cruisers" level="3" priority="3" type="Planned">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="16591" skill="Heavy Assault Cruisers" level="4" priority="3" type="Planned">
+    <notes>Heavy Assault Cruisers</notes>
+  </entry>
+  <entry skillID="11207" skill="Advanced Weapon Upgrades" level="4" priority="3" type="Planned">
+    <notes>Advanced Weapon Upgrades</notes>
+  </entry>
+  <entry skillID="11579" skill="Cloaking" level="1" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="11579" skill="Cloaking" level="2" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="11579" skill="Cloaking" level="3" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="11579" skill="Cloaking" level="4" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="1" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="2" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="3" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="4" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="5" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3432" skill="Electronics Upgrades" level="1" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3432" skill="Electronics Upgrades" level="2" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3432" skill="Electronics Upgrades" level="3" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3432" skill="Electronics Upgrades" level="4" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3432" skill="Electronics Upgrades" level="5" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="22761" skill="Recon Ships" level="1" priority="3" type="Planned">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="22761" skill="Recon Ships" level="2" priority="3" type="Planned">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="22761" skill="Recon Ships" level="3" priority="3" type="Planned">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="22761" skill="Recon Ships" level="4" priority="3" type="Planned">
+    <notes>Recon Ships</notes>
+  </entry>
+</plan>

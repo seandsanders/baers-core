@@ -1,0 +1,812 @@
+﻿<?xml version="1.0"?>
+<plan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Stage 0" owner="8229afc6-4d6c-49b2-8f48-7a36dff8ee76" revision="4609">
+  <sorting criteria="None" order="None" groupByPriority="false" />
+  <entry skillID="3411" skill="Cybernetics" level="1" priority="3" type="Planned">
+    <notes>Cybernetics</notes>
+  </entry>
+  <entry skillID="3411" skill="Cybernetics" level="2" priority="3" type="Planned">
+    <notes>Cybernetics</notes>
+  </entry>
+  <entry skillID="3394" skill="Hull Upgrades" level="1" priority="1" type="Planned">
+    <notes>Exported from GallenteBasic2, Kinetic Armor Compensation, Thermic Armor Compensation, EM Armor Compensation</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3394" skill="Hull Upgrades" level="2" priority="1" type="Planned">
+    <notes>Exported from GallenteBasic2, Kinetic Armor Compensation, Thermic Armor Compensation, EM Armor Compensation</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3394" skill="Hull Upgrades" level="3" priority="1" type="Planned">
+    <notes>Exported from GallenteBasic2, Kinetic Armor Compensation, Thermic Armor Compensation, EM Armor Compensation</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3413" skill="Power Grid Management" level="4" priority="1" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3426" skill="CPU Management" level="5" priority="1" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3328" skill="Gallente Frigate" level="1" priority="2" type="Prerequisite">
+    <notes />
+  </entry>
+  <entry skillID="3328" skill="Gallente Frigate" level="2" priority="2" type="Prerequisite">
+    <notes />
+  </entry>
+  <entry skillID="3328" skill="Gallente Frigate" level="3" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3450" skill="Afterburner" level="1" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2, High Speed Maneuvering</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3450" skill="Afterburner" level="2" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2, High Speed Maneuvering</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3450" skill="Afterburner" level="3" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2, High Speed Maneuvering</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3454" skill="High Speed Maneuvering" level="1" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2, High Speed Maneuvering</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="11579" skill="Cloaking" level="1" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3412" skill="Astrometrics" level="2" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3412" skill="Astrometrics" level="3" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="25811" skill="Astrometric Acquisition" level="1" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3412" skill="Astrometrics" level="4" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="25810" skill="Astrometric Pinpointing" level="1" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="25810" skill="Astrometric Pinpointing" level="2" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="25810" skill="Astrometric Pinpointing" level="3" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="25811" skill="Astrometric Acquisition" level="2" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="25739" skill="Astrometric Rangefinding" level="1" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="25739" skill="Astrometric Rangefinding" level="2" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3455" skill="Warp Drive Operation" level="1" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2, Micro Jump Drive Operation</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3432" skill="Electronics Upgrades" level="1" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3432" skill="Electronics Upgrades" level="2" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3432" skill="Electronics Upgrades" level="3" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="21718" skill="Hacking" level="1" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="21718" skill="Hacking" level="2" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3551" skill="Survey" level="1" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2, Salvaging</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3551" skill="Survey" level="2" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2, Salvaging</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3551" skill="Survey" level="3" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2, Salvaging</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="13278" skill="Archaeology" level="1" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="13278" skill="Archaeology" level="2" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3455" skill="Warp Drive Operation" level="2" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2, Micro Jump Drive Operation</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3454" skill="High Speed Maneuvering" level="2" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2, High Speed Maneuvering</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3454" skill="High Speed Maneuvering" level="3" priority="2" type="Planned">
+    <notes>High Speed Maneuvering</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="11579" skill="Cloaking" level="2" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="11579" skill="Cloaking" level="3" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3392" skill="Mechanics" level="3" priority="2" type="Planned">
+    <notes>Exported from GallenteBasic2, Armor Rigging, Salvaging, Remote Armor Repair Systems, Exported from Scythe T0</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="26252" skill="Jury Rigging" level="1" priority="2" type="Planned">
+    <notes>Armor Rigging, Exported from Scythe T0</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="26252" skill="Jury Rigging" level="2" priority="2" type="Planned">
+    <notes>Armor Rigging, Exported from Scythe T0</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="26252" skill="Jury Rigging" level="3" priority="2" type="Planned">
+    <notes>Armor Rigging, Exported from Scythe T0</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="26253" skill="Armor Rigging" level="1" priority="3" type="Planned">
+    <notes>Armor Rigging</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="26253" skill="Armor Rigging" level="2" priority="3" type="Planned">
+    <notes>Armor Rigging</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="26253" skill="Armor Rigging" level="3" priority="3" type="Planned">
+    <notes>Armor Rigging</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="25863" skill="Salvaging" level="1" priority="3" type="Planned">
+    <notes>Exported from GallenteBasic2, Salvaging</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3184" skill="ORE Industrial" level="1" priority="3" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="25863" skill="Salvaging" level="2" priority="3" type="Planned">
+    <notes>Exported from GallenteBasic2, Salvaging</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="25863" skill="Salvaging" level="3" priority="3" type="Planned">
+    <notes>Exported from GallenteBasic2, Salvaging</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3184" skill="ORE Industrial" level="2" priority="3" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3184" skill="ORE Industrial" level="3" priority="3" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3429" skill="Target Management" level="1" priority="3" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3429" skill="Target Management" level="2" priority="3" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3429" skill="Target Management" level="3" priority="3" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3331" skill="Amarr Frigate" level="1" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Grizzly T0 | Ewar, Amarr Battlecruiser, Amarr Battleship</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3331" skill="Amarr Frigate" level="2" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Grizzly T0 | Ewar, Amarr Battlecruiser, Amarr Battleship</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3331" skill="Amarr Frigate" level="3" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Grizzly T0 | Ewar, Amarr Battlecruiser, Amarr Battleship</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="33091" skill="Amarr Destroyer" level="1" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Grizzly T0 | Ewar, Amarr Battlecruiser, Amarr Battleship</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="33091" skill="Amarr Destroyer" level="2" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Grizzly T0 | Ewar, Amarr Battlecruiser, Amarr Battleship</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="33091" skill="Amarr Destroyer" level="3" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Grizzly T0 | Ewar, Amarr Battlecruiser, Amarr Battleship</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3335" skill="Amarr Cruiser" level="1" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Grizzly T0 | Ewar, Amarr Battlecruiser, Amarr Battleship</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3335" skill="Amarr Cruiser" level="2" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Grizzly T0 | Ewar, Amarr Battlecruiser, Amarr Battleship</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3335" skill="Amarr Cruiser" level="3" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Grizzly T0 | Ewar, Amarr Battlecruiser, Amarr Battleship</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3427" skill="Electronic Warfare" level="1" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Grizzly T0 | Ewar, Advanced Drone Avionics</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3428" skill="Long Range Targeting" level="1" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3423" skill="Capacitor Emission Systems" level="1" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Capacitor Emission Systems</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3423" skill="Capacitor Emission Systems" level="2" priority="4" type="Planned">
+    <notes>Capacitor Emission Systems</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3423" skill="Capacitor Emission Systems" level="3" priority="4" type="Planned">
+    <notes>Capacitor Emission Systems</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3393" skill="Repair Systems" level="1" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Remote Armor Repair Systems</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3393" skill="Repair Systems" level="2" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Remote Armor Repair Systems</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="16069" skill="Remote Armor Repair Systems" level="1" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Remote Armor Repair Systems</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="16069" skill="Remote Armor Repair Systems" level="2" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Remote Armor Repair Systems</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="16069" skill="Remote Armor Repair Systems" level="3" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2, Remote Armor Repair Systems</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="1" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="2" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="1" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="2" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="3" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3424" skill="Energy Grid Upgrades" level="1" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3424" skill="Energy Grid Upgrades" level="2" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3424" skill="Energy Grid Upgrades" level="3" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3393" skill="Repair Systems" level="3" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3417" skill="Capacitor Systems Operation" level="1" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3417" skill="Capacitor Systems Operation" level="2" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3417" skill="Capacitor Systems Operation" level="3" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3417" skill="Capacitor Systems Operation" level="4" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="33002" skill="Radar Sensor Compensation" level="1" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="33002" skill="Radar Sensor Compensation" level="2" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="33002" skill="Radar Sensor Compensation" level="3" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="3" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3402" skill="Science" level="4" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="28164" skill="Thermodynamics" level="1" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="28164" skill="Thermodynamics" level="2" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="28164" skill="Thermodynamics" level="3" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3428" skill="Long Range Targeting" level="2" priority="4" type="Planned">
+    <notes>Exported from GallenteBasic2</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3435" skill="Propulsion Jamming" level="1" priority="5" type="Planned">
+    <notes>Propulsion Jamming</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3435" skill="Propulsion Jamming" level="2" priority="5" type="Planned">
+    <notes>Propulsion Jamming</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3300" skill="Gunnery" level="3" priority="5" type="Planned">
+    <notes>Gunnery, Surgical Strike, Trajectory Analysis</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3300" skill="Gunnery" level="4" priority="5" type="Planned">
+    <notes>Gunnery, Surgical Strike, Trajectory Analysis</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="1" priority="5" type="Planned">
+    <notes>Weapon Upgrades, Tactical Weapon Reconfiguration</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="2" priority="5" type="Planned">
+    <notes>Weapon Upgrades, Tactical Weapon Reconfiguration</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="3" priority="5" type="Planned">
+    <notes>Weapon Upgrades, Tactical Weapon Reconfiguration</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3318" skill="Weapon Upgrades" level="4" priority="5" type="Planned">
+    <notes>Weapon Upgrades, Tactical Weapon Reconfiguration</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3316" skill="Controlled Bursts" level="1" priority="5" type="Planned">
+    <notes>Controlled Bursts</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3316" skill="Controlled Bursts" level="2" priority="5" type="Planned">
+    <notes>Controlled Bursts</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3316" skill="Controlled Bursts" level="3" priority="5" type="Planned">
+    <notes>Controlled Bursts</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3312" skill="Motion Prediction" level="1" priority="5" type="Planned">
+    <notes>Motion Prediction</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3312" skill="Motion Prediction" level="2" priority="5" type="Planned">
+    <notes>Motion Prediction</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3312" skill="Motion Prediction" level="3" priority="5" type="Planned">
+    <notes>Motion Prediction</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3310" skill="Rapid Firing" level="1" priority="5" type="Planned">
+    <notes>Rapid Firing</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3310" skill="Rapid Firing" level="2" priority="5" type="Planned">
+    <notes>Rapid Firing</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3310" skill="Rapid Firing" level="3" priority="5" type="Planned">
+    <notes>Rapid Firing</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3311" skill="Sharpshooter" level="1" priority="5" type="Planned">
+    <notes>Sharpshooter</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3311" skill="Sharpshooter" level="2" priority="5" type="Planned">
+    <notes>Sharpshooter</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3311" skill="Sharpshooter" level="3" priority="5" type="Planned">
+    <notes>Sharpshooter</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3315" skill="Surgical Strike" level="1" priority="5" type="Planned">
+    <notes>Surgical Strike</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3315" skill="Surgical Strike" level="2" priority="5" type="Planned">
+    <notes>Surgical Strike</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3315" skill="Surgical Strike" level="3" priority="5" type="Planned">
+    <notes>Surgical Strike</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3317" skill="Trajectory Analysis" level="1" priority="5" type="Planned">
+    <notes>Trajectory Analysis</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3317" skill="Trajectory Analysis" level="2" priority="5" type="Planned">
+    <notes>Trajectory Analysis</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3317" skill="Trajectory Analysis" level="3" priority="5" type="Planned">
+    <notes>Trajectory Analysis</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3301" skill="Small Hybrid Turret" level="4" priority="5" type="Planned">
+    <notes>Small Hybrid Turret</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3413" skill="Power Grid Management" level="5" priority="3" type="Planned">
+    <notes>Power Grid Management</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="33095" skill="Amarr Battlecruiser" level="1" priority="4" type="Planned">
+    <notes>Grizzly T0 | Ewar, Amarr Battleship</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3436" skill="Drones" level="1" priority="1" type="Planned">
+    <notes>Grizzly T0 | Ewar, Heavy Drone Operation, Advanced Drone Avionics, Light Drone Operation, Medium Drone Operation, Exported from Scythe T0, Repair Drone Operation, Drone Navigation, Drone Sharpshooting</notes>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3436" skill="Drones" level="2" priority="1" type="Planned">
+    <notes>Grizzly T0 | Ewar, Heavy Drone Operation, Advanced Drone Avionics, Light Drone Operation, Medium Drone Operation, Exported from Scythe T0, Repair Drone Operation, Drone Navigation, Drone Sharpshooting</notes>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3436" skill="Drones" level="3" priority="1" type="Planned">
+    <notes>Grizzly T0 | Ewar, Heavy Drone Operation, Advanced Drone Avionics, Light Drone Operation, Medium Drone Operation, Exported from Scythe T0, Repair Drone Operation, Drone Navigation, Drone Sharpshooting</notes>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3436" skill="Drones" level="4" priority="1" type="Planned">
+    <notes>Grizzly T0 | Ewar, Heavy Drone Operation, Advanced Drone Avionics, Exported from Scythe T0, Repair Drone Operation, Drone Navigation, Drone Sharpshooting</notes>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="24241" skill="Light Drone Operation" level="1" priority="1" type="Planned">
+    <notes>Grizzly T0 | Ewar</notes>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="33699" skill="Medium Drone Operation" level="1" priority="1" type="Planned">
+    <notes>Grizzly T0 | Ewar</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3436" skill="Drones" level="5" priority="1" type="Planned">
+    <notes>Grizzly T0 | Ewar, Heavy Drone Operation, Advanced Drone Avionics, Repair Drone Operation, Drone Sharpshooting</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3427" skill="Electronic Warfare" level="2" priority="1" type="Planned">
+    <notes>Grizzly T0 | Ewar, Advanced Drone Avionics</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3427" skill="Electronic Warfare" level="3" priority="1" type="Planned">
+    <notes>Grizzly T0 | Ewar, Advanced Drone Avionics</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3427" skill="Electronic Warfare" level="4" priority="1" type="Planned">
+    <notes>Grizzly T0 | Ewar, Advanced Drone Avionics</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="23566" skill="Advanced Drone Avionics" level="1" priority="4" type="Planned">
+    <notes />
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="23566" skill="Advanced Drone Avionics" level="2" priority="4" type="Planned">
+    <notes>Grizzly T0 | Ewar</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3441" skill="Heavy Drone Operation" level="1" priority="1" type="Planned">
+    <notes>Grizzly T0 | Ewar</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3441" skill="Heavy Drone Operation" level="2" priority="3" type="Planned">
+    <notes>Heavy Drone Operation</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3441" skill="Heavy Drone Operation" level="3" priority="3" type="Planned">
+    <notes>Heavy Drone Operation</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="23566" skill="Advanced Drone Avionics" level="3" priority="4" type="Planned">
+    <notes>Advanced Drone Avionics</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="33095" skill="Amarr Battlecruiser" level="2" priority="4" type="Planned">
+    <notes>Amarr Battlecruiser, Amarr Battleship</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="33095" skill="Amarr Battlecruiser" level="3" priority="4" type="Planned">
+    <notes>Amarr Battlecruiser, Amarr Battleship</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3435" skill="Propulsion Jamming" level="3" priority="3" type="Planned">
+    <notes>Propulsion Jamming</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="24241" skill="Light Drone Operation" level="2" priority="3" type="Planned">
+    <notes>Light Drone Operation</notes>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="24241" skill="Light Drone Operation" level="3" priority="3" type="Planned">
+    <notes>Light Drone Operation</notes>
+    <group>Grizzly T0</group>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="24241" skill="Light Drone Operation" level="4" priority="3" type="Planned">
+    <notes>Light Drone Operation</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="33699" skill="Medium Drone Operation" level="2" priority="3" type="Planned">
+    <notes>Medium Drone Operation</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="33699" skill="Medium Drone Operation" level="3" priority="3" type="Planned">
+    <notes>Medium Drone Operation</notes>
+    <group>Grizzly T0</group>
+  </entry>
+  <entry skillID="3329" skill="Minmatar Frigate" level="1" priority="3" type="Planned">
+    <notes>Exported from Scythe T0, Minmatar Destroyer</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3425" skill="Shield Upgrades" level="1" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3422" skill="Shield Emission Systems" level="1" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3420" skill="Tactical Shield Manipulation" level="1" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3329" skill="Minmatar Frigate" level="2" priority="3" type="Planned">
+    <notes>Exported from Scythe T0, Minmatar Destroyer</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3422" skill="Shield Emission Systems" level="2" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3425" skill="Shield Upgrades" level="2" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3420" skill="Tactical Shield Manipulation" level="2" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3329" skill="Minmatar Frigate" level="3" priority="3" type="Planned">
+    <notes>Exported from Scythe T0, Minmatar Destroyer</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="33094" skill="Minmatar Destroyer" level="1" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="33094" skill="Minmatar Destroyer" level="2" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="33094" skill="Minmatar Destroyer" level="3" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3333" skill="Minmatar Cruiser" level="1" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3333" skill="Minmatar Cruiser" level="2" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="26261" skill="Shield Rigging" level="1" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3422" skill="Shield Emission Systems" level="3" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3425" skill="Shield Upgrades" level="3" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3420" skill="Tactical Shield Manipulation" level="3" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3333" skill="Minmatar Cruiser" level="3" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="23618" skill="Drone Durability" level="1" priority="3" type="Planned">
+    <notes>Exported from Scythe T0, Repair Drone Operation</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="23618" skill="Drone Durability" level="2" priority="3" type="Planned">
+    <notes>Exported from Scythe T0</notes>
+    <group>Scythe T0.1</group>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="1" priority="3" type="Planned">
+    <notes>Shield Operation</notes>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="2" priority="3" type="Planned">
+    <notes>Shield Operation</notes>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="3" priority="3" type="Planned">
+    <notes>Shield Operation</notes>
+  </entry>
+  <entry skillID="3419" skill="Shield Management" level="1" priority="3" type="Planned">
+    <notes>Shield Management</notes>
+  </entry>
+  <entry skillID="3419" skill="Shield Management" level="2" priority="3" type="Planned">
+    <notes>Shield Management</notes>
+  </entry>
+  <entry skillID="3419" skill="Shield Management" level="3" priority="3" type="Planned">
+    <notes>Shield Management</notes>
+  </entry>
+  <entry skillID="3439" skill="Repair Drone Operation" level="1" priority="3" type="Planned">
+    <notes>Repair Drone Operation</notes>
+  </entry>
+  <entry skillID="3439" skill="Repair Drone Operation" level="2" priority="3" type="Planned">
+    <notes>Repair Drone Operation</notes>
+  </entry>
+  <entry skillID="3439" skill="Repair Drone Operation" level="3" priority="3" type="Planned">
+    <notes>Repair Drone Operation</notes>
+  </entry>
+  <entry skillID="3437" skill="Drone Avionics" level="1" priority="3" type="Planned">
+    <notes>Drone Avionics</notes>
+  </entry>
+  <entry skillID="3437" skill="Drone Avionics" level="2" priority="3" type="Planned">
+    <notes>Drone Avionics</notes>
+  </entry>
+  <entry skillID="3437" skill="Drone Avionics" level="3" priority="3" type="Planned">
+    <notes>Drone Avionics</notes>
+  </entry>
+  <entry skillID="12305" skill="Drone Navigation" level="1" priority="3" type="Planned">
+    <notes>Drone Navigation</notes>
+  </entry>
+  <entry skillID="12305" skill="Drone Navigation" level="2" priority="3" type="Planned">
+    <notes>Drone Navigation</notes>
+  </entry>
+  <entry skillID="12305" skill="Drone Navigation" level="3" priority="3" type="Planned">
+    <notes>Drone Navigation</notes>
+  </entry>
+  <entry skillID="23606" skill="Drone Sharpshooting" level="1" priority="3" type="Planned">
+    <notes>Drone Sharpshooting</notes>
+  </entry>
+  <entry skillID="23606" skill="Drone Sharpshooting" level="2" priority="3" type="Planned">
+    <notes>Drone Sharpshooting</notes>
+  </entry>
+  <entry skillID="23606" skill="Drone Sharpshooting" level="3" priority="3" type="Planned">
+    <notes>Drone Sharpshooting</notes>
+  </entry>
+  <entry skillID="25863" skill="Salvaging" level="4" priority="3" type="Planned">
+    <notes>Salvaging</notes>
+  </entry>
+  <entry skillID="3394" skill="Hull Upgrades" level="4" priority="3" type="Prerequisite">
+    <notes>Kinetic Armor Compensation, Thermic Armor Compensation, EM Armor Compensation</notes>
+  </entry>
+</plan>

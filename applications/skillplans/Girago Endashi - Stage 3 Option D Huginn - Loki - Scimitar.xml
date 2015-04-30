@@ -1,0 +1,376 @@
+﻿<?xml version="1.0"?>
+<plan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Stage 3 Option D Huginn - Loki - Scimitar" owner="8229afc6-4d6c-49b2-8f48-7a36dff8ee76" revision="4609">
+  <sorting criteria="None" order="None" groupByPriority="false" />
+  <entry skillID="11579" skill="Cloaking" level="1" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="11579" skill="Cloaking" level="2" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="11579" skill="Cloaking" level="3" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="11579" skill="Cloaking" level="4" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="1" priority="3" type="Prerequisite">
+    <notes>Recon Ships, Logistics</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="2" priority="3" type="Prerequisite">
+    <notes>Recon Ships, Logistics</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="3" priority="3" type="Prerequisite">
+    <notes>Recon Ships, Logistics</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="4" priority="3" type="Prerequisite">
+    <notes>Recon Ships, Logistics</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="5" priority="3" type="Prerequisite">
+    <notes>Recon Ships, Logistics</notes>
+  </entry>
+  <entry skillID="3327" skill="Spaceship Command" level="4" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3327" skill="Spaceship Command" level="5" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3432" skill="Electronics Upgrades" level="1" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3432" skill="Electronics Upgrades" level="2" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3432" skill="Electronics Upgrades" level="3" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3432" skill="Electronics Upgrades" level="4" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3432" skill="Electronics Upgrades" level="5" priority="3" type="Prerequisite">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="22761" skill="Recon Ships" level="1" priority="3" type="Planned">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="22761" skill="Recon Ships" level="2" priority="3" type="Planned">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="22761" skill="Recon Ships" level="3" priority="3" type="Planned">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="22761" skill="Recon Ships" level="4" priority="3" type="Planned">
+    <notes>Recon Ships</notes>
+  </entry>
+  <entry skillID="3311" skill="Sharpshooter" level="1" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3311" skill="Sharpshooter" level="2" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3311" skill="Sharpshooter" level="3" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3311" skill="Sharpshooter" level="4" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3300" skill="Gunnery" level="3" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization, Medium Autocannon Specialization, Surgical Strike, Trajectory Analysis, Minmatar Offensive Systems</notes>
+  </entry>
+  <entry skillID="3302" skill="Small Projectile Turret" level="1" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization, Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="3302" skill="Small Projectile Turret" level="2" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization, Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="3302" skill="Small Projectile Turret" level="3" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization, Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="3305" skill="Medium Projectile Turret" level="1" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization, Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="3305" skill="Medium Projectile Turret" level="2" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization, Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="3305" skill="Medium Projectile Turret" level="3" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization, Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="3305" skill="Medium Projectile Turret" level="4" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization, Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="3305" skill="Medium Projectile Turret" level="5" priority="3" type="Prerequisite">
+    <notes>Medium Artillery Specialization, Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="12202" skill="Medium Artillery Specialization" level="1" priority="3" type="Planned">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="12202" skill="Medium Artillery Specialization" level="2" priority="3" type="Planned">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="12202" skill="Medium Artillery Specialization" level="3" priority="3" type="Planned">
+    <notes>Medium Artillery Specialization</notes>
+  </entry>
+  <entry skillID="3312" skill="Motion Prediction" level="1" priority="3" type="Prerequisite">
+    <notes>Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="3312" skill="Motion Prediction" level="2" priority="3" type="Prerequisite">
+    <notes>Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="3312" skill="Motion Prediction" level="3" priority="3" type="Prerequisite">
+    <notes>Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="3312" skill="Motion Prediction" level="4" priority="3" type="Prerequisite">
+    <notes>Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="12208" skill="Medium Autocannon Specialization" level="1" priority="3" type="Planned">
+    <notes>Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="12208" skill="Medium Autocannon Specialization" level="2" priority="3" type="Planned">
+    <notes>Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="12208" skill="Medium Autocannon Specialization" level="3" priority="3" type="Planned">
+    <notes>Medium Autocannon Specialization</notes>
+  </entry>
+  <entry skillID="3316" skill="Controlled Bursts" level="1" priority="3" type="Planned">
+    <notes>Controlled Bursts</notes>
+  </entry>
+  <entry skillID="3316" skill="Controlled Bursts" level="2" priority="3" type="Planned">
+    <notes>Controlled Bursts</notes>
+  </entry>
+  <entry skillID="3316" skill="Controlled Bursts" level="3" priority="3" type="Planned">
+    <notes>Controlled Bursts</notes>
+  </entry>
+  <entry skillID="3310" skill="Rapid Firing" level="1" priority="3" type="Planned">
+    <notes>Rapid Firing</notes>
+  </entry>
+  <entry skillID="3310" skill="Rapid Firing" level="2" priority="3" type="Planned">
+    <notes>Rapid Firing</notes>
+  </entry>
+  <entry skillID="3310" skill="Rapid Firing" level="3" priority="3" type="Planned">
+    <notes>Rapid Firing</notes>
+  </entry>
+  <entry skillID="3310" skill="Rapid Firing" level="4" priority="3" type="Planned">
+    <notes>Rapid Firing</notes>
+  </entry>
+  <entry skillID="3300" skill="Gunnery" level="4" priority="3" type="Prerequisite">
+    <notes>Surgical Strike, Trajectory Analysis, Minmatar Offensive Systems</notes>
+  </entry>
+  <entry skillID="3315" skill="Surgical Strike" level="1" priority="3" type="Planned">
+    <notes>Surgical Strike</notes>
+  </entry>
+  <entry skillID="3315" skill="Surgical Strike" level="2" priority="3" type="Planned">
+    <notes>Surgical Strike</notes>
+  </entry>
+  <entry skillID="3315" skill="Surgical Strike" level="3" priority="3" type="Planned">
+    <notes>Surgical Strike</notes>
+  </entry>
+  <entry skillID="3317" skill="Trajectory Analysis" level="1" priority="3" type="Planned">
+    <notes>Trajectory Analysis</notes>
+  </entry>
+  <entry skillID="3317" skill="Trajectory Analysis" level="2" priority="3" type="Planned">
+    <notes>Trajectory Analysis</notes>
+  </entry>
+  <entry skillID="3329" skill="Minmatar Frigate" level="1" priority="3" type="Prerequisite">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3329" skill="Minmatar Frigate" level="2" priority="3" type="Prerequisite">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3329" skill="Minmatar Frigate" level="3" priority="3" type="Prerequisite">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="33094" skill="Minmatar Destroyer" level="1" priority="3" type="Prerequisite">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="33094" skill="Minmatar Destroyer" level="2" priority="3" type="Prerequisite">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="33094" skill="Minmatar Destroyer" level="3" priority="3" type="Prerequisite">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3333" skill="Minmatar Cruiser" level="1" priority="3" type="Prerequisite">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3333" skill="Minmatar Cruiser" level="2" priority="3" type="Prerequisite">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3333" skill="Minmatar Cruiser" level="3" priority="3" type="Prerequisite">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3333" skill="Minmatar Cruiser" level="4" priority="3" type="Prerequisite">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3333" skill="Minmatar Cruiser" level="5" priority="3" type="Prerequisite">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="30653" skill="Minmatar Strategic Cruiser" level="1" priority="3" type="Planned">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="30653" skill="Minmatar Strategic Cruiser" level="2" priority="3" type="Planned">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="30653" skill="Minmatar Strategic Cruiser" level="3" priority="3" type="Planned">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="30653" skill="Minmatar Strategic Cruiser" level="4" priority="3" type="Planned">
+    <notes>Minmatar Strategic Cruiser</notes>
+  </entry>
+  <entry skillID="3392" skill="Mechanics" level="3" priority="3" type="Prerequisite">
+    <notes>Minmatar Defensive Systems</notes>
+  </entry>
+  <entry skillID="3392" skill="Mechanics" level="4" priority="3" type="Prerequisite">
+    <notes>Minmatar Defensive Systems</notes>
+  </entry>
+  <entry skillID="3392" skill="Mechanics" level="5" priority="3" type="Prerequisite">
+    <notes>Minmatar Defensive Systems</notes>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="1" priority="3" type="Prerequisite">
+    <notes>Minmatar Defensive Systems</notes>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="2" priority="3" type="Prerequisite">
+    <notes>Minmatar Defensive Systems</notes>
+  </entry>
+  <entry skillID="3416" skill="Shield Operation" level="3" priority="3" type="Prerequisite">
+    <notes>Minmatar Defensive Systems</notes>
+  </entry>
+  <entry skillID="30545" skill="Minmatar Defensive Systems" level="1" priority="3" type="Planned">
+    <notes>Minmatar Defensive Systems</notes>
+  </entry>
+  <entry skillID="30545" skill="Minmatar Defensive Systems" level="2" priority="3" type="Planned">
+    <notes>Minmatar Defensive Systems</notes>
+  </entry>
+  <entry skillID="30545" skill="Minmatar Defensive Systems" level="3" priority="3" type="Planned">
+    <notes>Minmatar Defensive Systems</notes>
+  </entry>
+  <entry skillID="30545" skill="Minmatar Defensive Systems" level="4" priority="3" type="Planned">
+    <notes>Minmatar Defensive Systems</notes>
+  </entry>
+  <entry skillID="30545" skill="Minmatar Defensive Systems" level="5" priority="3" type="Planned">
+    <notes>Minmatar Defensive Systems</notes>
+  </entry>
+  <entry skillID="30543" skill="Minmatar Electronic Systems" level="1" priority="3" type="Planned">
+    <notes>Minmatar Electronic Systems</notes>
+  </entry>
+  <entry skillID="30543" skill="Minmatar Electronic Systems" level="2" priority="3" type="Planned">
+    <notes>Minmatar Electronic Systems</notes>
+  </entry>
+  <entry skillID="30543" skill="Minmatar Electronic Systems" level="3" priority="3" type="Planned">
+    <notes>Minmatar Electronic Systems</notes>
+  </entry>
+  <entry skillID="30543" skill="Minmatar Electronic Systems" level="4" priority="3" type="Planned">
+    <notes>Minmatar Electronic Systems</notes>
+  </entry>
+  <entry skillID="30543" skill="Minmatar Electronic Systems" level="5" priority="3" type="Planned">
+    <notes>Minmatar Electronic Systems</notes>
+  </entry>
+  <entry skillID="3413" skill="Power Grid Management" level="4" priority="3" type="Prerequisite">
+    <notes>Minmatar Engineering Systems</notes>
+  </entry>
+  <entry skillID="3413" skill="Power Grid Management" level="5" priority="3" type="Prerequisite">
+    <notes>Minmatar Engineering Systems</notes>
+  </entry>
+  <entry skillID="30547" skill="Minmatar Engineering Systems" level="1" priority="3" type="Planned">
+    <notes>Minmatar Engineering Systems</notes>
+  </entry>
+  <entry skillID="30547" skill="Minmatar Engineering Systems" level="2" priority="3" type="Planned">
+    <notes>Minmatar Engineering Systems</notes>
+  </entry>
+  <entry skillID="30547" skill="Minmatar Engineering Systems" level="3" priority="3" type="Planned">
+    <notes>Minmatar Engineering Systems</notes>
+  </entry>
+  <entry skillID="30547" skill="Minmatar Engineering Systems" level="4" priority="3" type="Planned">
+    <notes>Minmatar Engineering Systems</notes>
+  </entry>
+  <entry skillID="3300" skill="Gunnery" level="5" priority="3" type="Prerequisite">
+    <notes>Minmatar Offensive Systems</notes>
+  </entry>
+  <entry skillID="3319" skill="Missile Launcher Operation" level="1" priority="3" type="Prerequisite">
+    <notes>Minmatar Offensive Systems</notes>
+  </entry>
+  <entry skillID="3319" skill="Missile Launcher Operation" level="2" priority="3" type="Prerequisite">
+    <notes>Minmatar Offensive Systems</notes>
+  </entry>
+  <entry skillID="3319" skill="Missile Launcher Operation" level="3" priority="3" type="Prerequisite">
+    <notes>Minmatar Offensive Systems</notes>
+  </entry>
+  <entry skillID="30551" skill="Minmatar Offensive Systems" level="1" priority="3" type="Planned">
+    <notes>Minmatar Offensive Systems</notes>
+  </entry>
+  <entry skillID="30551" skill="Minmatar Offensive Systems" level="2" priority="3" type="Planned">
+    <notes>Minmatar Offensive Systems</notes>
+  </entry>
+  <entry skillID="30551" skill="Minmatar Offensive Systems" level="3" priority="3" type="Planned">
+    <notes>Minmatar Offensive Systems</notes>
+  </entry>
+  <entry skillID="30551" skill="Minmatar Offensive Systems" level="4" priority="3" type="Planned">
+    <notes>Minmatar Offensive Systems</notes>
+  </entry>
+  <entry skillID="30551" skill="Minmatar Offensive Systems" level="5" priority="3" type="Planned">
+    <notes>Minmatar Offensive Systems</notes>
+  </entry>
+  <entry skillID="3449" skill="Navigation" level="4" priority="3" type="Prerequisite">
+    <notes>Minmatar Propulsion Systems</notes>
+  </entry>
+  <entry skillID="3449" skill="Navigation" level="5" priority="3" type="Prerequisite">
+    <notes>Minmatar Propulsion Systems</notes>
+  </entry>
+  <entry skillID="30554" skill="Minmatar Propulsion Systems" level="1" priority="3" type="Planned">
+    <notes>Minmatar Propulsion Systems</notes>
+  </entry>
+  <entry skillID="30554" skill="Minmatar Propulsion Systems" level="2" priority="3" type="Planned">
+    <notes>Minmatar Propulsion Systems</notes>
+  </entry>
+  <entry skillID="30554" skill="Minmatar Propulsion Systems" level="3" priority="3" type="Planned">
+    <notes>Minmatar Propulsion Systems</notes>
+  </entry>
+  <entry skillID="30554" skill="Minmatar Propulsion Systems" level="4" priority="3" type="Planned">
+    <notes>Minmatar Propulsion Systems</notes>
+  </entry>
+  <entry skillID="3317" skill="Trajectory Analysis" level="3" priority="3" type="Planned">
+    <notes>Trajectory Analysis</notes>
+  </entry>
+  <entry skillID="3428" skill="Long Range Targeting" level="1" priority="3" type="Prerequisite">
+    <notes>Logistics</notes>
+  </entry>
+  <entry skillID="3428" skill="Long Range Targeting" level="2" priority="3" type="Prerequisite">
+    <notes>Logistics</notes>
+  </entry>
+  <entry skillID="3428" skill="Long Range Targeting" level="3" priority="3" type="Prerequisite">
+    <notes>Logistics</notes>
+  </entry>
+  <entry skillID="3428" skill="Long Range Targeting" level="4" priority="3" type="Prerequisite">
+    <notes>Logistics</notes>
+  </entry>
+  <entry skillID="3428" skill="Long Range Targeting" level="5" priority="3" type="Prerequisite">
+    <notes>Logistics</notes>
+  </entry>
+  <entry skillID="12096" skill="Logistics" level="1" priority="3" type="Planned">
+    <notes>Logistics</notes>
+  </entry>
+  <entry skillID="12096" skill="Logistics" level="2" priority="3" type="Planned">
+    <notes>Logistics</notes>
+  </entry>
+  <entry skillID="12096" skill="Logistics" level="3" priority="3" type="Planned">
+    <notes>Logistics</notes>
+  </entry>
+  <entry skillID="12096" skill="Logistics" level="4" priority="3" type="Planned">
+    <notes>Logistics</notes>
+  </entry>
+  <entry skillID="12096" skill="Logistics" level="5" priority="3" type="Planned">
+    <notes>Logistics</notes>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="1" priority="3" type="Planned">
+    <notes>Capacitor Management</notes>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="2" priority="3" type="Planned">
+    <notes>Capacitor Management</notes>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="3" priority="3" type="Planned">
+    <notes>Capacitor Management</notes>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="4" priority="3" type="Planned">
+    <notes>Capacitor Management</notes>
+  </entry>
+  <entry skillID="3418" skill="Capacitor Management" level="5" priority="3" type="Planned">
+    <notes>Capacitor Management</notes>
+  </entry>
+</plan>

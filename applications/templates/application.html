@@ -99,6 +99,17 @@
 			{% endif %}
 
 		<hr>
+		<h4>Skillplan Progress:</h4>
+		{% for plan in skills %}
+			<span><b>{{plan.name}}</b>: {{plan.completed}} of {{plan.nSkills}} ({{plan.prct}}%) (<a class="skillplantoggle" href="javascript:void(0)">Show/Hide missing</a>)</span><br>
+			<div class="missingskills well" style="display:none">
+				<b>Missing from {{plan.name}}</b><br>
+				{% for skill in plan.missing %}
+					<span>{{skill.skill}} level {{skill.level}}</span><br>
+				{%endfor%}
+			</div>
+		{% endfor %}
+		<hr>
 		<h4>Flyable Ships:</h4>
 			{% for group in ships %}
 			<div class="col-sm-3">
@@ -117,4 +128,10 @@
 {% block title %}{{profile}} - Applications - Dropbears Auth{%endblock title%}
 
 {% block scripts %}
+	<script>
+		$('.skillplantoggle').click(function () {
+
+			$(this).parent().nextAll('div.missingskills').first().toggle();
+		});
+	</script>
 {% endblock scripts %}

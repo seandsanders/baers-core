@@ -1,0 +1,127 @@
+﻿<?xml version="1.0"?>
+<plan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Stage 3 Option C Guardian - Scimitar" owner="8229afc6-4d6c-49b2-8f48-7a36dff8ee76" revision="4609">
+  <sorting criteria="None" order="None" groupByPriority="false" />
+  <entry skillID="3428" skill="Long Range Targeting" level="1" priority="3" type="Prerequisite">
+    <notes>bling, Logistics</notes>
+  </entry>
+  <entry skillID="3428" skill="Long Range Targeting" level="2" priority="3" type="Prerequisite">
+    <notes>bling, Logistics</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="1" priority="3" type="Prerequisite">
+    <notes>bling, Logistics</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="2" priority="3" type="Prerequisite">
+    <notes>bling, Logistics</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="3" priority="3" type="Prerequisite">
+    <notes>bling, Logistics</notes>
+  </entry>
+  <entry skillID="3423" skill="Capacitor Emission Systems" level="1" priority="3" type="Prerequisite">
+    <notes>bling, Capacitor Emission Systems</notes>
+  </entry>
+  <entry skillID="3423" skill="Capacitor Emission Systems" level="2" priority="3" type="Prerequisite">
+    <notes>Capacitor Emission Systems</notes>
+  </entry>
+  <entry skillID="3423" skill="Capacitor Emission Systems" level="3" priority="3" type="Prerequisite">
+    <notes>Capacitor Emission Systems</notes>
+  </entry>
+  <entry skillID="3392" skill="Mechanics" level="3" priority="3" type="Planned">
+    <notes>bling, Remote Armor Repair Systems</notes>
+  </entry>
+  <entry skillID="3393" skill="Repair Systems" level="1" priority="3" type="Prerequisite">
+    <notes>bling, Remote Armor Repair Systems</notes>
+  </entry>
+  <entry skillID="3393" skill="Repair Systems" level="2" priority="3" type="Planned">
+    <notes>bling, Remote Armor Repair Systems</notes>
+  </entry>
+  <entry skillID="16069" skill="Remote Armor Repair Systems" level="1" priority="3" type="Prerequisite">
+    <notes>bling, Remote Armor Repair Systems</notes>
+  </entry>
+  <entry skillID="16069" skill="Remote Armor Repair Systems" level="2" priority="3" type="Prerequisite">
+    <notes>bling, Remote Armor Repair Systems</notes>
+  </entry>
+  <entry skillID="16069" skill="Remote Armor Repair Systems" level="3" priority="3" type="Planned">
+    <notes>bling, Remote Armor Repair Systems</notes>
+  </entry>
+  <entry skillID="3427" skill="Electronic Warfare" level="1" priority="3" type="Prerequisite">
+    <notes>bling, Electronic Warfare Drone Interfacing</notes>
+  </entry>
+  <entry skillID="3427" skill="Electronic Warfare" level="2" priority="3" type="Prerequisite">
+    <notes>bling, Electronic Warfare Drone Interfacing</notes>
+  </entry>
+  <entry skillID="3427" skill="Electronic Warfare" level="3" priority="3" type="Prerequisite">
+    <notes>bling, Electronic Warfare Drone Interfacing</notes>
+  </entry>
+  <entry skillID="3427" skill="Electronic Warfare" level="4" priority="3" type="Planned">
+    <notes>bling, Electronic Warfare Drone Interfacing</notes>
+  </entry>
+  <entry skillID="3423" skill="Capacitor Emission Systems" level="4" priority="3" type="Planned">
+    <notes>Capacitor Emission Systems</notes>
+  </entry>
+  <entry skillID="16069" skill="Remote Armor Repair Systems" level="4" priority="3" type="Planned">
+    <notes>bling, Remote Armor Repair Systems</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="4" priority="3" type="Prerequisite">
+    <notes>bling, Logistics</notes>
+  </entry>
+  <entry skillID="3428" skill="Long Range Targeting" level="3" priority="3" type="Prerequisite">
+    <notes>bling, Logistics</notes>
+  </entry>
+  <entry skillID="3428" skill="Long Range Targeting" level="4" priority="3" type="Prerequisite">
+    <notes>bling, Logistics</notes>
+  </entry>
+  <entry skillID="3431" skill="Signature Analysis" level="5" priority="3" type="Planned">
+    <notes>bling, Logistics</notes>
+  </entry>
+  <entry skillID="3428" skill="Long Range Targeting" level="5" priority="3" type="Planned">
+    <notes>bling, Logistics</notes>
+  </entry>
+  <entry skillID="12096" skill="Logistics" level="1" priority="3" type="Prerequisite">
+    <notes>bling, Logistics</notes>
+  </entry>
+  <entry skillID="12096" skill="Logistics" level="2" priority="3" type="Prerequisite">
+    <notes>Logistics</notes>
+  </entry>
+  <entry skillID="12096" skill="Logistics" level="3" priority="3" type="Prerequisite">
+    <notes>Logistics</notes>
+  </entry>
+  <entry skillID="12096" skill="Logistics" level="4" priority="3" type="Prerequisite">
+    <notes>Logistics</notes>
+  </entry>
+  <entry skillID="12096" skill="Logistics" level="5" priority="3" type="Planned">
+    <notes>Logistics</notes>
+  </entry>
+  <entry skillID="3329" skill="Minmatar Frigate" level="1" priority="3" type="Prerequisite">
+    <notes>Minmatar Cruiser</notes>
+  </entry>
+  <entry skillID="3329" skill="Minmatar Frigate" level="2" priority="3" type="Prerequisite">
+    <notes>Minmatar Cruiser</notes>
+  </entry>
+  <entry skillID="3329" skill="Minmatar Frigate" level="3" priority="3" type="Prerequisite">
+    <notes>Minmatar Cruiser</notes>
+  </entry>
+  <entry skillID="33094" skill="Minmatar Destroyer" level="1" priority="3" type="Prerequisite">
+    <notes>Minmatar Cruiser</notes>
+  </entry>
+  <entry skillID="33094" skill="Minmatar Destroyer" level="2" priority="3" type="Prerequisite">
+    <notes>Minmatar Cruiser</notes>
+  </entry>
+  <entry skillID="33094" skill="Minmatar Destroyer" level="3" priority="3" type="Prerequisite">
+    <notes>Minmatar Cruiser</notes>
+  </entry>
+  <entry skillID="3333" skill="Minmatar Cruiser" level="1" priority="3" type="Planned">
+    <notes>Minmatar Cruiser</notes>
+  </entry>
+  <entry skillID="3333" skill="Minmatar Cruiser" level="2" priority="3" type="Planned">
+    <notes>Minmatar Cruiser</notes>
+  </entry>
+  <entry skillID="3333" skill="Minmatar Cruiser" level="3" priority="3" type="Planned">
+    <notes>Minmatar Cruiser</notes>
+  </entry>
+  <entry skillID="3333" skill="Minmatar Cruiser" level="4" priority="3" type="Planned">
+    <notes>Minmatar Cruiser</notes>
+  </entry>
+  <entry skillID="3333" skill="Minmatar Cruiser" level="5" priority="3" type="Planned">
+    <notes>Minmatar Cruiser</notes>
+  </entry>
+</plan>
