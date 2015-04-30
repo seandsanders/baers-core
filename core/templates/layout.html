@@ -42,8 +42,8 @@
     </nav>
 
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+      <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar">
           <ul class="nav nav-sidebar">
             <li {% if request.resolver_match.url_name == "dashboard" %}class="active"{%endif%}><a href="{% url "core:dashboard" %}">Overview <span class="sr-only">(current)</span></a></li>
             <li {% if request.resolver_match.url_name == "keys" %}class="active"{%endif%}><a href="{% url "core:keys" %}">Characters / API Keys</a></li>
@@ -64,7 +64,10 @@
             {% if request.user|has_group:"Recruiter" %}<li {% if request.resolver_match.url_name == "redditlist" %}class="active"{%endif%}><a href="{% url "subreddit:redditlist" %}">Reddit Account List</a></li>{% endif %}
           </ul>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-9 col-md-10 main">
+          <p class="visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+          </p>
           {% block content %}{% endblock %}
         </div>
       </div>
@@ -72,7 +75,15 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script>var csrftoken = "{{ csrf_token }}"</script>
+    <script>
+    $(document).ready(function() {
+      $('[data-toggle=offcanvas]').click(function() {
+        $('.row-offcanvas').toggleClass('active');
+      });
+    });
+    </script>
     {% block scripts %}{% endblock %}
   </body>
 </html>
