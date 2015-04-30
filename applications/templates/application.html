@@ -99,7 +99,7 @@
 			{% endif %}
 
 		<hr>
-		<h4>Skillplan Progress:</h4>
+		<h4>Skillplan Progress: <small>(Last Update: {{profile.mainChar.api.lastRefresh}})</small></h4>
 		{% for plan in skills %}
 			<span><b>{{plan.name}}</b>: {{plan.completed}} of {{plan.nSkills}} ({{plan.prct}}%) (<a class="skillplantoggle" href="javascript:void(0)">Show/Hide missing</a>)</span><br>
 			<div class="missingskills well" style="display:none">

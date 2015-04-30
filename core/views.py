@@ -270,9 +270,11 @@ def profile(request, profile, mark=None):
 			grouplist.append({"name": grp.name, "checked": False})
 	ctx = {"profile": profile, "titles": titles, "mark": mark, "isRecruiter": isRecruiter(request.user), "isDirector": director, "grouplist": grouplist}
 
-	if isRecruiter(request.user):
-		from applications.views import getFlyable
+	if isRecruiter(request.user) or request.user.userprofile == profile:
+		from applications.views import getFlyable, compareSkillplans
+		ctx['showSkills'] = True
 		ctx["ships"] = getFlyable(profile)
+		ctx["skills"] = compareSkillplans(profile.mainChar)
 
 	return render(request, "profile.html", ctx)
 

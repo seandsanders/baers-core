@@ -60,18 +60,34 @@
  	</div>
  </div>
 <hr>
-{% if isRecruiter %}
-<h4>Flyable Ships:</h4>
-	{% for group in ships %}
-	<div class="col-sm-3">
-		<h5>{{group.group}}</h5>
-		{% for ship in group.ships %}
-			{% if ship.pilots %}
-				<strong><img src="https://image.eveonline.com/Type/{{ship.shipID}}_32.png"> {{ship.name}}</strong><br>{{ship.pilots|join:"<br>"}}<hr>
-			{% endif %}
-		{% endfor %}
+{% if showSkills %}
+	<div class="row">
+		<div class="col-lg-6">
+			<h4>Flyable Ships:</h4>
+			{% for group in ships %}
+				<div class="col-sm-3">
+					<h5>{{group.group}}</h5>
+					{% for ship in group.ships %}
+						{% if ship.pilots %}
+							<strong><img src="https://image.eveonline.com/Type/{{ship.shipID}}_32.png"> {{ship.name}}</strong><br>{{ship.pilots|join:"<br>"}}<hr>
+						{% endif %}
+					{% endfor %}
+				</div>
+			{% endfor %}
+		</div>
+		<div class="col-lg-6">
+			<h4>Skillplan Progress: <small>(Last Update: {{profile.mainChar.api.lastRefresh}})</small></h4>
+			{% for plan in skills %}
+				<span><b>{{plan.name}}</b>: {{plan.completed}} of {{plan.nSkills}} ({{plan.prct}}%) (<a class="skillplantoggle" href="javascript:void(0)">Show/Hide missing</a>)</span><br>
+				<div class="missingskills well" style="display:none">
+					<b>Missing from {{plan.name}}</b><br>
+					{% for skill in plan.missing %}
+						<span>{{skill.skill}} level {{skill.level}}</span><br>
+					{%endfor%}
+				</div>
+			{% endfor %}
+		</div>
 	</div>
-	{% endfor %}
 {% endif %}
  {% endblock content %}
 
