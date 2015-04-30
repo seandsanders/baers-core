@@ -40,7 +40,7 @@
 		</table>
  		<h2>Questions and Answers</h2>
  			{%for a in answers %}
- 				<strong>{{a.question}}</strong>
+ 				<strong>{% autoescape off %}{{a.question}}{%endautoescape%}</strong>
  				<pre>{{a.text}}</pre>
  			{%endfor%}
 		</div>
