@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	{% for g in groups %}
+	 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] {{g.name}} ({{g.user_set.all|length}})</a></h4>
+
+	 	<ul class="userlist" style="display:none;">
+	 		{% for user in g.user_set.all %}
+				<li style="padding-bottom: 5px"><img src="//image.eveonline.com/Character/{{user.userprofile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{user.userprofile.mainChar.charName}}"><a href="{% url "core:playerProfile" profileName=user.userprofile.mainChar.charName|slugify %}">{{user.userprofile.mainChar}}</a></li>
+			{% endfor %}
+	 	</ul>
+	 	<hr>
+ 	{% endfor %}
+ {% endblock content %}
+
+ {% block scripts %}
+ 	<script>
+ 		$('a.toggler').click(function () {
+ 			$(this).parent().nextAll('ul').first().slideToggle();
+ 			if ($(this).text()[1] == "+") {
+	 			$(this).text(
+	 				$(this).text().replace("+", "-")
+	 			)
+ 			} else {
+ 	 			$(this).text(
+	 				$(this).text().replace("-", "+")
+	 			)				
+ 			}
+ 		})
+ 	</script>
+ {% endblock scripts %}
+  {% block title %}Group Administration - BAERS Core{% endblock title %}

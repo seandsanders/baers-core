@@ -384,3 +384,11 @@ def updateNote(request):
 		note.note = text
 		note.save()
 	return HttpResponse('')
+
+def groupList(request):
+	if not isDirector(request.user):
+		return HttpResponseForbidden('<h1>You do not have permission to view this page.</h1>')
+
+	groups = Group.objects.all()
+
+	return render(request, 'grouplist.html', {"groups": groups})
