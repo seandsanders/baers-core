@@ -3,6 +3,7 @@ from applications.models import Application
 from srp.models import SRPRequest
 from timerboard.models import Timer
 from datetime import datetime
+from django.conf import settings
 
 register = template.Library() 
 
@@ -20,3 +21,7 @@ def get_srps():
 def get_timers():
 	l = len(Timer.objects.filter(time__gte=datetime.utcnow()))
 	return "" if l==0 else l
+
+@register.inclusion_tag("tags/linklist.html", name="get_links")
+def get_links():
+	return {'links': settings.USEFUL_LINKS}

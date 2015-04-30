@@ -63,6 +63,7 @@
             {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "reddit" %}class="active"{%endif%}><a href="{% url "subreddit:reddit" %}">Subreddit Access</a></li>{% endif %}
             {% if request.user|has_group:"Recruiter" %}<li {% if request.resolver_match.url_name == "redditlist" %}class="active"{%endif%}><a href="{% url "subreddit:redditlist" %}">Reddit Account List</a></li>{% endif %}
           </ul>
+          {% get_links %}
         </div>
         <div class="col-sm-9 col-md-10 main">
           <p class="visible-xs">
