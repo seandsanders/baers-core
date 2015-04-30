@@ -38,8 +38,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'core',
     'applications',
+    'srp',
+    'subreddit',
+    'timerboard'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,3 +112,18 @@ SSO_CLIENT_ID = "3d12024f14b8469a80eb342555b53edc"
 SSO_SECRET_KEY = "7KOgjRki0ThJNBTrOflnWJDj15xn5jFAllk4tTSs"
 
 SSO_CALLBACK_URL = "http://localhost:8000/evesso"
+
+CORP_API_KEYID = "01234"
+CORP_API_VCODE = "abcdefghijklmnopqrstuvwxyz"
+
+REDDIT_USERNAME = "DropbearsAnonymous"
+REDDIT_PASSWORD = "redacted"
+REDDIT_SUBREDDIT = "BAERS"
+
+USEFUL_LINKS = [
+    ("Subreddit", "http://reddit.com/r/baers"),
+    ("Pasta WH Tool", "http://wh.pasta.gg"),
+    ("DScan Parser", "https://adashboard.info/intel"),
+    ("Siggy", "http://siggy.borkedlabs.com"),
+    ("STAHP Tracker", "http://tracker.dropbear.life")
+]
