@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
+	<h2>Groups and their Members</h2>
 	{% for g in groups %}
 	 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] {{g.name}} ({{g.user_set.all|length}})</a></h4>
 
