@@ -574,12 +574,9 @@ def compareSkillplans(character):
 				continue
 			nSkills+=1
 			skillID = skill.attrib['skillID']
-			cskill = skills.filter(typeID=skillID)
+			cskill = skills.filter(typeID=skillID, level__gte=skill.attrib['level'])
 			if cskill.exists():
-				if cskill.first().level <= skill.attrib['level']:
-					completed+=1
-				else:
-					missing.append(skill.attrib)
+				completed+=1
 			else:
 				missing.append(skill.attrib)
 
