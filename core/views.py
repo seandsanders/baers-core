@@ -342,7 +342,12 @@ def starbases(request):
 
 		cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = "' + unicode(pos.moonID)+ '";')
 
-		pos.location = cur.fetchone()[0]
+		tup = cur.fetchone()
+
+		if tup:
+			pos.location = tup[0]
+		else:
+			pos.location = "[API Error]"
 
 		try:
 			pos.note = StarbaseNote.objects.get(starbaseID=pos.itemID)
