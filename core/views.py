@@ -203,7 +203,7 @@ def apiKeys(request):
 					newKey.save()
 					refreshKeyInfo(newKey, full=False)
 					recruiterGrp, created = Group.objects.get_or_create(name='Recruiter')
-					postNotification(target=recruiterGrp, text=unicode(newKey.profile)+" has added a new API key.", cssClass="info")
+					postNotification(target=recruiterGrp, text="<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(newKey.profile)})+"'>"+unicode(newKey.profile)+"</a> has added a new API key.", cssClass="info")
 			else:
 				error = "Please enter a Key ID and a verification Code"
 
