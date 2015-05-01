@@ -7,6 +7,8 @@ from StringIO import StringIO
 import eveapi
 from django.db.models import Sum
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import Group
+from django.utils.text import slugify
 
 # Create your views here.
 
@@ -130,7 +132,14 @@ def submit(request):
 			new.ship = shipName
 			new.save()
 			c["message"] = "Successfully added kill #"+new.killID
+			finance = Group.objects.filter(name="Recruiter").first()
+			note = Notification(cssClass="info")
+			note.content="New <a href='"+reverse('srp:viewsrp', kwargs={"killID": new.killID})+"'>SRP request for a "+shipName+"</a> added by <a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(request.user.userprofile)})+"'>"+unicode(request.user.userprofile)+"</a>."
+			note.save()
+			note.targetGroup.add(finance)
+
 		c["error"] = error
+
 	return render(request, "submit.html", c)
 
 def getKillInformation(killID):

@@ -31,7 +31,7 @@ def timerboard(request):
 				t.creator = request.user.userprofile
 				t.save()
 				status = "Timer Added."
-				notificationText = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(request.user.userprofile)})+"'>"+unicode(request.user.userprofile)+"</a> added a new timer to the <a href='"+reverse('timerboard:timerboard')+"'>Timerboard.</a>"
+				notificationText = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(request.user.userprofile)})+"'>"+unicode(request.user.userprofile)+"</a> added a new timer for \""+target+"\" to the <a href='"+reverse('timerboard:timerboard')+"'>Timerboard.</a>"
 				postNotification(Group.objects.get(name="Dropbears"), notificationText)
 			except:
 				status = "Invalid Date and/or Time"
