@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote
+from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, CharacterSkill
 from django.contrib.auth.models import User, Group
 from core.apireader import validateKey, refreshKeyInfo
 from django.utils.text import slugify
@@ -397,3 +397,23 @@ def groupList(request):
 	groups = Group.objects.all()
 
 	return render(request, 'grouplist.html', {"groups": groups})
+
+def capCensus(request):
+	if not isDirector(request.user):
+		return HttpResponseForbidden("<h1>You do not have permission to view this page.</h1>")
+
+	from applications.views import ships
+
+	capitals = ships[3]['ships']
+	result = []
+
+	for cap in capitals:
+		chars = Character.objects
+		for skill in cap['skills']:
+			chars = chars.filter(characterskill__typeID=skill[0])
+
+		chars = chars.all()
+		if chars:
+			result.append({"name": cap["name"], "id": cap["shipID"], "chars": chars})
+
+	return render(request, "capcensus.html", {"ships": result})

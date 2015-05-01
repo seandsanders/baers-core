@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<h2>Capital Ships</h2>
+	 <br>
+	{% for ship in ships %}
+	 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)"><span>[+]</span> <img src="https://image.eveonline.com/Type/{{ship.id}}_32.png"> {{ship.name}} ({{ship.chars|length}})</a></h4>
+	 	<ul class="userlist" style="display:none;">
+	 		{% for char in ship.chars %}
+				<li style="padding-bottom: 5px"><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}"><a href="{% url "core:playerProfile" profileName=char.userprofile.mainChar.charName|slugify %}">{{char}} ({{char.userprofile.mainChar}})</a></li>
+			{% endfor %}
+	 	</ul>
+	 	<hr>
+ 	{% endfor %}
+ {% endblock content %}
+
+ {% block scripts %}
+ 	<script>
+ 		$('a.toggler').click(function () {
+ 			$(this).parent().nextAll('ul').first().slideToggle();
+ 			if ($(this).text()[1] == "+") {
+	 			$(this).children('span').text(
+	 				$(this).children('span').text().replace("+", "-")
+	 			)
+ 			} else {
+ 	 			$(this).children('span').text(
+	 				$(this).children('span').text().replace("-", "+")
+	 			)				
+ 			}
+ 		})
+ 	</script>
+ {% endblock scripts %}
+  {% block title %}Capital Census - BAERS Core{% endblock title %}
