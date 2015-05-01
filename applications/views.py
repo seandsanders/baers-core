@@ -509,10 +509,9 @@ def getFlyable(profile):
 			"ships": []
 		}
 		for ship in group["ships"]:
-			sk1 = skills.filter(owner=-1)
 			chars = profile.character_set
 			for skill in ship["skills"]:
-				chars.filter(characterskill__typeID=skill[0], characterskill__level=skill[1])
+				chars = chars.filter(characterskill__typeID=skill[0], characterskill__level__gte=skill[1])
 			g["ships"].append({
 				"name": ship["name"],
 				"shipID": ship["shipID"],
