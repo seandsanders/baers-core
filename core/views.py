@@ -394,7 +394,7 @@ def starbases(request):
 			pos.owner = StarbaseOwner.objects.get(starbaseID=pos.itemID)
 			pos.owner = pos.owner.owner
 		except:
-			pos.owner = "-"
+			pos.owner = None
 
 		if pos.state == 1:
 			ctx["offline"].append(pos)
