@@ -1,21 +1,27 @@
-from django.shortcuts import render, redirect
-from django.db.models import Q
-from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, StarbaseOwner, CharacterSkill
-from django.contrib.auth.models import User, Group
-from core.apireader import validateKey, refreshKeyInfo
-from django.utils.text import slugify
-from core import postNotification
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseForbidden
-from django.contrib.auth.decorators import user_passes_test
-from core.tasks import Task 
-from django.core.urlresolvers import reverse
-from datetime import datetime, timedelta
-from applications.models import Application 
-from srp.models import SRPRequest
-from core.evedata import STARBASE_TYPES
 from django.db import connection
+from django.db.models import Q
+
+from django.contrib.auth.models import User, Group
+from django.contrib.auth.decorators import user_passes_test
+
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseForbidden
+from django.utils.text import slugify
+from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
+
+from datetime import datetime, timedelta
 from json import dumps as jsonify
+
+from core import postNotification
+from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, StarbaseOwner, CharacterSkill
+from core.apireader import validateKey, refreshKeyInfo
+from core.tasks import Task 
+from core.evedata import STARBASE_TYPES
+
+from applications.models import Application
+ 
+from srp.models import SRPRequest
 
 # Create your views here.
 
@@ -45,9 +51,19 @@ def dashboard(request):
 
 	tasklist = []
 
-	c = CorpStarbase.objects.filter(state=3)
-	if len(c) > 0:
-		tasklist.append(Task("<b>IMPORTANT: We have <a href='"+reverse("core:poslist")+"'>"+unicode(len(c))+" reinforced POSes!</a></b>", cssClass="danger"))
+	try:
+		app = request.user.userprofile.application
+		hasapp = app.status == Application.UNPROCESSED or app.status == Application.HOLD or app.status == Application.DENIED
+	except:
+		hasapp = False
+
+	if hasapp:
+		tasklist.append(Task("<b>Your <a href='"+reverse("applications:mystatus")+"'>application status</a>: "+app.get_status_display()+"</b>", cssClass="success"))
+
+	if isDropbear(request.user):
+		c = CorpStarbase.objects.filter(state=3)
+		if len(c) > 0:
+			tasklist.append(Task("<b>IMPORTANT: We have <a href='"+reverse("core:poslist")+"'>"+unicode(len(c))+" reinforced POSes!</a></b>", cssClass="danger"))
 
 	if isDropbear(request.user):
 		try:

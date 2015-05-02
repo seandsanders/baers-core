@@ -475,6 +475,10 @@ def application(request, app):
 				app.status = newStatus 
 				c.text = "changed Status from '"+oldstatus+"' to '"+app.get_status_display()+"'"
 				c.save()
+				if newStatus == Application.ACCEPTED:
+					Group.objects.get(name='Dropbears').user_set.add(app.applicantProfile.user)
+				else:
+					Group.objects.get(name='Dropbears').user_set.remove(app.applicantProfile.user)
 			if app.tag != newTag and app.TAG_CHOICES[newTag]:
 				c = Comment(auto_generated=True, date=datetime.utcnow(), app=app, author=request.user.userprofile)
 				oldtag = app.get_tag_display()
