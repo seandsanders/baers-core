@@ -7,6 +7,7 @@
 	 	<table class="table table-hover" style="display: block;">
 	 		<tr>
 	 			<th>Note</th>
+	 			<th>Responsible</th>
 	 			<th>Location</th>
 	 			<th>Type</th>
 	 			<th>Fuel Blocks</th>
@@ -17,7 +18,18 @@
 	 		</tr>
 	 		{% for pos in rf %}
 				 <tr id="{{pos.itemID}}">
-				 	<td><span>{{pos.note}}</span><input style="display: none;" value="{{pos.note}}"><a class="edit" href="javascript:void(0)"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+				 	<td><span>{{pos.note}}</span><input class="noteinput" style="display: none;" value="{{pos.note}}"><a class="edit" href="javascript:void(0)"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+				 	<td>
+				 		<span>
+					 		{% if pos.owner %}
+					 			<img src="//image.eveonline.com/Character/{{pos.owner.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{pos.owner.mainChar.charName}}"><a href="{% url "core:playerProfile" profileName=pos.owner.mainChar.charName|slugify %}">{{pos.owner.mainChar.charName}}</a>
+					 		{% else %}
+					 			-
+					 		{% endif %}
+					 	</span>
+				 		<input style="display: none;" class="responsible" type="text">
+					 	<a class="edit" href="javascript:void(0)"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+				 	</td>
 				 	<td>{{pos.location}}</td>
 				 	<td>{{pos.info.name}}</td>
 				 	<td>{{pos.fuel}} / {{pos.info.maxFuel}}</td>
@@ -34,6 +46,7 @@
 	 	<table class="table table-hover" style="display: block;">
 	 		<tr>
 	 			<th>Note</th>
+	 			<th>Responsible</th>
 	 			<th>Location</th>
 	 			<th>Type</th>
 	 			<th>Fuel Blocks</th>
@@ -45,7 +58,18 @@
 	 		</tr>
 	 		{% for pos in onlining %}
 				 <tr id="{{pos.itemID}}">
-				 	<td><span>{{pos.note}}</span><input style="display: none;" value="{{pos.note}}"><a class="edit" href="javascript:void(0)"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+				 	<td><span>{{pos.note}}</span><input class="noteinput" style="display: none;" value="{{pos.note}}"><a class="edit" href="javascript:void(0)"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+				 	<td>
+				 		<span>
+					 		{% if pos.owner %}
+					 			<img src="//image.eveonline.com/Character/{{pos.owner.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{pos.owner.mainChar.charName}}"><a href="{% url "core:playerProfile" profileName=pos.owner.mainChar.charName|slugify %}">{{pos.owner.mainChar.charName}}</a>
+					 		{% else %}
+					 			-
+					 		{% endif %}
+					 	</span>
+				 		<input style="display: none;" class="responsible" type="text">
+					 	<a class="edit" href="javascript:void(0)"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+				 	</td>
 				 	<td>{{pos.location}}</td>
 				 	<td>{{pos.info.name}}</td>
 				 	<td>{{pos.fuelpercent}}% ({{pos.fuel}}/{{pos.info.maxFuel}})</td>
@@ -63,6 +87,7 @@
 	 	<table class="table table-hover" style="display: block;">
 	 		<tr>
 	 			<th>Note</th>
+	 			<th>Responsible</th>
 	 			<th>Location</th>
 	 			<th>Type</th>
 	 			<th>Fuel Blocks</th>
@@ -73,7 +98,18 @@
 	 		</tr>
 	 		{% for pos in online %}
 				 <tr id="{{pos.itemID}}">
-				 	<td><span>{{pos.note}}</span><input style="display: none;" value="{{pos.note}}"><a class="edit" href="javascript:void(0)"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+				 	<td><span>{{pos.note}}</span><input class="noteinput" style="display: none;" value="{{pos.note}}"><a class="edit" href="javascript:void(0)"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+				 	<td>
+				 		<span>
+					 		{% if pos.owner %}
+					 			<img src="//image.eveonline.com/Character/{{pos.owner.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{pos.owner.mainChar.charName}}"><a href="{% url "core:playerProfile" profileName=pos.owner.mainChar.charName|slugify %}">{{pos.owner.mainChar.charName}}</a>
+					 		{% else %}
+					 			-
+					 		{% endif %}
+					 	</span>
+				 		<input style="display: none;" class="responsible" type="text">
+					 	<a class="edit" href="javascript:void(0)"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+				 	</td>
 				 	<td>{{pos.location}}</td>
 				 	<td>{{pos.info.name}}</td>
 				 	<td>{{pos.fuelpercent}}% ({{pos.fuel}}/{{pos.info.maxFuel}})</td>
@@ -90,6 +126,7 @@
 	 	<table class="table table-hover" style="display: block;">
 	 		<tr>
 	 			<th>Note</th>
+	 			<th>Responsible</th>
 	 			<th>Location</th>
 	 			<th>Type</th>
 	 			<th>Fuel Blocks</th>
@@ -100,7 +137,18 @@
 	 		</tr>
 	 		{% for pos in offline %}
 				 <tr id="{{pos.itemID}}">
-				 	<td><span>{{pos.note}}</span><input style="display: none;" value="{{pos.note}}"><a class="edit" href="javascript:void(0)"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+				 	<td><span>{{pos.note}}</span><input class="noteinput" style="display: none;" value="{{pos.note}}"><a class="edit" href="javascript:void(0)"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+				 	<td>
+				 		<span>
+					 		{% if pos.owner %}
+					 			<img src="//image.eveonline.com/Character/{{pos.owner.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{pos.owner.mainChar.charName}}"><a href="{% url "core:playerProfile" profileName=pos.owner.mainChar.charName|slugify %}">{{pos.owner.mainChar.charName}}</a>
+					 		{% else %}
+					 			-
+					 		{% endif %}
+					 	</span>
+				 		<input style="display: none;" class="responsible" type="text">
+					 	<a class="edit" href="javascript:void(0)"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+				 	</td>
 				 	<td>{{pos.location}}</td>
 				 	<td>{{pos.info.name}}</td>
 				 	<td>{{pos.fuel}} / {{pos.info.maxFuel}}</td>
@@ -113,17 +161,19 @@
 	 	</table>
 	{% endif %}
  	<hr>
-
  {% endblock content %}
 
  {% block scripts %}
  	<script>
- 		$('a.edit').click(function () {
+ 		var users= {% autoescape off %}{{users}}{% endautoescape %}
+
+ 		$('body').on("click", "a.edit", function () {
  			$(this).prev('input').show().select();
  			$(this).prev().prev('span').hide();
  			$(this).hide();
  		});
- 		$('input').keypress(function (e) {
+
+ 		$('body').on('keypress', 'input.noteinput', function (e) {
  			if (e.which == 13) {
  				$.post('/pos/update', {'id': $(this).parent().parent().prop('id'), 'note': $(this).val()});
  				$(this).next('a').show();
@@ -132,6 +182,24 @@
 
  			}
  		})
+  		updateownerCallback = function (input) {
+  			return function (r) {
+  				$(input).parent().html(r);
+  				$('input.responsible').autocomplete({
+					source: users
+				});
+  			}
+  		}
+  		$('body').on('keypress','input.responsible', function (e) {
+ 			if (e.which == 13) {
+ 				$.post('/pos/updateowner', {'id': $(this).parent().parent().prop('id'), 'owner': $(this).val()}, updateownerCallback(this));
+ 				$(this).hide();
+ 			}
+ 		})
+
+ 		$('input.responsible').autocomplete({
+			source: users
+		});
  	</script>
  {% endblock scripts %}
   {% block title %}POS List - BAERS Core{% endblock title %}

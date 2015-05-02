@@ -345,6 +345,7 @@ class WalletTransactions(models.Model):
 # /corp/StarbaseList.xml.aspx
 # /corp/StarbaseDetail.xml.aspx
 class CorpStarbase(models.Model):
+	owner = models.ForeignKey(UserProfile, null=True)
 
 	itemID = models.BigIntegerField()
 	typeID = models.IntegerField()
@@ -357,6 +358,8 @@ class CorpStarbase(models.Model):
 
 	allowCorpMembers = models.BooleanField()
 	allowAllianceMembers = models.BooleanField()
+
+
 
 # /corp/StarbaseDetail.xml.aspx
 class CorpStarbaseFuel(models.Model):

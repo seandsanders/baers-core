@@ -89,6 +89,7 @@
 		</div>
 	</div>
 {% endif %}
+
  {% endblock content %}
 
 {% block title %}{{profile}} - Dropbears Auth{%endblock title%}
@@ -98,6 +99,10 @@
 		$('.skillplantoggle').click(function () {
 
 			$(this).parent().nextAll('div.missingskills').first().toggle();
+		});
+
+		$('input.responsible').autocomplete({
+			source: {{users}}
 		});
 	</script>
  {% endblock scripts %}

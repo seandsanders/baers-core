@@ -15,6 +15,7 @@ from applications.models import Application
 from srp.models import SRPRequest
 from core.evedata import STARBASE_TYPES
 from django.db import connection
+from json import dumps as jsonify
 
 # Create your views here.
 
@@ -63,6 +64,41 @@ def dashboard(request):
 		c = len(SRPRequest.objects.filter(status=SRPRequest.PENDING))
 		if c != 0:
 			tasklist.append(Task("There are <a href='"+reverse("srp:srpadmin")+"'>"+unicode(c)+" pending SRP requests.</a>", cssClass="warning"))
+
+	if request.user.userprofile.corpstarbase_set.exists():
+		c = request.user.userprofile.corpstarbase_set.filter(state__gte=3)
+		from evedata import STARBASE_TYPES
+		for pos in c:
+			try:
+				fuels = pos.corpstarbasefuel_set.exclude(typeID=16275)
+				if len(fuels) > 1:
+					print "WARNING: FOUND MULTIPLE FUEL BLOCK TYPES!"
+
+				if len(fuels) == 0:
+					pos.fuel = 0
+				else:
+					pos.fuel = fuels.first().quantity
+			except CorpStarbaseFuel.DoesNotExist:
+				pos.fuel = 0
+
+			pos.info = STARBASE_TYPES[pos.typeID]
+
+			pos.fuelpercent = int(100*float(pos.fuel)/float(pos.info["maxFuel"]))
+
+			if pos.fuelpercent < 20:
+
+				cur = connection.cursor()
+
+				cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = "' + unicode(pos.moonID)+ '";')
+
+				tup = cur.fetchone()
+
+				if tup:
+					pos.location = tup[0]
+				else:
+					pos.location = "[API Error]"
+
+				tasklist.append(Task("Your POS at  <a href='"+reverse("core:poslist")+"'>"+pos.location+"</a> has only "+unicode(pos.fuelpercent)+"% fuel remaining.", cssClass="warning"))
 
 
 	if len(tasklist) == 0:
@@ -369,6 +405,7 @@ def starbases(request):
 		ctx["online"] = sorted(ctx["online"], key=lambda pos: pos.remaining)
 		ctx["monthly"] = hourly*24*30
 		ctx["monthlyisk"] = hourly*24*30*15000
+		ctx["users"] = jsonify([u[0] for u in UserProfile.objects.values_list('mainChar__charName')])
 
 
 	return render(request, "poslist.html", ctx)
@@ -389,6 +426,27 @@ def updateNote(request):
 		note.note = text
 		note.save()
 	return HttpResponse('')
+
+@csrf_exempt
+def updateOwner(request):
+	if not isPOS(request.user):
+		return HttpResponseForbidden("<h1>You do not have the permission to view this page.</h1>")
+
+	id = request.POST.get('id', False)
+	name = request.POST.get('owner', False)
+	if id and name:		
+		try:
+			profile = Character.objects.get(charName=name).profile
+			pos = CorpStarbase.objects.get(itemID=id)
+			pos.owner = profile
+			pos.save()
+		except:
+			profile = None
+	else:
+		pos = None
+
+	return render(request, 'starbaseowner.html', {"profile": pos.owner})
+
 
 def groupList(request):
 	if not isDirector(request.user):
