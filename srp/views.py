@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseForbidden
-from srp.models import SRPRequest
+from srp.models import SRPRequest, SRPComment
 from core.models import Notification, Character
 import urllib2, json, gzip
 from StringIO import StringIO
 import eveapi
+from datetime import datetime
 from django.db.models import Sum
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import Group
@@ -40,7 +41,7 @@ def srpadmin(request):
 		"approvedsum": approvedsum
 	}
 
-	return render(request, 'srpadmin.html', c)
+	return render(request, 'srplist.html', c)
 
 def srplist(request):
 	if not isDropbears(request.user):
@@ -67,24 +68,38 @@ def srplist(request):
 	return render(request, 'srplist.html', c)
 
 def viewsrp(request, killID):
-	if not isFinance(request.user):
+	kill = SRPRequest.objects.get(killID=killID)
+	f = isFinance(request.user)
+	if not (f or request.user.userprofile == kill.owner):
 		return HttpResponseForbidden("Please log in first.")
 
-	kill = SRPRequest.objects.get(killID=killID)
 	if request.method == "POST":
-		if request.POST.get('approve', False) and kill.status != 1:
+		if request.POST.get('newComment', False):
+			c = SRPComment()
+			c.text = request.POST.get('commentbody')
+			c.author = request.user.userprofile
+			c.date = datetime.utcnow()
+			c.request = kill
+			c.save()
+			finance = Group.objects.filter(name="Finance").first()
+			note = Notification(cssClass="info")
+			note.content="<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(request.user.userprofile)})+"'>"+unicode(c.author)+"</a> commented on <a href='"+reverse('srp:viewsrp', kwargs={"killID": kill.killID})+"'>"+unicode(kill.owner)+"'s SRP Request for a "+kill.ship+"</a>"
+			note.save()
+			note.targetGroup.add(finance)
+			note.targetUsers.add(kill.owner.user)
+		elif request.POST.get('approve', False) and kill.status != 1 and f:
 			kill.status = 1
 			kill.approver = request.user.userprofile
 			n = Notification(cssClass='success', content='Your <a href="'+reverse("srp:srplist")+'">SRP request</a> for a '+kill.ship+' has been accepted.')
 			n.save()
 			n.targetUsers.add(kill.owner.user)
-		elif request.POST.get('deny', False) and kill.status != 2:
+		elif request.POST.get('deny', False) and kill.status != 2 and f:
 			kill.status = 2
 			kill.approver = request.user.userprofile
 			n = Notification(cssClass='danger', content='Your <a href="'+reverse("srp:srplist")+'">SRP request</a> for a '+kill.ship+' has been denied.')
 			n.save()
 			n.targetUsers.add(kill.owner.user)
-		elif request.POST.get('pending', False) and kill.status != 0:
+		elif request.POST.get('pending', False) and kill.status != 0 and f:
 			kill.status = 0
 			kill.approver = None
 			n = Notification(cssClass='warning', content='Your <a href="'+reverse("srp:srplist")+'">SRP request</a> for a '+kill.ship+' has been reset.')
@@ -99,7 +114,7 @@ def viewsrp(request, killID):
 
 	if not kill:
 		return HttpResponseNotFound("Kill not found")
-	c = {"kill": kill, "apiwarning": apiwarning}
+	c = {"kill": kill, "apiwarning": apiwarning, "admin": f}
 	return render(request, "srpdetails.html", c)
 
 def submit(request):

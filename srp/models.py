@@ -35,3 +35,8 @@ class SRPRequest(models.Model):
 	def __str__(self):
 		return unicode(owner)+" "+unicode(killID)
 
+class SRPComment(models.Model):
+	request = models.ForeignKey(SRPRequest)
+	author = models.ForeignKey(UserProfile)
+	date = models.DateTimeField(auto_now_add=True)
+	text = models.CharField(max_length=800)
