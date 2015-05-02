@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, CharacterSkill
+from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, StarbaseOwner, CharacterSkill
 from django.contrib.auth.models import User, Group
 from core.apireader import validateKey, refreshKeyInfo
 from django.utils.text import slugify
@@ -64,9 +64,9 @@ def dashboard(request):
 		c = len(SRPRequest.objects.filter(status=SRPRequest.PENDING))
 		if c != 0:
 			tasklist.append(Task("There are <a href='"+reverse("srp:srpadmin")+"'>"+unicode(c)+" pending SRP requests.</a>", cssClass="warning"))
-
-	if request.user.userprofile.corpstarbase_set.exists():
-		c = request.user.userprofile.corpstarbase_set.filter(state__gte=3)
+		
+	c = CorpStarbase.objects.filter(itemID__in=request.user.userprofile.starbaseowner_set.values_list('starbaseID')).filter(state__gte=3)
+	if c.exists():
 		from evedata import STARBASE_TYPES
 		for pos in c:
 			try:
@@ -390,6 +390,11 @@ def starbases(request):
 			pos.note = pos.note.note
 		except:
 			pos.note = "-"
+		try:
+			pos.owner = StarbaseOwner.objects.get(starbaseID=pos.itemID)
+			pos.owner = pos.owner.owner
+		except:
+			pos.note = "-"
 
 		if pos.state == 1:
 			ctx["offline"].append(pos)
@@ -436,16 +441,20 @@ def updateOwner(request):
 	name = request.POST.get('owner', False)
 	if id and name:		
 		try:
+			owner = StarbaseOwner.objects.get(starbaseID = id)
+		except:
+			owner = StarbaseOwner(starbaseID=id)
+		try:
 			profile = Character.objects.get(charName=name).profile
-			pos = CorpStarbase.objects.get(itemID=id)
-			pos.owner = profile
-			pos.save()
+			owner.owner = profile
+			owner.save()
 		except:
 			profile = None
+		
 	else:
-		pos = None
+		owner = None
 
-	return render(request, 'starbaseowner.html', {"profile": pos.owner})
+	return render(request, 'starbaseowner.html', {"profile": owner.owner})
 
 
 def groupList(request):

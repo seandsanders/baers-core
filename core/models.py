@@ -345,8 +345,6 @@ class WalletTransactions(models.Model):
 # /corp/StarbaseList.xml.aspx
 # /corp/StarbaseDetail.xml.aspx
 class CorpStarbase(models.Model):
-	owner = models.ForeignKey(UserProfile, null=True)
-
 	itemID = models.BigIntegerField()
 	typeID = models.IntegerField()
 	locationID = models.IntegerField()
@@ -393,6 +391,10 @@ class CorpMember(models.Model):
 class StarbaseNote(models.Model):
 	starbaseID = models.BigIntegerField() 
 	note = models.CharField(max_length=1000)
+
+class StarbaseOwner(models.Model):
+	starbaseID = models.BigIntegerField() 
+	owner = models.ForeignKey(UserProfile, null=True)
 
 ##
 # Store cache times in a table
