@@ -10,7 +10,7 @@ def isDropbear(user):
 
 def reddit(request):
 	if not isDropbear(request.user):
-		return HttpResponseForbidden("<h1>Only for current members</h1>")
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a member.'})
 
 	status = -1
 	if request.method == "POST":
@@ -26,7 +26,7 @@ def reddit(request):
 
 def redditlist(request):
 	if not isHR(request.user):
-		return HttpResponseForbidden("<h1>Insufficient Permissions</h1>")
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a HR officer.'})
 
 	accs = RedditAccount.objects.all()
 

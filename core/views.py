@@ -274,13 +274,13 @@ def myProfile(request):
 
 def playerProfile(request, profileName):
 	if not isDropbear(request.user):
-		return HttpResponseForbidden("<h1>Only for current members</h1>")
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a member.'})
 	def unslugify(name):
 		return name.replace("-", " ") 
 	try:
 		c = Character.objects.get(charName__iexact = unslugify(profileName))
 	except:
-		return HttpResponseNotFound('<h1>Page not found</h1>')
+		return render(request, 'error.html', {'title': '404 - Not Found', 'description': 'This character is not in the Database.'})
 	return profile(request, c.profile, mark=c)
 
 def searchProfile(request):
@@ -335,7 +335,7 @@ def profile(request, profile, mark=None):
 
 def memberList(request):
 	if not isHR(request.user):
-		return HttpResponseForbidden("<h1>You do not have the permission to view this page.</h1>")	
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a HR officer.'})
 	ctx = {}
 	corpchars = CorpMember.objects.all()
 	chars = Character.objects.all()
@@ -356,7 +356,7 @@ def memberList(request):
 
 def starbases(request):
 	if not isPOS(request.user):
-		return HttpResponseForbidden("<h1>You do not have the permission to view this page.</h1>")
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You do not have permissions to use the POS tracker.'})
 
 	poses = CorpStarbase.objects.all()
 
@@ -436,7 +436,7 @@ def starbases(request):
 @csrf_exempt
 def updateNote(request):
 	if not isPOS(request.user):
-		return HttpResponseForbidden("<h1>You do not have the permission to view this page.</h1>")
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You do not have the permission to use the POS tracker.'})
 
 	id = request.POST.get('id', False)
 	text = request.POST.get('note', False)
@@ -453,7 +453,7 @@ def updateNote(request):
 @csrf_exempt
 def updateOwner(request):
 	if not isPOS(request.user):
-		return HttpResponseForbidden("<h1>You do not have the permission to view this page.</h1>")
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You do not have the permission to use the POS tracker.'})
 
 	id = request.POST.get('id', False)
 	name = request.POST.get('owner', False)
@@ -477,7 +477,7 @@ def updateOwner(request):
 
 def groupList(request):
 	if not isDirector(request.user):
-		return HttpResponseForbidden('<h1>You do not have permission to view this page.</h1>')
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a director.'})
 
 	groups = Group.objects.all()
 
@@ -485,7 +485,7 @@ def groupList(request):
 
 def capCensus(request):
 	if not isDirector(request.user):
-		return HttpResponseForbidden("<h1>You do not have permission to view this page.</h1>")
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a director.'})
 
 	from applications.views import ships
 

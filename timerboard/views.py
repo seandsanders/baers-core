@@ -12,7 +12,7 @@ from django.utils.text import slugify
 # Create your views here.
 def timerboard(request):
 	if not isDropbear(request.user):
-		return HttpResponseForbidden("<h1>You do not have the permission to view this page.</h1>")
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a member.'})
 
 	status = None
 	if request.method == "POST":
@@ -48,7 +48,7 @@ def timerboard(request):
 @csrf_exempt
 def updateNote(request):
 	if not isDropbear(request.user):
-		return HttpResponseForbidden("<h1>You do not have the permission to view this page.</h1>")
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a member.'})
 
 	id = request.POST.get('id', False)
 	text = request.POST.get('note', False)

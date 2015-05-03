@@ -20,7 +20,7 @@ def isDropbears(user):
 
 def srpadmin(request):
 	if not isFinance(request.user):
-		return HttpResponseForbidden("Please log in first.")
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a finance officer.'})
 	srps = SRPRequest.objects.all()
 	
 	pending = srps.filter(status=0)
@@ -45,7 +45,7 @@ def srpadmin(request):
 
 def srplist(request):
 	if not isDropbears(request.user):
-		return HttpResponseForbidden("Please log in first.")
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a member.'})
 	srps = SRPRequest.objects.filter(owner=request.user.userprofile)
 	
 	pending = srps.filter(status=0)
@@ -71,7 +71,7 @@ def viewsrp(request, killID):
 	kill = SRPRequest.objects.get(killID=killID)
 	f = isFinance(request.user)
 	if not (f or request.user.userprofile == kill.owner):
-		return HttpResponseForbidden("Please log in first.")
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a member.'})
 
 	if request.method == "POST":
 		if request.POST.get('newComment', False):
@@ -113,13 +113,13 @@ def viewsrp(request, killID):
 		apiwarning = False
 
 	if not kill:
-		return HttpResponseNotFound("Kill not found")
+		return render(request, 'error.html', {'title': '404 - Not Found', 'description': 'There is no kill with that ID in the database.'})
 	c = {"kill": kill, "apiwarning": apiwarning, "admin": f}
 	return render(request, "srpdetails.html", c)
 
 def submit(request):
 	if not isDropbears(request.user):
-		return HttpResponseForbidden("Please log in first.")
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a member.'})
 	c = {}
 	if request.method == "POST":
 		error = False

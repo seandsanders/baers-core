@@ -409,10 +409,13 @@ def apply(request, token):
 		request.session['appToken'] = token
 		return redirect("core:register")
 
-	app = Application.objects.filter(token=token).first()
+	try:
+		app = Application.objects.get(token=token)
+	except:
+		app = False
 
 	if not app:
-		return HttpResponseNotFound("Invalid Token")
+		return render(request, 'error.html', {'title': '404 - Page not found', 'description': token+' is not a valid application token.'})
 
 	if (app.status > 0):
 		return redirect("applications:mystatus")
@@ -450,13 +453,13 @@ def mystatus(request):
 
 def application(request, app):
 	if not isRecruiter(request.user):
-		return HttpResponseNotFound()
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a recruiter.'})
 
 	hr = isHR(request.user)
 	app = Application.objects.filter(token=app).first()
 
 	if app.status == Application.ACCEPTED and not hr:
-		return HttpResponseForbidden('<h1>For privacy reasons, only HR officers are allowed to view accepted applications.</h1>')
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'For privacy reasons, only HR officers can view accepted applications.'})
 
 	if request.method == "POST":
 		if request.POST.get('newComment'):
@@ -533,7 +536,7 @@ def getFlyable(profile):
 
 def applications(request):
 	if not isRecruiter(request.user):
-		return HttpResponseNotFound()
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a recruiter.'})
 	apps = Application.objects.all()
 	unp = apps.filter(status=Application.UNPROCESSED).order_by('applicationDate')
 	hld = apps.filter(status=Application.HOLD).order_by('-applicationDate')
@@ -551,7 +554,7 @@ def applications(request):
 @csrf_exempt
 def newApplication(request):
 	if not isRecruiter(request.user):
-		return HttpResponseNotFound()
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a recruiter.'})
 	sample = string.lowercase+string.digits
 	token = ''.join(random.sample(sample, 5))
 
@@ -598,6 +601,6 @@ def checkPlan(request, characterID):
 
 	if c:
 		if not (isRecruiter(request.user) or c.profile.user == request.user):
-			return HttpResponseNotFound("Whatever, I don't care about accurate error messages anymore, I'll have to write better ones anyway soon")
+			return HttpResponseForbidden('<h1>You do not have the permissions to view this character\'s skillplans</h1>')
 
 		return render(request, 'tags/skillplans.html', {'result': compareSkillplans(c), 'character': c})
