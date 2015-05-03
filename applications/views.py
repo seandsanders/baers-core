@@ -98,7 +98,7 @@ ships = [
 				{
 					"name": "Scythe",
 					"shipID": 631,
-					"skills": [(3333, 1), (3342, 1)]
+					"skills": [(3333, 1), (3422, 1)]
 				},
 				{
 					"name": "VNI",
@@ -128,7 +128,7 @@ ships = [
 				{	
 					"name": "Scimitar",
 					"shipID": 11978,
-					"skills": [(3333, 5), (3342, 1), (12096, 4)]
+					"skills": [(3333, 5), (3422, 1), (12096, 4)]
 				},
 				{	
 					"name": "Cerberus",
