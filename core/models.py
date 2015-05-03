@@ -90,7 +90,7 @@ class Character(models.Model):
 	dateOfBirth = models.DateTimeField(null=True)
 	race = models.CharField(max_length=10,null=True)
 	gender = models.CharField(max_length=6,null=True) # I wonder if max_length of 6 covers all preferred pronouns *triggerwarning*
-	walletBalance = models.IntegerField(null=True)
+	walletBalance = models.BigIntegerField(null=True)
 	sp = models.IntegerField(null=True)
 
 	jumpFatigue = models.DateTimeField(null=True)
