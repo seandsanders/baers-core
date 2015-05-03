@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% load humanize %}
+{% load getapps %}
 {% block content %}
 <h3>Viewing application of</h3>
 <div class="row">
@@ -99,16 +100,14 @@
 			{% endif %}
 
 		<hr>
-		<h4>Skillplan Progress: <small>(Last Update: {{profile.mainChar.api.lastRefresh}})</small></h4>
-		{% for plan in skills %}
-			<span><b>{{plan.name}}</b>: {{plan.completed}} of {{plan.nSkills}} ({{plan.prct}}%) (<a class="skillplantoggle" href="javascript:void(0)">Show/Hide missing</a>)</span><br>
-			<div class="missingskills well" style="display:none">
-				<b>Missing from {{plan.name}}</b><br>
-				{% for skill in plan.missing %}
-					<span>{{skill.skill}} level {{skill.level}}</span><br>
-				{%endfor%}
-			</div>
-		{% endfor %}
+		<select class="skillplandropdown">
+			{% for char in profile.character_set.all %}
+				<option {% if char == app.applicantProfile.mainChar %}selected="true"{% endif %} value="{{char.charID}}">{{char.charName}}</option>
+			{% endfor %}
+		</select>
+		<div class="skillplans">
+			{% skillplans app.applicantProfile.mainChar %}
+		</div>
 		<hr>
 		<h4>Flyable Ships:</h4>
 			{% for group in ships %}
@@ -129,9 +128,16 @@
 
 {% block scripts %}
 	<script>
-		$('.skillplantoggle').click(function () {
+		$('body').on('click', '.skillplantoggle', function () {
 
 			$(this).parent().nextAll('div.missingskills').first().toggle();
 		});
+
+		$('.skillplandropdown').change(function() {
+			$('div.skillplans').html("<br><small>Loading...</small>");
+			$.get('/applications/checkplan/'+$(this).val(), function (r) {
+				$('div.skillplans').html(r);
+			})
+		})
 	</script>
 {% endblock scripts %}

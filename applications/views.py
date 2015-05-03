@@ -583,3 +583,15 @@ def compareSkillplans(character):
 		result.append({"name": plan.attrib['name'], "completed": completed, "nSkills": nSkills, "missing": missing, "prct": int(100*completed/nSkills)})
 
 	return result
+
+def checkPlan(request, characterID):
+	try:
+		c = Character.objects.get(charID=characterID)
+	except:
+		c = False
+
+	if c:
+		if not (isRecruiter(request.user) or c.profile.user == request.user):
+			return HttpResponseNotFound("Whatever, I don't care about accurate error messages anymore, I'll have to write better ones anyway soon")
+
+		return render(request, 'tags/skillplans.html', {'result': compareSkillplans(c), 'character': c})

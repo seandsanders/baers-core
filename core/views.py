@@ -323,10 +323,9 @@ def profile(request, profile, mark=None):
 	ctx = {"profile": profile, "titles": titles, "mark": mark, "isRecruiter": isRecruiter(request.user), "isDirector": director, "grouplist": grouplist}
 
 	if isRecruiter(request.user) or request.user.userprofile == profile:
-		from applications.views import getFlyable, compareSkillplans
+		from applications.views import getFlyable
 		ctx['showSkills'] = True
 		ctx["ships"] = getFlyable(profile)
-		ctx["skills"] = compareSkillplans(profile.mainChar)
 
 	return render(request, "profile.html", ctx)
 
