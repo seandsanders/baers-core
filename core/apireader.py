@@ -100,6 +100,7 @@ def refreshKeyInfo(key, full=True):
 	itGrp, created = Group.objects.get_or_create(name='IT')
 	inCorpGrp, created = Group.objects.get_or_create(name='Dropbears')
 	recruiterGrp, created = Group.objects.get_or_create(name='Recruiter')
+	hrGrp, created = Group.objects.get_or_create(name='HR')
 	print "Requesting APIKeyInfo for", key.profile
 
 	if full:
@@ -124,7 +125,7 @@ def refreshKeyInfo(key, full=True):
 		n = Notification(cssClass="danger")
 		n.content = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> has invalidated one of their API keys."
 		n.save()
-		n.targetGroup.add(recruiterGrp)
+		n.targetGroup.add(hrGrp)
 		print unicode(key.profile)+" has invalidated one of their API keys."
 		return
 	key.accessMask = result.key.accessMask
@@ -148,7 +149,7 @@ def refreshKeyInfo(key, full=True):
 		n = Notification(cssClass="danger")
 		n.content = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> has invalidated one of their API keys."
 		n.save()
-		n.targetGroup.add(recruiterGrp)
+		n.targetGroup.add(hrGrp)
 		print unicode(key.profile)+" has invalidated one of their API keys."
 		return
 

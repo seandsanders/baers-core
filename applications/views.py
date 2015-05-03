@@ -3,9 +3,9 @@ import applications as appmodule
 from django.db import transaction
 from applications.models import Application, Answer, Comment
 from datetime import datetime
-from django.http import HttpResponseNotFound, HttpResponse
+from django.http import HttpResponseNotFound, HttpResponse, HttpResponseForbidden
 from core.models import CharacterSkill, Character, Notification
-from core.views import isRecruiter
+from core.views import isRecruiter, isHR
 from django.db.models import Count
 import random, string
 from django.views.decorators.csrf import csrf_exempt
@@ -451,7 +451,13 @@ def mystatus(request):
 def application(request, app):
 	if not isRecruiter(request.user):
 		return HttpResponseNotFound()
+
+	hr = isHR(request.user)
 	app = Application.objects.filter(token=app).first()
+
+	if app.status == Application.ACCEPTED and not hr:
+		return HttpResponseForbidden('<h1>For privacy reasons, only HR officers are allowed to view accepted applications.</h1>')
+
 	if request.method == "POST":
 		if request.POST.get('newComment'):
 			c = Comment()

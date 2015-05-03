@@ -52,7 +52,7 @@
           <ul class="nav nav-sidebar">
             {% if request.user|has_group:"POS" %}<li {% if request.resolver_match.url_name == "poslist" %}class="active"{%endif%}><a href="{% url "core:poslist" %}">POS Overview</a></li>{% endif %}
             {% if request.user|has_group:"Recruiter" %}<li {% if request.resolver_match.url_name == "applications" %}class="active"{%endif%}><a href="{% url "applications:applications" %}">Applications <span class="badge">{% get_apps %}</span></a></li>{% endif %}
-            {% if request.user|has_group:"Recruiter" %}<li {% if request.resolver_match.url_name == "memberlist" %}class="active"{%endif%}><a href="{% url "core:memberlist" %}">Member List</a></li>{% endif %}
+            {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "memberlist" %}class="active"{%endif%}><a href="{% url "core:memberlist" %}">Member List</a></li>{% endif %}
             {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "grouplist" %}class="active"{%endif%}><a href="{% url "core:grouplist" %}">Group Admin</a></li>{% endif %}
             {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "capcensus" %}class="active"{%endif%}><a href="{% url "core:capcensus" %}">Capital Pilots</a></li>{% endif %}
           </ul>
@@ -64,7 +64,7 @@
           <ul  class="nav nav-sidebar">
             <!--li {% if request.resolver_match.url_name == "hipchat" %}class="active"{%endif%}><a href="">Hipchat Access</a></li -->
             {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "reddit" %}class="active"{%endif%}><a href="{% url "subreddit:reddit" %}">Subreddit Access</a></li>{% endif %}
-            {% if request.user|has_group:"Recruiter" %}<li {% if request.resolver_match.url_name == "redditlist" %}class="active"{%endif%}><a href="{% url "subreddit:redditlist" %}">Reddit Account List</a></li>{% endif %}
+            {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "redditlist" %}class="active"{%endif%}><a href="{% url "subreddit:redditlist" %}">Reddit Account List</a></li>{% endif %}
           </ul>
           {% get_links %}
         </div>

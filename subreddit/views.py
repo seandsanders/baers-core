@@ -25,7 +25,7 @@ def reddit(request):
 	return render(request, "main.html", {"name": name, "status": status})
 
 def redditlist(request):
-	if not isRecruiter(request.user):
+	if not isHR(request.user):
 		return HttpResponseForbidden("<h1>Insufficient Permissions</h1>")
 
 	accs = RedditAccount.objects.all()

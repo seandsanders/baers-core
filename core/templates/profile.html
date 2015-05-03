@@ -15,7 +15,7 @@
 	 		<tr>
 	 			<th>Alt Name</th>
 	 			<th>Corporation</th>
-	 			{% if isRecruiter %}
+	 			{% if isHR %}
 	 				<th>Active Ship</th>
 	 				<th>Location</th>
 	 				<th>Jackknife</th>
@@ -25,7 +25,7 @@
 					<tr class="{%if mark == char%}info{%endif%}">
 				 		<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{char.charName}}</td>
 				 		<td><img src="//image.eveonline.com/Corporation/{{char.corpID}}_32.png" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.corpName}}">{{char.corpName}}</td>
-				 		{% if isRecruiter %}
+				 		{% if isHR %}
 				 			<td>{{char.activeShipTypeName}} ({{char.activeShipName}})</td>
 				 			<td>{{char.location}}</td>
 				 			<td><a target="_blank" href="http://ridetheclown.com/eveapi/audit.php?chid={{char.charID}}&usid={{char.api.keyID}}&apik={{char.api.vCode}}">API</a></td>

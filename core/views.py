@@ -28,6 +28,9 @@ from srp.models import SRPRequest
 def isRecruiter(user):
 	return user.groups.filter(name='Recruiter').exists()
 
+def isHR(user):
+	return user.groups.filter(name='HR').exists()
+
 def isDirector(user):
 	return user.groups.filter(name='Director').exists()
 
@@ -236,7 +239,7 @@ def apiKeys(request):
 					if request.user == k.profile.user:
 						k.deleted = True
 						k.save()
-						postNotification(target=recruiterGrp, text=unicode(request.user.userprofile)+" has deleted an API key.", cssClass="warning")
+						postNotification(target=hrGrp, text=unicode(request.user.userprofile)+" has deleted an API key.", cssClass="warning")
 				except:
 					pass
 		elif action and action == "addkey":
@@ -320,9 +323,9 @@ def profile(request, profile, mark=None):
 			grouplist.append({"name": grp.name, "checked": True})
 		elif director:
 			grouplist.append({"name": grp.name, "checked": False})
-	ctx = {"profile": profile, "titles": titles, "mark": mark, "isRecruiter": isRecruiter(request.user), "isDirector": director, "grouplist": grouplist}
+	ctx = {"profile": profile, "titles": titles, "mark": mark, "isRecruiter": isRecruiter(request.user), "isHR": isHR(request.user), "isDirector": director, "grouplist": grouplist}
 
-	if isRecruiter(request.user) or request.user.userprofile == profile:
+	if isHR(request.user) or request.user.userprofile == profile:
 		from applications.views import getFlyable
 		ctx['showSkills'] = True
 		ctx["ships"] = getFlyable(profile)
@@ -331,7 +334,7 @@ def profile(request, profile, mark=None):
 
 
 def memberList(request):
-	if not isRecruiter(request.user):
+	if not isHR(request.user):
 		return HttpResponseForbidden("<h1>You do not have the permission to view this page.</h1>")	
 	ctx = {}
 	corpchars = CorpMember.objects.all()

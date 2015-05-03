@@ -147,7 +147,7 @@ def submit(request):
 			new.ship = shipName
 			new.save()
 			c["message"] = "Successfully added kill #"+new.killID
-			finance = Group.objects.filter(name="Recruiter").first()
+			finance = Group.objects.filter(name="Finance").first()
 			note = Notification(cssClass="info")
 			note.content="New <a href='"+reverse('srp:viewsrp', kwargs={"killID": new.killID})+"'>SRP request for a "+shipName+"</a> added by <a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(request.user.userprofile)})+"'>"+unicode(request.user.userprofile)+"</a>."
 			note.save()
