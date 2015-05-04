@@ -65,6 +65,9 @@
             <!--li {% if request.resolver_match.url_name == "hipchat" %}class="active"{%endif%}><a href="">Hipchat Access</a></li -->
             {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "reddit" %}class="active"{%endif%}><a href="{% url "subreddit:reddit" %}">Subreddit Access</a></li>{% endif %}
             {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "redditlist" %}class="active"{%endif%}><a href="{% url "subreddit:redditlist" %}">Reddit Account List</a></li>{% endif %}
+            {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "hipchat" %}class="active"{%endif%}><a href="{% url "hipchat:hipchat" %}">Hipchat Access</a></li>{% endif %}
+            {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "hipchatlist" %}class="active"{%endif%}><a href="{% url "hipchat:hipchatlist" %}">Hipchat Account List</a></li>{% endif %}
+
           </ul>
           {% get_links %}
         </div>
