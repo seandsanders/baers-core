@@ -87,7 +87,35 @@ def refreshCorpApi():
 	except Exception as e:
 		print "ERROR", e
 
+	if settings.ALTCORP_API_KEYID and settings.ALTCORP_API_VCODE:
+		api = eveapi.EVEAPIConnection()
+		auth = api.auth(keyID=settings.ALTCORP_API_KEYID, vCode=settings.ALTCORP_API_VCODE)
 
+		print "Requesting AltCorp Members"
+		try:
+			result = auth.corp.MemberTracking(extended=1)
+			newMembers = []
+
+			for member in result.members:
+				newMembers.append(
+					CorpMember(
+						characterID = member.characterID,
+						characterName = member.name,
+						joinDate = datetime.datetime.fromtimestamp(member.startDateTime),
+						title = member.title,
+						logonDate = datetime.datetime.fromtimestamp(member.logonDateTime),
+						logoffDate = datetime.datetime.fromtimestamp(member.logoffDateTime),
+						locationID = member.locationID,
+						location = member.location,
+						shipTypeID = member.shipTypeID,
+						roles = member.grantableRoles,
+						shipType = member.shipType,
+						altCorp = True
+					)
+				)
+			CorpMember.objects.bulk_create(newMembers)
+		except Exception as e:
+			print "ERROR", e
 
 ##
 # Full API refresh. Calls all EVE API functions that are not within their cache time.

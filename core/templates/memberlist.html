@@ -26,6 +26,33 @@
  		{% endfor %}
  	</table>
 
+ 	{% if validAlts %}
+ 	 	<h1 class="page-header">Valid Alt Corp API Keys</h1>
+
+	 	<table class="table table-hover" style="display: block;">
+	 		<tr>
+	 			<th>CharName</th>
+	 			<td>Main Character</th>
+	 			<th>Location</th>
+	 			<th>Ship</th>
+	 			<th>Joined</th>
+	 			<td>Last Active</td>
+	 			<td>Inactive for</td>
+	 		</tr>
+	 		{% for char in validAlts %}
+				 <tr>
+				 	<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}"><a href="{% url "core:playerProfile" profileName=char.charName|slugify %}">{{char.charName}}</a></td>
+				 	<td>{{char.mainChar}}</td>
+				 	<td>{{char.location}}</td>
+				 	<td>{{char.shipType}} ({{char.shipName}})</td>
+				 	<td>{{char.joinDate}}</td>
+				 	<td>{{char.logoffDate}}</td>
+				 	<td>{{char.inactiveDays}} days</td>
+				 </tr>
+	 		{% endfor %}
+	 	</table>
+	 {% endif %}
+
  	<h1 class="page-header">Invalid API Keys</h1>
  	 <table class="table table-hover" style="display: block;">
  		<tr>
@@ -48,6 +75,33 @@
  		{% endfor %}
  	</table>
  	<hr>
+
+ 	{% if invalidAlts %}
+ 	 	<h1 class="page-header">Invalid Alt Corp API Keys</h1>
+	 	 <table class="table table-hover" style="display: block;">
+	 		<tr>
+	 			<th>CharName</th>
+	 			<th>Location</th>
+	 			<th>Ship</th>
+	 			<th>Joined</th>
+	 			<td>Last Active</td>
+	 			<td>Inactive For</td>
+	 		</tr>
+	 		{% for char in invalidCharacters %}
+				 <tr>
+				 	<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{char.charName}}</td>
+				 	<td>{{char.location}}</td>
+				 	<td>{{char.shipType}}</td>
+				 	<td>{{char.joinDate}}</td>
+				 	<td>{{char.logoffDate}}</td>
+				 	<td>{{char.inactiveDays}} days</td>
+				 </tr>
+	 		{% endfor %}
+	 	</table>
+ 		<hr>
+ 	{% endif %}
+
+
  {% endblock content %}
 
  {% block scripts %}

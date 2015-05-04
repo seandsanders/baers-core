@@ -1,6 +1,8 @@
 from django.db import connection
 from django.db.models import Q
 
+from django.conf import settings
+
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import user_passes_test
 
@@ -337,7 +339,7 @@ def memberList(request):
 	if not isHR(request.user):
 		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a HR officer.'})
 	ctx = {}
-	corpchars = CorpMember.objects.all()
+	corpchars = CorpMember.objects.filter(altCorp=False)
 	chars = Character.objects.all()
 	ctx["validCharacters"] = []
 	ctx["invalidCharacters"] = []
@@ -348,7 +350,18 @@ def memberList(request):
 			ctx["invalidCharacters"].append({"valid": False, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "mainChar": "", "shipType": char.shipType, "inactiveDays": inactiveDays})
 		else:
 			ctx["validCharacters"].append({"valid": True, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "slug": slugify(char.characterName), "mainChar": c.profile.mainChar, "shipType": char.shipType, "shipName": c.activeShipName, "inactiveDays": inactiveDays})
-		
+	if settings.ALTCORP_API_KEYID and settings.ALTCORP_API_VCODE:
+		ctx["validAlts"] = []
+		ctx["invalidAlts"] = []
+		corpchars = CorpMember.objects.filter(altCorp=True)
+		for char in corpchars:
+			c = chars.filter(charID=char.characterID).first()
+			inactiveDays = (datetime.utcnow().replace(tzinfo=None) - char.logoffDate.replace(tzinfo=None)).days
+			if not (c and c.api.valid):
+				ctx["invalidAlts"].append({"valid": False, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "mainChar": "", "shipType": char.shipType, "inactiveDays": inactiveDays})
+			else:
+				ctx["validAlts"].append({"valid": True, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "slug": slugify(char.characterName), "mainChar": c.profile.mainChar, "shipType": char.shipType, "shipName": c.activeShipName, "inactiveDays": inactiveDays})
+
 
 
 	return render(request, "memberlist.html", ctx)

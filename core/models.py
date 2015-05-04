@@ -386,6 +386,7 @@ class CorpMember(models.Model):
 	shipTypeID = models.IntegerField()
 	shipType = models.CharField(max_length=100)
 	roles = models.BigIntegerField()
+	altCorp = models.BooleanField(default=False)
 
 
 class StarbaseNote(models.Model):
