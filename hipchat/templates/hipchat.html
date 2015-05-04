@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+ 	<h3 class="page-header">Your Hipchat account</h3>
+
+	{% if not hasAccount %}
+		<strong>Please provide an E-Mail address and a Password you want to use to log into hipchat. Neither will be saved in our database.</strong>
+		<form method="POST" id="hipchat">
+		  <div class="form-group" >
+		    <label for="email">Hipchat Email Address</label>
+		    <input type="text" class="form-control" id="email" name="email" placeholder="Enter email address">
+		  </div>
+		  <div class="form-group" >
+		    <label for="email">Hipchat Email Password</label>
+		    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter your chosen Hipchat password" value="{{name}}">
+		  </div>
+
+		  <button type="submit" id="done" class="btn btn-default">Submit</button>
+		  <button disabled style="display: none" id="fakedone" class="btn btn-default">Adding account, please wait...</button>
+		  {% csrf_token %}
+		</form>
+	{% else %}
+		<h4>You already have a hipchat account.</h4>
+	{% endif %}
+	{% if status %}<br><span>{{status}}</span>{% endif %}
+ {% endblock content %}
+
+ {% block scripts %}
+   <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+   <script>
+    $('form#hipchat').submit(function () {
+      $('button#done').hide();
+      $('button#fakedone').show();
+    });
+   </script>
+ {% endblock scripts %}
+
+  {% block title %}Hipchat - BAERS Core{% endblock title %}

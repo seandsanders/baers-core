@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseForbidden
 from subreddit.reddit import updateRedditAccount
 from subreddit.models import RedditAccount
-from core.views import isRecruiter
+from core.views import isHR
 
 # Create your views here.
 def isDropbear(user):

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+ 	<h1 class="page-header">Active Hipchat Accounts</h1>
+
+ 	<table class="table table-hover" style="display: block;">
+ 		<tr>
+ 			<th>Main Character</th>
+ 			<th>Hipchat Account</th>
+ 		</tr>
+ 		{% for acc in accs %}
+			 <tr>
+			 	<td><img src="//image.eveonline.com/Character/{{acc.profile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{acc.profile.mainChar.charName}}"><a href="{% url "core:playerProfile" profileName=acc.profile.mainChar.charName|slugify %}">{{acc.profile.mainChar.charName}}</a></td>
+			 	<td><a target="_blank" href="https://dropbears.hipchat.com/admin/user/{{acc.hipchatID}}">Link</a></td>
+			 </tr>
+ 		{% endfor %}
+ 	</table>
+ 	<hr>
+ {% endblock content %}
+
+ {% block scripts %}
+
+ {% endblock scripts %}
+  {% block title %}Reddit List - BAERS Core{% endblock title %}
