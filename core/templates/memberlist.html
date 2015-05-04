@@ -2,7 +2,7 @@
 
 {% block content %}
 	<h2>Corp Member Overview</h2>
- 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Valid API Keys ({{validCharacters|length}})</a></h4>
+ 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Characters with valid API keys  ({{validCharacters|length}})</a></h4>
 
  	<table class="table table-hover" style="display: none;">
  		<tr>
@@ -27,8 +27,30 @@
  		{% endfor %}
  	</table>
 
+ 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Characters with invalid API keys  ({{invalidCharacters|length}})</a></h4>
+ 	 <table class="table table-hover" style="display: none;">
+ 		<tr>
+ 			<th>CharName</th>
+ 			<th>Location</th>
+ 			<th>Ship</th>
+ 			<th>Joined</th>
+ 			<td>Last Active</td>
+ 			<td>Inactive For</td>
+ 		</tr>
+ 		{% for char in invalidCharacters %}
+			 <tr>
+			 	<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{char.charName}}</td>
+			 	<td>{{char.location}}</td>
+			 	<td>{{char.shipType}}</td>
+			 	<td>{{char.joinDate}}</td>
+			 	<td>{{char.logoffDate}}</td>
+			 	<td>{{char.inactiveDays}} days</td>
+			 </tr>
+ 		{% endfor %}
+ 	</table>
+
  	{% if validAlts %}
- 	 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Valid Alt Corp API Keys ({{validAlts|length}})</a></h4>
+ 	 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Alt corp characters with valid API keys  ({{validAlts|length}})</a></h4>
 
 	 	<table class="table table-hover" style="display: none;">
 	 		<tr>
@@ -54,30 +76,9 @@
 	 	</table>
 	 {% endif %}
 
- 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Invalid API Keys ({{invalidCharacters|length}})</a></h4>
- 	 <table class="table table-hover" style="display: none;">
- 		<tr>
- 			<th>CharName</th>
- 			<th>Location</th>
- 			<th>Ship</th>
- 			<th>Joined</th>
- 			<td>Last Active</td>
- 			<td>Inactive For</td>
- 		</tr>
- 		{% for char in invalidCharacters %}
-			 <tr>
-			 	<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{char.charName}}</td>
-			 	<td>{{char.location}}</td>
-			 	<td>{{char.shipType}}</td>
-			 	<td>{{char.joinDate}}</td>
-			 	<td>{{char.logoffDate}}</td>
-			 	<td>{{char.inactiveDays}} days</td>
-			 </tr>
- 		{% endfor %}
- 	</table>
 
  	{% if invalidAlts %}
- 	 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Invalid Alt Corp API Keys ({{invalidAlts|length}})</a></h4>
+ 	 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Alt corp characters with invalid API keys  ({{invalidAlts|length}})</a></h4>
 	 	 <table class="table table-hover" style="display: none;">
 	 		<tr>
 	 			<th>CharName</th>
