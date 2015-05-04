@@ -20,7 +20,7 @@
 		  {% csrf_token %}
 		</form>
 	{% else %}
-		<h4>You already have a hipchat account.</h4>
+		<h4>You already have a hipchat account. <a target="_blank" href="https://dropbears.hipchat.com/home">Log in here</a></h4>
 	{% endif %}
 	{% if status %}<br><span>{{status}}</span>{% endif %}
  {% endblock content %}
