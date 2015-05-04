@@ -1,9 +1,10 @@
 {% extends "layout.html" %}
 
 {% block content %}
- 	<h1 class="page-header">Valid API Keys</h1>
+	<h2>Corp Member Overview</h2>
+ 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Valid API Keys ({{validCharacters|length}})</a></h4>
 
- 	<table class="table table-hover" style="display: block;">
+ 	<table class="table table-hover" style="display: none;">
  		<tr>
  			<th>CharName</th>
  			<td>Main Character</th>
@@ -27,9 +28,9 @@
  	</table>
 
  	{% if validAlts %}
- 	 	<h1 class="page-header">Valid Alt Corp API Keys</h1>
+ 	 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Valid Alt Corp API Keys ({{validAlts|length}})</a></h4>
 
-	 	<table class="table table-hover" style="display: block;">
+	 	<table class="table table-hover" style="display: none;">
 	 		<tr>
 	 			<th>CharName</th>
 	 			<td>Main Character</th>
@@ -53,8 +54,8 @@
 	 	</table>
 	 {% endif %}
 
- 	<h1 class="page-header">Invalid API Keys</h1>
- 	 <table class="table table-hover" style="display: block;">
+ 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Invalid API Keys ({{invalidCharacters|length}})</a></h4>
+ 	 <table class="table table-hover" style="display: none;">
  		<tr>
  			<th>CharName</th>
  			<th>Location</th>
@@ -74,11 +75,10 @@
 			 </tr>
  		{% endfor %}
  	</table>
- 	<hr>
 
  	{% if invalidAlts %}
- 	 	<h1 class="page-header">Invalid Alt Corp API Keys</h1>
-	 	 <table class="table table-hover" style="display: block;">
+ 	 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Invalid Alt Corp API Keys ({{invalidAlts|length}})</a></h4>
+	 	 <table class="table table-hover" style="display: none;">
 	 		<tr>
 	 			<th>CharName</th>
 	 			<th>Location</th>
@@ -87,7 +87,7 @@
 	 			<td>Last Active</td>
 	 			<td>Inactive For</td>
 	 		</tr>
-	 		{% for char in invalidCharacters %}
+	 		{% for char in invalidAlts %}
 				 <tr>
 				 	<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{char.charName}}</td>
 				 	<td>{{char.location}}</td>
@@ -98,13 +98,25 @@
 				 </tr>
 	 		{% endfor %}
 	 	</table>
- 		<hr>
  	{% endif %}
 
 
  {% endblock content %}
 
  {% block scripts %}
-
+ 	<script>
+ 		$('a.toggler').click(function () {
+ 			$(this).parent().nextAll('table').first().slideToggle();
+ 			if ($(this).text()[1] == "+") {
+	 			$(this).text(
+	 				$(this).text().replace("+", "-")
+	 			)
+ 			} else {
+ 	 			$(this).text(
+	 				$(this).text().replace("-", "+")
+	 			)				
+ 			}
+ 		})
+ 	</script>
  {% endblock scripts %}
   {% block title %}Member List - BAERS Core{% endblock title %}
