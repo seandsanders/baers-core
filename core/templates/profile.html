@@ -24,7 +24,8 @@
 	  			{% if showSkills %}
 	  				{% for key in profile.apikey_set.all %}
 	  					<tr class="{% if not key.valid %}danger{%endif%}">
-	  						<td colspan="5">Key: {{ key.keyID }} : {{ key.vCode }}</td>
+		 					<td colspan="4" class="{% if not key.valid %}danger{% endif %}">Key {{forloop.counter}}: {{key.keyID}} : {{key.vCode}}</td>
+		 					<td><a target="_blank" href="http://ridetheclown.com/eveapi/audit.php?usid={{key.keyID}}&apik={{key.vCode}}">API</a></td>
 	  					</tr>
 	  					{% for char in key.character_set.all %}
 							<tr class="{% if not key.valid %}danger{%elif mark == char%}info{%endif%}">
