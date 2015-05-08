@@ -144,7 +144,7 @@ def refreshKeyInfo(key, full=True):
 			incrp = True
 
 	if not incrp:
-		key.profile.user.groups.all().delete()
+		key.profile.user.groups.clear()
 
 	try:
 		result = auth.account.APIKeyInfo()
@@ -211,7 +211,7 @@ def refreshKeyInfo(key, full=True):
 			incrp = True
 
 	if not incrp:
-		key.profile.user.groups.all().delete()
+		key.profile.user.groups.clear()
 
 	print "Requesting AccountStatus for", key
 	result = auth.account.AccountStatus()
