@@ -23,8 +23,8 @@
 	  		</tr>
 	  			{% if showSkills %}
 	  				{% for key in profile.apikey_set.all %}
-	  					<tr class="{% if key.valid %}danger{%endif%}">
-	  						<td colspan="5">{% key.keyID %} : {% key.vCode %}</td>
+	  					<tr class="{% if not key.valid %}danger{%endif%}">
+	  						<td colspan="5">Key: {{ key.keyID }} : {{ key.vCode }}</td>
 	  					</tr>
 	  					{% for char in key.character_set.all %}
 							<tr class="{% if not key.valid %}danger{%elif mark == char%}info{%endif%}">
