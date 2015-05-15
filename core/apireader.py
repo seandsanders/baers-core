@@ -120,6 +120,41 @@ def refreshCorpApi():
 		except Exception as e:
 			print "ERROR", e
 
+		print "Requesting AltCorp StarbaseList"
+		try:
+			result = auth.corp.StarbaseList()
+			newFuelInfos = []
+			for starbase in result.starbases:
+				try:
+					r2 = auth.corp.StarbaseDetail(itemID=starbase.itemID)
+					lastStarbase = CorpStarbase(	itemID=starbase.itemID, 
+													typeID=starbase.typeID, 
+													locationID=starbase.locationID, 
+													moonID=starbase.moonID, 
+													state=r2.state, 
+													stateTimestamp=datetime.datetime.fromtimestamp(r2.stateTimestamp), 
+													onlineTimestamp=datetime.datetime.fromtimestamp(r2.onlineTimestamp),
+													standingOwnerID=starbase.standingOwnerID,
+													allowCorpMembers=r2.generalSettings.allowCorporationMembers,
+													allowAllianceMembers=r2.generalSettings.allowAllianceMembers,
+													altCorp=True
+												)
+
+					lastStarbase.save()
+
+					for fuel in r2.fuel:
+						newFuelInfos.append( CorpStarbaseFuel(	pos=lastStarbase,
+																typeID=fuel.typeID,
+																quantity=fuel.quantity
+							))
+				except Exception as e:
+					print "ERROR Querying StarbaseDetails:", e
+				
+			CorpStarbaseFuel.objects.bulk_create(newFuelInfos)
+
+		except Exception as e:
+			print "ERROR", e
+
 ##
 # Full API refresh. Calls all EVE API functions that are not within their cache time.
 def refreshApis():

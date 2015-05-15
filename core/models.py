@@ -359,6 +359,8 @@ class CorpStarbase(models.Model):
 	allowCorpMembers = models.BooleanField()
 	allowAllianceMembers = models.BooleanField()
 
+	altCorp = models.BooleanField(default=False)
+
 
 
 # /corp/StarbaseDetail.xml.aspx
