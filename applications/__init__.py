@@ -8,6 +8,9 @@ questions = [
 	{"text": "Provide a good fit (<a target='_blank' href='http://wiki.eveuniversity.org/Guide_to_using_EFT'>EFT format</a>) for the ship you chose as your favorite", "type": "long"},
 	{"text": "Provide a good fit (<a target='_blank' href='http://wiki.eveuniversity.org/Guide_to_using_EFT'>EFT format</a>) for the ship you chose as your most powerful", "type": "long"},
 	{"text": "How long have you been playing EVE and what have you done so far?", "type": "long"},
+	{"text": "Provide an explain how you make isk to fund your activities.", "type": "long"},
+	{"text": "How do you go about finding content for yourself and others?", "type": "long"},	
+	{"text": "How have you demonstrated your ability to be a leader within EVE.", "type": "long"},
 	{"text": "Why do you want to join BAERS?", "type": "long"},
 	{"text": "Please write a haiku about patriots sexual prowess", "type": "long"},
 ]
