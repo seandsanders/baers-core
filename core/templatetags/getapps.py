@@ -2,7 +2,7 @@ from django import template
 from applications.models import Application
 from srp.models import SRPRequest
 from timerboard.models import Timer
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.conf import settings
 from applications.views import compareSkillplans
 
@@ -30,3 +30,7 @@ def get_links():
 @register.inclusion_tag("tags/skillplans.html", name="skillplans")
 def skillplans(character):
 	return {'result': compareSkillplans(character), 'character': character}
+
+@register.inclusion_tag("tags/timezones.html", name="timezones")
+def timezones():
+	return {'ustz': datetime.utcnow()-timedelta(hours=7), 'eutz': datetime.utcnow(), 'autz': datetime.utcnow()+timedelta(hours=9)}

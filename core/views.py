@@ -21,7 +21,7 @@ from core.apireader import validateKey, refreshKeyInfo
 from core.tasks import Task 
 from core.evedata import STARBASE_TYPES
 
-from applications.models import Application
+from applications.models import Application, Answer
  
 from srp.models import SRPRequest
 
@@ -124,7 +124,6 @@ def dashboard(request):
 
 	if len(tasklist) == 0:
 		tasklist.append(Task("No active tasks."))
-
 
 	context["tasks"] = tasklist
 	context["notifications"] = Notification.objects.filter(Q(targetUsers=request.user) | Q(targetGroup__in=request.user.groups.all())).order_by('-time')[:20]
