@@ -33,4 +33,4 @@ def skillplans(character):
 
 @register.inclusion_tag("tags/timezones.html", name="timezones")
 def timezones():
-	return {'ustz': datetime.utcnow()-timedelta(hours=7), 'eutz': datetime.utcnow(), 'autz': datetime.utcnow()+timedelta(hours=9)}
+	return {'ustz': datetime.utcnow()-timedelta(hours=7), 'eutz': datetime.utcnow(), 'autz': datetime.utcnow()+timedelta(hours=10)}
