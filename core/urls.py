@@ -16,5 +16,6 @@ urlpatterns = [
 	url(r'^pos/update$', views.updateNote, name="updatepos"),
 	url(r'^pos/updateowner$', views.updateOwner, name="updateowner"),
 	url(r'^listgroups', views.groupList, name="grouplist"),
-	url(r'^capcensus', views.capCensus, name="capcensus")
+	url(r'^capcensus', views.capCensus, name="capcensus"),
+	url(r'^updatetz', views.updateTZ, name='updateTZ')
 ]

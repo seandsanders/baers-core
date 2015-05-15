@@ -55,6 +55,14 @@
 	 	</table>
  	</div>
  	<div class="col-sm-2">
+ 		<h4>Timezone:</h4>
+ 		{% if profile.tzoffset %}
+	 		<span><strong>User's TZ:</strong> UTC+{{profile.tzoffset}}</span><br>
+	 		<span><strong>User's local time:</strong> <span class="localtime"></span></span>
+	 	{% else %}
+	 		<span>Timezone information will be saved the next time this User logs in.</span>
+	 	{% endif %}
+ 		<hr>
  		<form method="post" action="">
 		    <table class="table table-bordered">
 		    	<tr>
@@ -126,6 +134,13 @@
 				$('div.skillplans').html(r);
 			})
 		})
-
+		{% if profile.tzoffset %}
+	    updateProfileClocks = function () {
+	      localtime = moment().utc().add({{profile.tzoffset}}, "hours").format("HH:mm")
+	      $('.localtime').text(localtime)
+	    }
+	    iv = setInterval(updateProfileClocks, 10000)
+	    updateProfileClocks()
+	    {% endif %}
 	</script>
  {% endblock scripts %}

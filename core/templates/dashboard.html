@@ -41,3 +41,11 @@
 
 
 {% endblock %}
+
+{% block scripts %}
+  <script>
+    var d = new Date();
+    var n = d.getTimezoneOffset();
+    $.post('{% url "core:updateTZ" %}', {'csrfmiddlewaretoken': '{{csrf_token}}', 'tzoffset': 0-Math.floor(n/60)})
+  </script>
+{%endblock%}

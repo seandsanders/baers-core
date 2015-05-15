@@ -12,6 +12,8 @@ class UserProfile(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL)
 	mainChar = models.OneToOneField('Character', null=True)
 	squad = models.IntegerField(null=True)
+	mentor = models.ForeignKey('UserProfile', null=True)
+	tzoffset = models.IntegerField(null=True)
 
 	def __str__(self):
 		return self.mainChar.__str__()
@@ -404,3 +406,8 @@ class CacheTimer(models.Model):
 	targetKey = models.ForeignKey(ApiKey, null=True)
 	callName = models.CharField(max_length=100)
 	cachedUntil = models.DateTimeField()
+
+
+class Haiku(models.Model):
+	author = models.CharField(max_length=100)
+	text = models.CharField(max_length=1000)

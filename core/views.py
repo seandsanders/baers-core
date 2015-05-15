@@ -45,6 +45,11 @@ def isFinance(user):
 def isPOS(user):
 	return user.groups.filter(name="POS").exists()
 
+def updateTZ(request):
+	up = request.user.userprofile
+	up.tzoffset = request.POST.get('tzoffset', None)
+	up.save()
+	return HttpResponse("")
 
 def dashboard(request):
 	titles = ", ".join(request.user.userprofile.mainChar.charactertitle_set.all().values_list('titleName', flat=True))
