@@ -40,8 +40,8 @@ def timerboard(request):
 
 	timers = Timer.objects.all()
 
-	active = timers.filter(time__gte=datetime.utcnow()).order_by(time)
-	done = timers.filter(time__lte=datetime.utcnow()).order_by(time)
+	active = timers.filter(time__gte=datetime.utcnow()).order_by("time")
+	done = timers.filter(time__lte=datetime.utcnow()).order_by("time")
 
 	return render(request, "timers.html", {'active': active, 'done': done, 'status': status})
 
