@@ -6,6 +6,7 @@
 	{% if app %}
 		<h4>Application Recieved: {{app.applicationDate}}</h4>
 		<h4>Application Status: {{app.get_status_display}}</h4>
+		<h4>Your Position in the application queue: {{pos}}</h4>
 	{% else %}
 		<h4>You don't have an application</h4>
 	{% endif %}

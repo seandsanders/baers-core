@@ -448,7 +448,7 @@ def apply(request, token):
 
 
 def mystatus(request):
-	c = {"app": request.user.userprofile.application}
+	c = {"app": request.user.userprofile.application, "pos": len(Application.objects.filter(status=Application.UNPROCESSED, id__lte=request.user.userprofile.application.id))}
 	return render(request, 'appstatus.html', c)
 
 def application(request, app):
