@@ -65,10 +65,11 @@ def dashboard(request):
 		app = request.user.userprofile.application
 		hasapp = app.status == Application.UNPROCESSED or app.status == Application.HOLD or app.status == Application.DENIED
 		appstatus = app.get_status_display()
-		if app.tag in [Application.CLEAN, Application.SUSPICIOUS, Application.NOTES]:
-			appstatus = "In Progress"
-		elif app.tag in [Application.INTERVIEW]:
-			appstatus = "Ready for Interview"
+		if app.status == Application.UNPROCESSED:
+			if app.tag in [Application.CLEAN, Application.SUSPICIOUS, Application.NOTES]:
+				appstatus = "In Progress"
+			elif app.tag in [Application.INTERVIEW]:
+				appstatus = "Ready for Interview"
 
 	except:
 		hasapp = False
