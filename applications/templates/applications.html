@@ -91,6 +91,7 @@
 		 			<th>Timezone</th>
 		 			<th>Application Date</th>
 		 			<th>Last update</th>
+		 			<th>Processing Time</th>
 		 		</tr>
 		 		{% for app in denied %}
 			 		<tr class="{{app.cssClass}}">
@@ -107,6 +108,7 @@
 			 					None
 			 				{% endif %}
 			 			</a></td>
+			 			<td>{{app.applicationDate|timesince:app.comment_set.last.date}}</td>
 			 		</tr>
 		 		{% endfor %}
 		 	</table>
@@ -127,6 +129,7 @@
 		 			<th>Timezone</th>
 		 			<th>Application Date</th>
 		 			<th>Last update</th>
+		 			<th>Processing Time</th>
 		 		</tr>
 		 		{% for app in accepted %}
 			 		<tr class="{{app.cssClass}}">
@@ -143,6 +146,7 @@
 			 					None
 			 				{% endif %}
 			 			</a></td>
+			 			<td>{{app.applicationDate|timesince:app.comment_set.last.date}}</td>
 			 		</tr>
 		 		{% endfor %}
 		 	</table>
