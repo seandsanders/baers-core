@@ -449,6 +449,11 @@ def apply(request, token):
 
 def mystatus(request):
 	c = {"app": request.user.userprofile.application, "pos": len(Application.objects.filter(status=Application.UNPROCESSED, id__lte=request.user.userprofile.application.id))}
+	if c["app"].tag in [Application.CLEAN, Application.SUSPICIOUS, Application.NOTES]:
+		c["status"] = "In Progress"
+	elif c["app"].tag in [Application.INTERVIEW]:
+		c["status"] = "Ready for Interview"
+
 	return render(request, 'appstatus.html', c)
 
 def application(request, app):

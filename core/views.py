@@ -64,11 +64,17 @@ def dashboard(request):
 	try:
 		app = request.user.userprofile.application
 		hasapp = app.status == Application.UNPROCESSED or app.status == Application.HOLD or app.status == Application.DENIED
+		appstatus = app.get_status_display()
+		if app.tag in [Application.CLEAN, Application.SUSPICIOUS, Application.NOTES]:
+			appstatus = "In Progress"
+		elif app.tag in [Application.INTERVIEW]:
+			appstatus = "Ready for Interview"
+
 	except:
 		hasapp = False
 
 	if hasapp:
-		tasklist.append(Task("<b>Your <a href='"+reverse("applications:mystatus")+"'>application status</a>: "+app.get_status_display()+"</b>", cssClass="success"))
+		tasklist.append(Task("<b>Your <a href='"+reverse("applications:mystatus")+"'>application status</a>: "+appstatus+"</b>", cssClass="success"))
 
 	if isDropbear(request.user):
 		c = CorpStarbase.objects.filter(state=3)
