@@ -14,6 +14,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from datetime import datetime, timedelta
 from json import dumps as jsonify
+import random
 
 from core import postNotification
 from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, StarbaseOwner, CharacterSkill
@@ -97,6 +98,12 @@ def dashboard(request):
 		c = len(SRPRequest.objects.filter(status=SRPRequest.PENDING))
 		if c != 0:
 			tasklist.append(Task("There are <a href='"+reverse("srp:srpadmin")+"'>"+unicode(c)+" pending SRP requests.</a>", cssClass="warning"))
+
+	if isDropbear(request.user):
+		haikus = Answer.objects.filter(question__contains="Haiku")
+		index = random.randint(0, haikus.count()-1)
+		context["haiku"] = haikus[index]
+
 		
 	c = CorpStarbase.objects.filter(itemID__in=request.user.userprofile.starbaseowner_set.values_list('starbaseID')).filter(state__gte=3)
 	if c.exists():

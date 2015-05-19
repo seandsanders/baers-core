@@ -35,6 +35,17 @@
         {% endfor %}
       </div>
     </div>
+    {% if haiku %}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Random Haiku</h2>
+        </div>
+        <div class="panel-body" style="text-align: center;">
+            <pre style="font-style: italic;">“{{haiku.text}}”</pre>
+            <small>by</small> <br><strong><a href='{% url "core:playerProfile" profileName=haiku.app.applicantProfile|slugify %}'><img src="//image.eveonline.com/Character/{{haiku.app.applicantProfile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{haiku.app.applicantProfile}}</a></strong>
+        </div>
+      </div>
+    {%endif%}
   </div>
 </div>
 
