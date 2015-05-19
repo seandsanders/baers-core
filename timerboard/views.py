@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from timerboard.models import Timer
-from datetime import datetime
+from datetime import datetime, timedelta
 from core.views import isDropbear
 from core import postNotification
 from django.views.decorators.csrf import csrf_exempt
@@ -40,8 +40,8 @@ def timerboard(request):
 
 	timers = Timer.objects.all()
 
-	active = timers.filter(time__gte=datetime.utcnow()).order_by("time")
-	done = timers.filter(time__lte=datetime.utcnow()).order_by("time")
+	active = timers.filter(time__gte=datetime.utcnow()-timedelta(hours=1)).order_by("time")
+	done = timers.filter(time__lte=datetime.utcnow()-timedelta(hours=1)).order_by("time")
 
 	return render(request, "timers.html", {'active': active, 'done': done, 'status': status})
 
