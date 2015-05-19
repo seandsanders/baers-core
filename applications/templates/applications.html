@@ -16,6 +16,7 @@
 		 			<th>SP on Main</th>
 		 			<th>Timezone</th>
 		 			<th>Application Date</th>
+		 			<th>Application Age</th>
 		 			<th>Last update</th>
 		 		</tr>
 		 		{% for app in unprocessed %}
@@ -26,6 +27,7 @@
 			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicantProfile.mainChar.sp|intword}}</a></td>
 			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.get_timezone_display}}</a></td>
 			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicationDate}}</a></td>
+			 			<td><a href="{% url "applications:viewapp" app.token %}">{{app.applicationDate|naturaltime}}</a></td>
 			 			<td><a href="{% url "applications:viewapp" app.token %}">
 			 				{% if app.comment_set %}
 			 					{{app.comment_set.last.date}} by {{app.comment_set.last.author}}
