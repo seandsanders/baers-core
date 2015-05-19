@@ -514,7 +514,7 @@ def capCensus(request):
 		for skill in cap['skills']:
 			chars = chars.filter(characterskill__typeID=skill[0])
 
-		chars = chars.all()
+		chars = chars.filter(profile__user__groups__name="Dropbears")
 		if chars:
 			result.append({"name": cap["name"], "id": cap["shipID"], "chars": chars})
 
