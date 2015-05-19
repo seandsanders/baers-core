@@ -100,7 +100,7 @@ def dashboard(request):
 			tasklist.append(Task("There are <a href='"+reverse("srp:srpadmin")+"'>"+unicode(c)+" pending SRP requests.</a>", cssClass="warning"))
 
 	if isDropbear(request.user):
-		haikus = Answer.objects.filter(question__contains="Haiku")
+		haikus = Answer.objects.filter(question__contains="haiku")
 		index = random.randint(0, haikus.count()-1)
 		context["haiku"] = haikus[index]
 
