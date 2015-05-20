@@ -14,6 +14,7 @@ class UserProfile(models.Model):
 	squad = models.IntegerField(null=True)
 	mentor = models.ForeignKey('UserProfile', null=True)
 	tzoffset = models.IntegerField(null=True)
+	theme = models.CharField(max_length=15, default="Flatly")
 
 	def __str__(self):
 		return self.mainChar.__str__()

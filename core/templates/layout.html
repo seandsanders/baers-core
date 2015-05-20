@@ -9,15 +9,14 @@
 
     <title>{% block title %}Dashboard{% endblock %}</title>
 
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-{{request.user.userprofile.theme}}.css" rel="stylesheet">
     <link href="/static/css/dashboard.css" rel="stylesheet">
     <link href="/static/css/jquery-ui.min.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="/static/favicon.ico">
   </head>
 
   <body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-{% if request.user.userprofile.theme == "classic" %}inverse{% else %}default{%endif%} navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -28,8 +27,8 @@
           </button>
           <a class="navbar-brand" href="{% url "core:dashboard" %}">BAERS Core</a>
         </div>
+        <div id="navbar" class="navbar-collapse collapse navbar" style="margin-bottom: 0;">
         {% timezones %}
-        <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="{%url "core:myProfile" %}">My Profile</a></li>
             <li><a href="{% url "core:logout" %}">Logout</a></li>
@@ -39,46 +38,56 @@
             <input type="text" class="form-control" name="searchterm" placeholder="Search character...">
             <input type="submit" style="display: none;">
           </form>
+          <form class="navbar-form navbar-right" method="post" action="{% url "core:changeTheme" %}">
+            <a style="margin-right: 5px">Theme: </a>
+            <select name="theme" class="form-control themeselect" style="margin-bottom: 0;">
+              <option {% if request.user.userprofile.theme == "flatly" %}selected{% endif %} value="flatly">Flatly</option>
+              <option {% if request.user.userprofile.theme == "darkly" %}selected{% endif %} value="darkly">Darkly</option>
+              <option {% if request.user.userprofile.theme == "classic" %}selected{% endif %} value="classic">Classic</option>
+            </select>
         </div>
       </div>
     </nav>
 
-    <div class="container-fluid" style="height: 100%">
-      <div class="row row-offcanvas row-offcanvas-left" style="height: 100%">
-        <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar">
-          <ul class="nav nav-sidebar">
-            <li {% if request.resolver_match.url_name == "dashboard" %}class="active"{%endif%}><a href="{% url "core:dashboard" %}">Overview <span class="sr-only">(current)</span></a></li>
-            <li {% if request.resolver_match.url_name == "keys" %}class="active"{%endif%}><a href="{% url "core:keys" %}">Characters / API Keys</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            {% if request.user|has_group:"POS" %}<li {% if request.resolver_match.url_name == "poslist" %}class="active"{%endif%}><a href="{% url "core:poslist" %}">POS Overview</a></li>{% endif %}
-            {% if request.user|has_group:"Recruiter" %}<li {% if request.resolver_match.url_name == "applications" %}class="active"{%endif%}><a href="{% url "applications:applications" %}">Applications <span class="badge">{% get_apps %}</span></a></li>{% endif %}
-            {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "memberlist" %}class="active"{%endif%}><a href="{% url "core:memberlist" %}">Member List</a></li>{% endif %}
-            {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "grouplist" %}class="active"{%endif%}><a href="{% url "core:grouplist" %}">Group Admin</a></li>{% endif %}
-            {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "capcensus" %}class="active"{%endif%}><a href="{% url "core:capcensus" %}">Capital Pilots</a></li>{% endif %}
-          </ul>
-          <ul class="nav nav-sidebar">
-            {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "srplist" %}class="active"{%endif%}><a href="{% url "srp:srplist" %}">SRP</a></li>{% endif %}
-            {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "srpadmin" %}class="active"{%endif%}><a href="{% url "srp:srpadmin" %}">SRP - Admin <span class="badge">{% get_srps %}</span></a></li>{% endif %}
-            {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "timerboard" %}class="active"{%endif%}><a href="{% url "timerboard:timerboard" %}">Timerboard <span class="badge">{% get_timers %}</span></a></li>{% endif %}
-          </ul>
-          <ul  class="nav nav-sidebar">
-            <!--li {% if request.resolver_match.url_name == "hipchat" %}class="active"{%endif%}><a href="">Hipchat Access</a></li -->
-            {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "reddit" %}class="active"{%endif%}><a href="{% url "subreddit:reddit" %}">Subreddit Access</a></li>{% endif %}
-            {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "redditlist" %}class="active"{%endif%}><a href="{% url "subreddit:redditlist" %}">Reddit Account List</a></li>{% endif %}
-            {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "hipchat" %}class="active"{%endif%}><a href="{% url "hipchat:hipchat" %}">Hipchat Access</a></li>{% endif %}
-            {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "hipchatlist" %}class="active"{%endif%}><a href="{% url "hipchat:hipchatlist" %}">Hipchat Account List</a></li>{% endif %}
+    <div style="height: 100%">
+      <div class="container-fluid" style="height: 100%">
+        <div class="row row-offcanvas row-offcanvas-left" style="height: 100%">
+          <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" style="height: 100%; z-index: 1000;">
+            <ul class="nav nav-sidebar">
+              <li {% if request.resolver_match.url_name == "dashboard" %}class="active"{%endif%}><a href="{% url "core:dashboard" %}">Overview <span class="sr-only">(current)</span></a></li>
+              <li {% if request.resolver_match.url_name == "keys" %}class="active"{%endif%}><a href="{% url "core:keys" %}">Characters / API Keys</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+              {% if request.user|has_group:"POS" %}<li {% if request.resolver_match.url_name == "poslist" %}class="active"{%endif%}><a href="{% url "core:poslist" %}">POS Overview</a></li>{% endif %}
+              {% if request.user|has_group:"Recruiter" %}<li {% if request.resolver_match.url_name == "applications" %}class="active"{%endif%}><a href="{% url "applications:applications" %}">Applications <span class="badge">{% get_apps %}</span></a></li>{% endif %}
+              {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "memberlist" %}class="active"{%endif%}><a href="{% url "core:memberlist" %}">Member List</a></li>{% endif %}
+              {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "grouplist" %}class="active"{%endif%}><a href="{% url "core:grouplist" %}">Group Admin</a></li>{% endif %}
+              {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "capcensus" %}class="active"{%endif%}><a href="{% url "core:capcensus" %}">Capital Pilots</a></li>{% endif %}
+            </ul>
+            <ul class="nav nav-sidebar">
+              {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "srplist" %}class="active"{%endif%}><a href="{% url "srp:srplist" %}">SRP</a></li>{% endif %}
+              {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "srpadmin" %}class="active"{%endif%}><a href="{% url "srp:srpadmin" %}">SRP - Admin <span class="badge">{% get_srps %}</span></a></li>{% endif %}
+              {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "timerboard" %}class="active"{%endif%}><a href="{% url "timerboard:timerboard" %}">Timerboard <span class="badge">{% get_timers %}</span></a></li>{% endif %}
+            </ul>
+            <ul  class="nav nav-sidebar">
+              <!--li {% if request.resolver_match.url_name == "hipchat" %}class="active"{%endif%}><a href="">Hipchat Access</a></li -->
+              {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "reddit" %}class="active"{%endif%}><a href="{% url "subreddit:reddit" %}">Subreddit Access</a></li>{% endif %}
+              {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "redditlist" %}class="active"{%endif%}><a href="{% url "subreddit:redditlist" %}">Reddit Account List</a></li>{% endif %}
+              {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "hipchat" %}class="active"{%endif%}><a href="{% url "hipchat:hipchat" %}">Hipchat Access</a></li>{% endif %}
+              {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "hipchatlist" %}class="active"{%endif%}><a href="{% url "hipchat:hipchatlist" %}">Hipchat Account List</a></li>{% endif %}
 
-          </ul>
-          {% get_links %}
-        </div>
-        <div class="col-sm-9 col-md-10 main">
-          <p class="visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
-          </p>
-          {% block content %}{% endblock %}
+            </ul>
+            {% get_links %}
+          </div>
+          <div class="col-sm-9 col-md-10 main">
+            <p class="visible-xs">
+              <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+            </p>
+            {% block content %}{% endblock %}
+          </div>
         </div>
       </div>
+      <div style="clear:both"></div>
     </div>
 
 
@@ -99,11 +108,18 @@
     </script>
     <script>var csrftoken = "{{ csrf_token }}"</script>
     <script>
-    $(document).ready(function() {
-      $('[data-toggle=offcanvas]').click(function() {
-        $('.row-offcanvas').toggleClass('active');
+      $(document).ready(function() {
+        $('[data-toggle=offcanvas]').click(function() {
+          $('.row-offcanvas').toggleClass('active');
+        });
+        $('#sidebar').height($(document).height())
       });
-    });
+      $('select.themeselect').change(function () {
+        $.post('{% url "core:changeTheme" %}', {'theme': $(this).val(), 'csrfmiddlewaretoken': '{{csrf_token}}'}, function () {
+          document.location.reload()
+        })
+      })
+
     </script>
     {% block scripts %}{% endblock %}
   </body>

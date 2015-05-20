@@ -76,7 +76,7 @@ def dashboard(request):
 		hasapp = False
 
 	if hasapp:
-		tasklist.append(Task("<b>Your <a href='"+reverse("applications:mystatus")+"'>application status</a>: "+appstatus+"</b>", cssClass="success"))
+		tasklist.append(Task("Your <a href='"+reverse("applications:mystatus")+"'>application status</a>: "+appstatus+"", cssClass="success"))
 
 	if isDropbear(request.user):
 		c = CorpStarbase.objects.filter(state=3)
@@ -149,6 +149,11 @@ def dashboard(request):
 
 	return render(request, 'dashboard.html', context)
 
+
+def changeTheme(request):
+	request.user.userprofile.theme = request.POST.get('theme', 'Flatly')
+	request.user.userprofile.save()
+	return HttpResponse('')
 
 def landing(request):
 	context = {}

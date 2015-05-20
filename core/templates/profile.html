@@ -105,7 +105,7 @@
 			{% endfor %}
 		</div>
 		<div class="col-lg-6">
-			<select class="skillplandropdown">
+			<select class="form-control  skillplandropdown">
 				{% for char in profile.character_set.all %}
 					<option {% if char == profile.mainChar %}selected="true"{% endif %} value="{{char.charID}}">{{char.charName}}</option>
 				{% endfor %}
