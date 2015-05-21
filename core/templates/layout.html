@@ -38,13 +38,12 @@
             <input type="text" class="form-control" name="searchterm" placeholder="Search character...">
             <input type="submit" style="display: none;">
           </form>
-          <form class="navbar-form navbar-right" method="post" action="{% url "core:changeTheme" %}">
-            <a style="margin-right: 5px">Theme: </a>
-            <select name="theme" class="form-control themeselect" style="margin-bottom: 0;">
-              <option {% if request.user.userprofile.theme == "flatly" %}selected{% endif %} value="flatly">Flatly</option>
-              <option {% if request.user.userprofile.theme == "darkly" %}selected{% endif %} value="darkly">Darkly</option>
-              <option {% if request.user.userprofile.theme == "classic" %}selected{% endif %} value="classic">Classic</option>
-            </select>
+          <a style="margin-right: 5px">Theme: </a>
+          <select name="theme" class="form-control themeselect" style="margin-bottom: 0;">
+            <option {% if request.user.userprofile.theme == "flatly" %}selected{% endif %} value="flatly">Flatly</option>
+            <option {% if request.user.userprofile.theme == "darkly" %}selected{% endif %} value="darkly">Darkly</option>
+            <option {% if request.user.userprofile.theme == "classic" %}selected{% endif %} value="classic">Classic</option>
+          </select>
         </div>
       </div>
     </nav>
