@@ -183,17 +183,22 @@ def refreshKeyInfo(key, full=True):
 
 	try:
 		result = auth.account.APIKeyInfo()
-	except:
+	except eveapi.AuthenticationError as e:
 		if not key.valid:
 			return
 		key.valid=False
 		key.save()
 		n = Notification(cssClass="danger")
-		n.content = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> has invalidated one of their API keys."
+		n.content = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> has invalidated one of their API keys. (Error: '"+unicode(e)+"')"
 		n.save()
 		n.targetGroup.add(hrGrp)
 		print unicode(key.profile)+" has invalidated one of their API keys."
 		return
+	except Exception as e:
+		n = Notification(cssClass="warning")
+		n.content = "There was an Error querying APIKeyInfo for <a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> (Error: '"+unicode(e)+"')"
+		n.save()
+		n.targetGroup.add(itGrp)		
 	key.accessMask = result.key.accessMask
 
 	keyType = result.key.type
@@ -213,10 +218,10 @@ def refreshKeyInfo(key, full=True):
 		key.lastRefresh = datetime.datetime.utcnow()
 		key.save()
 		n = Notification(cssClass="danger")
-		n.content = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> has invalidated one of their API keys."
+		n.content = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> has invalidated one of their API keys. (API returned Access Mask: '"+key.accessMask+"')"
 		n.save()
 		n.targetGroup.add(hrGrp)
-		print unicode(key.profile)+" has invalidated one of their API keys."
+		print unicode(key.profile)+" has invalidated one of their API keys. (API returned Access Mask: '"+key.accessMask+"')"
 		return
 
 	key.valid = True
