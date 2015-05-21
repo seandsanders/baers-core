@@ -198,7 +198,8 @@ def refreshKeyInfo(key, full=True):
 		n = Notification(cssClass="warning")
 		n.content = "There was an Error querying APIKeyInfo for <a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> (Error: '"+unicode(e)+"')"
 		n.save()
-		n.targetGroup.add(itGrp)		
+		n.targetGroup.add(itGrp)
+		return		
 	key.accessMask = result.key.accessMask
 
 	keyType = result.key.type
