@@ -195,6 +195,8 @@ def refreshKeyInfo(key, full=True):
 		print unicode(key.profile)+" has invalidated one of their API keys."
 		return
 	except Exception as e:
+		if not key.valid:
+			return
 		n = Notification(cssClass="warning")
 		n.content = "There was an Error querying APIKeyInfo for <a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> (Error: '"+unicode(e)+"')"
 		n.save()
