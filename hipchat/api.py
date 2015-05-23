@@ -2,6 +2,8 @@ import urllib2
 import json
 from urllib import quote as urlescape
 from django.conf import settings
+from hipchat.models import HipchatAccount
+from core.views import isDropbear
 
 def hipchatAdd(name, email, password):
    print "Attempting to add Account of "+name
@@ -49,3 +51,11 @@ def hipchatDelete(uID):
    print r
 
    return r.strip() == ""
+
+def validateHipchatAccounts():
+   for acc in HipchatAccount.objects.all():
+      if not isDropbear(acc.profile.user):
+         print "Deleting hipchat account", acc.hipchatID, "of user", acc.profile
+         hipchatDelete(acc.hipchatID)
+         acc.delete()
+
