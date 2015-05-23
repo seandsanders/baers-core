@@ -42,7 +42,7 @@
         </div>
         <div class="panel-body" style="text-align: center;">
             <pre style="font-style: italic;">“{{haiku.text.strip}}”</pre>
-            <small>by</small> <br><strong><a href='{% url "core:playerProfile" profileName=haiku.app.applicantProfile|slugify %}'><img src="//image.eveonline.com/Character/{{haiku.app.applicantProfile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{haiku.app.applicantProfile}}</a></strong>
+            <small>by</small> <br><strong>{% if haiku.authorProfile %}<a href='{% url "core:playerProfile" profileName=haiku.authorProfile|slugify %}'><img src="//image.eveonline.com/Character/{{haiku.authorProfile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{haiku.authorProfile}}">{{haiku.authorProfile}}</a>{% else %}{{haiku.author}}{%endif%}</strong>
         </div>
       </div>
     {%endif%}

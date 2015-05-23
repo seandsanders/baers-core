@@ -17,7 +17,7 @@ from json import dumps as jsonify
 import random
 
 from core import postNotification
-from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, StarbaseOwner, CharacterSkill
+from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, StarbaseOwner, CharacterSkill, Haiku
 from core.apireader import validateKey, refreshKeyInfo
 from core.tasks import Task 
 from core.evedata import STARBASE_TYPES
@@ -101,8 +101,20 @@ def dashboard(request):
 
 	if isDropbear(request.user):
 		haikus = Answer.objects.filter(question__contains="haiku")
-		index = random.randint(0, haikus.count()-1)
-		context["haiku"] = haikus[index]
+		oldhaikus = Haiku.objects.all()
+		index = random.randint(0, haikus.count()-1+oldhaikus.count())
+		if index < haikus.count():
+			h = {"authorProfile": haikus[index].app.applicantProfile, "author": unicode(haikus[index].app.applicantProfile), "text": haikus[index].text.strip()}
+		else:
+			index -= haikus.count()
+
+			h = {"author": oldhaikus[index].author, "text": oldhaikus[index].text.strip()}
+			
+			c = Character.objects.filter(charName__icontains=h["author"]).first()
+			if c:
+				h["authorProfile"] = c.profile
+
+		context["haiku"] = h
 
 		
 	c = CorpStarbase.objects.filter(itemID__in=request.user.userprofile.starbaseowner_set.values_list('starbaseID')).filter(state__gte=3)
