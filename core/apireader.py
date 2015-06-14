@@ -183,7 +183,7 @@ def refreshKeyInfo(key, full=True):
 
 	try:
 		result = auth.account.APIKeyInfo()
-	except eveapi.AuthenticationError as e:
+	except Exception as e:
 		if not key.valid:
 			return
 		key.valid=False
@@ -193,15 +193,7 @@ def refreshKeyInfo(key, full=True):
 		n.save()
 		n.targetGroup.add(hrGrp)
 		print unicode(key.profile)+" has invalidated one of their API keys."
-		return
-	except Exception as e:
-		if not key.valid:
-			return
-		n = Notification(cssClass="warning")
-		n.content = "There was an Error querying APIKeyInfo for <a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> (Error: '"+unicode(e)+"')"
-		n.save()
-		n.targetGroup.add(itGrp)
-		return		
+		return	
 	key.accessMask = result.key.accessMask
 
 	keyType = result.key.type
