@@ -1,0 +1,10 @@
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+	<ShortName>BAERS Search</ShortName>
+	<Description>
+		Dropbears Character Search
+	</Description>
+	<Image height="16" width="16" type="image/x-icon">/static/favicon.ico</Image>
+	<Url type="text/html" method="post" template="http://dropbearsanonymo.us/search">
+		<param name="searchterm" value="{searchTerms}" />
+	</url>
+</OpenSearchDescription>

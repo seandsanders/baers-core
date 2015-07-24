@@ -320,6 +320,7 @@ def playerProfile(request, profileName):
 		return render(request, 'error.html', {'title': '404 - Not Found', 'description': 'This character is not in the Database.'})
 	return profile(request, c.profile, mark=c)
 
+@csrf_exempt
 def searchProfile(request):
 	error = None
 	searchTerm = request.POST.get('searchterm')
