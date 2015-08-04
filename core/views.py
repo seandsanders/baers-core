@@ -517,10 +517,11 @@ def updateOwner(request):
 			owner.save()
 		except:
 			owner.delete()
+			owner.owner = None
 			profile = None
 		
 	else:
-		owner = None
+		owner.owner = None
 
 	return render(request, 'starbaseowner.html', {"profile": owner.owner})
 
