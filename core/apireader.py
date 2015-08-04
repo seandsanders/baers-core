@@ -181,7 +181,7 @@ def reportStarbaseFuel():
 
 			pos.fuelpercent = int(100*float(pos.fuel)/float(pos.info["maxFuel"]))
 
-			if pos.fuelpercent < 10:
+			if pos.fuelpercent < 10 && pos.fuelpercent > 0:
 
 				cur = connection.cursor()
 
@@ -211,7 +211,7 @@ def reportStarbaseFuel():
 	msg =  "Hello! This is a friendly reminder to fuel your POSes! <br> <br>"
 	msg += "<br>".join(list)
 	msg += "<br><br><strong><a href='http://dropbearsanonymo.us/pos'>Click here to see the full POS report.</a></strong>"
-	roomMessage("TEST TEST TEST TEST", msg , format="html", color="red")
+	roomMessage("Squad Leaders+", msg , format="html", color="red")
 
 ##
 # Full API refresh. Calls all EVE API functions that are not within their cache time.
