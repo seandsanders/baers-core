@@ -516,6 +516,7 @@ def updateOwner(request):
 			owner.owner = profile
 			owner.save()
 		except:
+			owner.delete()
 			profile = None
 		
 	else:
