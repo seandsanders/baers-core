@@ -208,7 +208,7 @@ def reportStarbaseFuel():
 				print pos.owner
 
 				list.append("<strong>"+pos.note+"</strong> ("+pos.location+") is at <strong>"+unicode(pos.fuelpercent)+"%</strong>"+((" - @"+pos.owner) if pos.owner else ""))
-	msg =  "Hello! This is a friendly reminder to fuel your POSes! <br> <br>"
+	msg =  "Hello! This is a friendly reminder to fuel your POSes! <br> <br>The following POS are at 10% or lower:<br>"
 	msg += "<br>".join(list)
 	msg += "<br><br><strong><a href='http://dropbearsanonymo.us/pos'>Click here to see the full POS report.</a></strong>"
 	roomMessage("Squad Leaders+", msg , format="html", color="red")
