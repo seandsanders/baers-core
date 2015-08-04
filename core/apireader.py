@@ -160,6 +160,8 @@ def refreshCorpApi():
 		reportStarbaseFuel()
 
 def reportStarbaseFuel():
+	import time
+	pingHere = (int(time.strftime("%H"))%6) == 0
 	list = []
 	c = CorpStarbase.objects.filter(state__gte=3)
 	if c.exists():
@@ -204,8 +206,12 @@ def reportStarbaseFuel():
 					print pos.owner.owner
 					pos.owner = getMentionName(pos.owner.owner.hipchataccount.hipchatID)
 				except Exception as e:
-					pos.owner = False
+					if pingHere:
+						pos.owner = "here"
+					else:
+						pos.owner = False
 				print pos.owner
+
 
 				list.append("<strong>"+pos.note+"</strong> ("+pos.location+") is at <strong>"+unicode(pos.fuelpercent)+"%</strong>"+((" - @"+pos.owner) if pos.owner else ""))
 	msg =  "Hello! This is a friendly reminder to fuel your POSes! <br> <br>The following POS are at 10% or lower:<br>"
