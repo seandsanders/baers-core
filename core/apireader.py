@@ -181,7 +181,7 @@ def reportStarbaseFuel():
 
 			pos.fuelpercent = int(100*float(pos.fuel)/float(pos.info["maxFuel"]))
 
-			if pos.fuelpercent < 10 && pos.fuelpercent > 0:
+			if pos.fuelpercent < 10 and pos.fuelpercent > 0:
 
 				cur = connection.cursor()
 
