@@ -2,10 +2,12 @@ import eveapi
 from core.models import *
 import datetime
 from core import postNotification
-from django.db import transaction
+from django.db import transaction, connection
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils.text import slugify
+from hipchat.models import HipchatAccount
+from hipchat.api import getMentionName, roomMessage
 
 
 def refreshCorpApi():
@@ -154,6 +156,62 @@ def refreshCorpApi():
 
 		except Exception as e:
 			print "ERROR", e
+
+		reportStarbaseFuel()
+
+def reportStarbaseFuel():
+	list = []
+	c = CorpStarbase.objects.filter(state__gte=3)
+	if c.exists():
+		from evedata import STARBASE_TYPES
+		for pos in c:
+			try:
+				fuels = pos.corpstarbasefuel_set.exclude(typeID=16275)
+				if len(fuels) > 1:
+					print "WARNING: FOUND MULTIPLE FUEL BLOCK TYPES!"
+
+				if len(fuels) == 0:
+					pos.fuel = 0
+				else:
+					pos.fuel = fuels.first().quantity
+			except CorpStarbaseFuel.DoesNotExist:
+				pos.fuel = 0
+
+			pos.info = STARBASE_TYPES[pos.typeID]
+
+			pos.fuelpercent = int(100*float(pos.fuel)/float(pos.info["maxFuel"]))
+
+			if pos.fuelpercent < 10:
+
+				cur = connection.cursor()
+
+				cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = "' + unicode(pos.moonID)+ '";')
+
+				tup = cur.fetchone()
+
+				if tup:
+					pos.location = tup[0]
+				else:
+					pos.location = "[API Error]"
+
+				try:
+					pos.note = StarbaseNote.objects.get(starbaseID=pos.itemID)
+					pos.note = pos.note.note
+				except:
+					pos.note = "-"
+				try:
+					pos.owner = StarbaseOwner.objects.get(starbaseID=pos.itemID)
+					print pos.owner.owner
+					pos.owner = getMentionName(pos.owner.owner.hipchataccount.hipchatID)
+				except Exception as e:
+					pos.owner = False
+				print pos.owner
+
+				list.append("<strong>"+pos.note+"</strong> ("+pos.location+") is at <strong>"+unicode(pos.fuelpercent)+"%</strong>"+((" - @"+pos.owner) if pos.owner else ""))
+	msg =  "Hello! This is a friendly reminder to fuel your POSes! <br> <br>"
+	msg += "<br>".join(list)
+	msg += "<br><br><strong><a href='http://dropbearsanonymo.us/pos'>Click here to see the full POS report.</a></strong>"
+	roomMessage("TEST TEST TEST TEST", msg , format="html", color="red")
 
 ##
 # Full API refresh. Calls all EVE API functions that are not within their cache time.
