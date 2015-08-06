@@ -581,13 +581,15 @@ def accounting(request):
 		for entry in queryset:
 			unixtime = int(time.mktime(entry.date.timetuple())*1000)
 			result.append([unixtime, entry.balance])
-		return jsonify([result])
+		return jsonify(result)
 
-
+	
+	
 	context["fuelPosHistory"] = historyToPlot(fuelPosHistory)
 	context["fuelCHAHistory"] = historyToPlot(fuelCHAHistory)
 	context["fuelHistory"] = historyToPlot(fuelHistory)
 	context["srpHistory"] = historyToPlot(srpHistory)
+	context["combinedHistory"] = '{label: "Wallet Total", data: '+historyToPlot(walletHistory)+'},{label: "SRP Total", data: '+ historyToPlot(srpHistory)+'}'
 	context["walletHistory"] = historyToPlot(walletHistory)
 
 
