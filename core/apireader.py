@@ -99,6 +99,11 @@ def refreshCorpApi():
 		CorpAsset.objects.all().delete()
 		newAssets = []
 		def crawlAssetList(assetList, newAssets, parentlocation=None):
+			if len(newAssets) > 500:
+				print "... Storing assetlist cache"
+				CorpAsset.objects.bulk_create(newAssets)
+				newAssets = []
+
 			for asset in assetList:
 				try:
 					if parentlocation:
