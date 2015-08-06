@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% load humanize %}
+{% load getapps %}
 
 {% block content %}
 
@@ -12,9 +13,11 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h2 class="panel-title">Total Wallet Balance: {{currentBalance|intcomma}}</h2>
+        
       </div>
       <div class="panel-body">
-      	<div style="width: 100%; height: 150px; display: block;">There will be a graph here, when we get some more data</div>
+
+      	<div style="width: 100%; height: 150px; display: block;">{% plot "walletTotal" walletHistory %}</div>
       </div>
     </div>
   </div>
@@ -24,7 +27,7 @@
         <h2 class="panel-title">Total Pending SRP: {{currentSRP|intcomma}}</h2>
       </div>
       <div class="panel-body">
-      	<div style="width: 100%; height: 150px; display: block;">There will be a graph here, when we get some more data</div>
+      	<div style="width: 100%; height: 150px; display: block;">{% plot "srpTotal" srpHistory %}</div>
       </div>
     </div>
   </div>
@@ -36,7 +39,7 @@
         <h2 class="panel-title">Total Fuel blocks: {{currentTotalFuel|intcomma}}</h2>
       </div>
       <div class="panel-body">
-      	<div style="width: 100%; height: 150px; display: block;">There will be a graph here, when we get some more data</div>
+      	<div style="width: 100%; height: 150px; display: block;">{% plot "fuelTotal" fuelHistory %}</div>
       </div>
     </div>
   </div>
@@ -46,7 +49,7 @@
         <h2 class="panel-title">Fuel blocks in POSes: {{currentPosFuel|intcomma}}</h2>
       </div>
       <div class="panel-body">
-      	<div style="width: 100%; height: 150px; display: block;">There will be a graph here, when we get some more data</div>
+      	<div style="width: 100%; height: 150px; display: block;">{% plot "fuelPOS" fuelPosHistory %}</div>
       </div>
     </div>
   </div>
@@ -56,13 +59,24 @@
         <h2 class="panel-title">Fuel blocks in CHAs/stations: {{currentChaFuel|intcomma}}</h2>
       </div>
       <div class="panel-body">
-      	<div style="width: 100%; height: 150px; display: block;">There will be a graph here, when we get some more data</div>
+      	<div style="width: 100%; height: 150px; display: block;">{% plot "fuelCHA" fuelCHAHistory %}</div>
       </div>
     </div>
   </div>
 </div>
 
 
+{% endblock %}
+
+{% block scripts %}
+ <script src="/static/js/flot/jquery.flot.js"></script>
+ <script>
+ 	if (window.plots) {
+	 	for (var x=0;x<plots.length;x++) {
+	 		$.plot("#"+plots[x][0], plots[x][1]);
+	 	}
+	 }
+ </script>
 {% endblock %}
 
  {% block title %}Accounting - BAERS Core{% endblock title %}

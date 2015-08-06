@@ -561,11 +561,34 @@ def accounting(request):
 	context = {}
 
 	entries = AccountingEntry.objects.all()
+	
 	context["currentBalance"] = entries.filter(name="walletTotal").last().balance if entries.filter(name="walletTotal").last() else 0
 	context["currentSRP"] = entries.filter(name="pendingSRP").last().balance or 0
 	context["currentTotalFuel"] = entries.filter(name="fuelTotal").last().balance or 0
 	context["currentChaFuel"] = entries.filter(name="fuelCHA").last().balance
 	context["currentPosFuel"] = entries.filter(name="fuelPOS").last().balance
+
+	walletHistory = entries.filter(name="walletTotal")[:720]
+	srpHistory = entries.filter (name="pendingSRP")[:720]
+	fuelHistory = entries.filter(name="fuelTotal")[:720]
+	fuelCHAHistory = entries.filter(name="fuelCHA")[:720]
+	fuelPosHistory = entries.filter(name="fuelPOS")[:720]
+
+	def historyToPlot(queryset):
+		result = []
+		count = 0
+		for entry in queryset:
+			result.append([count, entry.balance])
+			count += 1
+		return jsonify([result])
+
+
+	context["fuelPosHistory"] = historyToPlot(fuelPosHistory)
+	context["fuelCHAHistory"] = historyToPlot(fuelCHAHistory)
+	context["fuelHistory"] = historyToPlot(fuelHistory)
+	context["srpHistory"] = historyToPlot(srpHistory)
+	context["walletHistory"] = historyToPlot(walletHistory)
+
 
 	return render(request, "accounting.html", context)
 
