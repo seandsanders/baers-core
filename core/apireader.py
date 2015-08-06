@@ -127,7 +127,7 @@ def refreshCorpApi():
 		entry.save()
 	except Exception as e:
 		print "ERROR", e
-		
+
 
 	if settings.ALTCORP_API_KEYID and settings.ALTCORP_API_VCODE:
 		api = eveapi.EVEAPIConnection()
@@ -196,7 +196,7 @@ def refreshCorpApi():
 
 
 	generateStatistics()
-	#reportStarbaseFuel()
+	reportStarbaseFuel()
 
 def generateStatistics():
 	inPOS = CorpStarbaseFuel.objects.exclude(typeID=16275)
@@ -285,7 +285,8 @@ def reportStarbaseFuel():
 	msg =  "Hello! This is a friendly reminder to fuel your POSes! <br> <br>The following POS are at 10% or lower:<br>"
 	msg += "<br>".join(list)
 	msg += "<br><br><strong><a href='http://dropbearsanonymo.us/pos'>Click here to see the full POS report.</a></strong>"
-	roomMessage("Squad Leaders+", msg , format="html", color="red")
+	if len(list) > 0:
+		roomMessage("Squad Leaders+", msg , format="html", color="red")
 
 ##
 # Full API refresh. Calls all EVE API functions that are not within their cache time.
