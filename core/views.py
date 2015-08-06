@@ -26,6 +26,8 @@ from applications.models import Application, Answer
  
 from srp.models import SRPRequest
 
+import time
+
 # Create your views here.
 
 def isRecruiter(user):
@@ -576,10 +578,9 @@ def accounting(request):
 
 	def historyToPlot(queryset):
 		result = []
-		count = 0
 		for entry in queryset:
-			result.append([count, entry.balance])
-			count += 1
+			unixtime = int(time.mktime(entry.date.timetuple())*1000)
+			result.append([unixtime, entry.balance])
 		return jsonify([result])
 
 
