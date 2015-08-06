@@ -581,15 +581,20 @@ def assetScan(request):
 		cur = connection.cursor()
 		for asset in assets:
 			cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = '+str(asset.locationID)+';')
-
 			asset.location = cur.fetchone();
+
+			cur.execute('SELECT flagName FROM invFlags WHERE flagID = '+str(asset.flag)+';')
+			asset.flag = cur.fetchone();
 			rAssets.append(asset)
 		corpAssets = CorpAsset.objects.filter(typeID=typeID).order_by("-quantity")
 		rcAssets = []
 		for asset in corpAssets:
 			cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = '+str(asset.locationID)+';')
-
 			asset.location = cur.fetchone();
+
+			cur.execute('SELECT flagName FROM invFlags WHERE flagID = '+str(asset.flag)+';')
+			asset.flag = cur.fetchone();
+
 			rcAssets.append(asset)
 
 		cur.execute('SELECT typeName FROM invTypes WHERE typeID = %s', [typeID])
