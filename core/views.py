@@ -17,7 +17,7 @@ from json import dumps as jsonify
 import random
 
 from core import postNotification
-from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, StarbaseOwner, CharacterSkill, Haiku, AccountingEntry
+from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, StarbaseOwner, CharacterSkill, Haiku, AccountingEntry, CharacterAsset, CorpAsset
 from core.apireader import validateKey, refreshKeyInfo
 from core.tasks import Task 
 from core.evedata import STARBASE_TYPES
@@ -568,3 +568,18 @@ def accounting(request):
 	context["currentPosFuel"] = entries.filter(name="fuelPOS").last().balance
 
 	return render(request, "accounting.html", context)
+
+def assetScan(request):
+	if not isHR(request.user):
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not HR.'})
+
+	typeID = request.POST.get('typeid', None)
+
+	if typeID:
+		assets = CharacterAsset.objects.filter(typeID=typeID)
+		corpAssets = CorpAsset.objects.filter(typeID=typeID)
+	else:
+		assets = None
+		corpAssets = None
+
+	return render(request, "assetscan.html", {"assets": assets, "corpAssets": corpAssets})

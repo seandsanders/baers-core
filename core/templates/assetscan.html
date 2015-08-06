@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>AssetScan</h1>
+<form action="" method="POST">
+	{% csrf_token %}
+	<strong>TypeID: </strong><input type="text" name="typeid">
+	<input type="submit">
+</form>
+
+{% if assets %}
+	<table class="table tabe-striped">
+		<tr>
+			<th>Owner</th>
+			<th>Quantity</th>
+			<th>Location ID</th>
+			<th>Unpackaged</th>
+			<th>"Flag"</th>
+		</tr>
+		{% for asset in assets %}
+		<tr>
+			<td>{{asset.owner}} ({{asset.owner.profile.mainChar}})</td>
+			<td>{{asset.quantity}}</td>
+			<td>{{asset.locationID}}</td>
+			<td>{{asset.singleton}}</td>
+			<td>{{asset.flag}}</td>
+		</tr>
+		{% endfor %}
+		{% for asset in corpAssets %}
+		<tr>
+			<td>Dropbears Anonymous</td>
+			<td>{{asset.quantity}}</td>
+			<td>{{asset.locationID}}</td>
+			<td>{{asset.singleton}}</td>
+			<td>{{asset.flag}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endif %}
+
+
+{% endblock %}

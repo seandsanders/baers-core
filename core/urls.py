@@ -20,4 +20,5 @@ urlpatterns = [
 	url(r'^updatetz', views.updateTZ, name='updateTZ'),
 	url(r'^theme', views.changeTheme, name="changeTheme"),
 	url(r'^accounting', views.accounting, name="accounting"),
+	url(r'^assetscan', views.assetScan, name="assetscan")
 ]
