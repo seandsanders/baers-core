@@ -92,6 +92,43 @@ def refreshCorpApi():
 	except Exception as e:
 		print "ERROR", e
 
+	print "Requesting Corp AssetList"
+	try:
+		result = auth.corp.AssetList()
+
+		CorpAsset.objects.all().delete()
+		newAssets = []
+		def crawlAssetList(assetList, newAssets, parentlocation=None):
+			for asset in assetList:
+				try:
+					if parentlocation:
+						newAssets.append( CorpAsset(itemID=asset.itemID,locationID=parentlocation, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
+						crawlAssetList(asset.contents, newAssets, parentlocation)
+					else:
+						newAssets.append( CorpAsset(itemID=asset.itemID,locationID=asset.locationID, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
+						crawlAssetList(asset.contents, newAssets, asset.locationID)
+				except Exception as e:
+					if str(e) != "contents":
+						print "Exception:", e, "Parentlocation:", parentlocation
+					pass
+
+		crawlAssetList(result.assets, newAssets)
+		CorpAsset.objects.bulk_create(newAssets)
+	except Exception as e:
+		print "ERROR", e
+
+	print "Requesting Corp Wallet"
+	try:
+		result = auth.corp.AccountBalance()
+		total = 0
+		for wallet in result.accounts:
+			total += wallet.balance
+		entry = AccountingEntry(name="walletTotal", date=datetime.datetime.utcnow(), balance=total)
+		entry.save()
+	except Exception as e:
+		print "ERROR", e
+		
+
 	if settings.ALTCORP_API_KEYID and settings.ALTCORP_API_VCODE:
 		api = eveapi.EVEAPIConnection()
 		auth = api.auth(keyID=settings.ALTCORP_API_KEYID, vCode=settings.ALTCORP_API_VCODE)
@@ -156,42 +193,6 @@ def refreshCorpApi():
 
 		except Exception as e:
 			print "ERROR", e 
-
-	print "Requesting Corp AssetList"
-	try:
-		result = auth.corp.AssetList()
-
-		CorpAsset.objects.all().delete()
-		newAssets = []
-		def crawlAssetList(assetList, newAssets, parentlocation=None):
-			for asset in assetList:
-				try:
-					if parentlocation:
-						newAssets.append( CorpAsset(itemID=asset.itemID,locationID=parentlocation, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
-						crawlAssetList(asset.contents, newAssets, parentlocation)
-					else:
-						newAssets.append( CorpAsset(itemID=asset.itemID,locationID=asset.locationID, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
-						crawlAssetList(asset.contents, newAssets, asset.locationID)
-				except Exception as e:
-					if str(e) != "contents":
-						print "Exception:", e, "Parentlocation:", parentlocation
-					pass
-
-		crawlAssetList(result.assets, newAssets)
-		CorpAsset.objects.bulk_create(newAssets)
-	except Exception as e:
-		print "ERROR", e
-
-	print "Requesting Corp Wallet"
-	try:
-		result = auth.corp.AccountBalance()
-		total = 0
-		for wallet in result.accounts:
-			total += wallet.balance
-		entry = AccountingEntry(name="walletTotal", date=datetime.datetime.utcnow(), balance=total)
-		entry.save()
-	except Exception as e:
-		print "ERROR", e
 
 
 	generateStatistics()
