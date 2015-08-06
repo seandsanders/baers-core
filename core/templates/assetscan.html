@@ -10,19 +10,20 @@
 </form>
 
 {% if assets %}
+	<h4>Showing Results for <strong>{{typeName}}</strong> <small>(TypeID {{typeID}})</small></h4>
 	<table class="table tabe-striped">
 		<tr>
 			<th>Owner</th>
 			<th>Quantity</th>
-			<th>Location ID</th>
+			<th>Location</th>
 			<th>Unpackaged</th>
 			<th>"Flag"</th>
 		</tr>
 		{% for asset in assets %}
-		<tr>
-			<td>{{asset.owner}} ({{asset.owner.profile.mainChar}})</td>
+		<tr {% if not asset.owner.api.valid %}class="danger"{% endif %}>
+			<td><img src="//image.eveonline.com/Character/{{asset.owner.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{asset.owner.charName}}"><a href="{% url "core:playerProfile" profileName=asset.owner|slugify %}">{{asset.owner}} ({{asset.owner.profile.mainChar}})</a></td>
 			<td>{{asset.quantity}}</td>
-			<td>{{asset.locationID}}</td>
+			<td>{{asset.location.0}}</td>
 			<td>{{asset.singleton}}</td>
 			<td>{{asset.flag}}</td>
 		</tr>
@@ -31,7 +32,7 @@
 		<tr>
 			<td>Dropbears Anonymous</td>
 			<td>{{asset.quantity}}</td>
-			<td>{{asset.locationID}}</td>
+			<td>{{asset.location.0}}</td>
 			<td>{{asset.singleton}}</td>
 			<td>{{asset.flag}}</td>
 		</tr>

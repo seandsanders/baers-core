@@ -576,10 +576,27 @@ def assetScan(request):
 	typeID = request.POST.get('typeid', None)
 
 	if typeID:
-		assets = CharacterAsset.objects.filter(typeID=typeID)
-		corpAssets = CorpAsset.objects.filter(typeID=typeID)
-	else:
-		assets = None
-		corpAssets = None
+		assets = CharacterAsset.objects.filter(typeID=typeID).order_by("-quantity")
+		rAssets = []
+		cur = connection.cursor()
+		for asset in assets:
+			cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = '+str(asset.locationID)+';')
 
-	return render(request, "assetscan.html", {"assets": assets, "corpAssets": corpAssets})
+			asset.location = cur.fetchone();
+			rAssets.append(asset)
+		corpAssets = CorpAsset.objects.filter(typeID=typeID).order_by("-quantity")
+		rcAssets = []
+		for asset in corpAssets:
+			cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = '+str(asset.locationID)+';')
+
+			asset.location = cur.fetchone();
+			rcAssets.append(asset)
+
+		cur.execute('SELECT typeName FROM invTypes WHERE typeID = %s', [typeID])
+		i = cur.fetchone()
+		i = i[0];
+	else:
+		rAssets = None
+		rcAssets = None
+
+	return render(request, "assetscan.html", {"assets": rAssets, "corpAssets": rcAssets, "typeName": i, "typeID": typeID})
