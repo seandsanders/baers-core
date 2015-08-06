@@ -598,5 +598,6 @@ def assetScan(request):
 	else:
 		rAssets = None
 		rcAssets = None
+		i = None
 
 	return render(request, "assetscan.html", {"assets": rAssets, "corpAssets": rcAssets, "typeName": i, "typeID": typeID})
