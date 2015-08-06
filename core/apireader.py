@@ -17,7 +17,7 @@ def refreshCorpApi():
 	api = eveapi.EVEAPIConnection()
 	auth = api.auth(keyID=keyid, vCode=vcode)
 	
-	"""print "Requesting StarbaseList"
+	print "Requesting StarbaseList"
 	try:
 		result = auth.corp.StarbaseList()
 		CorpStarbase.objects.all().delete()
@@ -180,7 +180,7 @@ def refreshCorpApi():
 		crawlAssetList(result.assets, newAssets)
 		CorpAsset.objects.bulk_create(newAssets)
 	except Exception as e:
-		print "ERROR", e	"""
+		print "ERROR", e
 
 	print "Requesting Corp Wallet"
 	try:
