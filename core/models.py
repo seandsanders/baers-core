@@ -414,3 +414,20 @@ class CacheTimer(models.Model):
 class Haiku(models.Model):
 	author = models.CharField(max_length=100)
 	text = models.CharField(max_length=1000)
+
+#/char/AssetList.xml.aspx
+class CorpAsset(models.Model):
+	itemID = models.BigIntegerField()
+	locationID = models.IntegerField()
+	typeID = models.IntegerField()
+	quantity = models.IntegerField()
+	flag = models.IntegerField()
+	singleton = models.IntegerField()
+	rawQuantity = models.IntegerField(null=True)
+	def __str__(self):
+		return unicode(self.quantity)+"x"+unicode(self.typeID)
+
+class AccountingEntry(models.Model):
+	date = models.DateTimeField()
+	balance = models.BigIntegerField()
+	name = models.CharField(max_length=15)

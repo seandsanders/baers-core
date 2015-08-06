@@ -16,8 +16,8 @@ def refreshCorpApi():
 
 	api = eveapi.EVEAPIConnection()
 	auth = api.auth(keyID=keyid, vCode=vcode)
-
-	print "Requesting StarbaseList"
+	
+	"""print "Requesting StarbaseList"
 	try:
 		result = auth.corp.StarbaseList()
 		CorpStarbase.objects.all().delete()
@@ -155,9 +155,76 @@ def refreshCorpApi():
 			CorpStarbaseFuel.objects.bulk_create(newFuelInfos)
 
 		except Exception as e:
-			print "ERROR", e
+			print "ERROR", e 
 
-		reportStarbaseFuel()
+	print "Requesting Corp AssetList"
+	try:
+		result = auth.corp.AssetList()
+
+		CorpAsset.objects.all().delete()
+		newAssets = []
+		def crawlAssetList(assetList, newAssets, parentlocation=None):
+			for asset in assetList:
+				try:
+					if parentlocation:
+						newAssets.append( CorpAsset(itemID=asset.itemID,locationID=parentlocation, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
+						crawlAssetList(asset.contents, newAssets, parentlocation)
+					else:
+						newAssets.append( CorpAsset(itemID=asset.itemID,locationID=asset.locationID, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
+						crawlAssetList(asset.contents, newAssets, asset.locationID)
+				except Exception as e:
+					if str(e) != "contents":
+						print "Exception:", e, "Parentlocation:", parentlocation
+					pass
+
+		crawlAssetList(result.assets, newAssets)
+		CorpAsset.objects.bulk_create(newAssets)
+	except Exception as e:
+		print "ERROR", e	"""
+
+	print "Requesting Corp Wallet"
+	try:
+		result = auth.corp.AccountBalance()
+		total = 0
+		for wallet in result.accounts:
+			total += wallet.balance
+		entry = AccountingEntry(name="walletTotal", date=datetime.datetime.utcnow(), balance=total)
+		entry.save()
+	except Exception as e:
+		print "ERROR", e
+
+
+	generateStatistics()
+	#reportStarbaseFuel()
+
+def generateStatistics():
+	inPOS = CorpStarbaseFuel.objects.exclude(typeID=16275)
+	fuel = CorpAsset.objects.filter(typeID=4247)
+
+	totalPOS = 0
+	for stack in inPOS:
+		totalPOS += stack.quantity
+
+	total = 0
+	for stack in fuel:
+		total += stack.quantity
+	
+	entry = AccountingEntry(name="fuelPOS", date=datetime.datetime.utcnow(), balance=totalPOS)
+	entry.save()
+	entry = AccountingEntry(name="fuelCHA", date=datetime.datetime.utcnow(), balance=total-totalPOS)
+	entry.save()
+	entry = AccountingEntry(name="fuelTotal", date=datetime.datetime.utcnow(), balance=total)
+	entry.save()
+
+	from srp.models import SRPRequest
+
+	srp = SRPRequest.objects.filter(status=SRPRequest.PENDING)
+
+	total = 0
+	for rq in srp:
+		total += rq.value
+	entry = AccountingEntry(name="pendingSRP", date=datetime.datetime.utcnow(), balance=total)
+	entry.save()
 
 def reportStarbaseFuel():
 	import time
@@ -419,14 +486,15 @@ def refreshCharacterInfo(char, full=True):
 
 		CharacterAsset.objects.filter(owner=char).delete()
 		newAssets = []
-		def crawlAssetList(assetList, newAssets, parent=None):
+		def crawlAssetList(assetList, newAssets, parentlocation=None):
 			for asset in assetList:
-				if parent:
-					newAssets.append( CharacterAsset(owner=char, itemID=asset.itemID,locationID=parent.locationID, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
-				else:
-					newAssets.append( CharacterAsset(owner=char, itemID=asset.itemID,locationID=asset.locationID, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
 				try:
-					crawlAssetList(asset.contents, newAssets, asset)
+					if parentlocation:
+						newAssets.append( CharacterAsset(owner=char, itemID=asset.itemID,locationID=parentlocation, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
+						crawlAssetList(asset.contents, newAssets, parentlocation)
+					else:
+						newAssets.append( CharacterAsset(owner=char, itemID=asset.itemID,locationID=asset.locationID, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
+						crawlAssetList(asset.contents, newAssets, asset.locationID)
 				except:
 					pass
 

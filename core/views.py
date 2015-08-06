@@ -17,7 +17,7 @@ from json import dumps as jsonify
 import random
 
 from core import postNotification
-from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, StarbaseOwner, CharacterSkill, Haiku
+from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, StarbaseOwner, CharacterSkill, Haiku, AccountingEntry
 from core.apireader import validateKey, refreshKeyInfo
 from core.tasks import Task 
 from core.evedata import STARBASE_TYPES
@@ -553,3 +553,18 @@ def capCensus(request):
 			result.append({"name": cap["name"], "id": cap["shipID"], "chars": chars})
 
 	return render(request, "capcensus.html", {"ships": result})
+
+def accounting(request):
+	if not isFinance(request.user):
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a finance officer.'})
+
+	context = {}
+
+	entries = AccountingEntry.objects.all()
+	context["currentBalance"] = entries.filter(name="walletTotal").last().balance if entries.filter(name="walletTotal").last() else 0
+	context["currentSRP"] = entries.filter(name="pendingSRP").last().balance or 0
+	context["currentTotalFuel"] = entries.filter(name="fuelTotal").last().balance or 0
+	context["currentChaFuel"] = entries.filter(name="fuelCHA").last().balance
+	context["currentPosFuel"] = entries.filter(name="fuelPOS").last().balance
+
+	return render(request, "accounting.html", context)

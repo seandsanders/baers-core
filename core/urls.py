@@ -18,5 +18,6 @@ urlpatterns = [
 	url(r'^listgroups', views.groupList, name="grouplist"),
 	url(r'^capcensus', views.capCensus, name="capcensus"),
 	url(r'^updatetz', views.updateTZ, name='updateTZ'),
-	url(r'^theme', views.changeTheme, name="changeTheme")
+	url(r'^theme', views.changeTheme, name="changeTheme"),
+	url(r'^accounting', views.accounting, name="accounting"),
 ]
