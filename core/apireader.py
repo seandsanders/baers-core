@@ -99,12 +99,11 @@ def refreshCorpApi():
 		CorpAsset.objects.all().delete()
 		newAssets = []
 		def crawlAssetList(assetList, newAssets, parentlocation=None):
-			if len(newAssets) > 500:
-				print "... Storing assetlist cache"
-				CorpAsset.objects.bulk_create(newAssets)
-				newAssets = []
-
 			for asset in assetList:
+				if len(newAssets) > 2000:
+					print "... Storing assetlist cache (", len(newAssets), ")"
+					CorpAsset.objects.bulk_create(newAssets)
+					newAssets[:] = []
 				try:
 					if parentlocation:
 						newAssets.append( CorpAsset(itemID=asset.itemID,locationID=parentlocation, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
