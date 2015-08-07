@@ -204,7 +204,7 @@ def refreshCorpApi():
 
 def generateStatistics():
 	inPOS = CorpStarbaseFuel.objects.exclude(typeID=16275)
-	fuel = CorpAsset.objects.filter(typeID=4247)
+	fuel = CorpAsset.objects.filter(typeID=4247, locationID=31002487)
 
 	totalPOS = 0
 	for stack in inPOS:
