@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="pull-right"> <a href="{% url "corpmarket:add" %}" class="btn btn-success ">+ Add a new Corp Market Item</a> </div>
+<h1>Corp Market <small>Updated hourly</small></h1>
+
+<table class="table tabe-striped">
+	<tr>
+		<th>Item</th>
+		<th>Quantity</th>
+	</tr>
+	{% for asset in assets %}
+	<tr {%if asset.pct < 50 %}class="danger"{% elif asset.pct < 100 %}class="warning"{% endif %}>
+		<td>{{asset.typeName}}</td>
+		<td>{{asset.quantity}} / {{asset.desiredQuantity}} ({{asset.pct}}%)</td>
+	</tr>
+	{% endfor %}
+</table>
+
+
+
+
+{% endblock %}
+
+ {% block title %}Corp Market Tracker - BAERS Core{% endblock title %}

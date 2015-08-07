@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<br>
+<a href="/corpmarket/"> <- Back to Corp Market List</a>
+<h1>New Corp Market Item</h1>
+<form action="" method="POST">
+	{% csrf_token %}
+	<table>
+		<tr>
+			<td><strong>Item: </strong></td> 
+			<td><input type="text" name="item" id="item"> </td>
+		</tr>
+		<tr>
+			<td><strong>Quantity: </strong></td>
+			<td><input type="number" name="quantity"></td>
+		</tr>
+	</table>
+	<br>
+	<input type="submit">
+
+	{% if status %}
+		<hr>
+		{% autoescape off %}
+		<h4>{{status}}</h4>
+		{% endautoescape %}
+	{% endif %}
+</form>
+
+
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    $( "#item" ).autocomplete({
+      source: "/corpmarket/typeid",
+      minLength: 3
+  });
+  </script>
+ {% endblock scripts %}
+
+ {% block title %}New Corp Market Item - BAERS Core{% endblock title %}

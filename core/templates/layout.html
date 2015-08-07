@@ -67,6 +67,7 @@
               {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "capcensus" %}class="active"{%endif%}><a href="{% url "core:capcensus" %}">Capital Pilots</a></li>{% endif %}
               {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "accounting" %}class="active"{%endif%}><a href="{% url "core:accounting" %}">Accounting <span class="badge">BETA</span></a></li>{% endif %}
               {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "assetscan" %}class="active"{%endif%}><a href="{% url "core:assetscan" %}">AssetScan</a></li>{% endif %}
+              {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "cmlist" %}class="active"{%endif%}><a href="{% url "corpmarket:cmlist" %}">Corp Market</a></li>{% endif %}
             </ul>
             <ul class="nav nav-sidebar">
               {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "srplist" %}class="active"{%endif%}><a href="{% url "srp:srplist" %}">SRP</a></li>{% endif %}

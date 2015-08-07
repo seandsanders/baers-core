@@ -98,19 +98,18 @@ def refreshCorpApi():
 
 		CorpAsset.objects.all().delete()
 		newAssets = []
-		def crawlAssetList(assetList, newAssets, parentlocation=None):
+		def crawlAssetList(assetList, newAssets, parentlocation=None, parentID=None):
 			for asset in assetList:
 				if len(newAssets) > 2000:
-					print "... Storing assetlist cache (", len(newAssets), ")"
 					CorpAsset.objects.bulk_create(newAssets)
 					newAssets[:] = []
 				try:
 					if parentlocation:
-						newAssets.append( CorpAsset(itemID=asset.itemID,locationID=parentlocation, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
-						crawlAssetList(asset.contents, newAssets, parentlocation)
+						newAssets.append( CorpAsset(itemID=asset.itemID,locationID=parentlocation, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton, parentID=parentID) )
+						crawlAssetList(asset.contents, newAssets, parentlocation, asset.itemID)
 					else:
-						newAssets.append( CorpAsset(itemID=asset.itemID,locationID=asset.locationID, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
-						crawlAssetList(asset.contents, newAssets, asset.locationID)
+						newAssets.append( CorpAsset(itemID=asset.itemID,locationID=asset.locationID, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton, parentID=parentID) )
+						crawlAssetList(asset.contents, newAssets, asset.locationID, asset.itemID)
 				except Exception as e:
 					if str(e) != "contents":
 						print "Exception:", e, "Parentlocation:", parentlocation
@@ -492,15 +491,15 @@ def refreshCharacterInfo(char, full=True):
 
 		CharacterAsset.objects.filter(owner=char).delete()
 		newAssets = []
-		def crawlAssetList(assetList, newAssets, parentlocation=None):
+		def crawlAssetList(assetList, newAssets, parentlocation=None, parentID=None):
 			for asset in assetList:
 				try:
 					if parentlocation:
-						newAssets.append( CharacterAsset(owner=char, itemID=asset.itemID,locationID=parentlocation, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
-						crawlAssetList(asset.contents, newAssets, parentlocation)
+						newAssets.append( CharacterAsset(owner=char, itemID=asset.itemID,locationID=parentlocation, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton, parentID=parentID) )
+						crawlAssetList(asset.contents, newAssets, parentlocation, asset.itemID)
 					else:
-						newAssets.append( CharacterAsset(owner=char, itemID=asset.itemID,locationID=asset.locationID, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton) )
-						crawlAssetList(asset.contents, newAssets, asset.locationID)
+						newAssets.append( CharacterAsset(owner=char, itemID=asset.itemID,locationID=asset.locationID, typeID=asset.typeID, quantity=asset.quantity, flag=asset.flag, singleton=asset.singleton, parentID=parentID) )
+						crawlAssetList(asset.contents, newAssets, asset.locationID, asset.itemID)
 				except:
 					pass
 
