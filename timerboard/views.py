@@ -16,27 +16,34 @@ def timerboard(request):
 
 	status = None
 	if request.method == "POST":
-		target = request.POST.get('target', False)
-		date = request.POST.get('date', False)
-		hours = request.POST.get('hours', False)
-		minutes = request.POST.get('minutes', False)
+		delete = request.POST.get('delete', False)
+		delid = request.POST.get('id', False)
 
-		if target and date and hours and minutes:
-			try:
-				d = datetime.strptime(date + hours + ":" + minutes, "%m/%d/%Y%H:%M")
-				t = Timer()
-				t.target = target
-				t.time = d
-				t.note = "-"
-				t.creator = request.user.userprofile
-				t.save()
-				status = "Timer Added."
-				notificationText = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(request.user.userprofile)})+"'>"+unicode(request.user.userprofile)+"</a> added a new timer for \""+target+"\" to the <a href='"+reverse('timerboard:timerboard')+"'>Timerboard.</a>"
-				postNotification(Group.objects.get(name="Dropbears"), notificationText)
-			except:
-				status = "Invalid Date and/or Time"
+		if delete and delid:
+			Timer.objects.filter(id=delid).delete()
 		else:
-			status = "You didn't fill all the fields."
+
+			target = request.POST.get('target', False)
+			date = request.POST.get('date', False)
+			hours = request.POST.get('hours', False)
+			minutes = request.POST.get('minutes', False)
+
+			if target and date and hours and minutes:
+				try:
+					d = datetime.strptime(date + hours + ":" + minutes, "%m/%d/%Y%H:%M")
+					t = Timer()
+					t.target = target
+					t.time = d
+					t.note = "-"
+					t.creator = request.user.userprofile
+					t.save()
+					status = "Timer Added."
+					notificationText = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(request.user.userprofile)})+"'>"+unicode(request.user.userprofile)+"</a> added a new timer for \""+target+"\" to the <a href='"+reverse('timerboard:timerboard')+"'>Timerboard.</a>"
+					postNotification(Group.objects.get(name="Dropbears"), notificationText)
+				except:
+					status = "Invalid Date and/or Time"
+			else:
+				status = "You didn't fill all the fields."
 
 	timers = Timer.objects.all()
 
