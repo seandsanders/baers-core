@@ -664,3 +664,16 @@ def assetScan(request):
 	return render(request, "assetscan.html", {"assets": rAssets, "corpAssets": rcAssets, "typeName": typeName, "typeID": typeID})
 
 
+def timezoneAPI(request):
+	if request.GET.get("secret", False) == "184supersecretrandomsecuritykey733":
+		users = UserProfile.objects.all()
+		result = {}
+
+		for user in users:
+			result[user.mainChar.charName] = user.tzoffset
+		
+
+		return HttpResponse(jsonify(result))
+
+	else:
+		return HttpResponseForbidden("NOPE")
