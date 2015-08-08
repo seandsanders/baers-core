@@ -227,6 +227,7 @@ def refreshCorpApi():
 def generateStatistics():
 	inPOS = CorpStarbaseFuel.objects.exclude(typeID=16275)
 	fuel = CorpAsset.objects.filter(typeID=4247, locationID=31002487)
+	inCHA = CorpAsset.objects.filter(typeID=4247, parentID__in=[1014516459082,1014612434725,1014611085566])
 
 	totalPOS = 0
 	for stack in inPOS:
@@ -235,10 +236,14 @@ def generateStatistics():
 	total = 0
 	for stack in fuel:
 		total += stack.quantity
+
+	totalCHA = 0
+	for stack in inCHA:
+		totalCHA += stack.quantity
 	
 	entry = AccountingEntry(name="fuelPOS", date=datetime.datetime.utcnow(), balance=totalPOS)
 	entry.save()
-	entry = AccountingEntry(name="fuelCHA", date=datetime.datetime.utcnow(), balance=total-totalPOS)
+	entry = AccountingEntry(name="fuelCHA", date=datetime.datetime.utcnow(), balance=totalCHA)
 	entry.save()
 	entry = AccountingEntry(name="fuelTotal", date=datetime.datetime.utcnow(), balance=total)
 	entry.save()
