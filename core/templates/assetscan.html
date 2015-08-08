@@ -25,8 +25,8 @@
 			<td><img src="//image.eveonline.com/Character/{{asset.owner.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{asset.owner.charName}}"><a href="{% url "core:playerProfile" profileName=asset.owner|slugify %}">{{asset.owner}} ({{asset.owner.profile.mainChar}})</a></td>
 			<td>{{asset.quantity}}</td>
 			<td>{{asset.location.0}}</td>
+			<td>{{asset.parentName}}</td>
 			<td>{{asset.singleton}}</td>
-			<td>&nbsp;</td>
 			<td>{{asset.flag.0}}</td>
 		</tr>
 		{% endfor %}

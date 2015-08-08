@@ -614,6 +614,13 @@ def assetScan(request):
 			rAssets = []
 			cur = connection.cursor()
 			for asset in assets:
+				if asset.parentID:
+					p = CharacterAsset.objects.filter(itemID=asset.parentID)
+					if p:
+						parentType = CCPinvType.objects.filter(typeID=p.first().typeID)
+						if parentType:
+							asset.parentName = parentType.first().typeName
+
 				cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = '+str(asset.locationID)+';')
 				asset.location = cur.fetchone();
 
@@ -636,6 +643,11 @@ def assetScan(request):
 
 				if asset.parentID:
 					asset.parentName = parentNames.get(asset.parentID, None)
+					p = CorpAsset.objects.filter(itemID=asset.parentID)
+					if p:
+						parentType = CCPinvType.objects.filter(typeID=p.first().typeID)
+						if parentType:
+							asset.parentName += " ("+parentType.first().typeName+")"
 
 
 				rcAssets.append(asset)
