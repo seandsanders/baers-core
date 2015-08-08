@@ -86,7 +86,7 @@
  <script>
  	if (window.plots) {
 	 	for (var x=0;x<plots.length;x++) {
-	 		$.plot("#"+plots[x][0], plots[x][1], {legend: {position: "nw", backgroundOpacity: 0}, points: {show: true}, lines: {show: true}, yaxis: {min: 0}, xaxis: {mode: "time"}});
+	 		$.plot("#"+plots[x][0], plots[x][1], {legend: {position: "nw", backgroundOpacity: 0}, points: {show: false}, lines: {show: true}, yaxis: {min: 0}, xaxis: {mode: "time"}});
 	 	}
 	 }
  </script>
