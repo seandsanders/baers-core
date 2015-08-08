@@ -5,7 +5,7 @@
 <h1>AssetScan</h1>
 <form action="" method="POST">
 	{% csrf_token %}
-	<strong>TypeID: </strong><input type="text" name="typeid">
+	<strong>Item: </strong><input type="text" name="typename" id="item">
 	<input type="submit">
 </form>
 
@@ -16,6 +16,7 @@
 			<th>Owner</th>
 			<th>Quantity</th>
 			<th>Location</th>
+			<th>Container</th>
 			<th>Unpackaged</th>
 			<th>"Flag"</th>
 		</tr>
@@ -25,6 +26,7 @@
 			<td>{{asset.quantity}}</td>
 			<td>{{asset.location.0}}</td>
 			<td>{{asset.singleton}}</td>
+			<td>&nbsp;</td>
 			<td>{{asset.flag.0}}</td>
 		</tr>
 		{% endfor %}
@@ -32,15 +34,32 @@
 		<tr>
 			<td>Dropbears Anonymous</td>
 			<td>{{asset.quantity}}</td>
-			<td>{{asset.location.0}}</td>
+			<td>{{asset.location.0}} </td>
+			<td>{{asset.parentName}}</td>
 			<td>{{asset.singleton}}</td>
 			<td>{{asset.flag.0}}</td>
 		</tr>
 		{% endfor %}
 	</table>
+{% elif not status and typeName %}
+	<hr><h4>Cannot find any <strong>{{typeName}}</strong> in assets.</h4>
+{% endif %}
+
+{% if status %}
+	<hr>
+	<h4>{{status}}</h4>
 {% endif %}
 
 
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    $( "#item" ).autocomplete({
+      source: "/corpmarket/typeid",
+      minLength: 3
+  });
+  </script>
 {% endblock %}
 
  {% block title %}AssetScan - BAERS Core{% endblock title %}

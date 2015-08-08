@@ -10,6 +10,29 @@ from hipchat.models import HipchatAccount
 from hipchat.api import getMentionName, roomMessage
 
 
+def retrieveItemNames(ids):
+	keyid = settings.CORP_API_KEYID
+	vcode = settings.CORP_API_VCODE
+
+	api = eveapi.EVEAPIConnection()
+	auth = api.auth(keyID=keyid, vCode=vcode)
+
+	tmp = []
+	for id in ids:
+		if id != "None":
+			tmp.append(id)
+	ids = tmp
+
+	names = {}
+
+	for x in range(0,len(ids),100):
+		sub = ",".join(ids[x:x+100])
+		result = auth.corp.Locations(IDs=sub)
+		for r in result.locations:
+			names[r.itemID] = r.itemName
+
+	return names
+
 def refreshCorpApi():
 	keyid = settings.CORP_API_KEYID
 	vcode = settings.CORP_API_VCODE

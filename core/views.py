@@ -17,8 +17,8 @@ from json import dumps as jsonify
 import random
 
 from core import postNotification
-from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, StarbaseOwner, CharacterSkill, Haiku, AccountingEntry, CharacterAsset, CorpAsset
-from core.apireader import validateKey, refreshKeyInfo
+from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, StarbaseOwner, CharacterSkill, Haiku, AccountingEntry, CharacterAsset, CorpAsset, CCPinvType
+from core.apireader import validateKey, refreshKeyInfo, retrieveItemNames
 from core.tasks import Task 
 from core.evedata import STARBASE_TYPES
 
@@ -599,36 +599,56 @@ def assetScan(request):
 	if not isHR(request.user):
 		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not HR.'})
 
-	typeID = request.POST.get('typeid', None)
+	typeName = request.POST.get("typename", None)
 
-	if typeID:
-		assets = CharacterAsset.objects.filter(typeID=typeID).order_by("-quantity")
-		rAssets = []
-		cur = connection.cursor()
-		for asset in assets:
-			cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = '+str(asset.locationID)+';')
-			asset.location = cur.fetchone();
+	rAssets = None
+	rcAssets = None
+	typeID = "Unknown"
+	
+	if typeName and typeName != "":
+		typeID = CCPinvType.objects.filter(typeName=typeName)
+		if typeID:
+			typeID = typeID.first().typeID
 
-			cur.execute('SELECT flagName FROM invFlags WHERE flagID = '+str(asset.flag)+';')
-			asset.flag = cur.fetchone();
-			rAssets.append(asset)
-		corpAssets = CorpAsset.objects.filter(typeID=typeID).order_by("-quantity")
-		rcAssets = []
-		for asset in corpAssets:
-			cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = '+str(asset.locationID)+';')
-			asset.location = cur.fetchone();
+			assets = CharacterAsset.objects.filter(typeID=typeID).order_by("-quantity")
+			rAssets = []
+			cur = connection.cursor()
+			for asset in assets:
+				cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = '+str(asset.locationID)+';')
+				asset.location = cur.fetchone();
 
-			cur.execute('SELECT flagName FROM invFlags WHERE flagID = '+str(asset.flag)+';')
-			asset.flag = cur.fetchone();
+				cur.execute('SELECT flagName FROM invFlags WHERE flagID = '+str(asset.flag)+';')
+				asset.flag = cur.fetchone();
+				rAssets.append(asset)
 
-			rcAssets.append(asset)
+			corpAssets = CorpAsset.objects.filter(typeID=typeID).order_by("-quantity")
 
-		cur.execute('SELECT typeName FROM invTypes WHERE typeID = %s', [typeID])
-		i = cur.fetchone()
-		i = i[0];
+			parentsList = map(str, corpAssets.values_list("parentID", flat=True))
+			parentNames = retrieveItemNames(parentsList)
+
+			rcAssets = []
+			for asset in corpAssets:
+				cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = '+str(asset.locationID)+';')
+				asset.location = cur.fetchone();
+
+				cur.execute('SELECT flagName FROM invFlags WHERE flagID = '+str(asset.flag)+';')
+				asset.flag = cur.fetchone();
+
+				if asset.parentID:
+					asset.parentName = parentNames.get(asset.parentID, None)
+
+
+				rcAssets.append(asset)
+
+			cur.execute('SELECT typeName FROM invTypes WHERE typeID = %s', [typeID])
+			i = cur.fetchone()
+			i = i[0];
+		else:
+			status = "Cannot find <strong>"+typeName+"</strong> in Database."
 	else:
-		rAssets = None
-		rcAssets = None
-		i = None
+		status = "Please supply an item name."
 
-	return render(request, "assetscan.html", {"assets": rAssets, "corpAssets": rcAssets, "typeName": i, "typeID": typeID})
+
+	return render(request, "assetscan.html", {"assets": rAssets, "corpAssets": rcAssets, "typeName": typeName, "typeID": typeID})
+
+
