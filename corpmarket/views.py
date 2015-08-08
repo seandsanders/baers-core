@@ -70,11 +70,11 @@ def add(request):
 def list(request):
 	if not isDropbear(request.user):
 		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a member.'})
-		
+
 	items = CorpMarketItem.objects.all()
 
 	result = []
-	chaContents = CorpAsset.objects.filter(parentID=1014611085566)
+	chaContents = CorpAsset.objects.filter(parentID__in=[1014516459082,1014612434725,1014611085566])
 	for item in items:
 		chaQuantity = chaContents.filter(typeID=item.typeID).aggregate(Sum('quantity'))["quantity__sum"]
 		if not chaQuantity:
