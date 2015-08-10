@@ -678,35 +678,3 @@ def timezoneAPI(request):
 	else:
 		return HttpResponseForbidden("NOPE")
 
-def skillCheck(request):
-	from applications.views import compareSkillplans
-	if not isHR(request.user):
-		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not HR.'})		
-
-	if request.POST.get("go", False):
-		nostage1 = []
-		nostage0 = []
-		profiles = UserProfile.objects.filter(user__groups__name="Dropbears")
-
-		for p in profiles:
-			highest0 = 0
-			highest1 = 0
-			for c in p.character_set.all():
-				sp = compareSkillplans(c)
-				for skillplan in sp:
-					if skillplan["name"] == "Stage 0":
-						if skillplan["prct"] > highest0:
-							highest0 = skillplan["prct"]
-					elif skillplan["name"] == "Stage 1":
-						if skillplan["prct"] > highest1:
-							highest1 = skillplan["prct"]
-			if highest0 < 100:
-				nostage0.append(p)
-			if highest1 < 100:
-				nostage1.append(p)
-
-			print str(p), highest0, highest1, nostage0, nostage1
-
-		return render(request, "skills.html", {"stage0": nostage0, "stage1": nostage1})
-
-	return render(request, "skills.html", {})
