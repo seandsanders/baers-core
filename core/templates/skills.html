@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<h2>Dropbears that have not yet completed Stage 0 or Stage 1</h2>
+	<br>
+	<h5>Please note that comparing skillplans to all characters causes a lot of load, so don't spam this feature.<h5>
+	<form method="POST">
+		{% csrf_token %}
+		<input type="submit" value="Compare Skillplans" name="go">
+	</form>
+
+	{% if stage0 %}
+		<hr>
+		<h4>Users that have not completed Stage 0 on any character:</h4>
+		{% for profile in stage0 %}
+			<li style="padding-bottom: 5px"><img src="//image.eveonline.com/Character/{{profile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{profile.mainChar.charName}}"><a href="{% url "core:playerProfile" profileName=profile.mainChar.charName|slugify %}">{{profile.mainChar.charName}}</a></li>
+		{% endfor %}
+	{% endif %}
+	{% if stage1 %}
+		<hr>
+		<h4>Users that have not completed Stage 1 on any character:</h4>
+		{% for profile in stage1 %}
+			<li style="padding-bottom: 5px"><img src="//image.eveonline.com/Character/{{profile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{profile.mainChar.charName}}"><a href="{% url "core:playerProfile" profileName=profile.mainChar.charName|slugify %}">{{profile.mainChar.charName}}</a></li>
+		{% endfor %}
+	{% endif %}
+
+
+{% endblock content %}
+  {% block title %}Skill Check - BAERS Core{% endblock title %}
