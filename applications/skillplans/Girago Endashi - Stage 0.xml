@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0"?>
-<plan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Stage 0" owner="8229afc6-4d6c-49b2-8f48-7a36dff8ee76" revision="4609">
+<plan xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Stage 0" owner="fc778596-c8dd-43b6-ba84-fa9d4864acc6" revision="3758">
   <sorting criteria="None" order="None" groupByPriority="false" />
   <entry skillID="3411" skill="Cybernetics" level="1" priority="3" type="Planned">
     <notes>Cybernetics</notes>
@@ -8,19 +8,19 @@
     <notes>Cybernetics</notes>
   </entry>
   <entry skillID="3394" skill="Hull Upgrades" level="1" priority="1" type="Planned">
-    <notes>Exported from GallenteBasic2, Kinetic Armor Compensation, Thermic Armor Compensation, EM Armor Compensation</notes>
+    <notes>Exported from GallenteBasic2, Kinetic Armor Compensation, Thermic Armor Compensation, EM Armor Compensation, Explosive Armor Compensation</notes>
     <group>Scout - Salvage - Logi - Tackle</group>
     <group>Grizzly T0</group>
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="3394" skill="Hull Upgrades" level="2" priority="1" type="Planned">
-    <notes>Exported from GallenteBasic2, Kinetic Armor Compensation, Thermic Armor Compensation, EM Armor Compensation</notes>
+    <notes>Exported from GallenteBasic2, Kinetic Armor Compensation, Thermic Armor Compensation, EM Armor Compensation, Explosive Armor Compensation</notes>
     <group>Scout - Salvage - Logi - Tackle</group>
     <group>Grizzly T0</group>
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="3394" skill="Hull Upgrades" level="3" priority="1" type="Planned">
-    <notes>Exported from GallenteBasic2, Kinetic Armor Compensation, Thermic Armor Compensation, EM Armor Compensation</notes>
+    <notes>Exported from GallenteBasic2, Kinetic Armor Compensation, Thermic Armor Compensation, EM Armor Compensation, Explosive Armor Compensation</notes>
     <group>Scout - Salvage - Logi - Tackle</group>
     <group>Grizzly T0</group>
     <group>Scythe T0.1</group>
@@ -29,28 +29,32 @@
     <notes>Exported from GallenteBasic2</notes>
     <group>Scout - Salvage - Logi - Tackle</group>
   </entry>
+  <entry skillID="3426" skill="CPU Management" level="4" priority="1" type="Planned">
+    <notes>Exported from GallenteBasic2, Cloaking</notes>
+    <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
   <entry skillID="3426" skill="CPU Management" level="5" priority="1" type="Planned">
     <notes>Exported from GallenteBasic2</notes>
     <group>Scout - Salvage - Logi - Tackle</group>
   </entry>
   <entry skillID="3328" skill="Gallente Frigate" level="1" priority="2" type="Prerequisite">
-    <notes />
+    <notes>, Gallente Battleship</notes>
   </entry>
   <entry skillID="3328" skill="Gallente Frigate" level="2" priority="2" type="Prerequisite">
-    <notes />
+    <notes>, Gallente Battleship</notes>
   </entry>
   <entry skillID="3328" skill="Gallente Frigate" level="3" priority="2" type="Planned">
-    <notes>Exported from GallenteBasic2</notes>
+    <notes>Exported from GallenteBasic2, Gallente Battleship</notes>
     <group>Scout - Salvage - Logi - Tackle</group>
   </entry>
   <entry skillID="3450" skill="Afterburner" level="1" priority="2" type="Planned">
-    <notes>Exported from GallenteBasic2, High Speed Maneuvering</notes>
+    <notes>Exported from GallenteBasic2, High Speed Maneuvering, Fuel Conservation</notes>
     <group>Scout - Salvage - Logi - Tackle</group>
     <group>Grizzly T0</group>
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="3450" skill="Afterburner" level="2" priority="2" type="Planned">
-    <notes>Exported from GallenteBasic2, High Speed Maneuvering</notes>
+    <notes>Exported from GallenteBasic2, High Speed Maneuvering, Fuel Conservation</notes>
     <group>Scout - Salvage - Logi - Tackle</group>
     <group>Grizzly T0</group>
     <group>Scythe T0.1</group>
@@ -180,7 +184,7 @@
     <group>Scout - Salvage - Logi - Tackle</group>
   </entry>
   <entry skillID="3392" skill="Mechanics" level="3" priority="2" type="Planned">
-    <notes>Exported from GallenteBasic2, Armor Rigging, Salvaging, Remote Armor Repair Systems, Exported from Scythe T0</notes>
+    <notes>Exported from GallenteBasic2, Armor Rigging, Salvaging, Remote Armor Repair Systems, Exported from Scythe T0, Armor Layering</notes>
     <group>Scout - Salvage - Logi - Tackle</group>
     <group>Grizzly T0</group>
     <group>Scythe T0.1</group>
@@ -253,16 +257,6 @@
   <entry skillID="3429" skill="Target Management" level="3" priority="3" type="Planned">
     <notes>Exported from GallenteBasic2</notes>
     <group>Scout - Salvage - Logi - Tackle</group>
-  </entry>
-  <entry skillID="3331" skill="Amarr Frigate" level="1" priority="4" type="Planned">
-    <notes>Exported from GallenteBasic2, Grizzly T0 | Ewar, Amarr Battlecruiser, Amarr Battleship</notes>
-    <group>Scout - Salvage - Logi - Tackle</group>
-    <group>Grizzly T0</group>
-  </entry>
-  <entry skillID="3331" skill="Amarr Frigate" level="2" priority="4" type="Planned">
-    <notes>Exported from GallenteBasic2, Grizzly T0 | Ewar, Amarr Battlecruiser, Amarr Battleship</notes>
-    <group>Scout - Salvage - Logi - Tackle</group>
-    <group>Grizzly T0</group>
   </entry>
   <entry skillID="3331" skill="Amarr Frigate" level="3" priority="4" type="Planned">
     <notes>Exported from GallenteBasic2, Grizzly T0 | Ewar, Amarr Battlecruiser, Amarr Battleship</notes>
@@ -452,7 +446,7 @@
     <group>Grizzly T0</group>
   </entry>
   <entry skillID="3300" skill="Gunnery" level="3" priority="5" type="Planned">
-    <notes>Gunnery, Surgical Strike, Trajectory Analysis</notes>
+    <notes>Gunnery, Surgical Strike, Trajectory Analysis, Medium Hybrid Turret, Medium Projectile Turret</notes>
     <group>Scout - Salvage - Logi - Tackle</group>
   </entry>
   <entry skillID="3300" skill="Gunnery" level="4" priority="5" type="Planned">
@@ -549,6 +543,15 @@
   <entry skillID="3317" skill="Trajectory Analysis" level="3" priority="5" type="Planned">
     <notes>Trajectory Analysis</notes>
     <group>Scout - Salvage - Logi - Tackle</group>
+  </entry>
+  <entry skillID="3301" skill="Small Hybrid Turret" level="1" priority="5" type="Prerequisite">
+    <notes>, Medium Hybrid Turret</notes>
+  </entry>
+  <entry skillID="3301" skill="Small Hybrid Turret" level="2" priority="5" type="Prerequisite">
+    <notes>, Medium Hybrid Turret</notes>
+  </entry>
+  <entry skillID="3301" skill="Small Hybrid Turret" level="3" priority="5" type="Prerequisite">
+    <notes>, Medium Hybrid Turret</notes>
   </entry>
   <entry skillID="3301" skill="Small Hybrid Turret" level="4" priority="5" type="Planned">
     <notes>Small Hybrid Turret</notes>
@@ -666,7 +669,7 @@
     <group>Grizzly T0</group>
   </entry>
   <entry skillID="3329" skill="Minmatar Frigate" level="1" priority="3" type="Planned">
-    <notes>Exported from Scythe T0, Minmatar Destroyer</notes>
+    <notes>Exported from Scythe T0, Minmatar Destroyer, Minmatar Battleship</notes>
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="3425" skill="Shield Upgrades" level="1" priority="3" type="Planned">
@@ -682,7 +685,7 @@
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="3329" skill="Minmatar Frigate" level="2" priority="3" type="Planned">
-    <notes>Exported from Scythe T0, Minmatar Destroyer</notes>
+    <notes>Exported from Scythe T0, Minmatar Destroyer, Minmatar Battleship</notes>
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="3422" skill="Shield Emission Systems" level="2" priority="3" type="Planned">
@@ -698,27 +701,27 @@
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="3329" skill="Minmatar Frigate" level="3" priority="3" type="Planned">
-    <notes>Exported from Scythe T0, Minmatar Destroyer</notes>
+    <notes>Exported from Scythe T0, Minmatar Destroyer, Minmatar Battleship</notes>
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="33094" skill="Minmatar Destroyer" level="1" priority="3" type="Planned">
-    <notes>Exported from Scythe T0</notes>
+    <notes>Exported from Scythe T0, Minmatar Battleship</notes>
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="33094" skill="Minmatar Destroyer" level="2" priority="3" type="Planned">
-    <notes>Exported from Scythe T0</notes>
+    <notes>Exported from Scythe T0, Minmatar Battleship</notes>
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="33094" skill="Minmatar Destroyer" level="3" priority="3" type="Planned">
-    <notes>Exported from Scythe T0</notes>
+    <notes>Exported from Scythe T0, Minmatar Battleship</notes>
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="3333" skill="Minmatar Cruiser" level="1" priority="3" type="Planned">
-    <notes>Exported from Scythe T0</notes>
+    <notes>Exported from Scythe T0, Minmatar Battleship</notes>
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="3333" skill="Minmatar Cruiser" level="2" priority="3" type="Planned">
-    <notes>Exported from Scythe T0</notes>
+    <notes>Exported from Scythe T0, Minmatar Battleship</notes>
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="26261" skill="Shield Rigging" level="1" priority="3" type="Planned">
@@ -738,7 +741,7 @@
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="3333" skill="Minmatar Cruiser" level="3" priority="3" type="Planned">
-    <notes>Exported from Scythe T0</notes>
+    <notes>Exported from Scythe T0, Minmatar Battleship</notes>
     <group>Scythe T0.1</group>
   </entry>
   <entry skillID="23618" skill="Drone Durability" level="1" priority="3" type="Planned">
@@ -807,6 +810,330 @@
     <notes>Salvaging</notes>
   </entry>
   <entry skillID="3394" skill="Hull Upgrades" level="4" priority="3" type="Prerequisite">
-    <notes>Kinetic Armor Compensation, Thermic Armor Compensation, EM Armor Compensation</notes>
+    <notes>Kinetic Armor Compensation, Thermic Armor Compensation, EM Armor Compensation, Explosive Armor Compensation</notes>
+  </entry>
+  <entry skillID="11579" skill="Cloaking" level="4" priority="3" type="Planned">
+    <notes>Cloaking</notes>
+  </entry>
+  <entry skillID="3306" skill="Medium Energy Turret" level="1" priority="3" type="Planned">
+    <notes>Medium Energy Turret</notes>
+  </entry>
+  <entry skillID="3306" skill="Medium Energy Turret" level="2" priority="3" type="Planned">
+    <notes>Medium Energy Turret</notes>
+  </entry>
+  <entry skillID="3306" skill="Medium Energy Turret" level="3" priority="3" type="Planned">
+    <notes>Medium Energy Turret</notes>
+  </entry>
+  <entry skillID="3304" skill="Medium Hybrid Turret" level="1" priority="5" type="Planned">
+    <notes>Medium Hybrid Turret</notes>
+  </entry>
+  <entry skillID="3304" skill="Medium Hybrid Turret" level="2" priority="5" type="Planned">
+    <notes>Medium Hybrid Turret</notes>
+  </entry>
+  <entry skillID="3304" skill="Medium Hybrid Turret" level="3" priority="5" type="Planned">
+    <notes>Medium Hybrid Turret</notes>
+  </entry>
+  <entry skillID="3302" skill="Small Projectile Turret" level="1" priority="5" type="Prerequisite">
+    <notes>Medium Projectile Turret</notes>
+  </entry>
+  <entry skillID="3302" skill="Small Projectile Turret" level="2" priority="5" type="Prerequisite">
+    <notes>Medium Projectile Turret</notes>
+  </entry>
+  <entry skillID="3302" skill="Small Projectile Turret" level="3" priority="5" type="Prerequisite">
+    <notes>Medium Projectile Turret</notes>
+  </entry>
+  <entry skillID="3305" skill="Medium Projectile Turret" level="1" priority="5" type="Planned">
+    <notes>Medium Projectile Turret</notes>
+  </entry>
+  <entry skillID="3305" skill="Medium Projectile Turret" level="2" priority="5" type="Planned">
+    <notes>Medium Projectile Turret</notes>
+  </entry>
+  <entry skillID="3305" skill="Medium Projectile Turret" level="3" priority="5" type="Planned">
+    <notes>Medium Projectile Turret</notes>
+  </entry>
+  <entry skillID="3327" skill="Spaceship Command" level="4" priority="4" type="Prerequisite">
+    <notes>Amarr Battleship, Caldari Battleship, Gallente Battleship, Minmatar Battleship</notes>
+  </entry>
+  <entry skillID="3339" skill="Amarr Battleship" level="1" priority="4" type="Planned">
+    <notes>Amarr Battleship</notes>
+  </entry>
+  <entry skillID="3339" skill="Amarr Battleship" level="2" priority="4" type="Planned">
+    <notes>Amarr Battleship</notes>
+  </entry>
+  <entry skillID="3330" skill="Caldari Frigate" level="1" priority="4" type="Prerequisite">
+    <notes>Caldari Battleship</notes>
+  </entry>
+  <entry skillID="3330" skill="Caldari Frigate" level="2" priority="4" type="Prerequisite">
+    <notes>Caldari Battleship</notes>
+  </entry>
+  <entry skillID="3330" skill="Caldari Frigate" level="3" priority="4" type="Prerequisite">
+    <notes>Caldari Battleship</notes>
+  </entry>
+  <entry skillID="33092" skill="Caldari Destroyer" level="1" priority="4" type="Prerequisite">
+    <notes>Caldari Battleship</notes>
+  </entry>
+  <entry skillID="33092" skill="Caldari Destroyer" level="2" priority="4" type="Prerequisite">
+    <notes>Caldari Battleship</notes>
+  </entry>
+  <entry skillID="33092" skill="Caldari Destroyer" level="3" priority="4" type="Prerequisite">
+    <notes>Caldari Battleship</notes>
+  </entry>
+  <entry skillID="3334" skill="Caldari Cruiser" level="1" priority="4" type="Prerequisite">
+    <notes>Caldari Battleship</notes>
+  </entry>
+  <entry skillID="3334" skill="Caldari Cruiser" level="2" priority="4" type="Prerequisite">
+    <notes>Caldari Battleship</notes>
+  </entry>
+  <entry skillID="3334" skill="Caldari Cruiser" level="3" priority="4" type="Prerequisite">
+    <notes>Caldari Battleship</notes>
+  </entry>
+  <entry skillID="33096" skill="Caldari Battlecruiser" level="1" priority="4" type="Prerequisite">
+    <notes>Caldari Battleship</notes>
+  </entry>
+  <entry skillID="33096" skill="Caldari Battlecruiser" level="2" priority="4" type="Prerequisite">
+    <notes>Caldari Battleship</notes>
+  </entry>
+  <entry skillID="33096" skill="Caldari Battlecruiser" level="3" priority="4" type="Prerequisite">
+    <notes>Caldari Battleship</notes>
+  </entry>
+  <entry skillID="3338" skill="Caldari Battleship" level="1" priority="4" type="Planned">
+    <notes>Caldari Battleship</notes>
+  </entry>
+  <entry skillID="3338" skill="Caldari Battleship" level="2" priority="4" type="Planned">
+    <notes>Caldari Battleship</notes>
+  </entry>
+  <entry skillID="33093" skill="Gallente Destroyer" level="1" priority="4" type="Prerequisite">
+    <notes>Gallente Battleship</notes>
+  </entry>
+  <entry skillID="33093" skill="Gallente Destroyer" level="2" priority="4" type="Prerequisite">
+    <notes>Gallente Battleship</notes>
+  </entry>
+  <entry skillID="33093" skill="Gallente Destroyer" level="3" priority="4" type="Prerequisite">
+    <notes>Gallente Battleship</notes>
+  </entry>
+  <entry skillID="3332" skill="Gallente Cruiser" level="1" priority="4" type="Prerequisite">
+    <notes>Gallente Battleship</notes>
+  </entry>
+  <entry skillID="3332" skill="Gallente Cruiser" level="2" priority="4" type="Prerequisite">
+    <notes>Gallente Battleship</notes>
+  </entry>
+  <entry skillID="3332" skill="Gallente Cruiser" level="3" priority="4" type="Prerequisite">
+    <notes>Gallente Battleship</notes>
+  </entry>
+  <entry skillID="33097" skill="Gallente Battlecruiser" level="1" priority="4" type="Prerequisite">
+    <notes>Gallente Battleship</notes>
+  </entry>
+  <entry skillID="33097" skill="Gallente Battlecruiser" level="2" priority="4" type="Prerequisite">
+    <notes>Gallente Battleship</notes>
+  </entry>
+  <entry skillID="33097" skill="Gallente Battlecruiser" level="3" priority="4" type="Prerequisite">
+    <notes>Gallente Battleship</notes>
+  </entry>
+  <entry skillID="3336" skill="Gallente Battleship" level="1" priority="4" type="Planned">
+    <notes>Gallente Battleship</notes>
+  </entry>
+  <entry skillID="3336" skill="Gallente Battleship" level="2" priority="4" type="Planned">
+    <notes>Gallente Battleship</notes>
+  </entry>
+  <entry skillID="33098" skill="Minmatar Battlecruiser" level="1" priority="4" type="Prerequisite">
+    <notes>Minmatar Battleship</notes>
+  </entry>
+  <entry skillID="33098" skill="Minmatar Battlecruiser" level="2" priority="4" type="Prerequisite">
+    <notes>Minmatar Battleship</notes>
+  </entry>
+  <entry skillID="33098" skill="Minmatar Battlecruiser" level="3" priority="4" type="Prerequisite">
+    <notes>Minmatar Battleship</notes>
+  </entry>
+  <entry skillID="3337" skill="Minmatar Battleship" level="1" priority="4" type="Planned">
+    <notes>Minmatar Battleship</notes>
+  </entry>
+  <entry skillID="3337" skill="Minmatar Battleship" level="2" priority="4" type="Planned">
+    <notes>Minmatar Battleship</notes>
+  </entry>
+  <entry skillID="3343" skill="Amarr Industrial" level="1" priority="3" type="Planned">
+    <notes>Amarr Industrial</notes>
+  </entry>
+  <entry skillID="3343" skill="Amarr Industrial" level="2" priority="3" type="Planned">
+    <notes>Amarr Industrial</notes>
+  </entry>
+  <entry skillID="3343" skill="Amarr Industrial" level="3" priority="3" type="Planned">
+    <notes>Amarr Industrial</notes>
+  </entry>
+  <entry skillID="3342" skill="Caldari Industrial" level="1" priority="3" type="Planned">
+    <notes>Caldari Industrial</notes>
+  </entry>
+  <entry skillID="3342" skill="Caldari Industrial" level="2" priority="3" type="Planned">
+    <notes>Caldari Industrial</notes>
+  </entry>
+  <entry skillID="3342" skill="Caldari Industrial" level="3" priority="3" type="Planned">
+    <notes>Caldari Industrial</notes>
+  </entry>
+  <entry skillID="3340" skill="Gallente Industrial" level="1" priority="3" type="Planned">
+    <notes>Gallente Industrial</notes>
+  </entry>
+  <entry skillID="3340" skill="Gallente Industrial" level="2" priority="3" type="Planned">
+    <notes>Gallente Industrial</notes>
+  </entry>
+  <entry skillID="3340" skill="Gallente Industrial" level="3" priority="3" type="Planned">
+    <notes>Gallente Industrial</notes>
+  </entry>
+  <entry skillID="3341" skill="Minmatar Industrial" level="1" priority="3" type="Planned">
+    <notes>Minmatar Industrial</notes>
+  </entry>
+  <entry skillID="3341" skill="Minmatar Industrial" level="2" priority="3" type="Planned">
+    <notes>Minmatar Industrial</notes>
+  </entry>
+  <entry skillID="3341" skill="Minmatar Industrial" level="3" priority="3" type="Planned">
+    <notes>Minmatar Industrial</notes>
+  </entry>
+  <entry skillID="22806" skill="EM Armor Compensation" level="1" priority="3" type="Planned">
+    <notes>EM Armor Compensation</notes>
+  </entry>
+  <entry skillID="22807" skill="Explosive Armor Compensation" level="1" priority="3" type="Planned">
+    <notes>Explosive Armor Compensation</notes>
+  </entry>
+  <entry skillID="22808" skill="Kinetic Armor Compensation" level="1" priority="3" type="Planned">
+    <notes>Kinetic Armor Compensation</notes>
+  </entry>
+  <entry skillID="22809" skill="Thermic Armor Compensation" level="1" priority="3" type="Planned">
+    <notes>Thermic Armor Compensation</notes>
+  </entry>
+  <entry skillID="33078" skill="Armor Layering" level="1" priority="3" type="Planned">
+    <notes>Armor Layering</notes>
+  </entry>
+  <entry skillID="3433" skill="Sensor Linking" level="1" priority="3" type="Planned">
+    <notes>Sensor Linking</notes>
+  </entry>
+  <entry skillID="3433" skill="Sensor Linking" level="2" priority="3" type="Planned">
+    <notes>Sensor Linking</notes>
+  </entry>
+  <entry skillID="3451" skill="Fuel Conservation" level="1" priority="3" type="Planned">
+    <notes>Fuel Conservation</notes>
+  </entry>
+  <entry skillID="3451" skill="Fuel Conservation" level="2" priority="3" type="Planned">
+    <notes>Fuel Conservation</notes>
+  </entry>
+  <entry skillID="3453" skill="Evasive Maneuvering" level="1" priority="3" type="Planned">
+    <notes>Evasive Maneuvering</notes>
+  </entry>
+  <entry skillID="3453" skill="Evasive Maneuvering" level="2" priority="3" type="Planned">
+    <notes>Evasive Maneuvering</notes>
+  </entry>
+  <entry skillID="3452" skill="Acceleration Control" level="1" priority="3" type="Planned">
+    <notes>Acceleration Control</notes>
+  </entry>
+  <entry skillID="3452" skill="Acceleration Control" level="2" priority="3" type="Planned">
+    <notes>Acceleration Control</notes>
+  </entry>
+  <entry skillID="3319" skill="Missile Launcher Operation" level="1" priority="3" type="Prerequisite">
+    <notes>Light Missiles, Missile Projection, Missile Bombardment, Rapid Launch, Warhead Upgrades, Guided Missile Precision, Target Navigation Prediction</notes>
+  </entry>
+  <entry skillID="3319" skill="Missile Launcher Operation" level="2" priority="3" type="Prerequisite">
+    <notes>Light Missiles, Missile Projection, Rapid Launch, Warhead Upgrades, Guided Missile Precision, Target Navigation Prediction</notes>
+  </entry>
+  <entry skillID="3321" skill="Light Missiles" level="1" priority="3" type="Planned">
+    <notes>Light Missiles</notes>
+  </entry>
+  <entry skillID="3321" skill="Light Missiles" level="2" priority="3" type="Planned">
+    <notes>Light Missiles</notes>
+  </entry>
+  <entry skillID="3321" skill="Light Missiles" level="3" priority="3" type="Planned">
+    <notes>Light Missiles</notes>
+  </entry>
+  <entry skillID="3321" skill="Light Missiles" level="4" priority="3" type="Planned">
+    <notes>Light Missiles</notes>
+  </entry>
+  <entry skillID="24242" skill="Infomorph Psychology" level="1" priority="3" type="Planned">
+    <notes>Infomorph Psychology, Infomorph Synchronizing</notes>
+  </entry>
+  <entry skillID="24242" skill="Infomorph Psychology" level="2" priority="3" type="Planned">
+    <notes>Infomorph Psychology</notes>
+  </entry>
+  <entry skillID="33399" skill="Infomorph Synchronizing" level="1" priority="3" type="Planned">
+    <notes>Infomorph Synchronizing</notes>
+  </entry>
+  <entry skillID="33399" skill="Infomorph Synchronizing" level="2" priority="3" type="Planned">
+    <notes>Infomorph Synchronizing</notes>
+  </entry>
+  <entry skillID="33399" skill="Infomorph Synchronizing" level="3" priority="3" type="Planned">
+    <notes>Infomorph Synchronizing</notes>
+  </entry>
+  <entry skillID="33399" skill="Infomorph Synchronizing" level="4" priority="3" type="Planned">
+    <notes>Infomorph Synchronizing</notes>
+  </entry>
+  <entry skillID="24242" skill="Infomorph Psychology" level="3" priority="3" type="Planned">
+    <notes>Infomorph Psychology</notes>
+  </entry>
+  <entry skillID="24242" skill="Infomorph Psychology" level="4" priority="3" type="Planned">
+    <notes>Infomorph Psychology</notes>
+  </entry>
+  <entry skillID="3319" skill="Missile Launcher Operation" level="3" priority="3" type="Prerequisite">
+    <notes>Missile Projection, Warhead Upgrades, Guided Missile Precision</notes>
+  </entry>
+  <entry skillID="12442" skill="Missile Projection" level="1" priority="3" type="Planned">
+    <notes>Missile Projection</notes>
+  </entry>
+  <entry skillID="12442" skill="Missile Projection" level="2" priority="3" type="Planned">
+    <notes>Missile Projection</notes>
+  </entry>
+  <entry skillID="12442" skill="Missile Projection" level="3" priority="3" type="Planned">
+    <notes>Missile Projection</notes>
+  </entry>
+  <entry skillID="12441" skill="Missile Bombardment" level="1" priority="3" type="Planned">
+    <notes>Missile Bombardment</notes>
+  </entry>
+  <entry skillID="12441" skill="Missile Bombardment" level="2" priority="3" type="Planned">
+    <notes>Missile Bombardment</notes>
+  </entry>
+  <entry skillID="12441" skill="Missile Bombardment" level="3" priority="3" type="Planned">
+    <notes>Missile Bombardment</notes>
+  </entry>
+  <entry skillID="21071" skill="Rapid Launch" level="1" priority="3" type="Planned">
+    <notes>Rapid Launch</notes>
+  </entry>
+  <entry skillID="21071" skill="Rapid Launch" level="2" priority="3" type="Planned">
+    <notes>Rapid Launch</notes>
+  </entry>
+  <entry skillID="21071" skill="Rapid Launch" level="3" priority="3" type="Planned">
+    <notes>Rapid Launch</notes>
+  </entry>
+  <entry skillID="3319" skill="Missile Launcher Operation" level="4" priority="3" type="Prerequisite">
+    <notes>Warhead Upgrades, Guided Missile Precision</notes>
+  </entry>
+  <entry skillID="20315" skill="Warhead Upgrades" level="1" priority="3" type="Planned">
+    <notes>Warhead Upgrades</notes>
+  </entry>
+  <entry skillID="3319" skill="Missile Launcher Operation" level="5" priority="3" type="Prerequisite">
+    <notes>Guided Missile Precision</notes>
+  </entry>
+  <entry skillID="20312" skill="Guided Missile Precision" level="1" priority="3" type="Planned">
+    <notes>Guided Missile Precision</notes>
+  </entry>
+  <entry skillID="20312" skill="Guided Missile Precision" level="2" priority="3" type="Planned">
+    <notes>Guided Missile Precision</notes>
+  </entry>
+  <entry skillID="20312" skill="Guided Missile Precision" level="3" priority="3" type="Planned">
+    <notes>Guided Missile Precision</notes>
+  </entry>
+  <entry skillID="20314" skill="Target Navigation Prediction" level="1" priority="3" type="Planned">
+    <notes>Target Navigation Prediction</notes>
+  </entry>
+  <entry skillID="20314" skill="Target Navigation Prediction" level="2" priority="3" type="Planned">
+    <notes>Target Navigation Prediction</notes>
+  </entry>
+  <entry skillID="20314" skill="Target Navigation Prediction" level="3" priority="3" type="Planned">
+    <notes>Target Navigation Prediction</notes>
+  </entry>
+  <entry skillID="3405" skill="Biology" level="1" priority="3" type="Planned">
+    <notes>Biology</notes>
+  </entry>
+  <entry skillID="3405" skill="Biology" level="2" priority="3" type="Planned">
+    <notes>Biology</notes>
+  </entry>
+  <entry skillID="3405" skill="Biology" level="3" priority="3" type="Planned">
+    <notes>Biology</notes>
+  </entry>
+  <entry skillID="3405" skill="Biology" level="4" priority="3" type="Planned">
+    <notes>Biology</notes>
   </entry>
 </plan>

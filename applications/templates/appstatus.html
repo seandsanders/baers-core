@@ -7,6 +7,7 @@
 		<h4>Application Recieved: {{app.applicationDate}}</h4>
 		<h4>Application Status: {% if status %}{{status}}{% else %}{{app.get_status_display}}{% endif %}</h4>
 		<h4>Your Position in the application queue: {{pos}}</h4>
+		<p><strong>Tip: If you do not already have it, train Hull Upgrades 5 while your application is being processed</strong></p>
 	{% else %}
 		<h4>You don't have an application</h4>
 	{% endif %}
