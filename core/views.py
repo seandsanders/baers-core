@@ -603,6 +603,8 @@ def assetScan(request, itemID=None):
 
 	rAssets = None
 	rcAssets = None
+	assets = None
+	corpAssets = None
 	typeID = "Unknown"
 	
 	if typeName and typeName != "":
