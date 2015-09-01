@@ -633,6 +633,9 @@ def assetScan(request):
 			parentsList = map(str, corpAssets.values_list("parentID", flat=True))
 			parentNames = retrieveItemNames(parentsList)
 
+			itemsList = map(str, corpAssets.values_list("itemID", flat=True))
+			itemNames = retrieveItemNames(itemsList)
+
 			rcAssets = []
 			for asset in corpAssets:
 				cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = '+str(asset.locationID)+';')
@@ -643,6 +646,7 @@ def assetScan(request):
 
 				if asset.parentID:
 					asset.parentName = unicode(parentNames.get(asset.parentID, "-"))
+					asset.itemName = unicode(itemNames.get(asset.itemID, "-"))
 					p = CorpAsset.objects.filter(itemID=asset.parentID)
 					if p:
 						parentType = CCPinvType.objects.filter(typeID=p.first().typeID)
