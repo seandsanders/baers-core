@@ -605,6 +605,8 @@ def assetScan(request, itemID=None):
 	rcAssets = None
 	assets = None
 	corpAssets = None
+	containerName = None
+	containerType = None
 	typeID = "Unknown"
 	
 	if typeName and typeName != "":
@@ -632,6 +634,7 @@ def assetScan(request, itemID=None):
 						parentType = CCPinvType.objects.filter(typeID=p.first().typeID)
 						if parentType:
 							asset.parentName = parentType.first().typeName
+				asset.itemName = CCPinvType.objects.filter(typeID=asset.typeID).first().typeName
 
 				cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = '+str(asset.locationID)+';')
 				asset.location = cur.fetchone();
@@ -657,23 +660,34 @@ def assetScan(request, itemID=None):
 
 				if asset.parentID:
 					asset.parentName = unicode(parentNames.get(asset.parentID, "-"))
-					asset.itemName = unicode(itemNames.get(asset.itemID, CCPinvType.objects.filter(typeID=asset.typeID).first().typeName))
 					p = CorpAsset.objects.filter(itemID=asset.parentID)
 					if p:
 						parentType = CCPinvType.objects.filter(typeID=p.first().typeID)
 						if parentType:
 							asset.parentName += " ("+unicode(parentType.first().typeName)+")"
 
-
+				asset.itemName = unicode(itemNames.get(asset.itemID, CCPinvType.objects.filter(typeID=asset.typeID).first().typeName))
 				rcAssets.append(asset)
 
 
+			if itemID and (assets or corpAssets):
+				containerName = unicode(parentNames.get(itemID, "-"))
+				p = CorpAsset.objects.filter(itemID=itemID)
+				if not p:
+					p = CharacterAsset.objects.filter(itemID=itemID)
+				
+				containerType = CCPinvType.objects.filter(typeID=p.first().typeID).first()
+			else:
+				containerName = None
+				containerType = None
 
 	else:
 		status = "Please supply an item name."
 
 
-	return render(request, "assetscan.html", {"assets": rAssets, "corpAssets": rcAssets, "typeName": typeName, "typeID": typeID})
+						
+
+	return render(request, "assetscan.html", {"assets": rAssets, "corpAssets": rcAssets, "typeName": typeName, "typeID": typeID, "containerName": containerName, "containerType": containerType})
 
 
 def timezoneAPI(request):
