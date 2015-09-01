@@ -647,7 +647,7 @@ def assetScan(request):
 					if p:
 						parentType = CCPinvType.objects.filter(typeID=p.first().typeID)
 						if parentType:
-							asset.parentName += " ("+parentType.first().typeName+")"
+							str(asset.parentName) += " ("+str(parentType.first().typeName)+")"
 
 
 				rcAssets.append(asset)
