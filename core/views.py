@@ -642,12 +642,12 @@ def assetScan(request):
 				asset.flag = cur.fetchone();
 
 				if asset.parentID:
-					asset.parentName = parentNames.get(asset.parentID, "-")
+					asset.parentName = str(parentNames.get(asset.parentID, "-"))
 					p = CorpAsset.objects.filter(itemID=asset.parentID)
 					if p:
 						parentType = CCPinvType.objects.filter(typeID=p.first().typeID)
 						if parentType:
-							str(asset.parentName) += " ("+str(parentType.first().typeName)+")"
+							asset.parentName += " ("+str(parentType.first().typeName)+")"
 
 
 				rcAssets.append(asset)
