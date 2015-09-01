@@ -595,7 +595,7 @@ def accounting(request):
 
 	return render(request, "accounting.html", context)
 
-def assetScan(request):
+def assetScan(request, itemID=None):
 	if not isHR(request.user):
 		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not HR.'})
 
@@ -611,6 +611,16 @@ def assetScan(request):
 			typeID = typeID.first().typeID
 
 			assets = CharacterAsset.objects.filter(typeID=typeID).order_by("-quantity")
+			corpAssets = CorpAsset.objects.filter(typeID=typeID).order_by("-quantity")
+		else:
+			status = "Cannot find <strong>"+typeName+"</strong> in Database."
+
+	elif itemID and int(itemID):
+		assets = CharacterAsset.objects.filter(parentID=itemID).order_by("-quantity")
+		corpAssets = CorpAsset.objects.filter(parentID=itemID).order_by("-quantity")
+
+
+	if assets or corpAssets:
 			rAssets = []
 			cur = connection.cursor()
 			for asset in assets:
@@ -628,8 +638,7 @@ def assetScan(request):
 				asset.flag = cur.fetchone();
 				rAssets.append(asset)
 
-			corpAssets = CorpAsset.objects.filter(typeID=typeID).order_by("-quantity")
-
+			
 			parentsList = map(str, corpAssets.values_list("parentID", flat=True))
 			parentNames = retrieveItemNames(parentsList)
 
@@ -646,7 +655,7 @@ def assetScan(request):
 
 				if asset.parentID:
 					asset.parentName = unicode(parentNames.get(asset.parentID, "-"))
-					asset.itemName = unicode(itemNames.get(asset.itemID, "-"))
+					asset.itemName = unicode(itemNames.get(asset.itemID, CCPinvType.objects.filter(typeID=asset.typeID).first().typeName))
 					p = CorpAsset.objects.filter(itemID=asset.parentID)
 					if p:
 						parentType = CCPinvType.objects.filter(typeID=p.first().typeID)
@@ -656,11 +665,8 @@ def assetScan(request):
 
 				rcAssets.append(asset)
 
-			cur.execute('SELECT typeName FROM invTypes WHERE typeID = %s', [typeID])
-			i = cur.fetchone()
-			i = i[0];
-		else:
-			status = "Cannot find <strong>"+typeName+"</strong> in Database."
+
+
 	else:
 		status = "Please supply an item name."
 

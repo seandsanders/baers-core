@@ -25,7 +25,7 @@
 		<tr {% if not asset.owner.api.valid %}class="danger"{% endif %}>
 			<td><img src="//image.eveonline.com/Character/{{asset.owner.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{asset.owner.charName}}"><a href="{% url "core:playerProfile" profileName=asset.owner|slugify %}">{{asset.owner}} ({{asset.owner.profile.mainChar}})</a></td>
 			<td>{{asset.quantity}}</td>
-			<td>{{asset.itemName}}</td>
+			<td><a href="{% url "core:assetexpand" asset.itemID %}">{{typeName}}</a></td>
 			<td>{{asset.location.0}}</td>
 			<td>{{asset.parentName}}</td>
 			<td>{{asset.singleton}}</td>
@@ -36,7 +36,7 @@
 		<tr>
 			<td>Dropbears Anonymous</td>
 			<td>{{asset.quantity}}</td>
-			<td>{{asset.itemName}}</td>
+			<td><a href="{% url "core:assetexpand" asset.itemID %}">{{asset.itemName}}</a></td>
 			<td>{{asset.location.0}} </td>
 			<td>{{asset.parentName}}</td>
 			<td>{{asset.singleton}}</td>
