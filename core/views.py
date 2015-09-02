@@ -673,7 +673,7 @@ def assetScan(request, itemID=None):
 
 
 			if itemID and (assets or corpAssets):
-				containerName = unicode(parentNames.get(itemID, "-"))
+				containerName = unicode(parentNames.get(int(itemID), "-"))
 				p = CorpAsset.objects.filter(itemID=itemID)
 				if not p:
 					p = CharacterAsset.objects.filter(itemID=itemID)
