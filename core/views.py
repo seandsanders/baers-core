@@ -634,7 +634,8 @@ def assetScan(request, itemID=None):
 						parentType = CCPinvType.objects.filter(typeID=p.first().typeID)
 						if parentType:
 							asset.parentName = parentType.first().typeName
-				asset.itemName = CCPinvType.objects.filter(typeID=asset.typeID).first().typeName
+				invType = CCPinvType.objects.filter(typeID=asset.typeID).first()
+				asset.itemName = invType.typeName if invType else "Type ID "+unicode(asset.typeID)+" unknown"
 
 				cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = '+str(asset.locationID)+';')
 				asset.location = cur.fetchone();
