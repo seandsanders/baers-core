@@ -620,8 +620,8 @@ def assetScan(request, itemID=None):
 			status = "Cannot find <strong>"+typeName+"</strong> in Database."
 
 	elif itemID and int(itemID):
-		assets = CharacterAsset.objects.filter(parentID=itemID).order_by("-quantity")
-		corpAssets = CorpAsset.objects.filter(parentID=itemID).order_by("-quantity")
+		assets = CharacterAsset.objects.filter(parentID=itemID).order_by("flag")
+		corpAssets = CorpAsset.objects.filter(parentID=itemID).order_by("flag")
 
 
 	if assets or corpAssets:
