@@ -31,7 +31,7 @@
 			<td>{{asset.quantity}}</td>
 			<td><a href="{% url "core:assetexpand" asset.itemID %}">{{asset.itemName}}</a></td>
 			<td>{{asset.location.0}}</td>
-			<td>{{asset.parentName}}</td>
+			<td><a href="{% url "core:assetexpand" asset.parentID %}">{{asset.parentName}}</a></td>
 			<td>{{asset.singleton}}</td>
 			<td>{{asset.flag.0}}</td>
 		</tr>
@@ -42,7 +42,7 @@
 			<td>{{asset.quantity}}</td>
 			<td><a href="{% url "core:assetexpand" asset.itemID %}">{{asset.itemName}}</a></td>
 			<td>{{asset.location.0}} </td>
-			<td>{{asset.parentName}}</td>
+			<td><a href="{% url "core:assetexpand" asset.parentID %}">{{asset.parentName}}</a></td>
 			<td>{{asset.singleton}}</td>
 			<td>{{asset.flag.0}}</td>
 		</tr>

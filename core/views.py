@@ -645,6 +645,8 @@ def assetScan(request, itemID=None):
 
 			
 			parentsList = map(str, corpAssets.values_list("parentID", flat=True))
+			if itemID:
+				parentsList.append(itemID)
 			parentNames = retrieveItemNames(parentsList)
 
 			itemsList = map(str, corpAssets.values_list("itemID", flat=True))
