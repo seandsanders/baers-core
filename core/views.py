@@ -395,7 +395,7 @@ def memberList(request):
 		for char in corpchars:
 			c = chars.filter(charID=char.characterID).first()
 			inactiveDays = (datetime.utcnow().replace(tzinfo=None) - char.logoffDate.replace(tzinfo=None)).days
-			if not (c and c.api.valid):
+			if not (c and c.api.valid) or not isDropbear(c.profile.user):
 				ctx["invalidAlts"].append({"valid": False, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "mainChar": "", "shipType": char.shipType, "inactiveDays": inactiveDays})
 			else:
 				ctx["validAlts"].append({"valid": True, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "slug": slugify(char.characterName), "mainChar": c.profile.mainChar, "shipType": char.shipType, "shipName": c.activeShipName, "inactiveDays": inactiveDays})
