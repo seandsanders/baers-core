@@ -400,7 +400,10 @@ def memberList(request):
 			else:
 				ctx["validAlts"].append({"valid": True, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "slug": slugify(char.characterName), "mainChar": c.profile.mainChar, "shipType": char.shipType, "shipName": c.activeShipName, "inactiveDays": inactiveDays})
 
-
+	ctx["validCharacters"].sort(key=lambda x: x["mainChar"])
+	ctx["invalidCharacters"].sort(key=lambda x: x["mainChar"])
+	ctx["validAlts"].sort(key=lambda x: x["mainChar"])
+	ctx["invalidAlts"].sort(key=lambda x: x["mainChar"])
 
 	return render(request, "memberlist.html", ctx)
 
