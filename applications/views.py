@@ -41,11 +41,6 @@ ships = [
 					"skills": [(3333, 1),(3332, 1), (3435, 1)]
 				},
 				{
-					"name": "Brutix",
-					"shipID": 16229,
-					"skills": [(33097, 1), (3304, 1)]
-				},
-				{
 					"name": "Armageddon",
 					"shipID": 643,
 					"skills": [(3339, 1), (3423, 1)]
@@ -59,11 +54,6 @@ ships = [
 					"name": "ANI",
 					"shipID": 29337,
 					"skills": [(3335, 1), (3306, 1)]
-				},
-				{
-					"name": "SFI",
-					"shipID": 17713,
-					"skills": [(3333, 1), (3305, 1)]
 				},
 				{
 					"name": "Legion",
@@ -101,24 +91,14 @@ ships = [
 					"skills": [(3333, 1), (3422, 1)]
 				},
 				{
-					"name": "VNI",
-					"shipID": 17843,
-					"skills": [(3332, 1), (23594, 1)]
-				},
-				{
-					"name": "SFI",
-					"shipID": 17713,
-					"skills": [(3333, 1), (3305, 1)]
+					"name": "Gila",
+					"shipID": 17715,
+					"skills": [(3332, 1),(3334, 1),(3319, 1),(3437,1)]
 				},
 				{	
 					"name": "Caracal",
 					"shipID": 621,
 					"skills": [(3334, 1), (3319, 1)]
-				},
-				{	
-					"name": "Bellicose",
-					"shipID": 630,
-					"skills": [(3333, 1), (3319, 1), (19921, 1)]
 				},
 				{	
 					"name": "Ishtar",
