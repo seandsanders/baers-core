@@ -480,6 +480,7 @@ def starbases(request):
 			hourly += int(pos.info["consumption"])
 
 		ctx["online"] = sorted(ctx["online"], key=lambda pos: pos.remaining)
+		ctx["rf"] = sorted(ctx["rf"], key=lambda pos: pos.stateTimestamp)
 		ctx["monthly"] = hourly*24*30
 		ctx["monthlyisk"] = hourly*24*30*15000
 		ctx["users"] = jsonify([u[0] for u in UserProfile.objects.values_list('mainChar__charName')])
