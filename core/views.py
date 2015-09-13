@@ -574,11 +574,11 @@ def accounting(request):
 	context["currentChaFuel"] = entries.filter(name="fuelCHA").last().balance
 	context["currentPosFuel"] = entries.filter(name="fuelPOS").last().balance
 
-	walletHistory = entries.filter(name="walletTotal")[720:]
-	srpHistory = entries.filter (name="pendingSRP")[720:]
-	fuelHistory = entries.filter(name="fuelTotal")[720:]
-	fuelCHAHistory = entries.filter(name="fuelCHA")[720:]
-	fuelPosHistory = entries.filter(name="fuelPOS")[720:]
+	walletHistory = entries.filter(name="walletTotal").order_by('-id')[:720][::-1]
+	srpHistory = entries.filter (name="pendingSRP").order_by('-id')[:720][::-1]
+	fuelHistory = entries.filter(name="fuelTotal").order_by('-id')[:720][::-1]
+	fuelCHAHistory = entries.filter(name="fuelCHA").order_by('-id')[:720][::-1]
+	fuelPosHistory = entries.filter(name="fuelPOS").order_by('-id')[:720][::-1]
 
 	def historyToPlot(queryset):
 		result = []
