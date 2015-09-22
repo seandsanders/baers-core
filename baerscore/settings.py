@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'xp@qg00%%^n3&d3a%s@6efw^aol!f)&017sqf*un*+qpiof4n&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -43,7 +43,9 @@ INSTALLED_APPS = (
     'applications',
     'srp',
     'subreddit',
-    'timerboard'
+    'timerboard',
+    'hipchat',
+    'corpmarket'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -70,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.preprocessors.template_settings',
             ],
         },
     },
@@ -108,18 +111,53 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+# EVE things
+
+# EVE SSO settings
+# Get your credentials at https://developers.eveonline.com/ 
 SSO_CLIENT_ID = "3d12024f14b8469a80eb342555b53edc"
 SSO_SECRET_KEY = "7KOgjRki0ThJNBTrOflnWJDj15xn5jFAllk4tTSs"
-
 SSO_CALLBACK_URL = "http://localhost:8000/evesso"
 
+
+# Corp ID (easiest way to get this is searching your corp on zKillboard)
+CORP_ID = 98224068
+
+# These two do not have to be exactly what they are ingame, they're only used for display
+CORP_FULLNAME = "Dropbears Anonymous"
+CORP_SHORTNAME = "BAERS"
+
+# full corp API key
 CORP_API_KEYID = "01234"
 CORP_API_VCODE = "abcdefghijklmnopqrstuvwxyz"
 
+# Same as above, for your alt/logistics corp if you have one
+ALTCORP_ID = 98262005
+ALTCORP_FULLNAME = "Awox in Progress..."
+ALTCORP_SHORTNAME = "AWOX"
+
+ALTCORP_API_KEYID = "12121"
+ALTCORP_API_VCODE = "asdddddddddddddddddd"
+
+# ID of home system (zkillboard helps)
+HOME_SYSTEM_ID = 31002487
+
+
+# Reddit
+
+# Enable/Disable reddit functionality
+REDDIT_ENABLED = True
+
+# Reddit account that is a moderator on your subreddit
 REDDIT_USERNAME = "DropbearsAnonymous"
 REDDIT_PASSWORD = "redacted"
+
+# Subreddit name (without the "/r/")
 REDDIT_SUBREDDIT = "BAERS"
 
+
+# Useful links to be displayed in the sidebar
 USEFUL_LINKS = [
     ("Subreddit", "http://reddit.com/r/baers"),
     ("Pasta WH Tool", "http://wh.pasta.gg"),
@@ -127,3 +165,38 @@ USEFUL_LINKS = [
     ("Siggy", "http://siggy.borkedlabs.com"),
     ("STAHP Tracker", "http://tracker.dropbear.life")
 ]
+
+
+# Application Questions
+# Provide questions as a list of dictionaries
+# "type" can be "short" for a single line answer, or "long" for a multi-line text field
+#
+# (You can change these without breaking existing apps)
+
+APP_QUESTIONS = [
+    {"text": "How old are you?", "type": "short"},
+    {"text": "What's your first name?", "type": "short"},
+    {"text": "Write a ballad about the rise and fall of the glorious Nova empire, beginning with the events of Clarion Call 3 to the eviction of Dropbears.", "type": "long"},
+]
+
+
+
+# Corp Market
+# 
+# You can declare a list of 1 or more CHAs to be the "corp market". These act as a central storage, and you can track the availability of items in them via the corp market tab on the website.
+# They will also be used to track fuel blocks on the accounting page
+#
+# To find the itemIDs of the CHAs, you will have to manually look for them in an API reader.
+STORAGE_CHAS = [1014516459082,1014612434725,1014611085566]
+
+# TypeID of the main fuel type you use.
+# Minmatar: 4246 -- Amarr: 4247 -- Caldari: 4051 -- Gallente: 4312
+FUEL_TYPE = 4247
+
+# Random Haiku widget
+#
+# We ask all of our applicants to submit a haiku about a DAMN PATRIOT's sexual prowess
+# One of these will be displayed on the front page
+HAIKU_ENABLED = False
+
+
