@@ -20,6 +20,13 @@ praw
 # Other instructions  
 
 main settings file is baerscore/settings.py
+Most things you'll want to change are at the bottom, below the django internal stuff.  
+The only things you really have to care about in the top half are the Database settings (both MySQL and SQLite will work), and the secret key.
+
+The favicon is at core/static/favicon.ico if you want to change that.
+
+Skill plans need to be in the XML format exported by EVEMon (note: that's not the .EMP format, you can change it while exporting), and go into applications/skillplans/.
+They are sorted by file name in the list.
 
 Add 3 cronjobs:
 
@@ -32,8 +39,6 @@ Refreshes the corp api. I have this running hourly
 3. /path/to/stuff/manage.py checkServices
 This will purge users from the services that have lost their member status for whatever reason. I'm running this hourly as well
 
-Skill plans need to be in the XML format exported by EVEMon (note: that's not the .EMP format, you can change it while exporting), and go into applications/skillplans/.
-They are sorted by file name in the list.
 
 
 # Useful Commands:
