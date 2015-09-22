@@ -222,12 +222,13 @@ def refreshCorpApi():
 
 
 	generateStatistics()
-	reportStarbaseFuel()
+	if settings.HIPCHAT_ENABLED:
+		reportStarbaseFuel()
 
 def generateStatistics():
 	inPOS = CorpStarbaseFuel.objects.exclude(typeID=16275)
-	fuel = CorpAsset.objects.filter(typeID=4247, locationID=31002487)
-	inCHA = CorpAsset.objects.filter(typeID=4247, parentID__in=[1014516459082,1014612434725,1014611085566])
+	fuel = CorpAsset.objects.filter(typeID=settings.FUEL_TYPE, locationID=settings.HOME_SYSTEM_ID)
+	inCHA = CorpAsset.objects.filter(typeID=settings.FUEL_TYPE, parentID__in=settings.STORAGE_CHAS)
 
 	totalPOS = 0
 	for stack in inPOS:
@@ -339,7 +340,7 @@ def refreshKeyInfo(key, full=True):
 
 	incrp = False
 	for char in key.profile.character_set.all():
-		if char.corpID == 98224068 and char.api.valid:
+		if char.corpID == settings.CORP_ID and char.api.valid:
 			incrp = True
 
 	if not incrp:
@@ -398,7 +399,7 @@ def refreshKeyInfo(key, full=True):
 			char.allianceName = character.allianceName
 		except:
 			char = Character(profile=key.profile, api=key, charID=character.characterID, charName=character.characterName, corpID=character.corporationID, corpName=character.corporationName, allianceID=character.allianceID, allianceName=character.allianceName)
-		if (character.corporationID == 98224068):
+		if (character.corporationID == settings.CORP_ID):
 			key.profile.user.groups.add(inCorpGrp)
 
 		char.save()
@@ -406,7 +407,7 @@ def refreshKeyInfo(key, full=True):
 
 	incrp = False
 	for char in key.profile.character_set.all():
-		if char.corpID == 98224068 and char.api.valid:
+		if char.corpID == settings.CORP_ID and char.api.valid:
 			incrp = True
 
 	if not incrp:

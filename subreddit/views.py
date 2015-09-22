@@ -6,7 +6,7 @@ from core.views import isHR
 
 # Create your views here.
 def isDropbear(user):
-	return user.groups.filter(name='Dropbears').exists()
+	return user.groups.filter(name='Member').exists()
 
 def reddit(request):
 	if not isDropbear(request.user):

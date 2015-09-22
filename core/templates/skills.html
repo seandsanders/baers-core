@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-	<h2>Dropbears that have not yet completed Stage 0 or Stage 1</h2>
+	<h2>Members that have not yet completed Stage 0 or Stage 1</h2>
 	<br>
 	<h5>Please note that comparing skillplans to all characters causes a lot of load, so don't spam this feature.<h5>
 	<form method="POST">
@@ -26,4 +26,4 @@
 
 
 {% endblock content %}
-  {% block title %}Skill Check - BAERS Core{% endblock title %}
+  {% block title %}Skill Check - {{CORP_FULLNAME}}{% endblock title %}

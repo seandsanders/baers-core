@@ -40,7 +40,7 @@ def isDirector(user):
 	return user.groups.filter(name='Director').exists()
 
 def isDropbear(user):
-	return user.groups.filter(name='Dropbears').exists()
+	return user.groups.filter(name='Member').exists()
 
 def isFinance(user):
 	return user.groups.filter(name='Finance').exists()
@@ -85,7 +85,7 @@ def dashboard(request):
 		if len(c) > 0:
 			tasklist.append(Task("<b>IMPORTANT: We have <a href='"+reverse("core:poslist")+"'>"+unicode(len(c))+" reinforced POSes!</a></b>", cssClass="danger"))
 
-	if isDropbear(request.user):
+	if isDropbear(request.user) and settings.REDDIT_ENABLED:
 		try:
 			a = request.user.userprofile.redditaccount
 		except:
@@ -101,7 +101,7 @@ def dashboard(request):
 		if c != 0:
 			tasklist.append(Task("There are <a href='"+reverse("srp:srpadmin")+"'>"+unicode(c)+" pending SRP requests.</a>", cssClass="warning"))
 
-	if isDropbear(request.user):
+	if isDropbear(request.user) and settings.HAIKU_ENABLED:
 		haikus = Answer.objects.filter(question__contains="haiku")
 		oldhaikus = Haiku.objects.all()
 		index = random.randint(0, haikus.count()-1+oldhaikus.count())
@@ -554,7 +554,7 @@ def capCensus(request):
 		for skill in cap['skills']:
 			chars = chars.filter(characterskill__typeID=skill[0])
 
-		chars = chars.filter(profile__user__groups__name="Dropbears")
+		chars = chars.filter(profile__user__groups__name="Member")
 		if chars:
 			result.append({"name": cap["name"], "id": cap["shipID"], "chars": chars})
 

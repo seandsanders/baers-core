@@ -5,7 +5,7 @@ from django.conf import settings
 from hipchat.models import HipchatAccount
 
 def isDropbear(user):
-   return user.groups.filter(name='Dropbears').exists()
+   return user.groups.filter(name='Member').exists()
 
 def hipchatAdd(name, email, password):
    print "Attempting to add Account of "+name

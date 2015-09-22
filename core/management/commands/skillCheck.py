@@ -16,7 +16,7 @@ def skillCheck():
 
 	nostage1 = []
 	nostage0 = []
-	profiles = UserProfile.objects.filter(user__groups__name="Dropbears")
+	profiles = UserProfile.objects.filter(user__groups__name="Member")
 
 	for p in profiles:
 		highest0 = 0

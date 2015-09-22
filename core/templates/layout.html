@@ -65,22 +65,25 @@
               {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "memberlist" %}class="active"{%endif%}><a href="{% url "core:memberlist" %}">Member List</a></li>{% endif %}
               {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "grouplist" %}class="active"{%endif%}><a href="{% url "core:grouplist" %}">Group Admin</a></li>{% endif %}
               {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "capcensus" %}class="active"{%endif%}><a href="{% url "core:capcensus" %}">Capital Pilots</a></li>{% endif %}
-              {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "accounting" %}class="active"{%endif%}><a href="{% url "core:accounting" %}">Accounting <span class="badge">BETA</span></a></li>{% endif %}
+              {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "accounting" %}class="active"{%endif%}><a href="{% url "core:accounting" %}">Accounting </a></li>{% endif %}
               {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "assetscan" %}class="active"{%endif%}><a href="{% url "core:assetscan" %}">AssetScan</a></li>{% endif %}
-              {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "cmlist" %}class="active"{%endif%}><a href="{% url "corpmarket:cmlist" %}">Corp Market</a></li>{% endif %}
+              {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "cmlist" %}class="active"{%endif%}><a href="{% url "corpmarket:cmlist" %}">Corp Market</a></li>{% endif %}
             </ul>
             <ul class="nav nav-sidebar">
-              {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "srplist" %}class="active"{%endif%}><a href="{% url "srp:srplist" %}">SRP</a></li>{% endif %}
+              {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "srplist" %}class="active"{%endif%}><a href="{% url "srp:srplist" %}">SRP</a></li>{% endif %}
               {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "srpadmin" %}class="active"{%endif%}><a href="{% url "srp:srpadmin" %}">SRP - Admin <span class="badge">{% get_srps %}</span></a></li>{% endif %}
-              {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "timerboard" %}class="active"{%endif%}><a href="{% url "timerboard:timerboard" %}">Timerboard <span class="badge">{% get_timers %}</span></a></li>{% endif %}
+              {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "timerboard" %}class="active"{%endif%}><a href="{% url "timerboard:timerboard" %}">Timerboard <span class="badge">{% get_timers %}</span></a></li>{% endif %}
             </ul>
             <ul  class="nav nav-sidebar">
               <!--li {% if request.resolver_match.url_name == "hipchat" %}class="active"{%endif%}><a href="">Hipchat Access</a></li -->
-              {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "reddit" %}class="active"{%endif%}><a href="{% url "subreddit:reddit" %}">Subreddit Access</a></li>{% endif %}
-              {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "redditlist" %}class="active"{%endif%}><a href="{% url "subreddit:redditlist" %}">Reddit Account List</a></li>{% endif %}
-              {% if request.user|has_group:"Dropbears" %}<li {% if request.resolver_match.url_name == "hipchat" %}class="active"{%endif%}><a href="{% url "hipchat:hipchat" %}">Hipchat Access</a></li>{% endif %}
-              {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "hipchatlist" %}class="active"{%endif%}><a href="{% url "hipchat:hipchatlist" %}">Hipchat Account List</a></li>{% endif %}
-
+              {% if REDDIT_ENABLED %}
+                {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "reddit" %}class="active"{%endif%}><a href="{% url "subreddit:reddit" %}">Subreddit Access</a></li>{% endif %}
+                {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "redditlist" %}class="active"{%endif%}><a href="{% url "subreddit:redditlist" %}">Reddit Account List</a></li>{% endif %}
+              {% endif %}
+              {% if HIPCHAT_ENABLED %}
+                {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "hipchat" %}class="active"{%endif%}><a href="{% url "hipchat:hipchat" %}">Hipchat Access</a></li>{% endif %}
+                {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "hipchatlist" %}class="active"{%endif%}><a href="{% url "hipchat:hipchatlist" %}">Hipchat Account List</a></li>{% endif %}
+              {% endif %}
             </ul>
             {% get_links %}
           </div>

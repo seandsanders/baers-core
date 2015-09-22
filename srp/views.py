@@ -16,7 +16,7 @@ from django.utils.text import slugify
 def isFinance(user):
 	return user.groups.filter(name='Finance').exists()
 def isDropbears(user):
-	return user.groups.filter(name='Dropbears').exists()
+	return user.groups.filter(name='Member').exists()
 
 def srpadmin(request):
 	if not isFinance(request.user):

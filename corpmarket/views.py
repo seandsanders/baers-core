@@ -5,6 +5,7 @@ from core.models import CCPinvType, CorpAsset
 from corpmarket.models import CorpMarketItem
 from django.db.models import Sum
 from core.views import isDropbear
+from django.conf import settings
 import json
 
 
@@ -74,7 +75,7 @@ def list(request):
 	items = CorpMarketItem.objects.all()
 
 	result = []
-	chaContents = CorpAsset.objects.filter(parentID__in=[1014516459082,1014612434725,1014611085566])
+	chaContents = CorpAsset.objects.filter(parentID__in=settings.STORAGE_CHAS)
 	for item in items:
 		chaQuantity = chaContents.filter(typeID=item.typeID).aggregate(Sum('quantity'))["quantity__sum"]
 		if not chaQuantity:

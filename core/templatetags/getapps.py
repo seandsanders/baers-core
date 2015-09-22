@@ -3,7 +3,7 @@ from applications.models import Application
 from srp.models import SRPRequest
 from timerboard.models import Timer
 from datetime import datetime, timedelta
-from django.conf import settings
+from django.conf import settings as djsettings
 from applications.views import compareSkillplans
 
 register = template.Library() 
@@ -25,7 +25,7 @@ def get_timers():
 
 @register.inclusion_tag("tags/linklist.html", name="get_links")
 def get_links():
-	return {'links': settings.USEFUL_LINKS}
+	return {'links': djsettings.USEFUL_LINKS}
 
 @register.inclusion_tag("tags/skillplans.html", name="skillplans")
 def skillplans(character):

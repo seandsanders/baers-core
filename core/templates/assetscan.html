@@ -38,7 +38,7 @@
 		{% endfor %}
 		{% for asset in corpAssets %}
 		<tr>
-			<td>Dropbears Anonymous</td>
+			<td>{{CORP_FULLNAME}}</td>
 			<td>{{asset.quantity}}</td>
 			<td><a href="{% url "core:assetexpand" asset.itemID %}">{{asset.itemName}}</a></td>
 			<td>{{asset.location.0}} </td>
@@ -69,4 +69,4 @@
   </script>
 {% endblock %}
 
- {% block title %}AssetScan - BAERS Core{% endblock title %}
+ {% block title %}AssetScan - {{CORP_FULLNAME}}{% endblock title %}
