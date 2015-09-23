@@ -55,6 +55,9 @@ def updateTZ(request):
 	return HttpResponse("")
 
 def dashboard(request):
+	if request.user.is_anonymous():
+		return redirect("core:landing")
+
 	titles = ", ".join(request.user.userprofile.mainChar.charactertitle_set.all().values_list('titleName', flat=True))
 	context = {
 		"mainCharName": unicode(request.user.userprofile),
