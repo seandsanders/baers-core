@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% load humanize %}
+
+{% block content %}
+	<h2>Corp Member Finances</h2>
+
+ 	<table class="table table-hover">
+ 		<tr>
+ 			<td>Main Character</th>
+ 			<th>Number of Characters</th>
+ 			<th>ISK</th>
+ 		</tr>
+ 		{% for user in profiles %}
+			 <tr>
+			 	<td><img src="//image.eveonline.com/Character/{{user.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{user.mainChar.charName}}"><a href="{% url "core:playerProfile" profileName=user.mainChar.charName|slugify %}">{{user.mainChar.charName}}</a></td>
+			 	<td>{{user.charCount}}</td>
+			 	<td>{{user.isk|intcomma}}</td>
+			 </tr>
+ 		{% endfor %}
+ 	</table>
+
+ {% endblock content %}
+
+
+  {% block title %}Member Finances - {{CORP_FULLNAME}}{% endblock title %}

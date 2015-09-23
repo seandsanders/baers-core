@@ -1,5 +1,5 @@
 from django.db import connection
-from django.db.models import Q
+from django.db.models import Q, Sum
 
 from django.conf import settings
 
@@ -699,18 +699,14 @@ def assetScan(request, itemID=None):
 
 	return render(request, "assetscan.html", {"assets": rAssets, "corpAssets": rcAssets, "typeName": typeName, "typeID": typeID, "containerName": containerName, "containerType": containerType})
 
-
-def timezoneAPI(request):
-	if request.GET.get("secret", False) == "184supersecretrandomsecuritykey733":
-		users = UserProfile.objects.all()
-		result = {}
-
-		for user in users:
-			result[user.mainChar.charName] = user.tzoffset
+def iskOverview(request):
+	if not isHR(request.user):
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a HR officer.'})
 		
 
-		return HttpResponse(jsonify(result))
-
-	else:
-		return HttpResponseForbidden("NOPE")
-
+	profiles = UserProfile.objects.filter(user__groups__name__contains="Member")
+	for p in profiles:
+		p.isk = p.character_set.aggregate(Sum('walletBalance'))["walletBalance__sum"]
+		p.charCount = p.character_set.count()
+	profiles = sorted(profiles, key=lambda profile: -profile.isk)
+	return render(request, "iskoverview.html", {"profiles": profiles})

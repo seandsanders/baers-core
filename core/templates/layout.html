@@ -60,21 +60,28 @@
               <li {% if request.resolver_match.url_name == "keys" %}class="active"{%endif%}><a href="{% url "core:keys" %}">Characters / API Keys</a></li>
             </ul>
             <ul class="nav nav-sidebar">
+              <li><a style="font-weight: bold">Management:</a></li>
               {% if request.user|has_group:"POS" %}<li {% if request.resolver_match.url_name == "poslist" %}class="active"{%endif%}><a href="{% url "core:poslist" %}">POS Overview</a></li>{% endif %}
               {% if request.user|has_group:"Recruiter" %}<li {% if request.resolver_match.url_name == "applications" %}class="active"{%endif%}><a href="{% url "applications:applications" %}">Applications <span class="badge">{% get_apps %}</span></a></li>{% endif %}
-              {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "memberlist" %}class="active"{%endif%}><a href="{% url "core:memberlist" %}">Member List</a></li>{% endif %}
+              {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "srpadmin" %}class="active"{%endif%}><a href="{% url "srp:srpadmin" %}">SRP - Admin <span class="badge">{% get_srps %}</span></a></li>{% endif %}
               {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "grouplist" %}class="active"{%endif%}><a href="{% url "core:grouplist" %}">Group Admin</a></li>{% endif %}
-              {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "capcensus" %}class="active"{%endif%}><a href="{% url "core:capcensus" %}">Capital Pilots</a></li>{% endif %}
               {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "accounting" %}class="active"{%endif%}><a href="{% url "core:accounting" %}">Accounting </a></li>{% endif %}
-              {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "assetscan" %}class="active"{%endif%}><a href="{% url "core:assetscan" %}">AssetScan</a></li>{% endif %}
-              {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "cmlist" %}class="active"{%endif%}><a href="{% url "corpmarket:cmlist" %}">Corp Market</a></li>{% endif %}
             </ul>
             <ul class="nav nav-sidebar">
+              <li><a style="font-weight: bold">API Tools:</a></li>
+              {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "memberlist" %}class="active"{%endif%}><a href="{% url "core:memberlist" %}">Member List</a></li>{% endif %}
+              {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "capcensus" %}class="active"{%endif%}><a href="{% url "core:capcensus" %}">Capital Pilots</a></li>{% endif %}
+              {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "assetscan" %}class="active"{%endif%}><a href="{% url "core:assetscan" %}">AssetScan</a></li>{% endif %}
+              {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "iskoverview" %}class="active"{%endif%}><a href="{% url "core:iskoverview" %}">Member Finances</a></li>{% endif %}
+            </ul>
+            <ul class="nav nav-sidebar">
+              <li><a style="font-weight: bold">Tools:</a></li>
               {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "srplist" %}class="active"{%endif%}><a href="{% url "srp:srplist" %}">SRP</a></li>{% endif %}
-              {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "srpadmin" %}class="active"{%endif%}><a href="{% url "srp:srpadmin" %}">SRP - Admin <span class="badge">{% get_srps %}</span></a></li>{% endif %}
               {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "timerboard" %}class="active"{%endif%}><a href="{% url "timerboard:timerboard" %}">Timerboard <span class="badge">{% get_timers %}</span></a></li>{% endif %}
+              {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "cmlist" %}class="active"{%endif%}><a href="{% url "corpmarket:cmlist" %}">Corp Market</a></li>{% endif %}
             </ul>
             <ul  class="nav nav-sidebar">
+              <li><a style="font-weight: bold">External Services:</a></li>
               <!--li {% if request.resolver_match.url_name == "hipchat" %}class="active"{%endif%}><a href="">Hipchat Access</a></li -->
               {% if REDDIT_ENABLED %}
                 {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "reddit" %}class="active"{%endif%}><a href="{% url "subreddit:reddit" %}">Subreddit Access</a></li>{% endif %}

@@ -22,5 +22,5 @@ urlpatterns = [
 	url(r'^accounting', views.accounting, name="accounting"),
 	url(r'^assetscan/(?P<itemID>[0-9]*)$', views.assetScan, name="assetexpand"),
 	url(r'^assetscan', views.assetScan, name="assetscan"),
-	url(r'^api/timezones', views.timezoneAPI, name="tzapi")
+	url(r'^iskoverview', views.iskOverview, name="iskoverview")
 ]
