@@ -329,7 +329,7 @@ def refreshKeyInfo(key, full=True):
 	api = eveapi.EVEAPIConnection()
 	auth = api.auth(keyID=key.keyID, vCode=key.vCode)
 	itGrp, created = Group.objects.get_or_create(name='IT')
-	inCorpGrp, created = Group.objects.get_or_create(name='Dropbears')
+	inCorpGrp, created = Group.objects.get_or_create(name='Member')
 	recruiterGrp, created = Group.objects.get_or_create(name='Recruiter')
 	hrGrp, created = Group.objects.get_or_create(name='HR')
 	print "Requesting APIKeyInfo for", key.profile
