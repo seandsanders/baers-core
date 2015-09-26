@@ -6,6 +6,7 @@
 
  	<table class="table table-hover" style="display: none;">
  		<tr>
+ 			<th>External</th>
  			<th>CharName</th>
  			<td>Main Character</th>
  			<th>Location</th>
@@ -16,6 +17,7 @@
  		</tr>
  		{% for char in validCharacters %}
 			 <tr>
+			 	<td><a href="http://eve-search.com/search/author/{{char.charName}}" target="_blank" title="{{char.charName}} on EVE-Search"><img width="16px" src="http://eve-search.com/favicon.ico"></a> <a target="_blank"  href="https://zkillboard.com/character/{{char.charID}}/" title="{{char.charName}} on zKillboard"><img width="16px" src="https://zkillboard.com/favicon.ico"></a> <a href="http://evewho.com/pilot/{{char.charName}}"  target="_blank" title="{{char.charName}} on EVE-Who"><img src="http://evewho.com/favicon.ico" width="16px"></a></td>
 			 	<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}"><a href="{% url "core:playerProfile" profileName=char.charName|slugify %}">{{char.charName}}</a></td>
 			 	<td>{{char.mainChar}}</td>
 			 	<td>{{char.location}}</td>
@@ -30,6 +32,7 @@
  	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Characters with invalid API keys  ({{invalidCharacters|length}})</a></h4>
  	 <table class="table table-hover" style="display: none;">
  		<tr>
+ 			<th>External</th>
  			<th>CharName</th>
  			<th>Location</th>
  			<th>Ship</th>
@@ -39,6 +42,7 @@
  		</tr>
  		{% for char in invalidCharacters %}
 			 <tr>
+			 	<td><a href="http://eve-search.com/search/author/{{char.charName}}" target="_blank" title="{{char.charName}} on EVE-Search"><img width="16px" src="http://eve-search.com/favicon.ico"></a> <a target="_blank"  href="https://zkillboard.com/character/{{char.charID}}/" title="{{char.charName}} on zKillboard"><img width="16px" src="https://zkillboard.com/favicon.ico"></a> <a href="http://evewho.com/pilot/{{char.charName}}"  target="_blank" title="{{char.charName}} on EVE-Who"><img src="http://evewho.com/favicon.ico" width="16px"></a></td>
 			 	<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{char.charName}}</td>
 			 	<td>{{char.location}}</td>
 			 	<td>{{char.shipType}}</td>
@@ -54,6 +58,7 @@
 
 	 	<table class="table table-hover" style="display: none;">
 	 		<tr>
+	 			<th>External</th>
 	 			<th>CharName</th>
 	 			<td>Main Character</th>
 	 			<th>Location</th>
@@ -64,6 +69,7 @@
 	 		</tr>
 	 		{% for char in validAlts %}
 				 <tr>
+				 	<td><a href="http://eve-search.com/search/author/{{char.charName}}" target="_blank" title="{{char.charName}} on EVE-Search"><img width="16px" src="http://eve-search.com/favicon.ico"></a> <a target="_blank"  href="https://zkillboard.com/character/{{char.charID}}/" title="{{char.charName}} on zKillboard"><img width="16px" src="https://zkillboard.com/favicon.ico"></a> <a href="http://evewho.com/pilot/{{char.charName}}"  target="_blank" title="{{char.charName}} on EVE-Who"><img src="http://evewho.com/favicon.ico" width="16px"></a></td>
 				 	<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}"><a href="{% url "core:playerProfile" profileName=char.charName|slugify %}">{{char.charName}}</a></td>
 				 	<td>{{char.mainChar}}</td>
 				 	<td>{{char.location}}</td>
@@ -81,6 +87,7 @@
  	 	<h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Alt corp characters with invalid API keys  ({{invalidAlts|length}})</a></h4>
 	 	 <table class="table table-hover" style="display: none;">
 	 		<tr>
+	 			<th>External</th>
 	 			<th>CharName</th>
 	 			<th>Location</th>
 	 			<th>Ship</th>
@@ -90,6 +97,7 @@
 	 		</tr>
 	 		{% for char in invalidAlts %}
 				 <tr>
+				 	<td><a href="http://eve-search.com/search/author/{{char.charName}}" target="_blank" title="{{char.charName}} on EVE-Search"><img width="16px" src="http://eve-search.com/favicon.ico"></a> <a target="_blank"  href="https://zkillboard.com/character/{{char.charID}}/" title="{{char.charName}} on zKillboard"><img width="16px" src="https://zkillboard.com/favicon.ico"></a> <a href="http://evewho.com/pilot/{{char.charName}}"  target="_blank" title="{{char.charName}} on EVE-Who"><img src="http://evewho.com/favicon.ico" width="16px"></a></td>
 				 	<td><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}">{{char.charName}}</td>
 				 	<td>{{char.location}}</td>
 				 	<td>{{char.shipType}}</td>
