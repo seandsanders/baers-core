@@ -3,3 +3,4 @@
 db.sqlite3
 baerscore/settings.py
 .idea/
+core/static/favicon.ico
