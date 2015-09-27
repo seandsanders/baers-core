@@ -15,13 +15,13 @@ class Command(BaseCommand):
         if not key:
             print "No Key found!"
         
-        if key.lastRefresh != None:
-            age = start.replace(tzinfo=None) - key.lastRefresh.replace(tzinfo=None) 
+        elif key.lastRefresh != None:
+            age = start.replace(tzinfo=None) - key.lastRefresh.replace(tzinfo=None)
             if age.seconds < 3600:
                 print "Nothing To do."
                 return
 
-        refreshKeyInfo(key)
+            refreshKeyInfo(key)
 
         time = datetime.utcnow() - start
         print "Key refresh completed in", time.seconds, "seconds"
