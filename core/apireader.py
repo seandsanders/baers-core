@@ -8,6 +8,9 @@ from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 from hipchat.models import HipchatAccount
 from hipchat.api import getMentionName, roomMessage
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def retrieveItemNames(ids):
@@ -710,7 +713,9 @@ def refreshCharacterInfo(char, full=True):
 													body=mail.data ))
 			MailBody.objects.bulk_create(newMails)
 	except:
-		postNotification(target=itGrp, text="Request for MailMessages failed while refreshing API for "+unicode(char), cssClass="warning")
+		msg = "Request for MailMessages failed while refreshing API for " + unicode(char)
+		postNotification(target=itGrp, text=msg, cssClass="warning")
+		logger.exception(msg)
 
 	print "Requesting MarketOrders for", char
 	try:
@@ -797,7 +802,9 @@ def refreshCharacterInfo(char, full=True):
 														reason=transaction.reason ))
 		WalletJournal.objects.bulk_create(newTransactions)
 	except:
-		postNotification(target=itGrp, text="Request for WalletJournal failed while refreshing API for "+unicode(char), cssClass="warning")
+		msg = "Request for WalletJournal failed while refreshing API for " + unicode(char)
+		postNotification(target=itGrp, text=msg, cssClass="warning")
+		logger.exception(msg)
 
 	print "Requesting WalletTransactions for", char
 	try:

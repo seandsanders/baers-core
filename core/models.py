@@ -259,9 +259,9 @@ class CharacterMail(models.Model):
 	senderID = models.IntegerField()
 	sentDate = models.DateTimeField()
 	title = models.CharField(max_length=200)
-	toCorpOrAllianceID = models.CharField(max_length=200)
-	toCharacterIDs = models.CharField(max_length=200)
-	toListID = models.CharField(max_length=200)
+	toCorpOrAllianceID = models.CharField(max_length=1000)
+	toCharacterIDs = models.CharField(max_length=1000)
+	toListID = models.CharField(max_length=1000)
 
 
 # /char/MailBodies.xml.aspx
@@ -317,7 +317,7 @@ class WalletJournal(models.Model):
 	ownerID1 = models.IntegerField()
 	ownerName2 = models.CharField(max_length=100)
 	ownerID2 = models.IntegerField()
-	argName1 = models.CharField(max_length=50)
+	argName1 = models.CharField(max_length=100)
 	argID1 = models.IntegerField()
 	amount = models.FloatField()
 	balance = models.FloatField()
