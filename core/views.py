@@ -146,7 +146,7 @@ def dashboard(request):
 
 				cur = connection.cursor()
 
-				cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = "' + unicode(pos.moonID)+ '";')
+				cur.execute('SELECT "itemName" FROM "mapDenormalize" WHERE "itemID" = ' + unicode(pos.moonID)+ ';')
 
 				tup = cur.fetchone()
 
@@ -451,7 +451,7 @@ def starbases(request):
 
 		cur = connection.cursor()
 
-		cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = "' + unicode(pos.moonID)+ '";')
+		cur.execute('SELECT "itemName" FROM "mapDenormalize" WHERE "itemID" = ' + unicode(pos.moonID)+ ';')
 
 		tup = cur.fetchone()
 
@@ -644,10 +644,10 @@ def assetScan(request, itemID=None):
 				invType = CCPinvType.objects.filter(typeID=asset.typeID).first()
 				asset.itemName = invType.typeName if invType else "Type ID "+unicode(asset.typeID)+" unknown"
 
-				cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = '+str(asset.locationID)+';')
+				cur.execute('SELECT "itemName" FROM "mapDenormalize" WHERE "itemID" = '+str(asset.locationID)+';')
 				asset.location = cur.fetchone();
 
-				cur.execute('SELECT flagName FROM invFlags WHERE flagID = '+str(asset.flag)+';')
+				cur.execute('SELECT "flagName" FROM "invFlags" WHERE "flagID" = '+str(asset.flag)+';')
 				asset.flag = cur.fetchone();
 				rAssets.append(asset)
 
@@ -662,10 +662,10 @@ def assetScan(request, itemID=None):
 
 			rcAssets = []
 			for asset in corpAssets:
-				cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = '+str(asset.locationID)+';')
+				cur.execute('SELECT "itemName" FROM "mapDenormalize" WHERE "itemID" = '+str(asset.locationID)+';')
 				asset.location = cur.fetchone();
 
-				cur.execute('SELECT flagName FROM invFlags WHERE flagID = '+str(asset.flag)+';')
+				cur.execute('SELECT "flagName" FROM "invFlags" WHERE "flagID" = '+str(asset.flag)+';')
 				asset.flag = cur.fetchone();
 
 				if asset.parentID:
