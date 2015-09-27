@@ -260,7 +260,7 @@ def apiKeys(request):
 	if not (request.user.is_authenticated()):
 		return redirect("core:landing")
 	error = None
-	recruiterGrp, created = Group.objects.get_or_create(name='Recruiter')
+	hrGrp, created = Group.objects.get_or_create(name='HR')
 	if request.method == "POST":
 		action = request.POST.get('action')
 		if action and action == "makemain":
