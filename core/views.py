@@ -192,7 +192,7 @@ def register(request):
 	if request.method == "POST":
 		if request.POST.get("action") == "addkey":
 			if request.POST.get("keyID") and request.POST.get("vCode"):
-				if int(request.POST.get("keyID")) > 4325693:
+				if int(request.POST.get("keyID")) > settings.MIN_API_ID:
 					charlist, error = validateKey(request.POST.get("keyID"), request.POST.get("vCode"))
 					if not error:
 						if request.session.get("characters"):
