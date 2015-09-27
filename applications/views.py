@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.conf import settings
 import applications as appmodule
 from django.db import transaction
 from applications.models import Application, Answer, Comment
@@ -552,7 +553,7 @@ def newApplication(request):
 
 def compareSkillplans(character):
 	result = []
-
+	os.chdir(settings.BASE_DIR)
 	for filename in sorted(os.listdir('applications/skillplans/')): 
 
 		t = ElementTree.parse('applications/skillplans/'+filename)
