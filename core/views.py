@@ -515,11 +515,13 @@ def updateOwner(request):
 			owner.delete()
 			owner.owner = None
 			profile = None
+
+		owner_profile = owner.owner
 		
 	else:
-		owner.owner = None
+		owner_profile = None
 
-	return render(request, 'starbaseowner.html', {"profile": owner.owner})
+	return render(request, 'starbaseowner.html', {"profile": owner_profile})
 
 
 def groupList(request):
