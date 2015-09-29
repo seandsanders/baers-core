@@ -456,7 +456,7 @@ class CCPmapDenormalize(models.Model):
 	itemName = models.TextField()
 
 	def __str__(self):
-		return self.typeName
+		return self.itemName
 
 
 class CCPinvFlags(models.Model):
@@ -468,4 +468,4 @@ class CCPinvFlags(models.Model):
 	flagName = models.TextField()
 
 	def __str__(self):
-		return self.typeName
+		return self.flagName
