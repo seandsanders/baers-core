@@ -5,7 +5,7 @@
 
   <h1 class="page-header">Dashboard</h1>
 <div class="row dashboardHeader">
-  <img src="//image.eveonline.com/Character/{{ mainCharID }}_128.jpg" class="character">
+  <a href="{% url "core:playerProfile" profileName=mainCharName|slugify %}"><img src="//image.eveonline.com/Character/{{ mainCharID }}_128.jpg" class="character"></a>
   <h3 class="charName">{{ mainCharName }}</h3>
   <span class="text-muted">{{ charTitle }}</span>
 </div>
