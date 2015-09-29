@@ -72,3 +72,19 @@ class Comment(models.Model):
 	date = models.DateTimeField()
 	text = models.CharField(max_length=1000)
 	auto_generated = models.BooleanField(default=False)
+
+
+class DoctrineShipGroup(models.Model):
+	name = models.CharField(max_length=50)
+
+
+class DoctrineShip(models.Model):
+	group = models.ForeignKey(DoctrineShipGroup)
+	shipID = models.IntegerField()
+	name = models.CharField(max_length=50)
+
+
+class ShipRequiredSkill(models.Model):
+	ship = models.ForeignKey(DoctrineShip)
+	skillID = models.BigIntegerField()
+	level = models.BigIntegerField()

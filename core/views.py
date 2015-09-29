@@ -21,7 +21,7 @@ from core.apireader import validateKey, refreshKeyInfo, retrieveItemNames
 from core.tasks import Task 
 from core.evedata import STARBASE_TYPES
 
-from applications.models import Application, Answer
+from applications.models import Application, Answer, DoctrineShipGroup
 
 from srp.models import SRPRequest
 
@@ -535,19 +535,21 @@ def capCensus(request):
 	if not isDirector(request.user):
 		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a director.'})
 
-	from applications.views import ships
+	try:
+		capitals = DoctrineShipGroup.objects.get(name="Capitals").doctrineship_set.all()
+	except DoctrineShipGroup.DoesNotExist:
+		capitals = []
 
-	capitals = ships[3]['ships']
 	result = []
 
 	for cap in capitals:
 		chars = Character.objects
-		for skill in cap['skills']:
-			chars = chars.filter(characterskill__typeID=skill[0])
+		for skill in cap.shiprequiredskill_set.all():
+			chars = chars.filter(characterskill__typeID=skill.skillID, characterskill__level__gte=skill.level)
 
 		chars = chars.filter(profile__user__groups__name="Member")
 		if chars:
-			result.append({"name": cap["name"], "id": cap["shipID"], "chars": chars})
+			result.append({"name": cap.name, "id": cap.shipID, "chars": chars})
 
 	return render(request, "capcensus.html", {"ships": result})
 
