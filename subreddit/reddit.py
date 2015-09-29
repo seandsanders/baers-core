@@ -17,9 +17,8 @@ def updateRedditAccount(userprofile, redditaccount):
 	print "Added!"
 	
 	try:
-		userprofile.redditaccount.delete()
-		r = userprofile.redditaccount
 		deleteRedditAccount(userprofile)
+		userprofile.redditaccount.delete()
 	except:
 		pass
 		
