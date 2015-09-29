@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import praw
 from django.conf import settings
 from subreddit.models import RedditAccount
@@ -17,9 +18,8 @@ def updateRedditAccount(userprofile, redditaccount):
 	print "Added!"
 	
 	try:
-		userprofile.redditaccount.delete()
-		r = userprofile.redditaccount
 		deleteRedditAccount(userprofile)
+		userprofile.redditaccount.delete()
 	except:
 		pass
 		
