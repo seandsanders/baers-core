@@ -445,3 +445,27 @@ class CCPinvType(models.Model):
 
 	def __str__(self):
 		return self.typeName
+
+
+class CCPmapDenormalize(models.Model):
+	class Meta:
+		db_table = 'mapDenormalize'
+		managed = False
+
+	itemID = models.IntegerField(primary_key=True)
+	itemName = models.TextField()
+
+	def __str__(self):
+		return self.typeName
+
+
+class CCPinvFlags(models.Model):
+	class Meta:
+		db_table = 'invFlags'
+		managed = False
+
+	flagID = models.IntegerField(primary_key=True)
+	flagName = models.TextField()
+
+	def __str__(self):
+		return self.typeName

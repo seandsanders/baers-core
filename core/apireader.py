@@ -2,7 +2,6 @@ import eveapi
 from core.models import *
 import datetime
 from core import postNotification
-from django.db import transaction, connection
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils.text import slugify
@@ -288,15 +287,10 @@ def reportStarbaseFuel():
 
 			if pos.fuelpercent < 10 and pos.fuelpercent > 0:
 
-				cur = connection.cursor()
-
-				cur.execute('SELECT itemName FROM mapDenormalize WHERE itemID = "' + unicode(pos.moonID)+ '";')
-
-				tup = cur.fetchone()
-
-				if tup:
-					pos.location = tup[0]
-				else:
+				try:
+					location = CCPmapDenormalize.objects.get(itemID=unicode(pos.moonID))
+					pos.location = location.itemName
+				except CCPmapDenormalize.DoesNotExist:
 					pos.location = "[API Error]"
 
 				try:

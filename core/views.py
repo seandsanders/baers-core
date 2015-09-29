@@ -1,4 +1,3 @@
-from django.db import connection
 from django.db.models import Q, Sum
 
 from django.conf import settings
@@ -17,7 +16,7 @@ from json import dumps as jsonify
 import random
 
 from core import postNotification
-from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, StarbaseOwner, CharacterSkill, Haiku, AccountingEntry, CharacterAsset, CorpAsset, CCPinvType
+from core.models import Notification, UserProfile, Character, ApiKey, CorpMember, CorpStarbase, CorpStarbaseFuel, StarbaseNote, StarbaseOwner, CharacterSkill, Haiku, AccountingEntry, CharacterAsset, CorpAsset, CCPinvType, CCPmapDenormalize, CCPinvFlags
 from core.apireader import validateKey, refreshKeyInfo, retrieveItemNames
 from core.tasks import Task 
 from core.evedata import STARBASE_TYPES
@@ -144,15 +143,10 @@ def dashboard(request):
 
 			if pos.fuelpercent < 20:
 
-				cur = connection.cursor()
-
-				cur.execute('SELECT "itemName" FROM "mapDenormalize" WHERE "itemID" = ' + unicode(pos.moonID)+ ';')
-
-				tup = cur.fetchone()
-
-				if tup:
-					pos.location = tup[0]
-				else:
+				try:
+					location = CCPmapDenormalize.objects.get(itemID=unicode(pos.moonID))
+					pos.location = location.itemName
+				except CCPmapDenormalize.DoesNotExist:
 					pos.location = "[API Error]"
 
 				tasklist.append(Task("Your POS at  <a href='"+reverse("core:poslist")+"'>"+pos.location+"</a> has only "+unicode(pos.fuelpercent)+"% fuel remaining.", cssClass="warning"))
@@ -447,17 +441,10 @@ def starbases(request):
 		pos.remaining = datetime.utcnow() + timedelta(hours=pos.fuel / int(pos.info["consumption"]))
 		pos.fuelpercent = int(100*float(pos.fuel)/float(pos.info["maxFuel"]))
 
-
-
-		cur = connection.cursor()
-
-		cur.execute('SELECT "itemName" FROM "mapDenormalize" WHERE "itemID" = ' + unicode(pos.moonID)+ ';')
-
-		tup = cur.fetchone()
-
-		if tup:
-			pos.location = tup[0]
-		else:
+		try:
+			location = CCPmapDenormalize.objects.get(itemID=unicode(pos.moonID))
+			pos.location = location.itemName
+		except CCPmapDenormalize.DoesNotExist:
 			pos.location = "[API Error]"
 
 		try:
@@ -633,7 +620,6 @@ def assetScan(request, itemID=None):
 
 	if assets or corpAssets:
 			rAssets = []
-			cur = connection.cursor()
 			for asset in assets:
 				if asset.parentID:
 					p = CharacterAsset.objects.filter(itemID=asset.parentID)
@@ -644,11 +630,8 @@ def assetScan(request, itemID=None):
 				invType = CCPinvType.objects.filter(typeID=asset.typeID).first()
 				asset.itemName = invType.typeName if invType else "Type ID "+unicode(asset.typeID)+" unknown"
 
-				cur.execute('SELECT "itemName" FROM "mapDenormalize" WHERE "itemID" = '+str(asset.locationID)+';')
-				asset.location = cur.fetchone();
-
-				cur.execute('SELECT "flagName" FROM "invFlags" WHERE "flagID" = '+str(asset.flag)+';')
-				asset.flag = cur.fetchone();
+				asset.location = CCPmapDenormalize.objects.get(itemID=str(asset.locationID)).itemName
+				asset.flag = CCPinvFlags.objects.get(flagID=str(asset.flag)).flagName
 				rAssets.append(asset)
 
 			
@@ -662,11 +645,8 @@ def assetScan(request, itemID=None):
 
 			rcAssets = []
 			for asset in corpAssets:
-				cur.execute('SELECT "itemName" FROM "mapDenormalize" WHERE "itemID" = '+str(asset.locationID)+';')
-				asset.location = cur.fetchone();
-
-				cur.execute('SELECT "flagName" FROM "invFlags" WHERE "flagID" = '+str(asset.flag)+';')
-				asset.flag = cur.fetchone();
+				asset.location = CCPmapDenormalize.objects.get(itemID=str(asset.locationID)).itemName
+				asset.flag = CCPinvFlags.objects.get(flagID=str(asset.flag)).flagName
 
 				if asset.parentID:
 					asset.parentName = unicode(parentNames.get(asset.parentID, "-"))
