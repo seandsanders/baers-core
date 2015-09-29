@@ -142,11 +142,10 @@ def dashboard(request):
 			pos.fuelpercent = int(100*float(pos.fuel)/float(pos.info["maxFuel"]))
 
 			if pos.fuelpercent < 20:
-
-				try:
-					location = CCPmapDenormalize.objects.get(itemID=unicode(pos.moonID))
+				location = CCPmapDenormalize.objects.filter(itemID=unicode(pos.moonID)).first()
+				if location is not None:
 					pos.location = location.itemName
-				except CCPmapDenormalize.DoesNotExist:
+				else:
 					pos.location = "[API Error]"
 
 				tasklist.append(Task("Your POS at  <a href='"+reverse("core:poslist")+"'>"+pos.location+"</a> has only "+unicode(pos.fuelpercent)+"% fuel remaining.", cssClass="warning"))
@@ -441,10 +440,10 @@ def starbases(request):
 		pos.remaining = datetime.utcnow() + timedelta(hours=pos.fuel / int(pos.info["consumption"]))
 		pos.fuelpercent = int(100*float(pos.fuel)/float(pos.info["maxFuel"]))
 
-		try:
-			location = CCPmapDenormalize.objects.get(itemID=unicode(pos.moonID))
+		location = CCPmapDenormalize.objects.filter(itemID=unicode(pos.moonID)).first()
+		if location is not None:
 			pos.location = location.itemName
-		except CCPmapDenormalize.DoesNotExist:
+		else:
 			pos.location = "[API Error]"
 
 		try:
@@ -632,7 +631,11 @@ def assetScan(request, itemID=None):
 				invType = CCPinvType.objects.filter(typeID=asset.typeID).first()
 				asset.itemName = invType.typeName if invType else "Type ID "+unicode(asset.typeID)+" unknown"
 
-				asset.location = CCPmapDenormalize.objects.get(itemID=str(asset.locationID)).itemName
+				location = CCPmapDenormalize.objects.filter(itemID=str(asset.locationID)).first()
+				if location is not None:
+					asset.location = location.itemName
+				else:
+					asset.location = "[API Error]"
 				asset.flag = CCPinvFlags.objects.get(flagID=str(asset.flag)).flagName
 				rAssets.append(asset)
 
@@ -647,7 +650,11 @@ def assetScan(request, itemID=None):
 
 			rcAssets = []
 			for asset in corpAssets:
-				asset.location = CCPmapDenormalize.objects.get(itemID=str(asset.locationID)).itemName
+				location = CCPmapDenormalize.objects.filter(itemID=str(asset.locationID)).first()
+				if location is not None:
+					asset.location = location.itemName
+				else:
+					asset.location = "[API Error]"
 				asset.flag = CCPinvFlags.objects.get(flagID=str(asset.flag)).flagName
 
 				if asset.parentID:

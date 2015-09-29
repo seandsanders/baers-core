@@ -287,10 +287,11 @@ def reportStarbaseFuel():
 
 			if pos.fuelpercent < 10 and pos.fuelpercent > 0:
 
-				try:
-					location = CCPmapDenormalize.objects.get(itemID=unicode(pos.moonID))
+
+				location = CCPmapDenormalize.objects.filter(itemID=unicode(pos.moonID)).first()
+				if location is not None:
 					pos.location = location.itemName
-				except CCPmapDenormalize.DoesNotExist:
+				else:
 					pos.location = "[API Error]"
 
 				try:
