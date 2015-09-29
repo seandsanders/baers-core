@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import praw
 from django.conf import settings
 from subreddit.models import RedditAccount
