@@ -59,6 +59,7 @@
               <li {% if request.resolver_match.url_name == "dashboard" %}class="active"{%endif%}><a href="{% url "core:dashboard" %}">Overview <span class="sr-only">(current)</span></a></li>
               <li {% if request.resolver_match.url_name == "keys" %}class="active"{%endif%}><a href="{% url "core:keys" %}">Characters / API Keys</a></li>
             </ul>
+            {% if request.user|has_group:"POS" or request.user|has_group:"Recruiter" or request.user|has_group:"Finance" or request.user|has_group:"Director"%}
             <ul class="nav nav-sidebar">
               <li><a style="font-weight: bold">Management:</a></li>
               {% if request.user|has_group:"POS" %}<li {% if request.resolver_match.url_name == "poslist" %}class="active"{%endif%}><a href="{% url "core:poslist" %}">POS Overview</a></li>{% endif %}
@@ -67,6 +68,8 @@
               {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "grouplist" %}class="active"{%endif%}><a href="{% url "core:grouplist" %}">Group Admin</a></li>{% endif %}
               {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "accounting" %}class="active"{%endif%}><a href="{% url "core:accounting" %}">Accounting </a></li>{% endif %}
             </ul>
+            {% endif %}
+            {% if request.user|has_group:"HR" or request.user|has_group:"Director" %}
             <ul class="nav nav-sidebar">
               <li><a style="font-weight: bold">API Tools:</a></li>
               {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "memberlist" %}class="active"{%endif%}><a href="{% url "core:memberlist" %}">Member List</a></li>{% endif %}
@@ -74,6 +77,8 @@
               {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "assetscan" %}class="active"{%endif%}><a href="{% url "core:assetscan" %}">AssetScan</a></li>{% endif %}
               {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "iskoverview" %}class="active"{%endif%}><a href="{% url "core:iskoverview" %}">Member Finances</a></li>{% endif %}
             </ul>
+            {% endif %}
+            {% if request.user|has_group:"Member" %}
             <ul class="nav nav-sidebar">
               <li><a style="font-weight: bold">Tools:</a></li>
               {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "srplist" %}class="active"{%endif%}><a href="{% url "srp:srplist" %}">SRP</a></li>{% endif %}
@@ -92,6 +97,7 @@
                 {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "hipchatlist" %}class="active"{%endif%}><a href="{% url "hipchat:hipchatlist" %}">Hipchat Account List</a></li>{% endif %}
               {% endif %}
             </ul>
+            {% endif %}
             {% get_links %}
           </div>
           <div class="col-sm-9 col-md-10 main">
