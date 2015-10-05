@@ -48,7 +48,9 @@ def apply_anonymous(request):
 		if app.status != Application.OFFERED:
 			return redirect("applications:mystatus")
 	except ObjectDoesNotExist:
-		app = Application(applicantProfile=request.user.userprofile)
+		sample = string.lowercase+string.digits
+		token = ''.join(random.sample(sample, 5))
+		app = Application(token=token, applicantProfile=request.user.userprofile)
 		app.save()
 		c = Comment(app=app, author=request.user.userprofile, date=datetime.utcnow(), text="Started Application", auto_generated=True)
 		c.save()
