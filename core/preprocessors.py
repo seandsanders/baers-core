@@ -8,5 +8,6 @@ def template_settings(request):
         'CORP_FULLNAME': settings.CORP_FULLNAME,
         'ALTCORP_FULLNAME': settings.ALTCORP_FULLNAME,
         'ALTCORP_SHORTNAME': settings.ALTCORP_SHORTNAME,
-        'CORP_SHORTNAME': settings.CORP_SHORTNAME
+        'CORP_SHORTNAME': settings.CORP_SHORTNAME,
+        'ALLOW_ANONYMOUS_APP': settings.ALLOW_ANONYMOUS_APP
     }

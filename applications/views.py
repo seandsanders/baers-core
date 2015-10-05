@@ -11,6 +11,7 @@ from django.db.models import Count
 import random, string
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import Group
 from django.utils.text import slugify
 from xml.etree import ElementTree
@@ -35,6 +36,27 @@ def apply(request, token):
 	if (app.status > 0):
 		return redirect("applications:mystatus")
 
+	return apply_common(request, app)
+
+
+def apply_anonymous(request):
+	if not request.user.is_authenticated():
+		return redirect("core:register")
+
+	try:
+		app = request.user.userprofile.application
+		if app.status != Application.OFFERED:
+			return redirect("applications:mystatus")
+	except ObjectDoesNotExist:
+		app = Application(applicantProfile=request.user.userprofile)
+		app.save()
+		c = Comment(app=app, author=request.user.userprofile, date=datetime.utcnow(), text="Started Application", auto_generated=True)
+		c.save()
+
+	return apply_common(request, app)
+
+
+def apply_common(request, app):
 	if request.method == "POST":
 		count = 1
 		answers = []
@@ -44,7 +66,7 @@ def apply(request, token):
 			count += 1
 		app.status = 1
 		app.timezone = request.POST.get('tz')
-		app.applicantProfile = request.user.userprofile		
+		app.applicantProfile = request.user.userprofile
 		app.applicationDate = datetime.utcnow()
 		app.save()
 		recruiter = Group.objects.filter(name="Recruiter").first()
@@ -57,10 +79,8 @@ def apply(request, token):
 
 		return redirect("applications:mystatus")
 
-
 	else:
 		return render(request, "apply.html", {"questions": appmodule.questions})
-
 
 def mystatus(request):
 	c = {"app": request.user.userprofile.application, "pos": len(Application.objects.filter(status=Application.UNPROCESSED, id__lte=request.user.userprofile.application.id))}

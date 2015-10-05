@@ -2,7 +2,7 @@
 {% load humanize %}
 
 {% block content %}
-<div class="newapp pull-right"> <a href="#" id="newAppButton" class="btn btn-success ">+ Create new application link</a> <input type="text" id="tokenlink" style="display:none" class="form-control" value=""></input></div>
+{% if not ALLOW_ANONYMOUS_APP %}<div class="newapp pull-right"> <a href="#" id="newAppButton" class="btn btn-success ">+ Create new application link</a> <input type="text" id="tokenlink" style="display:none" class="form-control" value=""/></div>{% endif %}
 
 <div class="row">
 	{% if unprocessed %}
@@ -158,7 +158,7 @@
 {% block title %}Applications - {{CORP_FULLNAME}}{%endblock title%}
 
 {% block scripts %}
-
+{% if not ALLOW_ANONYMOUS_APP %}
 <script>
 	$('#newAppButton').click(function () {
 		$.post('/applications/new', function (link) {
@@ -166,4 +166,5 @@
 		});
 	});
 </script>
+{% endif %}
 {% endblock scripts %}

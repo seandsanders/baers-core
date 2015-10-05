@@ -161,7 +161,7 @@ def dashboard(request):
 
 
 def changeTheme(request):
-	request.user.userprofile.theme = request.POST.get('theme', 'Flatly')
+	request.user.userprofile.theme = request.POST.get('theme', 'flatly')
 	request.user.userprofile.save()
 	return HttpResponse('')
 
