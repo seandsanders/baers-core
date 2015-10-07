@@ -19,7 +19,7 @@
 				<th>Corporation</th>
 				<th>SP</th>
 				<th>ISK</th>
-				<th>Killboard</th>
+				<th>External</th>
 				<th>Jackknife</th>
 			</tr>
 			{% for key in keys %}
@@ -33,7 +33,7 @@
 			 			<td><img src="//image.eveonline.com/Corporation/{{char.corpID}}_32.png" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.corpName}}">{{char.corpName}}</td>
 			 			<td>{{char.sp|intcomma}}</td>
 			 			<td>{{char.walletBalance|intcomma}}</td>
-			 			<td><a target="_blank" href="https://zkillboard.com/character/{{char.charID}}/">zKill</a></td>
+			 			<td><a href="http://eve-search.com/search/author/{{char.charName}}" target="_blank" title="{{char.charName}} on EVE-Search"><img width="16px" src="http://eve-search.com/favicon.ico"></a> <a target="_blank"  href="https://zkillboard.com/character/{{char.charID}}/" title="{{char.charName}} on zKillboard"><img width="16px" src="https://zkillboard.com/favicon.ico"></a> <a href="http://evewho.com/pilot/{{char.charName}}"  target="_blank" title="{{char.charName}} on EVE-Who"><img src="http://evewho.com/favicon.ico" width="16px"></a></td>
 			 			<td><a target="_blank" href="http://ridetheclown.com/eveapi/audit.php?chid={{char.charID}}&usid={{key.keyID}}&apik={{key.vCode}}">API</a></td>
 			 		</tr>
 			 		{% endfor %}
