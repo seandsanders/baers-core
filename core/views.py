@@ -396,10 +396,25 @@ def memberList(request):
 			else:
 				ctx["validAlts"].append({"valid": True, "charName": char.characterName, "joinDate":  char.joinDate, "charID": char.characterID, "logoffDate": char.logoffDate, "location": char.location, "slug": slugify(char.characterName), "mainChar": c.profile.mainChar, "shipType": char.shipType, "shipName": c.activeShipName, "inactiveDays": inactiveDays})
 
+	others = Character.objects.exclude(corpID=settings.CORP_ID)
+	if settings.ALTCORP_ID:
+		others = others.exclude(corpID=settings.ALTCORP_ID)
+
+
+	ctx["validOthers"] = []
+	ctx["invalidOthers"] = []
+	for char in others:
+		if char.api.valid:
+			ctx["validOthers"].append({"valid": True, "corpName": char.corpName, "corpID": char.corpID, "charName": char.charName, "joinDate":  "", "charID": char.charID, "logoffDate": "", "location": char.location, "slug": slugify(char.charName), "mainChar": char.profile.mainChar, "shipType": char.activeShipTypeName, "shipName": char.activeShipName, "inactiveDays": ""})
+		else:
+			ctx["invalidOthers"].append({"valid": False, "corpName": char.corpName, "corpID": char.corpID, "charName": char.charName, "joinDate":  "", "charID": char.charID, "logoffDate": "", "location": char.location, "slug": slugify(char.charName), "mainChar": char.profile.mainChar, "shipType": char.activeShipTypeName, "shipName": char.activeShipName, "inactiveDays": ""})
+
 	ctx["validCharacters"].sort(key=lambda x: x["mainChar"].charName)
 	ctx["invalidCharacters"].sort(key=lambda x: x["mainChar"])
 	ctx["validAlts"].sort(key=lambda x: x["mainChar"].charName)
 	ctx["invalidAlts"].sort(key=lambda x: x["mainChar"])
+	ctx["validOthers"].sort(key=lambda x: x["mainChar"].charName)
+	ctx["invalidOthers"].sort(key=lambda x: x["mainChar"].charName)
 
 	return render(request, "memberlist.html", ctx)
 
