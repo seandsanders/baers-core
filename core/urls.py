@@ -22,5 +22,6 @@ urlpatterns = [
 	url(r'^accounting', views.accounting, name="accounting"),
 	url(r'^assetscan/(?P<itemID>[0-9]*)$', views.assetScan, name="assetexpand"),
 	url(r'^assetscan', views.assetScan, name="assetscan"),
-	url(r'^iskoverview', views.iskOverview, name="iskoverview")
+	url(r'^iskoverview', views.iskOverview, name="iskoverview"),
+	url(r'^api/members\.json', views.memberListJSON, name="memberlistjson")
 ]

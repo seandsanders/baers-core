@@ -716,3 +716,22 @@ def iskOverview(request):
 		p.charCount = p.character_set.count()
 	profiles = sorted(profiles, key=lambda profile: -profile.isk)
 	return render(request, "iskoverview.html", {"profiles": profiles})
+
+def memberListJSON(request):
+	if not hasattr(settings, "MEMBERLIST_API_SECRET"):
+		return HttpResponseForbidden(jsonify({"error": "Member List API disabled."}))
+
+	if not request.GET.get("secret", False) or not settings.MEMBERLIST_API_SECRET == request.GET.get("secret"):
+		return HttpResponseForbidden(jsonify({"error": "You have to provide the correct key."}))
+
+	profiles = UserProfile.objects.filter(user__groups__name="Member")
+	result = []
+
+	for profile in profiles:
+		user = {}
+		user["name"] = profile.mainChar.charName
+		user["tz"] = profile.tzoffset
+		user["characters"] = list( profile.character_set.values_list("charName", flat=True) )
+		result.append(user)
+
+	return HttpResponse(jsonify(result))
