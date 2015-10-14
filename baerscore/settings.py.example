@@ -240,3 +240,5 @@ HIPCHAT_ENABLED = False
 MIN_API_ID = 4325693
 
 ALLOW_ANONYMOUS_APP = False
+
+HOME_PAGE = 'core.views.landing'
