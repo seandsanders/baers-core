@@ -713,6 +713,8 @@ def iskOverview(request):
 	profiles = UserProfile.objects.filter(user__groups__name__contains="Member")
 	for p in profiles:
 		p.isk = p.character_set.aggregate(Sum('walletBalance'))["walletBalance__sum"]
+		if p.isk is None:
+			p.isk = 0
 		p.charCount = p.character_set.count()
 	profiles = sorted(profiles, key=lambda profile: -profile.isk)
 	return render(request, "iskoverview.html", {"profiles": profiles})
