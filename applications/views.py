@@ -215,7 +215,7 @@ def compareSkillplans(character):
 
 		plan = t.getroot()
 
-		skills = character.characterskill_set.filter(owner=character)
+		skills = dict(character.characterskill_set.values_list('typeID', 'level'))
 		nSkills=0
 		completed=0
 		missing = []
@@ -224,9 +224,8 @@ def compareSkillplans(character):
 			if skill.tag != 'entry':
 				continue
 			nSkills+=1
-			skillID = skill.attrib['skillID']
-			cskill = skills.filter(typeID=skillID, level__gte=skill.attrib['level'])
-			if cskill.exists():
+			skillID = int(skill.attrib['skillID'])
+			if skillID in skills.keys() and skills[skillID] >= int(skill.attrib['level']):
 				completed+=1
 			else:
 				missing.append(skill.attrib)
