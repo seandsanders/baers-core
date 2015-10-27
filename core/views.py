@@ -551,7 +551,7 @@ def capCensus(request):
 		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a director.'})
 
 	try:
-		capitals = DoctrineShipGroup.objects.get(name="Capitals").doctrineship_set.all()
+		capitals = DoctrineShipGroup.objects.get(name="Capitals").doctrineships.all().prefetch_related('skills')
 	except DoctrineShipGroup.DoesNotExist:
 		capitals = []
 
@@ -559,7 +559,7 @@ def capCensus(request):
 
 	for cap in capitals:
 		chars = Character.objects
-		for skill in cap.shiprequiredskill_set.all():
+		for skill in cap.skills.all():
 			chars = chars.filter(characterskill__typeID=skill.skillID, characterskill__level__gte=skill.level)
 
 		chars = chars.filter(profile__user__groups__name="Member")

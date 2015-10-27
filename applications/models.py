@@ -79,12 +79,12 @@ class DoctrineShipGroup(models.Model):
 
 
 class DoctrineShip(models.Model):
-	group = models.ForeignKey(DoctrineShipGroup)
+	group = models.ForeignKey(DoctrineShipGroup, related_name='doctrineships')
 	shipID = models.IntegerField()
 	name = models.CharField(max_length=50)
 
 
 class ShipRequiredSkill(models.Model):
-	ship = models.ForeignKey(DoctrineShip)
+	ship = models.ForeignKey(DoctrineShip, related_name='skills')
 	skillID = models.BigIntegerField()
 	level = models.BigIntegerField()
