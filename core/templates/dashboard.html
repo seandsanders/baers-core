@@ -7,7 +7,7 @@
 <div class="row dashboardHeader">
   <a href="{% url "core:playerProfile" profileName=mainCharName|slugify %}"><img src="//image.eveonline.com/Character/{{ mainCharID }}_128.jpg" class="character"></a>
   <h3 class="charName">{{ mainCharName }}</h3>
-  <span class="text-muted">{{ charTitle }}</span>
+  <span class="text-muted">{{ charTitle|striptags }}</span>
 </div>
 
 <hr>

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 import applications as appmodule
 from django.db import transaction
-from applications.models import Application, Answer, Comment, DoctrineShipGroup
+from applications.models import Application, Answer, Comment, DoctrineShipGroup, ShipRequiredSkill
 from datetime import datetime
 from django.http import HttpResponseNotFound, HttpResponse, HttpResponseForbidden
 from core.models import CharacterSkill, Character, Notification
@@ -157,16 +157,15 @@ def application(request, app):
 	return render(request, "application.html", c)
 
 def getFlyable(profile):
-	skills = CharacterSkill.objects.all()
 	r = []
-	for group in DoctrineShipGroup.objects.all():
+	for group in DoctrineShipGroup.objects.all().prefetch_related('doctrineships', 'doctrineships__skills'):
 		g = {
 			"group": group.name,
 			"ships": []
 		}
-		for ship in group.doctrineship_set.all():
+		for ship in group.doctrineships.all():
 			chars = profile.character_set
-			for skill in ship.shiprequiredskill_set.all():
+			for skill in ship.skills.all():
 				chars = chars.filter(characterskill__typeID=skill.skillID, characterskill__level__gte=skill.level)
 			g["ships"].append({
 				"name": ship.name,
@@ -216,7 +215,7 @@ def compareSkillplans(character):
 
 		plan = t.getroot()
 
-		skills = character.characterskill_set.filter(owner=character)
+		skills = dict(character.characterskill_set.values_list('typeID', 'level'))
 		nSkills=0
 		completed=0
 		missing = []
@@ -225,9 +224,8 @@ def compareSkillplans(character):
 			if skill.tag != 'entry':
 				continue
 			nSkills+=1
-			skillID = skill.attrib['skillID']
-			cskill = skills.filter(typeID=skillID, level__gte=skill.attrib['level'])
-			if cskill.exists():
+			skillID = int(skill.attrib['skillID'])
+			if skillID in skills.keys() and skills[skillID] >= int(skill.attrib['level']):
 				completed+=1
 			else:
 				missing.append(skill.attrib)
