@@ -349,14 +349,18 @@ def refreshKeyInfo(key, full=True):
 	except Exception as e:
 		if not key.valid:
 			return
-		key.valid=False
-		key.save()
-		n = Notification(cssClass="danger")
-		n.content = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> has invalidated one of their API keys. (Error: '"+unicode(e)+"')"
-		n.save()
-		n.targetGroup.add(hrGrp)
-		print unicode(key.profile)+" has invalidated one of their API keys."
-		return	
+		if "403 Forbidden" in unicode(e):
+			key.valid=False
+			key.save()
+			n = Notification(cssClass="danger")
+			n.content = "<a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a> has invalidated one of their API keys [" + unicode(key.keyID) + "]. (Error: '"+unicode(e)+"')"
+			n.save()
+			n.targetGroup.add(hrGrp)
+			print unicode(key.profile)+" has invalidated one of their API keys."
+			return
+		else:
+			postNotification(target=itGrp, text="Unable to query api key [" + unicode(key.keyID) + "] for: <a href='"+reverse('core:playerProfile', kwargs={"profileName": slugify(key.profile)})+"'>"+unicode(key.profile)+"</a>. (Error: '"+unicode(e)+"')", cssClass="danger")
+			return
 	key.accessMask = result.key.accessMask
 
 	keyType = result.key.type
