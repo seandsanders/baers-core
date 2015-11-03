@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% load humanize %}
+<div class="row">
+	<a href="{% url "helpdesk:ticketsubmit" %}" class="btn btn-success">+ New Request</a>
+	{% if open %}
+		<h1>Open Tickets</h1>
+		<div class="col-sm-8">
+			<table class="table table-hover">
+		 		<tr>
+		 			<th>Category</th>
+		 			<th>Title</th>
+		 			<th>Author</th>
+		 			<th>Status</th>
+		 		</tr>
+		 		{% for ticket in open %}
+			 		<tr>
+			 			<td><a href="{% url "helpdesk:viewticket" ticket.token %}">{{ticket.get_category_display}}</td>
+			 			<td><a href="{% url "helpdesk:viewticket" ticket.token %}">{{ticket.title}}</a></td>
+			 			{% if ticket.author %}<td><a href="{% url "helpdesk:viewticket" ticket.token %}"><img style="border-radius: 5px" src="//image.eveonline.com/Character/{{ ticket.author.mainChar.charID }}_32.jpg"> {{ticket.author}}</a></td>{% else %}<td><img style="border-radius: 5px" src="//image.eveonline.com/Character/0_32.jpg"> Anonymous {% endif %}
+			 			<td><a href="{% url "helpdesk:viewticket" ticket.token %}">{{ticket.get_status_display}}</td>
+			 		</tr>
+		 		{% endfor %}
+		 	</table>
+		</div>
+	{% endif %}
+</div>
+<div class="row">
+	{% if resolved %}
+		<h1>Resolved Tickets</h1>
+		<div class="col-sm-8">
+			<table class="table table-hover">
+		 		<tr>
+		 			<th>Category</th>
+		 			<th>Title</th>
+		 			<th>Author</th>
+		 			<th>Status</th>
+		 		</tr>
+		 		{% for ticket in resolved %}
+			 		<tr>
+			 			<td><a href="{% url "helpdesk:viewticket" ticket.token %}">{{ticket.get_category_display}}</td>
+			 			<td><a href="{% url "helpdesk:viewticket" ticket.token %}">{{ticket.title}}</a></td>
+			 			{% if ticket.author %}<td><a href="{% url "helpdesk:viewticket" ticket.token %}"><img style="border-radius: 5px" src="//image.eveonline.com/Character/{{ ticket.author.mainChar.charID }}_32.jpg"> {{ticket.author}}</a></td>{% else %}<td><img style="border-radius: 5px" src="//image.eveonline.com/Character/0_32.jpg"> Anonymous {% endif %}
+			 			<td><a href="{% url "helpdesk:viewticket" ticket.token %}">{{ticket.get_status_display}}</td>
+			 		</tr>
+		 		{% endfor %}
+		 	</table>
+		</div>
+	{% endif %}
+</div>
+
+{% endblock content %}
+
+{% block title %}Helpdesk - {{CORP_FULLNAME}}{%endblock title%}

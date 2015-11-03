@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% load humanize %}
+
+<div class="row">
+	<div class="col-md-6">
+		<h2>Viewing Details of Ticket #{{ticket.id}}</h2>
+		<strong>Submitted by:</strong> {% if ticket.author %}<a href="{% url "core:playerProfile" ticket.author|slugify %}"><img style="border-radius: 5px" src="//image.eveonline.com/Character/{{ ticket.author.mainChar.charID }}_32.jpg"> {{ticket.author}}</a>{% else %} <img style="border-radius: 5px" src="//image.eveonline.com/Character/0_32.jpg"> Anonymous{% endif %}
+		<br>
+		<strong>Category:</strong> {{ticket.get_category_display}}
+		<br>
+		<strong>Title:</strong> {{ticket.title}}
+		<br>
+		<strong>Text:</strong>
+		<pre>{{ticket.text}}</pre>
+		<br>
+		{% if admin %}
+		<h4>Change status:</h4>
+			<form method="POST" action="" class="form-inline">
+				<input type="submit" value="Resolved" class="form-control btn-success" name="resolved">
+				<input type="submit" value="In Progress" class="form-control btn-warning" name="inprogress">
+				<input type="submit" value="New" class="form-control btn-danger" name="new">
+				{%csrf_token%}
+			</form>
+		{% endif %}
+	</div>
+	<div class="col-md-6">
+		<h4>Comments:</h4>
+		<form action="" method="POST">
+			<textarea name="commentbody" rows="3" class="newcomment" placeholder="Type your comment here"></textarea>
+			{% if admin %}<input name="private" type="checkbox" > Private Comment (invisible to the author){% endif %}
+			<input name="newComment" type="submit" class="pull-right">
+			{%csrf_token%}
+		</form>
+			<hr>
+		{% if comments|length > 0 %}
+			{% for c in comments reversed %}
+					{% if c.auto_generated %}
+						<div class="alert auto">{{c.date}} -  <strong><a href="{% url "core:playerProfile" c.author|slugify %}">{{c.author}}</a></strong> {{c.text}}</div>
+					{% else %}
+						<div class="alert comment {% if c.private %}private{% endif %}"><img style="border-radius: 5px;" src="//image.eveonline.com/Character/{{c.author.mainChar.charID}}_32.jpg"> <strong><a href="{% url "core:playerProfile" c.author|slugify %}">{{c.author}}</a></strong> wrote{% if c.private %} (privately){% endif %}:  <span class="pull-right">{{c.date}}</span>
+	<pre class="commentbody">{{c.text}}</pre></div>
+					{% endif %}	
+			{% endfor %}
+		{% else %}
+			<i>No comments yet.</i>
+		{% endif %}
+	</div>
+
+</div>
+{%endblock content%}
+
+ {% block title %}Ticket #{{ticket.id}} - {{CORP_FULLNAME}}{% endblock title %}
