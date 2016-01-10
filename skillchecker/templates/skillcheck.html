@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>Skill Checker</h2>
+    {% if errors %}
+        {% for error in errors %}
+           <div class="alert alert-warning" role="alert">{{error}}</div> 
+        {% endfor %}
+    {% endif %}
+    <form  action="" method="POST">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <th>Skill</th>
+                <th>Min. Level</th>
+            </thead>
+            <tbody>
+                {% if filters %}
+                    {% for f in filters %}
+                    <tr>
+                        <td><input  class="form-control" type="text" name="item" id="item" value="{{f.0}}"> </td>
+                        <td><input style="width: 100px" class="form-control" length="2" type="number" name="level" value="{{f.1}}"></td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                <tr>
+                    <td><input  class="form-control" type="text" name="item" id="item"> </td>
+                    <td><input style="width: 100px" class="form-control" length="2" type="number" name="level"></td>
+                </tr>
+                {%  endif %}
+                <tr class="hide">
+                    <td><input  class="form-control" type="text" name="item" id="item"> </td>
+                    <td><input style="width: 100px" class="form-control" length="2" type="number" name="level"></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <a class="btn btn-default" id="addrow">Add Skill Filter</a>
+        <input class="btn btn-success" type="submit" value="Search">
+    </form>
+    
+    {% if chars %}
+    <hr>
+    <h4>Results ({{chars|length}})</h4>
+    <br>
+    <ul class="userlist">
+        {% for char in chars %}
+            <li style="padding-bottom: 5px"><img src="//image.eveonline.com/Character/{{char.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{char.charName}}"><a href="{% url "core:playerProfile" profileName=char.charName|slugify %}">{{char}} ({{char.profile.mainChar}})</a></li>
+        {% endfor %}
+    </ul>
+    <hr>
+    {% endif %}
+ {% endblock content %}
+
+ {% block scripts %}
+  <script>
+    $( "#item" ).autocomplete({
+      source: "/corpmarket/typeid",
+      minLength: 3
+  });
+
+    $( "#addrow" ).click(function () {
+        tr = $("tr").last();
+        tr2 = tr.clone()
+        tr2.removeClass("hide")
+        tr2.insertBefore(tr);
+        $(tr2).find("#item").autocomplete({
+              source: "/corpmarket/typeid",
+              minLength: 3
+          });
+    })
+  </script>
+ {% endblock scripts %}
+  {% block title %}Skill Check - {{CORP_FULLNAME}}{% endblock title %}

@@ -77,6 +77,7 @@
               {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "memberlist" %}class="active"{%endif%}><a href="{% url "core:memberlist" %}">Member List</a></li>{% endif %}
               {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "capcensus" %}class="active"{%endif%}><a href="{% url "core:capcensus" %}">Capital Pilots</a></li>{% endif %}
               {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "assetscan" %}class="active"{%endif%}><a href="{% url "core:assetscan" %}">AssetScan</a></li>{% endif %}
+              {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "skillcheck" %}class="active"{%endif%}><a href="{% url "skillchecker:skillcheck" %}">Skill Checker</a></li>{% endif %}
               {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "iskoverview" %}class="active"{%endif%}><a href="{% url "core:iskoverview" %}">Member Finances</a></li>{% endif %}
             </ul>
             {% endif %}
