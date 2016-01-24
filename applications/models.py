@@ -60,7 +60,7 @@ class Application(models.Model):
 class Answer(models.Model):
 	app = models.ForeignKey(Application)
 	question = models.CharField(max_length=500)
-	text = models.CharField(max_length=1000)
+	text = models.TextField()
 	def __str__(self):
 		if self.text:
 			return self.text
