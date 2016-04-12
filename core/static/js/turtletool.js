@@ -15,7 +15,7 @@ var corpArray = {
         "Half Massed" : "99005023",
         "DURA LEXX" : "99003700",
         "Exit Strategy.." : "99004364",
-        "The Last Chancers" : "1475695446",
+        "The Last Chancers" : "1475695446"
     },
     "corporation" : {
         "Hard Knocks Inc." : "98040755",
@@ -25,7 +25,7 @@ var corpArray = {
         "Catastrophic Overview Failure" : "98319972",
         "Spectraliz IIZ" : "98100175",
         "No Vacancies" : "98323701",
-        "fiftyninepee" : "98262249",
+        "fiftyninepee" : "98262249"
         
     }
     
@@ -37,12 +37,23 @@ var shipArray = {
     "Proteus" : "29988",
     "Loki" : "29990",
     "Bhaalgorn" : "17920",
-    
+    "Vindicator": "17740",
+
+    "Sleipnir": "22444",
+    "Claymore": "22468",
+    "Absolution": "22448",
+    "Damnation": "22474",
+
+    "Guardian": "11987",
+    "Basilisk": "11985",
+    "Gila": "17715",
+    "Curse": "20125",
+    "Huginn": "11961",
+
     "Archon" : "23757",
     "Chimera" : "23915",
     "Thanatos" : "23911",
-    "Nidhoggur" : "24483",
-    
+    "Nidhoggur" : "24483"
 }
 
 var select = document.getElementById("nameSelect");
