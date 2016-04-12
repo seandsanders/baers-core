@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>zKillboard Fitting lookup</h1>
+
+
+<div class="form-inline">
+<strong>Alliance/Corporation: </strong><br>
+<select class="form-control" id="nameSelect" onchange="onNewSelect()">
+  <option value="loading">Loading options...</option>
+</select>
+
+<br>
+
+<strong>Ship:</strong><br>
+<select id="shipSelect" onchange="onNewSelect()" multiple>
+</select>
+
+<br><br>
+
+<input id="typeCheckbox" type="checkbox" onchange="onNewSelect()">Include kspace
+
+<br><br>
+
+<a href="#" class="btn btn-success disabled" target="_blank" id="link">Pick an alliance...</a>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/turtletool.js"></script>
+{% endblock %}
+
+
+
+{% block title %}Ship Loss Lookup - {{CORP_FULLNAME}}{% endblock title %}

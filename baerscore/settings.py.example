@@ -235,8 +235,17 @@ FUEL_TYPE = 4246
 # One of these will be displayed on the front page
 HAIKU_ENABLED = False
 
+
+# Enable / disable Hipchat account management
 HIPCHAT_ENABLED = False
 
+# Set the minimum API key ID (useful to prevent people from re-using old APIs)
 MIN_API_ID = 4325693
 
+# Allow applications from everyone
 ALLOW_ANONYMOUS_APP = False
+
+# Secret key for the memberlist JSON export/api
+# Commenting that line will disable it entirely
+
+#MEMBERLIST_API_SECRET = ""

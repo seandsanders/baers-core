@@ -5,6 +5,7 @@ from timerboard.models import Timer
 from datetime import datetime, timedelta
 from django.conf import settings as djsettings
 from applications.views import compareSkillplans
+from helpdesk.models import Ticket
 
 register = template.Library() 
 
@@ -38,3 +39,8 @@ def timezones():
 @register.inclusion_tag("tags/plot.html", name="plot")
 def plot(name, data):
 	return {'name': name, 'data': data}
+
+@register.simple_tag(name='get_tickets') 
+def get_tickets(): 
+	l = len(Ticket.objects.filter(status__lt=2))
+	return "" if l==0 else l

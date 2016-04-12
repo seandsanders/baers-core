@@ -68,6 +68,7 @@
               {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "srpadmin" %}class="active"{%endif%}><a href="{% url "srp:srpadmin" %}">SRP - Admin <span class="badge">{% get_srps %}</span></a></li>{% endif %}
               {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "grouplist" %}class="active"{%endif%}><a href="{% url "core:grouplist" %}">Group Admin</a></li>{% endif %}
               {% if request.user|has_group:"Finance" %}<li {% if request.resolver_match.url_name == "accounting" %}class="active"{%endif%}><a href="{% url "core:accounting" %}">Accounting </a></li>{% endif %}
+              {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "ticketadmin" %}class="active"{%endif%}><a href="{% url "helpdesk:ticketadmin" %}">Helpdesk - Admin <span class="badge">{% get_tickets %}</span></a></li>{% endif %}
             </ul>
             {% endif %}
             {% if request.user|has_group:"HR" or request.user|has_group:"Director" %}
@@ -76,6 +77,7 @@
               {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "memberlist" %}class="active"{%endif%}><a href="{% url "core:memberlist" %}">Member List</a></li>{% endif %}
               {% if request.user|has_group:"Director" %}<li {% if request.resolver_match.url_name == "capcensus" %}class="active"{%endif%}><a href="{% url "core:capcensus" %}">Capital Pilots</a></li>{% endif %}
               {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "assetscan" %}class="active"{%endif%}><a href="{% url "core:assetscan" %}">AssetScan</a></li>{% endif %}
+              {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "skillcheck" %}class="active"{%endif%}><a href="{% url "skillchecker:skillcheck" %}">Skill Checker</a></li>{% endif %}
               {% if request.user|has_group:"HR" %}<li {% if request.resolver_match.url_name == "iskoverview" %}class="active"{%endif%}><a href="{% url "core:iskoverview" %}">Member Finances</a></li>{% endif %}
             </ul>
             {% endif %}
@@ -85,6 +87,8 @@
               {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "srplist" %}class="active"{%endif%}><a href="{% url "srp:srplist" %}">SRP</a></li>{% endif %}
               {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "timerboard" %}class="active"{%endif%}><a href="{% url "timerboard:timerboard" %}">Timerboard <span class="badge">{% get_timers %}</span></a></li>{% endif %}
               {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "cmlist" %}class="active"{%endif%}><a href="{% url "corpmarket:cmlist" %}">Corp Market</a></li>{% endif %}
+              {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "ticketlist" %}class="active"{%endif%}><a href="{% url "helpdesk:ticketlist" %}">Helpdesk</a></li>{% endif %}
+              {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "turtletool" %}class="active"{%endif%}><a href="{% url "core:turtletool" %}">Lossmail Lookup</a></li>{% endif %}
             </ul>
             <ul  class="nav nav-sidebar">
               <li><a style="font-weight: bold">External Services:</a></li>

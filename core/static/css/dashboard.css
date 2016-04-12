@@ -155,3 +155,13 @@ pre {
   color: inherit;
 }
 
+.private {
+  background-color: #EEE;
+  background: repeating-linear-gradient(
+    45deg,
+    #FFF,
+    #FFF 10px,
+    #E0E0E0 10px,
+    #E0E0E0 20px
+  );
+}
