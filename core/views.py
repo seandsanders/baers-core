@@ -737,3 +737,14 @@ def memberListJSON(request):
 		result.append(user)
 
 	return HttpResponse(jsonify(result))
+
+
+def handler500(request):
+	return render(request, 'error.html', {'title': '500 - Internal Server Error', 'description': 'You encountered an unexpected Error. If this problem persists, contact the website\'s administrator.'})
+
+
+def turtleTool(request):
+	if not isDropbear(request.user):
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are a member of this corporation.'})
+
+	return render(request, 'turtletool.html', {})

@@ -88,6 +88,8 @@
               {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "timerboard" %}class="active"{%endif%}><a href="{% url "timerboard:timerboard" %}">Timerboard <span class="badge">{% get_timers %}</span></a></li>{% endif %}
               {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "cmlist" %}class="active"{%endif%}><a href="{% url "corpmarket:cmlist" %}">Corp Market</a></li>{% endif %}
               {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "ticketlist" %}class="active"{%endif%}><a href="{% url "helpdesk:ticketlist" %}">Helpdesk</a></li>{% endif %}
+              {% if request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "turtletool" %}class="active"{%endif%}><a href="{% url "core:turtletool" %}">Lossmail Lookup</a></li>{% endif %}
+              <li><a href="http://watchlist.nimos.ws/" target="_blank">Corp/Alliance Watchlister</a></li>
             </ul>
             <ul  class="nav nav-sidebar">
               <li><a style="font-weight: bold">External Services:</a></li>
