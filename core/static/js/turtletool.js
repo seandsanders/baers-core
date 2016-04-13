@@ -15,7 +15,8 @@ var corpArray = {
         "Half Massed" : "99005023",
         "DURA LEXX" : "99003700",
         "Exit Strategy.." : "99004364",
-        "The Last Chancers" : "1475695446"
+        "The Last Chancers" : "1475695446",
+        "Friendly Probes": "99006112"
     },
     "corporation" : {
         "Hard Knocks Inc." : "98040755",
@@ -49,6 +50,20 @@ var shipArray = {
     "Gila": "17715",
     "Curse": "20125",
     "Huginn": "11961",
+
+    "Confessor": "34317",
+    "Jackdaw": "34828",
+    "Hecate": "35683",
+    "Svipul": "34562",
+    "Pontifex": "37481",
+    "Stork": "37482",
+    "Magus": "37483",
+    "Bifrost": "37480",
+    "Deacon": "37457",
+    "Kirin": "37458",
+    "Thalia": "37459",
+    "Scalpel": "37460",
+
 
     "Archon" : "23757",
     "Chimera" : "23915",
