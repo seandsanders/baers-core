@@ -26,8 +26,8 @@ var corpArray = {
         "Catastrophic Overview Failure" : "98319972",
         "Spectraliz IIZ" : "98100175",
         "No Vacancies" : "98323701",
-        "fiftyninepee" : "98262249"
-        
+        "fiftyninepee" : "98262249",
+        "Overload This": "98440670"
     }
     
 }
@@ -63,7 +63,6 @@ var shipArray = {
     "Kirin": "37458",
     "Thalia": "37459",
     "Scalpel": "37460",
-
 
     "Archon" : "23757",
     "Chimera" : "23915",
