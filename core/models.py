@@ -25,7 +25,7 @@ class UserProfile(models.Model):
 class Notification(models.Model):
 	content = models.CharField(max_length=2048)
 	time = models.DateTimeField(auto_now_add=True)
-	targetUsers = models.ManyToManyField(User)
+	targetUsers = models.ManyToManyField(User, related_name='core_notifications')
 	targetGroup = models.ManyToManyField(Group)
 	cssClass = models.CharField(max_length=20)
 
