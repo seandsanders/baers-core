@@ -373,7 +373,7 @@ def refreshKeyInfo(key, full=True):
 	else:
 		key.expiration = datetime.datetime.fromtimestamp(expires)
 
-	if not key.accessMask in [268435455, 1073741823]:
+	if not key.accessMask in [268435455, 1073741823, 4294967295]:
 		if not key.valid:
 			return
 		key.valid = False
@@ -849,7 +849,7 @@ def validateKey(keyID, vCode):
 
 	if (result.key.expires != ""):
 		return None, "The Key you provided has an expiration date set."
-	if not result.key.accessMask in [268435455, 1073741823]:
+	if not result.key.accessMask in [268435455, 1073741823, 4294967295]:
 		return None, "The Key you provided is not a full access key."
 	if result.key.type != "Account":
 		return None, "The Key you provided is not a full Account key."
