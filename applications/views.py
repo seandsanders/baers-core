@@ -260,7 +260,7 @@ def trialList(request):
 		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'Only Full Members can access this page.'})
 
 	ctx = {}
-	ctx['current'] = UserProfile.objects.exclude(mainChar__charactertitle__titleName=settings.TRIAL_MEMBER_TITLE)
+	ctx['current'] = UserProfile.objects.filter(mainChar__charactertitle__titleName=settings.TRIAL_MEMBER_TITLE)
 	ctx['past'] = [] #todo
 
 	return render(request, 'triallist.html', ctx)
