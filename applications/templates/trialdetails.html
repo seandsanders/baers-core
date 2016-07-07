@@ -45,22 +45,26 @@
       <div class="col-md-4">
         <h4><span class="label label-success">Yes:</span> {{ yes_votes.count }}</h4>
         <br>
+        {% if yes_votes %}
         <h5 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Yes Votes</a></h5>
         <ul class="userlist" style="display:none;">
           {% for vote in yes_votes %}
             <li style="padding-bottom: 5px"><img src="//image.eveonline.com/Character/{{vote.voter.userprofile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{vote.voter.userprofile.mainChar.charName}}"><a href="{% url "core:playerProfile" profileName=vote.voter.userprofile.mainChar.charName|slugify %}">{{vote.voter.userprofile.mainChar}}</a></li>
           {% endfor %}
         </ul>
+        {% endif %}
       </div>
       <div class="col-md-4">
         <h4><span class="label label-danger">No:</span> {{ no_votes.count }}</h4>
         <br>
+        {% if no_votes %}
         <h5 class="page-header"><a class="toggler" href="javascript:void(0)">[+] No Votes</a></h5>
         <ul class="userlist" style="display:none;">
           {% for vote in no_votes %}
             <li style="padding-bottom: 5px"><img src="//image.eveonline.com/Character/{{vote.voter.userprofile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{vote.voter.userprofile.mainChar.charName}}"><a href="{% url "core:playerProfile" profileName=vote.voter.userprofile.mainChar.charName|slugify %}">{{vote.voter.userprofile.mainChar}}</a></li>
           {% endfor %}
         </ul>
+        {% endif %}
       </div>
     </div>
     {% if all_comments %}
