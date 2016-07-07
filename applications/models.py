@@ -1,7 +1,6 @@
+from django.contrib.auth.models import User
 from django.db import models
 from core.models import UserProfile
-
-
 
 
 # Create your models here.
@@ -38,7 +37,7 @@ class Application(models.Model):
 		(NOTES, 'In Progress: See notes'),
 		(SPY, 'Completed: Spai, Awox Plz'),
 		(COMPLETED, 'Completed: See Status')
-	) 
+	)
 
 	USTZ = 0
 	AUTZ = 1
@@ -64,7 +63,7 @@ class Answer(models.Model):
 	def __str__(self):
 		if self.text:
 			return self.text
-		return "None" 
+		return "None"
 
 class Comment(models.Model):
 	app = models.ForeignKey(Application)
@@ -88,3 +87,16 @@ class ShipRequiredSkill(models.Model):
 	ship = models.ForeignKey(DoctrineShip, related_name='skills')
 	skillID = models.BigIntegerField()
 	level = models.BigIntegerField()
+
+
+class TrialComment(models.Model):
+	trial_member = models.ForeignKey(User)
+	author = models.ForeignKey(UserProfile)
+	date = models.DateTimeField(auto_now_add=True)
+	text = models.CharField(max_length=800)
+
+
+class TrialVote(models.Model):
+	approve = models.BooleanField(default=False)
+	trial_member = models.ForeignKey(User, related_name='trial_votes_received')
+	voter = models.ForeignKey(User, related_name='trial_votes_given')

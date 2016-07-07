@@ -58,6 +58,9 @@
             <ul class="nav nav-sidebar">
               <li {% if request.resolver_match.url_name == "dashboard" %}class="active"{%endif%}><a href="{% url "core:dashboard" %}">Overview <span class="sr-only">(current)</span></a></li>
               <li {% if request.resolver_match.url_name == "keys" %}class="active"{%endif%}><a href="{% url "core:keys" %}">Characters / API Keys</a></li>
+              {% if request.user|is_full_member %}
+              <li {% if request.resolver_match.url_name == "keys" %}class="active"{%endif%}><a href="{% url "applications:triallist" %}">Trial Member List</a></li>
+              {% endif %}
               {% if ALLOW_ANONYMOUS_APP and not request.user|has_group:"Member" %}<li {% if request.resolver_match.url_name == "apply" or request.resolver_match.url_name == "mystatus"%}class="active"{%endif%}><a href="{% url "applications:apply" %}">Application</a></li>{% endif %}
             </ul>
             {% if request.user|has_group:"POS" or request.user|has_group:"Recruiter" or request.user|has_group:"Finance" or request.user|has_group:"Director"%}

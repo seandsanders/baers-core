@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% load humanize %}
+
+{% block title %}{{ trial_user.mainChar.charName }} {{CORP_FULLNAME}}{% endblock title %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-6">
+      <img src="//image.eveonline.com/Character/{{ trial_user.mainChar.charID }}_128.jpg" class="character">
+      <h3 class="charName">{{ trial_user.mainChar.charName }}</h3>
+      <br>
+      <h4>Do you think this person is a good fit for the corp?</h4>
+      <form method="POST" action="" class="form-inline">
+        <input type="submit" value="Yes" class="form-control btn-success" name="yes">
+        <input type="submit" value="No" class="form-control btn-danger" name="no">
+        {%csrf_token%}
+      </form>
+      {% if user_vote %}
+        <h4>Your Vote: {% if user_vote.approve %}<span class="label label-success">Yes</span>{% else %}<span class="label label-danger">No</span>{% endif %}</h4>
+      {% endif %}
+    </div>
+    <div class="col-md-6">
+      <h4>Comments:</h4>
+      <form action="" method="POST">
+        <textarea name="commentbody" rows="3" class="newcomment" placeholder="Type your comment here"></textarea>
+        <input name="newComment" type="submit" class="pull-right">
+        {%csrf_token%}
+      </form>
+      {% if user_comments %}
+        <br>
+        <h4>Your Comments</h4>
+        {% for c in user_comments reversed %}
+          <div class="alert comment">
+            <img style="border-radius: 5px;" src="//image.eveonline.com/Character/{{c.author.mainChar.charID}}_32.jpg"> <strong><a href="{% url "core:playerProfile" c.author|slugify %}">{{c.author}}</a></strong> wrote: <span class="pull-right">{{c.date}}</span>
+            <pre class="commentbody">{{c.text}}</pre>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  {% if admin %}
+  <div class="row">
+    <div class="col-md-8">
+      <h3>Vote Summary:</h3>
+      <div class="col-md-4">
+        <h4><span class="label label-success">Yes:</span> {{ yes_votes.count }}</h4>
+        <br>
+        <h5 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Yes Votes</a></h5>
+        <ul class="userlist" style="display:none;">
+          {% for vote in yes_votes %}
+            <li style="padding-bottom: 5px"><img src="//image.eveonline.com/Character/{{vote.voter.userprofile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{vote.voter.userprofile.mainChar.charName}}"><a href="{% url "core:playerProfile" profileName=vote.voter.userprofile.mainChar.charName|slugify %}">{{vote.voter.userprofile.mainChar}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h4><span class="label label-danger">No:</span> {{ no_votes.count }}</h4>
+        <br>
+        <h5 class="page-header"><a class="toggler" href="javascript:void(0)">[+] No Votes</a></h5>
+        <ul class="userlist" style="display:none;">
+          {% for vote in no_votes %}
+            <li style="padding-bottom: 5px"><img src="//image.eveonline.com/Character/{{vote.voter.userprofile.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{vote.voter.userprofile.mainChar.charName}}"><a href="{% url "core:playerProfile" profileName=vote.voter.userprofile.mainChar.charName|slugify %}">{{vote.voter.userprofile.mainChar}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% if all_comments %}
+    <div class="col-md-4">
+      <h3>Comments:</h3>
+      {% for c in all_comments reversed %}
+        <div class="alert comment">
+          <img style="border-radius: 5px;" src="//image.eveonline.com/Character/{{c.author.mainChar.charID}}_32.jpg"> <strong><a href="{% url "core:playerProfile" c.author|slugify %}">{{c.author}}</a></strong> wrote: <span class="pull-right">{{c.date}}</span>
+          <pre class="commentbody">{{c.text}}</pre>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+  $('a.toggler').click(function () {
+    $(this).parent().nextAll('ul').first().slideToggle();
+    if ($(this).text()[1] == "+") {
+      $(this).text(
+        $(this).text().replace("+", "-")
+      )
+    } else {
+      $(this).text(
+        $(this).text().replace("-", "+")
+      )
+    }
+  })
+  </script>
+{% endblock scripts %}

@@ -2,11 +2,11 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 import applications as appmodule
 from django.db import transaction
-from applications.models import Application, Answer, Comment, DoctrineShipGroup, ShipRequiredSkill
+from applications.models import Application, Answer, Comment, DoctrineShipGroup, ShipRequiredSkill, TrialComment
 from datetime import datetime
 from django.http import HttpResponseNotFound, HttpResponse, HttpResponseForbidden
-from core.models import CharacterSkill, Character, Notification
-from core.views import isRecruiter, isHR
+from core.models import CharacterSkill, Character, Notification, UserProfile
+from core.views import isRecruiter, isHR, isFullMember
 from django.db.models import Count
 import random, string
 from django.views.decorators.csrf import csrf_exempt
@@ -17,6 +17,7 @@ from django.utils.text import slugify
 from xml.etree import ElementTree
 import os
 # Create your views here.
+from models import TrialVote
 
 
 def apply(request, token):
@@ -84,6 +85,7 @@ def apply_common(request, app):
 	else:
 		return render(request, "apply.html", {"questions": appmodule.questions})
 
+
 def mystatus(request):
 	c = {"app": request.user.userprofile.application, "pos": len(Application.objects.filter(status=Application.UNPROCESSED, id__lte=request.user.userprofile.application.id))}
 	if c["app"].status == Application.UNPROCESSED:
@@ -93,6 +95,7 @@ def mystatus(request):
 			c["status"] = "Ready for Interview"
 
 	return render(request, 'appstatus.html', c)
+
 
 def application(request, app):
 	if not isRecruiter(request.user):
@@ -156,6 +159,7 @@ def application(request, app):
 	}
 	return render(request, "application.html", c)
 
+
 def getFlyable(profile):
 	r = []
 	for group in DoctrineShipGroup.objects.all().prefetch_related('doctrineships', 'doctrineships__skills'):
@@ -176,6 +180,7 @@ def getFlyable(profile):
 	
 	return r	
 
+
 def applications(request):
 	if not isRecruiter(request.user):
 		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'You are not a recruiter.'})
@@ -193,6 +198,7 @@ def applications(request):
 	}
 	return render(request, "applications.html", c)
 
+
 @csrf_exempt
 def newApplication(request):
 	if not isRecruiter(request.user):
@@ -205,6 +211,7 @@ def newApplication(request):
 	c = Comment(app=app, author=request.user.userprofile, date=datetime.utcnow(), text="Generated the Token", auto_generated=True)
 	c.save()
 	return HttpResponse(request.build_absolute_uri(reverse('applications:apply', kwargs={'token':token})))
+
 
 def compareSkillplans(character):
 	result = []
@@ -234,6 +241,7 @@ def compareSkillplans(character):
 
 	return result
 
+
 def checkPlan(request, characterID):
 	try:
 		c = Character.objects.get(charID=characterID)
@@ -245,3 +253,54 @@ def checkPlan(request, characterID):
 			return HttpResponseForbidden('<h1>You do not have the permissions to view this character\'s skillplans</h1>')
 
 		return render(request, 'tags/skillplans.html', {'result': compareSkillplans(c), 'character': c})
+
+
+def trialList(request):
+	if not isFullMember(request.user):
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'Only Full Members can access this page.'})
+
+	ctx = {}
+	ctx['current'] = UserProfile.objects.exclude(mainChar__charactertitle__titleName=settings.TRIAL_MEMBER_TITLE)
+	ctx['past'] = [] #todo
+
+	return render(request, 'triallist.html', ctx)
+
+
+def trialDetails(request, profileID):
+	if not isFullMember(request.user):
+		return render(request, 'error.html', {'title': '403 - Forbidden', 'description': 'Only Full Members can access this page.'})
+
+	trial_profile = UserProfile.objects.get(pk=profileID)
+	if request.method == "POST":
+		if request.POST.get('newComment', False):
+			text = request.POST.get('commentbody')
+			if text and text.strip():
+				c = TrialComment()
+				c.text = text.strip()
+				c.author = request.user.userprofile
+				c.date = datetime.utcnow()
+				c.trial_member = trial_profile.user
+				c.save()
+		elif request.POST.get('yes', False):
+			vote, created = TrialVote.objects.get_or_create(voter=request.user, trial_member=trial_profile.user)
+			vote.approve = True
+			vote.save()
+		elif request.POST.get('no', False):
+			vote, created = TrialVote.objects.get_or_create(voter=request.user, trial_member=trial_profile.user)
+			vote.approve = False
+			vote.save()
+	ctx = {}
+	ctx['trial_user'] = trial_profile
+	ctx['user_comments'] = TrialComment.objects.filter(author=request.user.userprofile, trial_member=trial_profile.user)
+
+	try:
+		ctx['user_vote'] = TrialVote.objects.get(voter=request.user, trial_member=trial_profile.user)
+	except TrialVote.DoesNotExist:
+		pass
+
+	if isRecruiter(request.user):
+		ctx['admin'] = True
+		ctx['yes_votes'] = TrialVote.objects.filter(trial_member=trial_profile.user, approve=True)
+		ctx['no_votes'] = TrialVote.objects.filter(trial_member=trial_profile.user, approve=False)
+		ctx['all_comments'] = TrialComment.objects.filter(trial_member=trial_profile.user)
+	return render(request, 'trialdetails.html', ctx)

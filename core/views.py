@@ -47,6 +47,12 @@ def isFinance(user):
 def isPOS(user):
 	return user.groups.filter(name="POS").exists()
 
+def isFullMember(user):
+	return user.groups.filter(name='Member').exists() and user.userprofile.mainChar.charactertitle_set.filter(titleName=settings.FULL_MEMBER_TITLE).exists()
+
+def is_trial_member(user):
+	return user.groups.filter(name='Member').exists() and user.userprofile.mainChar.charactertitle_set.filter(titleName=settings.TRIAL_MEMBER_TITLE).exists()
+
 def updateTZ(request):
 	up = request.user.userprofile
 	up.tzoffset = request.POST.get('tzoffset', None)

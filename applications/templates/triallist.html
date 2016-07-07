@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% load humanize %}
+
+{% block title %}Trial Members {{CORP_FULLNAME}}{% endblock title %}
+
+{% block content %}
+  <h2>Trial Members</h2>
+	<br>
+  {% if current %}
+    <h4 class="page-header"><a class="toggler" href="javascript:void(0)">[-] Current ({{current|length}})</a></h4>
+    <ul class="userlist">
+      {% for person in current %}
+        <li style="padding-bottom: 5px"><img src="//image.eveonline.com/Character/{{person.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{person.mainChar.charName}}"><a href="{% url "applications:trialdetails" profileID=person.pk %}">{{person.mainChar}}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  {% if past %}
+    <h4 class="page-header"><a class="toggler" href="javascript:void(0)">[+] Past ({{current|length}})</a></h4>
+    <ul class="userlist" style="display:none;">
+      {% for person in past %}
+        <li style="padding-bottom: 5px"><img src="//image.eveonline.com/Character/{{person.mainChar.charID}}_32.jpg" style="vertical-align: middle; margin-right: 5px; border-radius: 3px; width: 24px; height: 24px;" title="{{person.mainChar.charName}}"><a href="{% url "applications:trialdetails" profileID=person.pk %}">{{person.mainChar}}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+  $('a.toggler').click(function () {
+    $(this).parent().nextAll('ul').first().slideToggle();
+    if ($(this).text()[1] == "+") {
+      $(this).text(
+        $(this).text().replace("+", "-")
+      )
+    } else {
+      $(this).text(
+        $(this).text().replace("-", "+")
+      )
+    }
+  })
+  </script>
+{% endblock scripts %}
