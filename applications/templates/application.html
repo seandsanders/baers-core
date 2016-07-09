@@ -39,6 +39,25 @@
 			 		{% endfor %}
 			{% endfor %}
 		</table>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Export Keys</button>
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">API Keys for {{ profile.mainChar.charName }}</h4>
+          </div>
+          <div class="modal-body">
+            <p>{% for key in keys %}{{key.keyID}} {{key.vCode}}<br>{% endfor %}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
  		<h2>Questions and Answers</h2>
  			{%for a in answers %}
  				<strong>{% autoescape off %}{{a.question}}{%endautoescape%}</strong>
