@@ -76,6 +76,9 @@ class Comment(models.Model):
 class DoctrineShipGroup(models.Model):
 	name = models.CharField(max_length=50)
 
+	def __unicode__(self):
+		return u'%s' % self.name
+
 
 class DoctrineShip(models.Model):
 	group = models.ForeignKey(DoctrineShipGroup, related_name='doctrineships')
@@ -85,6 +88,12 @@ class DoctrineShip(models.Model):
 
 class ShipRequiredSkill(models.Model):
 	ship = models.ForeignKey(DoctrineShip, related_name='skills')
+	skillID = models.BigIntegerField()
+	level = models.BigIntegerField()
+
+
+class DoctrineShipGroupRequiredSkill(models.Model):
+	group = models.ForeignKey(DoctrineShipGroup)
 	skillID = models.BigIntegerField()
 	level = models.BigIntegerField()
 

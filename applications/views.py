@@ -162,13 +162,16 @@ def application(request, app):
 
 def getFlyable(profile):
 	r = []
-	for group in DoctrineShipGroup.objects.all().prefetch_related('doctrineships', 'doctrineships__skills'):
+	for group in DoctrineShipGroup.objects.all().prefetch_related('doctrineships', 'doctrineships__skills', 'doctrineshipgrouprequiredskill_set'):
 		g = {
 			"group": group.name,
 			"ships": []
 		}
+		char_set = profile.character_set.all()
+		for skill in group.doctrineshipgrouprequiredskill_set.all():
+			char_set = char_set.filter(characterskill__typeID=skill.skillID, characterskill__level__gte=skill.level)
 		for ship in group.doctrineships.all():
-			chars = profile.character_set
+			chars = char_set.all()
 			for skill in ship.skills.all():
 				chars = chars.filter(characterskill__typeID=skill.skillID, characterskill__level__gte=skill.level)
 			g["ships"].append({
@@ -178,7 +181,7 @@ def getFlyable(profile):
 			})
 		r.append(g)
 	
-	return r	
+	return r
 
 
 def applications(request):

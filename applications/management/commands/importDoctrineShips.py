@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 import json
-from applications.models import DoctrineShipGroup, DoctrineShip, ShipRequiredSkill
+from applications.models import DoctrineShipGroup, DoctrineShip, ShipRequiredSkill, DoctrineShipGroupRequiredSkill
 
 
 class Command(BaseCommand):
@@ -16,8 +16,12 @@ class Command(BaseCommand):
         for import_group in data:
             group, created = DoctrineShipGroup.objects.get_or_create(name=import_group['group'])
             if not created:
-                group.doctrineship_set.all().delete()
-
+                group.doctrineships.all().delete()
+            group_skills = []
+            for import_skill in import_group['skills']:
+                group_skill = DoctrineShipGroupRequiredSkill(group=group, skillID=import_skill[0], level=import_skill[1])
+                group_skills.append(group_skill)
+            DoctrineShipGroupRequiredSkill.objects.bulk_create(group_skills)
             for import_ship in import_group['ships']:
                 ship = DoctrineShip(group=group,
                                     shipID=import_ship['shipID'],
